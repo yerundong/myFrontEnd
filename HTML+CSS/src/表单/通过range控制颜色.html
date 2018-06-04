@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <input type="range" id="rRan" min="0" max="255" value="255"/><span id="rVal"></span>
+    <input type="range" id="gRan" min="0" max="255" value="255"/><span id="gVal"></span>
+    <input type="range" id="bRan" min="0" max="255" value="255"/><span id="bVal"></span>
+    <script type="text/javascript">
+        var oBody = document.getElementsByTagName("body")[0];
+        var rRan = document.getElementById("rRan");
+        var gRan = document.getElementById("gRan");
+        var bRan = document.getElementById("bRan");
+        var rVal = document.getElementById("rVal");
+        var gVal = document.getElementById("gVal");
+        var bVal = document.getElementById("bVal");
+        var rangeArr = [rRan,gRan,bRan];
+        var valArr = [rVal,gVal,bVal];
+        for(var i=0;i<rangeArr.length;i++){
+            rangeArr[i].index = i;
+            rangeArr[i].onchange = function(){
+                valArr[this.index].innerHTML = this.value;
+                oBody.style.background = "rgb("+rRan.value+","+gRan.value+","+bRan.value+")";
+            }
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>save、restore</title>
+</head>
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+    }
+
+    .clearfix {
+        height: 800px;
+    }
+
+    .cavs {
+        border: 1px solid #ccc;
+        float: left;
+    }
+</style>
+
+<body class="clearfix">
+    <div style="padding-left: 85px;height: 30px;line-height: 30px;">X→</div>
+    <div style="width: 40px;float: left;height: 100%;text-align: center;width: 30px;margin-left: 50px">
+        <p>Y</p>
+        <p>↓</p>
+    </div>
+    <canvas id="cavs" class="cavs" width="1400" height="800"></canvas>
+    <script>
+        const oCavs = document.querySelector("#cavs");
+        const ctx = oCavs.getContext('2d');
+
+        // [save()]
+        // 将当前状态放入栈中，保存canvas绘制状态的方法
+        // 保存到栈中的绘制状态有:
+        // 变换(rotate、scale、translate、transform)
+        // 剪切(clip)
+        // 当前的虚线列表
+        // 及以下属性值： 
+        // strokeStyle, fillStyle, globalAlpha, lineWidth, lineCap, lineJoin, miterLimit, 
+        // lineDashOffset, shadowOffsetX, shadowOffsetY, shadowBlur, shadowColor, 
+        // globalCompositeOperation, font, textAlign, textBaseline, direction, imageSmoothingEnabled
+
+        // [restore()]
+        // 将canvas恢复到最近的保存状态的方法
+        // 注意：save与restore成对出现，save只能被restore一次，再restore则无效
+
+        ctx.save(); // 保存此时栈中的绘制状态
+        ctx.strokeStyle = 'red';
+        ctx.moveTo(100, 100);
+        ctx.lineTo(200, 100);
+        ctx.stroke();
+        ctx.restore(); // 恢复到最近的保存状态
+
+        ctx.save(); // 保存此时栈中的绘制状态
+        ctx.beginPath();
+        ctx.strokeStyle = 'green';
+        ctx.moveTo(100, 200);
+        ctx.lineTo(200, 200);
+        ctx.stroke();
+        ctx.restore(); // 恢复到最近的保存状态
+
+        ctx.beginPath();
+        ctx.moveTo(100, 300);
+        ctx.lineTo(200, 300);
+        ctx.stroke();
+    </script>
+</body>
+
+</html>

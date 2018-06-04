@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>putImageData</title>
+</head>
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+    }
+
+    .clearfix {
+        height: 800px;
+    }
+
+    .cavs {
+        border: 1px solid #ccc;
+        float: left;
+    }
+</style>
+
+<body class="clearfix">
+    <div style="padding-left: 85px;height: 30px;line-height: 30px;">X→</div>
+    <div style="width: 40px;float: left;height: 100%;text-align: center;width: 30px;margin-left: 50px">
+        <p>Y</p>
+        <p>↓</p>
+    </div>
+    <canvas id="cavs" class="cavs" width="1400" height="800"></canvas>
+    <script>
+        const oCavs = document.querySelector("#cavs");
+        const ctx = oCavs.getContext('2d');
+
+        // [putImageData(imageData, x, y, dirtyX, dirtyY, dirtyWidth, dirtyHeight)]
+        // 将ImageData对象绘制到画布上
+        // imageData 	规定要放回画布的 ImageData 对象。
+        // x 	ImageData 对象左上角的 x 坐标，以像素计。
+        // y 	ImageData 对象左上角的 y 坐标，以像素计。
+        // dirtyX 	可选。水平值（x），以像素计，在画布上放置图像的位置。
+        // dirtyY 	可选。水平值（y），以像素计，在画布上放置图像的位置。
+        // dirtyWidth 	可选。在画布上绘制图像所使用的宽度。
+        // dirtyHeight 	可选。在画布上绘制图像所使用的高度。
+
+        // 创建一个10000像素的ImageData对象(100×100)
+        const imageData1 = ctx.createImageData(100, 100);
+        for (let i = 0; i < imageData1.data.length; i += 4) {
+            imageData1.data[i] = 0;
+            imageData1.data[i + 1] = 0;
+            imageData1.data[i + 2] = 255;
+            imageData1.data[i + 3] = 255;
+        }
+        ctx.putImageData(imageData1, 10, 10);
+        ctx.putImageData(imageData1, 150, 10);
+        ctx.putImageData(imageData1, 200, 10, 210, 50, 10, 10); // ???????????
+    </script>
+</body>
+
+</html>

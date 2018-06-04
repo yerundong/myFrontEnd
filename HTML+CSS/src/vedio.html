@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+
+    </style>
+</head>
+<body>
+<!--
+    【video】标签定义视频，比如电影片段或其他视频流。是【行内元素】
+        src	url	要播放的视频的 URL。
+        controls	controls	如果出现该属性，则向用户显示【控件】，每个浏览器默认控件不一样。
+        autoplay	autoplay	如果出现该属性，则视频在就绪后马上播放。
+
+        height	pixels	设置视频播放器的高度。规定视频的高度和宽度是一个好习惯。如果设置这些属性，
+            在页面加载时会为视频预留出空间。如果没有设置这些属性，那么浏览器就无法预先确定视频的尺寸，
+            这样就无法为视频保留合适的空间。结果是，在页面加载的过程中，其布局也会产生变化。
+        width	pixels	设置视频播放器的宽度。请勿通过【height 和 width】属性来缩放视频，否则迫使用户下载原始的视频
+
+        loop	loop	视频将【循环播放】。
+        muted	muted	规定视频加载完【默认是被静音】的。
+        poster	URL	  封面，即视频的第一帧画面。
+        preload	 规定是否预加载视频 如果出现该属性，则视频在页面加载时进行加载，并预备播放,如果使用 "autoplay"，则忽略该属性。
+                auto - 当页面加载后载入整个视频
+                meta - 当页面加载后只载入元数据
+                none - 当页面加载后不载入视频
+
+
+        属性	描述
+        audioTracks	返回表示可用音频轨道的 AudioTrackList 对象。
+        autoplay	设置或返回是否在就绪（加载完成）后随即播放视频。
+        buffered	返回表示视频已缓冲部分的 TimeRanges 对象。
+        controller	返回表示视频当前媒体控制器的 MediaController 对象。
+        controls	设置或返回视频是否应该显示控件（比如播放/暂停等）。
+        crossOrigin	设置或返回视频的 CORS 设置。
+        currentSrc	返回当前视频的 URL。
+        currentTime	设置或返回视频中的当前播放位置（以秒计）。
+        defaultMuted	设置或返回视频默认是否静音。
+        defaultPlaybackRate	设置或返回视频的默认播放速度。
+        duration	返回视频的长度（以秒计）。
+        ended	返回视频的播放是否已结束。
+        error	返回表示视频错误状态的 MediaError 对象。
+        height	设置或返回视频的 height 属性的值。
+        loop	设置或返回视频是否应在结束时再次播放。
+        mediaGroup	设置或返回视频所属媒介组合的名称。
+        muted	设置或返回是否关闭声音。
+        networkState	返回视频的当前网络状态。
+        paused	设置或返回视频是否暂停。
+        playbackRate	设置或返回视频播放的速度。
+        played	返回表示视频已播放部分的 TimeRanges 对象。
+        poster	设置或返回视频的 poster 属性的值。
+        preload	设置或返回视频的 preload 属性的值。
+        readyState	返回视频当前的就绪状态。
+        seekable	返回表示视频可寻址部分的 TimeRanges 对象。
+        seeking	返回用户当前是否正在视频中进行查找。
+        src	设置或返回视频的 src 属性的值。
+        startDate	返回表示当前时间偏移的 Date 对象。
+        textTracks	返回表示可用文本轨道的 TextTrackList 对象。
+        videoTracks	返回表示可用视频轨道的 VideoTrackList 对象。
+        volume	设置或返回视频的音量。
+        width	设置或返回视频的 width 属性的值。
+        Video 对象方法
+        方法	描述
+        addTextTrack()	向视频添加新的文本轨道。
+        canPlayType()	检查浏览器是否能够播放指定的视频类型。
+        load()	重新加载视频元素。
+        play()	开始播放视频。
+        pause()	暂停当前播放的视频。
+-->
+    <video src="../material/kangfuPanda.mp4" controls="controls" preload="auto" muted poster="img/2.jpg"></video>
+
+
+        <!--
+        【audio】标签定义声音，比如音乐或其他音频流。
+        autoplay	autoplay	如果出现该属性，则音频在就绪后马上播放。
+        controls	controls	如果出现该属性，则向用户显示控件，比如播放按钮。
+        loop	loop	如果出现该属性，则每当音频结束时重新开始播放。
+        muted	muted	规定视频输出应该被静音。
+        preload	preload
+        如果出现该属性，则音频在页面加载时进行加载，并预备播放。
+        如果使用 "autoplay"，则忽略该属性。
+        src	url	要播放的音频的 URL。
+        -->
+
+    <audio src="../material/audio1.mp3" controls></audio>
+</body>
+</html>

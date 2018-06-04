@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>fillText</title>
+</head>
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+    }
+
+    .clearfix {
+        height: 800px;
+    }
+
+    .cavs {
+        border: 1px solid #ccc;
+        float: left;
+    }
+</style>
+
+<body class="clearfix">
+    <div style="padding-left: 85px;height: 30px;line-height: 30px;">X→</div>
+    <div style="width: 40px;float: left;height: 100%;text-align: center;width: 30px;margin-left: 50px">
+        <p>Y</p>
+        <p>↓</p>
+    </div>
+    <canvas id="cavs" class="cavs" width="1400" height="800"></canvas>
+    <script>
+        const oCavs = document.querySelector("#cavs");
+        const ctx = oCavs.getContext('2d');
+        const txt = "一切有为法，如梦幻泡影，如露亦如电，应作如是观";
+
+        // [fillText(text, x, y, maxWidth)]
+        // 在画布上绘制“被填充的”文本
+        // text 	规定在画布上输出的文本。必填
+        // x 	    开始绘制文本的x坐标位置（相对于画布）。必填
+        // y 	    开始绘制文本的y坐标位置（相对于画布）。必填
+        // maxWidth 允许的最大文本宽度，以像素计。选填
+        // 若maxWidth小于ctx.measureText(txt).width，则文本会被压缩
+
+        ctx.font = "30px 方正舒体";
+        ctx.fillStyle = 'green';
+        console.log(ctx.measureText(txt).width); // 575
+        ctx.fillText(txt, 400, 300, 690);
+        console.log(ctx.measureText(txt).width); // 575
+    </script>
+</body>
+
+</html>

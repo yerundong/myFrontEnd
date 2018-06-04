@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>rect、strokeRect、fillRect</title>
+</head>
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+    }
+
+    .clearfix {
+        height: 800px;
+    }
+
+    .cavs {
+        border: 1px solid #ccc;
+        float: left;
+    }
+</style>
+
+<body class="clearfix">
+    <div style="padding-left: 85px;height: 30px;line-height: 30px;">X→</div>
+    <div style="width: 40px;float: left;height: 100%;text-align: center;width: 30px;margin-left: 50px">
+        <p>Y</p>
+        <p>↓</p>
+    </div>
+    <canvas id="cavs" class="cavs" width="1400" height="800"></canvas>
+    <script>
+        const oCavs = document.querySelector("#cavs");
+        const ctx = oCavs.getContext('2d');
+        // [rect(x, y, w, h)]
+        // 定义矩形的绘制规则
+        // x矩形左上角的x坐标
+        // y矩形左上角的y坐标
+        // w矩形的宽度，以像素计
+        // h矩形的高度，以像素计
+        ctx.rect(20, 20, 100, 100);
+        ctx.strokeStyle = 'red';
+        ctx.fillStyle = "blue";
+        ctx.lineWidth = "10";
+        ctx.stroke();
+        ctx.fill();
+        ctx.closePath();
+
+        // [fillRect(x, y, w, h)]
+        // 绘制矩形的填充部分，相当于rect()、fill()的结合简写
+        ctx.beginPath();
+        ctx.fillStyle = "red";
+        ctx.lineWidth = "10";
+        ctx.fillRect(140, 20, 100, 100);
+        ctx.closePath();
+
+        // [strokeRect(x, y, w, h)]
+        // 绘制矩形的线条部分，相当于rect()、stroke()的结合简写
+        ctx.beginPath();
+        ctx.strokeStyle = 'blue';
+        ctx.lineWidth = "10";
+        ctx.strokeRect(260, 20, 100, 100);
+        ctx.closePath();
+
+        ctx.beginPath();
+        ctx.strokeStyle = 'blue';
+        ctx.fillStyle = "red";
+        ctx.lineWidth = "10";
+        ctx.fillRect(380, 20, 100, 100);
+        ctx.strokeRect(380, 20, 100, 100);
+        ctx.closePath();
+    </script>
+</body>
+
+</html>

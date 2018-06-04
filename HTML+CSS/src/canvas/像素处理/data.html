@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>data</title>
+</head>
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+    }
+
+    .clearfix {
+        height: 800px;
+    }
+
+    .cavs {
+        border: 1px solid #ccc;
+        float: left;
+    }
+</style>
+
+<body class="clearfix">
+    <div style="padding-left: 85px;height: 30px;line-height: 30px;">X→</div>
+    <div style="width: 40px;float: left;height: 100%;text-align: center;width: 30px;margin-left: 50px">
+        <p>Y</p>
+        <p>↓</p>
+    </div>
+    <canvas id="cavs" class="cavs" width="1400" height="800"></canvas>
+    <script>
+        const oCavs = document.querySelector("#cavs");
+        const ctx = oCavs.getContext('2d');
+
+        // [imageData.data]
+        // 该ImageData对象所有像素参数的数组集合
+        // 一个像素有4个参数，分别表示RGBA值
+        // R - 红色 (0-255)
+        // G - 绿色 (0-255)
+        // B - 蓝色 (0-255)
+        // A - alpha 通道 (0-255; 0 是透明的，255 是完全可见的)
+
+        // 创建一个10000像素的ImageData对象(100×100)
+        const imageData1 = ctx.createImageData(100, 100);
+        console.log(imageData1.data);
+        for (let i = 0; i < imageData1.data.length; i += 4) {
+            imageData1.data[i] = 12;
+            imageData1.data[i + 1] = 23;
+            imageData1.data[i + 2] = 34;
+            imageData1.data[i + 3] = 45;
+        }
+        console.log(imageData1.data);
+        ctx.putImageData(imageData1, 10, 10);
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<!--
+			form必须post方式，头部定义为 enctype="multipart/form-data"
+			属性：
+			accept:限制类型,多个属性值使用逗号分隔
+				image(或image/*)-只支持图片类型
+				image/jpeg(或image/jpg)-只支持jpeg格式的图片类型
+				image/jpeg,image/gif-只支持jpeg/gif格式的图片类型
+				application/pdf
+				audio/x-mpeg
+				text/html
+				video/x-mpeg2
+			multiple：是否支持多选
+			
+			
+		-->
+		<form id="form" action="http://www.runoob.com/try/ajax/demo_test.php" method="post" enctype="multipart/form-data">
+			<input id="inp1" type="file" name="file" accept="image/*" multiple />
+			<input id="inp2" type="file" name="file" accept="image/jpeg"/>
+			<input id="inp3" type="file" name="file" accept="video/*"/>
+			<input type="submit" value="提交"/>
+			<input type="reset" value="重置" />
+			<input id="cons" type="button" value="cons" />
+		</form>
+		<script type="text/javascript">
+			const $form = document.querySelector('#form');
+			const $inp1 = document.querySelector('#inp1');
+			const $cons = document.querySelector('#cons');
+			$cons.onclick = function () {
+				console.log($inp1.files)
+			}
+			$form.onsubmit=function () {
+//				console.log(window.File)
+//				console.log(window.FileList)
+				//获取文件列表
+				const files_len = $inp1.files.length;
+				console.log($inp1.files)
+				if(files_len>=3){//控制文件个数
+					alert('文件上传不许超过三个！！')
+					return false
+				}else{
+					
+				}
+				
+			}
+			
+
+		</script>
+	</body>
+</html>

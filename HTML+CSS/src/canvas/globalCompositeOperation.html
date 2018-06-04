@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>globalCompositeOperation</title>
+</head>
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+    }
+
+    .clearfix {
+        height: 800px;
+    }
+
+    .cavs {
+        border: 1px solid #ccc;
+        float: left;
+    }
+</style>
+
+<body class="clearfix">
+    <div style="padding-left: 85px;height: 30px;line-height: 30px;">X→</div>
+    <div style="width: 40px;float: left;height: 100%;text-align: center;width: 30px;margin-left: 50px">
+        <p>Y</p>
+        <p>↓</p>
+    </div>
+    <canvas id="cavs" class="cavs" width="1400" height="800"></canvas>
+    <script>
+        const oCavs = document.querySelector("#cavs");
+        const ctx = oCavs.getContext('2d');
+        const img = new Image();
+        img.src = "../../asset/globalCompositeOperation.png";
+        img.onload = function () { // 待img加载完成之后才能绘制
+            ctx.drawImage(img, 600, 0);
+        }
+
+        // [globalCompositeOperation]
+        // 设置源图像与目标图像的[绘图关系]
+        // source-over 	默认。源图像覆盖目标图像
+        // source-atop 	显示目标图像，显示目标图像与源图像[交集的那部分源图像]
+        // source-in 	不显示目标图像，显示目标图像与源图像[交集的那部分源图像]
+        // source-out 	不显示目标图像，显示目标图像与源图像[不交集的那部分源图像]
+        // destination-over 	目标图像覆盖源图像
+        // destination-atop 	显示源图像，显示目标图像与源图像[交集的那部分目标图像]
+        // destination-in 	不显示源图像，显示目标图像与源图像[交集的那部分目标图像]
+        // destination-out 	不显示源图像，显示目标图像与源图像[不交集的那部分目标图像]
+        // lighter 	显示源图像 + 目标图像。目标图像与源图像[交集的那部分目标图像]颜色调和
+        // copy 	显示源图像。不显示目标图像。
+        // xor 	不显示目标图像与源图像[交集的那部分目标图像],其他都显示
+
+        // 注：
+        // 源图像（source）：最新的一个绘图
+        // 目标图像（destination）：已经在画布上存在的[所有绘图]
+
+        // [这是目标图像]
+        ctx.rect(0, 0, 300, 300);
+        ctx.fillStyle = 'red';
+        ctx.fill();
+        ctx.beginPath();
+        ctx.fillStyle = 'black';
+        ctx.arc(150, 150, 100, 0, 2 * Math.PI);
+        ctx.fill();
+
+        // [这是源图像]
+        ctx.beginPath();
+        ctx.rect(150, 150, 300, 300);
+        ctx.fillStyle = 'blue';
+
+        // [开始对不同关系的源图像进行绘制]
+        //*[source-over]    
+        ctx.globalCompositeOperation = "source-over";
+        ctx.fill();
+
+        //*[destination-over]
+        // ctx.globalCompositeOperation="destination-over";
+        // ctx.fill();
+
+        //*[source-atop]
+        // ctx.globalCompositeOperation="source-atop";
+        // ctx.fill();
+
+        //*[destination-atop]
+        // ctx.globalCompositeOperation="destination-atop";
+        // ctx.fill();
+
+        //*[source-in]
+        // ctx.globalCompositeOperation="source-in";
+        // ctx.fill();
+
+        //*[destination-in]
+        // ctx.globalCompositeOperation="destination-in";
+        // ctx.fill();
+
+        //*[source-out]
+        // ctx.globalCompositeOperation="source-out";
+        // ctx.fill();
+
+        //*[destination-out]
+        // ctx.globalCompositeOperation="destination-out";
+        // ctx.fill();
+
+        //*[lighter]
+        // ctx.globalCompositeOperation="lighter";
+        // ctx.fill();
+
+        //*[copy]
+        // ctx.globalCompositeOperation="copy";
+        // ctx.fill();
+
+        //*[xor]
+        // ctx.globalCompositeOperation="xor";
+        // ctx.fill();
+    </script>
+</body>
+
+</html>

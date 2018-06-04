@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>font</title>
+</head>
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+    }
+
+    .clearfix {
+        height: 800px;
+    }
+
+    .cavs {
+        border: 1px solid #ccc;
+        float: left;
+    }
+</style>
+
+<body class="clearfix">
+    <div style="padding-left: 85px;height: 30px;line-height: 30px;">X→</div>
+    <div style="width: 40px;float: left;height: 100%;text-align: center;width: 30px;margin-left: 50px">
+        <p>Y</p>
+        <p>↓</p>
+    </div>
+    <canvas id="cavs" class="cavs" width="1400" height="800"></canvas>
+    <script>
+        const oCavs = document.querySelector("#cavs");
+        const ctx = oCavs.getContext('2d');
+
+        // [font]
+        // 设置或返回画布上文本内容的当前字体属性
+        // font属性使用的语法与 CSS font属性相同。
+        // font-style 	规定字体样式
+        // font-variant 规定字体变体
+        // font-weight 	规定字体的粗细。可能的值：
+        // font-size	规定字号，以像素计。必填
+        // font-family 	规定字体系列。必填
+        // caption 	使用标题控件的字体（比如按钮、下拉列表等）。
+        // icon 	使用用于标记图标的字体。
+        // menu 	使用用于菜单中的字体（下拉列表和菜单列表）。
+        // message-box 	使用用于对话框中的字体。
+        // small-caption 	使用用于标记小型控件的字体。
+        // status-bar 	使用用于窗口状态栏中的字体。
+
+        ctx.font = "30px 宋体";
+        ctx.fillStyle = 'red';
+        ctx.fillText('hello', 300, 300);
+
+        ctx.beginPath();
+        ctx.font = "italic small-caps bold 30px 微软雅黑";
+        ctx.fillStyle = 'red';
+        ctx.fillText('hello', 500, 300);
+    </script>
+</body>
+
+</html>

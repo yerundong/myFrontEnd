@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			/*
+				背景渐变：
+				1、线性渐变linear-gradient
+				background:linear-gradient(渐变起点，渐变过程1，渐变过程2，渐变过程3.....)
+				渐变起点：top(默认)/right/bottom/left/两两搭配/***deg((gg)0deg为left，w3c为top,负顺正逆)
+				渐变过程：color 30%；color到30%时颜色最浓；0％代表起点和100％是终点；没百分比：均匀分布
+				color支持rgba，即支持【透明过渡】
+				2、径向渐变radial-gradient????
+			*/
+			div{
+				width:300px;
+				height:150px;
+				background:linear-gradient(0deg,blue,red,black 50%);
+				/*background:linear-gradient(left,rgba(0,0,0,0), rgba(0,0,0,1));*/
+				/*background:radial-gradient(ellipse closest-corner, #ace, #f96 10%, #1E90FF 50%, #f96);*/
+			}
+		</style>
+	</head>
+	<body>
+		<div></div>
+	</body>
+</html>

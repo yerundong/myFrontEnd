@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>arc</title>
+</head>
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+    }
+
+    .clearfix {
+        height: 800px;
+    }
+
+    .cavs {
+        border: 1px solid #ccc;
+        float: left;
+    }
+</style>
+
+<body class="clearfix">
+    <div style="padding-left: 85px;height: 30px;line-height: 30px;">X→</div>
+    <div style="width: 40px;float: left;height: 100%;text-align: center;width: 30px;margin-left: 50px">
+        <p>Y</p>
+        <p>↓</p>
+    </div>
+    <canvas id="cavs" class="cavs" width="1400" height="800"></canvas>
+    <script>
+        const oCavs = document.querySelector("#cavs");
+        const ctx = oCavs.getContext('2d');
+        const img = new Image();
+        img.src = "../../../asset/arc.gif";
+        img.onload = function () {
+            console.log(img);
+            ctx.drawImage(img, 900, 30);
+        }
+
+        // [arc(x, y, r, sAngle, eAngle, counterclockwise)]
+        // 创建弧/曲线（用于创建圆或部分圆）
+        // x 	圆的中心的 x 坐标。
+        // y 	圆的中心的 y 坐标。
+        // r 	圆的半径。
+        // sAngle 	起始角，以弧度计。（弧的圆形的三点钟位置是 0 度）。
+        // eAngle 	结束角，以弧度计。
+        // counterclockwise 规定应该逆时针还是顺时针绘图。可选。
+        // False = 顺时针，true = 逆时针 默认False
+
+        ctx.arc(100, 100, 100, 0, 0.5 * Math.PI);
+        ctx.stroke();
+
+        ctx.beginPath();
+        ctx.fillStyle = 'green';
+        ctx.arc(400, 100, 100, 0, 1.5 * Math.PI);
+        ctx.lineTo(400, 100);
+        ctx.closePath();
+        ctx.fill();
+
+        ctx.beginPath();
+        ctx.arc(700, 100, 100, 0, Math.PI);
+        ctx.closePath();
+        ctx.stroke();
+    </script>
+</body>
+
+</html>

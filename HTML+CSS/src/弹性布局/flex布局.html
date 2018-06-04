@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<style type="text/css">
+		*{
+			padding: 0;
+			margin: 0;
+		}
+		html,body{
+			width: 100%;
+			height: 100%;
+			float: left;
+		}
+		/*
+			弹性盒布局中有两个互相垂直的坐标轴：一个称之为主轴（main axis），另外一个称之为交叉轴（cross axis）。
+			主轴并不固定为水平方向的 X轴，交叉轴也不固定为垂直方向的 Y轴。 
+			主轴确定了容器中每一行上弹性子元素的排列方向，而交叉轴则确定行本身的排列方向。
+			每一行对应一根主轴和一根交叉轴。
+		*/
+		/*
+		 	父元素：
+		 	【display: flex/display: inline-flex】:设置该元素内部为弹性布局
+		 	该容器称为【弹性容器】，其下的所有子元素称为【弹性子元素】
+		 	弹性子元素的float、clear和vertical-align属性将自动失效
+		 	
+		 	【flex-direction】：设置弹性子元素【布局方向】，即设置主轴方向
+		 	row 默认 水平flex布局，(主轴)从左往右
+		 	row-reverse 水平flex布局，(主轴)从右往左
+		 	column 垂直flex布局，(主轴)从上往下
+		 	column-reverse 垂直flex布局，(主轴)从下往上
+		 	【*交叉轴的方向只能是从左到右或从上到下，始终与主轴垂直】
+		 	
+		 	【flex-wrap】：设置弹性子元素是否【换行】，换行之后会自动增加一条主轴
+		 	nowrap 默认 始终不换行，当窗口缩小到一定程度,可能将无法维持比例，固定高宽也允许被改变
+		 	wrap 固定高宽不会被改变，当窗口缩小到无法维持比例时，最后一个元素将被挤到下一行
+		 	wrap-reverse 固定高宽不会被改变，当窗口缩小到无法维持比例时，最后一个元素将被挤到上一行
+		 	
+		 	【flex-flow】：是flex-direction和flex-wrap的【简写】，推荐使用
+		 	既可以当作其中任何一个属性，也可以将两个属性合起来写：
+		 	flex-flow:column
+		 	flex-flow:wrap-reverse
+		 	flex-flow:column wrap-reverse
+		 	
+		 	【justify-content】:设置弹性子元素在【主轴的对齐方式】（需要有剩余空间才能体现）
+		 	flex-start 默认值 左对齐
+		 	flex-end：右对齐
+			center： 靠拢居中
+			space-between：紧贴两端对齐，剩余空间均匀分配成间隔。
+			space-around：两端有间隔，项目之间的间隔比项目与边框的间隔2倍。
+			
+			【align-items】：设置弹性子元素在【交叉轴上的对齐方式】。
+			stretch 默认值 若弹性子元素未设置高度或设为auto，将占满整个容器的高度，且在交叉轴的起点对齐		
+			flex-start：子元素在交叉轴的起点对齐。
+			flex-end：子元素在交叉轴的终点对齐。
+			center：子元素在交叉轴的中点对齐。
+			baseline: 子元素在的【第一行文字】的基线对齐。
+			
+			【align-content】：定义了【多根轴线的对齐方式】。如果项目只有一根主轴和一根交叉轴，该属性不起作用。
+			flex-start：与交叉轴的起点对齐。
+			flex-end：与交叉轴的终点对齐。
+			center：与交叉轴的中点对齐。
+			space-between：与交叉轴两端对齐，轴线之间的间隔平均分布。
+			space-around：每根轴线两侧的间隔都相等。所以，轴线之间的间隔比轴线与边框的间隔大一倍。
+			stretch（默认值）：轴线占满整个交叉轴。
+		*/
+		.box1{
+			width: 80%;
+			height: 700px;
+			border: 1px solid #ccc;
+			margin: 10px auto;
+			display: flex;
+			flex-direction:row;
+			flex-wrap:nowrap;
+			justify-content: flex-start;
+			align-items:stretch;
+			align-content:stretch;
+		}
+		/*
+			子元素：
+			弹性容器下的所有子元素称为弹性子元素
+			【order:n】:子元素排序 默认为0 数值越小，排列越靠前
+			【flex-grow】:属性定义项目【根据剩余空间进行比例放大】。
+			默认为0，即如果存在剩余空间，也不放大。
+			剩余空间即【除去固定空间后的空间】
+			【flex-shrink】:属性定义了项目在【空间不足时的缩小比例】，默认为1。
+			值越大，缩小越厉害。
+			如果所有项目的flex-shrink属性相同，将等比例缩小。
+			如果一个项目的【flex-shrink属性为0】，其他项目都为1，
+			则空间不足时，【前者不缩小(最小为它的flex-basis值,未设该值则最小为width/height值)】。
+			【flex-basis】属性定义了在【分配多余空间之前】，项目占据的主轴空间（main size）。
+			它的默认值为auto，即项目的(width/height)本来大小。
+			【flex:n】:flex属性是flex-grow, flex-shrink 和 flex-basis的【简写】，
+			默认值为0 1 auto。后两个属性可选。
+			该属性有两个【快捷值】：auto (1 1 auto) 和 none (0 0 auto)。
+			建议优先使用这个属性，而不是单独写三个分离的属性，因为浏览器会推算相关值。
+			【align-self】:属性允许单个项目有与其他项目不一样的【对齐方式】，可覆盖父元素的align-items属性。
+			auto 默认值 表示【继承父元素的align-items属性】，如果没有父元素，则等同于stretch。
+			stretch 若该元素未设置高度或设为auto，将占满整个容器的高度，且在交叉轴的起点对齐		
+			flex-start：该元素在交叉轴的起点对齐。
+			flex-end：该元素在交叉轴的终点对齐。
+			center：该元素在交叉轴的中点对齐。
+			baseline: 该元素在的【第一行文字】的基线对齐。
+		*/
+		.cup1{
+			background: green;
+			width: 100px;
+			height: 100px;
+			flex:none;
+		}
+		.cup2{
+			background: red;
+			width: 100px;
+			height: 100px;
+			flex:1 1 100px;
+			align-self:flex-start;
+		}
+		.cup3{
+			background: yellow;
+			width: 100px;
+			height: 100px;
+			flex-shrink: 1;
+			flex:1 1 100px;
+		}
+		.cup4{
+			background: cyan;
+			width: 100px;
+			height: 100px;
+			flex:1 1 100px;
+		}	
+	</style>
+	<body>
+		<div class="box1">
+			<div class="cup1">
+				cup1
+			</div>
+			<div class="cup2">
+				cup2
+			</div>
+			<div class="cup3">
+				cup3
+			</div>
+			<div class="cup4">
+				cup4
+			</div>
+		</div>
+	</body>
+</html>

@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>移动</title>
+</head>
+<style>
+    * {
+        padding: 0;
+        margin: 0;
+    }
+    body{
+        perspective:120px;
+    }
+    .boxes{
+        transform-style:preserve-3d;
+        padding-left: calc(50% - 50px);
+    }
+    .boxes>div {
+        width: 100px;
+        height: 100px;
+        text-align: center;
+        line-height: 100px;
+        cursor: pointer;
+        user-select: none;
+        /*给这些变换添加过渡效果*/
+        transition: transform 1s;
+    }
+    .boxes>div:nth-of-type(1) {
+        background: aqua;
+    }
+    .boxes>div:nth-of-type(2) {
+        background: red;
+    }
+
+    
+    /* 
+        [translate(x,y)] 
+        2d移动
+        xy为移动距离
+		只单独设置xy一项的可用translateX，translateY
+        translateX，translateY、translate会覆盖，故只其中一项生效，即最后设置的一项
+    */
+    .boxes>div.box1 {
+        transform: translate(180px, 180px);
+    }
+    /*
+        translate3d(x, y, z)
+        3d移动
+        xyz为移动距离
+        只单独设置xy一项的可用translateX，translateY,translateZ
+        translateX，translateY、translateZ、translate会覆盖，故只其中一项生效，即最后设置的一项
+    */
+    .boxes>div.box2 {
+        transform: translate3d(30px, 30px, 30px);
+    }
+</style>
+<body>
+    <div class="boxes">
+        <div onclick="transformGo(this, 'box1')">2d移动</div>
+        <div onclick="transformGo(this, 'box2')">3d移动</div>
+    </div>
+    <script>
+        const transformGo = function (target, classText) {
+            if(target.classList[0] == classText){
+                target.classList.remove(classText);
+            }else{
+                target.classList.add(classText)
+            }
+        }
+    </script>
+</body>
+</html>

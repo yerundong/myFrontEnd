@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <form action="" method="post">
+        <input type="email" /><!--@-->
+        <input type="url"/><!--http://-->
+        <input type="number" value="1" min="1" max="99"/>
+        <input type="range" id="rangeBar" value="50" min="1" max="100"/><span id="rangeVal"></span>
+        <input type="submit" value="提交"/>
+        <hr>
+        <hr>
+        <hr><!--时间表单-->
+        <!--样式完全没法改-->
+        <input type="date"/>  <!--获取年月日-->
+        <input type="month" /> <!--获取月-->
+        <input type="week" /> <!--获取周-->
+        <input type="time" />  <!--获取时间点-->
+        <input type="datetime" /> <!--所有浏览器均不支持-->
+        <input type="datetime-local" />  <!--获取年月日【webkit支持】-->
+
+        <input type="search" />  <!--输入框最后有个可以删除输入框内容的X按钮-->
+        <input type="color" />  <!--拾色器-->
+    </form>
+    <script type="text/javascript">
+        var rangeBar = document.getElementById("rangeBar");
+        var rangeVal = document.getElementById("rangeVal");
+        rangeBar.onchange = function(){
+            rangeVal.innerHTML = this.value;
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>transform</title>
+</head>
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+    }
+
+    .clearfix {
+        height: 800px;
+    }
+
+    .cavs {
+        border: 1px solid #ccc;
+        float: left;
+    }
+</style>
+
+<body class="clearfix">
+    <div style="padding-left: 85px;height: 30px;line-height: 30px;">X→</div>
+    <div style="width: 40px;float: left;height: 100%;text-align: center;width: 30px;margin-left: 50px">
+        <p>Y</p>
+        <p>↓</p>
+    </div>
+    <canvas id="cavs" class="cavs" width="1400" height="800"></canvas>
+    <script>
+        const oCavs = document.querySelector("#cavs");
+        const ctx = oCavs.getContext('2d');
+
+        // [transform(a,b,c,d,e,f)]
+        // 替换当前的变换矩阵,transform允许您缩放、旋转、移动并倾斜当前的环境
+        // rotate、scale、translate这些其实都是由transform实现的
+        // 使用方法与css3的transform:matrix()类似
+        // a 	水平缩放绘图
+        // b 	水平倾斜绘图
+        // c 	垂直倾斜绘图
+        // d 	垂直缩放绘图
+        // e 	水平移动绘图
+        // f 	垂直移动绘图
+        // *********************使用方法有些复杂，暂不做研究************************
+    </script>
+</body>
+
+</html>

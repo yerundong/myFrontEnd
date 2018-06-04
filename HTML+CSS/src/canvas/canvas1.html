@@ -1,0 +1,348 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+        canvas{
+            display: block;/*canvas是【行内元素】*/
+            border: 1px solid rebeccapurple;
+            margin: 50px auto 0;
+        }
+    </style>
+</head>
+<body>
+    <!--canvas没有自己的行为，但是定义了一个API支持脚本化客户端绘图操作（通常是JavaScript）-->
+    <!--canvas使用width和height属性定义的画布的大小,若用样式控制画布大小，则会被拉伸放大-->
+    <canvas id="canvas" width="1000" height="1000">Html5</canvas>
+    <canvas id="canvas2" width="600" height="500">Html5</canvas>
+    <img src="img/dollar.png" alt="" id="img1" ><!--style="margin: 9999px"-->
+
+    <script>
+        const oCanvar1 = document.getElementById('canvas');
+        const oCanvar2 = document.getElementById('canvas2');
+        const oVed = document.getElementById('vedio');
+        const myCanvas1 =  oCanvar1.getContext("2d");// 建立一个【绘图环境】--2d画布，现在还没3d画布；
+        const myCanvas2 =  oCanvar2.getContext("2d");
+        // canvas所画图形 后画的图形会【覆盖】前面画的图形
+/****************************矩形绘图***********************************/
+        // 【rect(x,y,w,h)】创建矩形
+        /*x 矩形左上角的 x 坐标,y矩形左上角的 y 坐标
+          w	矩形的宽度，以像素计,h矩形的高度，以像素计*/
+        myCanvas1.rect(50,50,200,200);
+        myCanvas1.strokeStyle = "red";
+        myCanvas1.lineWidth = "10";
+        myCanvas1.lineJoin = "bevel";
+        myCanvas1.stroke();// 开始绘制，样式(属性)设置在前，会在后；样式(属性)只对【其后】的绘制起作用，【之前】的绘制无效；
+
+        // 【fillRect(x,y,w,h)】绘制“被填充”的矩形,结合了【rect()和fill()】
+        myCanvas1.fillStyle = "red";// 默认的填充颜色是[黑色]
+        myCanvas1.fillRect(300,50,200,200);
+
+        // 【strokeRect(x,y,w,h)】绘制(无填充)的矩形,结合了【rect()和stroke()】
+        myCanvas1.strokeStyle = "green";
+        myCanvas1.lineWidth = 20;
+        myCanvas1.lineJoin = "round";
+        myCanvas1.strokeRect(600,50,200,200);
+        // 【clearRect(x,y,width,height)】在给定的矩形内【清除】指定的像素；只能清除【clearRect标签之前】的图
+//        x	要清除的矩形【左上角】的 x 坐标
+//        y	要清除的矩形【左上角】的 y 坐标
+//        width	要清除的矩形的宽度，以像素计
+//        height 要清除的矩形的高度，以像素计
+        // myCanvas1.clearRect(100,100,300,300);
+/*************************不规则形绘图**************************************/
+       /*
+        【beginPath()】	起始一条路径，或重置当前路径
+        【closePath()】	创建从【当前点闭合到起始点】的路径
+        【moveTo(x,y)】	把路径移动到画布中的指定点，不创建线条
+            x	路径的目标位置的 x 坐标；y	路径的目标位置的 y 坐标
+        【lineTo(x,y)】添加一个新点，然后在画布中创建从该点到最后指定点的线条
+            x	路径的目标位置的 x 坐标；y	路径的目标位置的 y 坐标
+        【fill()】	填充当前绘图（路径）
+        【stroke()】绘制已定义的路径
+        【clip()】	从原始画布【剪切】任意形状和尺寸的区域
+            剪切了某个区域，则所有之后的绘图都会被【限制】在被剪切的区域内（不能访问画布上的其他区域）。
+            可以在使用clip()方法前通过使用【save()】方法对当前画布区域进行【保存】，
+            并在以后的任意时间对其进行【恢复】（通过【restore()】方法）。
+        【quadraticCurveTo(cpx,cpy,x,y)】	创建二次贝塞尔曲线【必须先有个起点】
+            cpx	贝塞尔控制点的 x 坐标
+            cpy	贝塞尔控制点的 y 坐标
+            x	结束点的 x 坐标
+            y	结束点的 y 坐标
+        【bezierCurveTo(cp1x,cp1y,cp2x,cp2y,x,y)】创建三次方贝塞尔曲线【必须先有个起点】
+            cp1x	第一个贝塞尔控制点的 x 坐标
+            cp1y	第一个贝塞尔控制点的 y 坐标
+            cp2x	第二个贝塞尔控制点的 x 坐标
+            cp2y	第二个贝塞尔控制点的 y 坐标
+            x	结束点的 x 坐标
+            y	结束点的 y 坐标
+        【arc(x,y,r,sAngle,eAngle,counterclockwise)】创建弧/曲线（用于创建圆形或部分圆）
+            x	圆的中心的 x 坐标。
+            y	圆的中心的 y 坐标。
+            r	圆的半径。
+            sAngle	起始角，以弧度计。（弧的圆形的三点钟位置是 0 度）。
+            eAngle	结束角，以弧度计。
+            counterclockwise	可选。规定应该逆时针还是顺时针绘图。False = 顺时针，true = 逆时针。
+        【arcTo(x1,y1,x2,y2,r)】	创建两[切线]之间的弧/曲线【使用arcTo必须先有个起点】
+            x1	弧的起点的 x 坐标
+            y1	弧的起点的 y 坐标
+            x2	弧的终点的 x 坐标
+            y2	弧的终点的 y 坐标
+            r	弧的半径
+        【isPointInPath()】	如果指定的点位于当前路径中，则返回 true，否则返回 false
+        【save()、restore()】成对使用，save()与restore()之间的【属性样式不会保存下来】影响其他的绘图
+        */
+        myCanvas1.save();
+        myCanvas1.beginPath();
+        myCanvas1.moveTo(600,300);
+        myCanvas1.lineTo(700,450);
+        myCanvas1.lineTo(700,550);
+        myCanvas1.lineWidth = 10;
+        myCanvas1.lineJoin = "miter";
+        myCanvas1.lineCap = "butt";
+        myCanvas1.closePath();
+        myCanvas1.strokeStyle = "red";
+        myCanvas1.fillStyle = "purple";
+        myCanvas1.stroke();
+        myCanvas1.fill();
+        myCanvas1.restore();
+        // arc()
+        myCanvas1.beginPath();
+        myCanvas1.moveTo(150,700);
+        myCanvas1.arc(150,700,100,0,Math.PI/2,false);
+        myCanvas1.lineWidth = 5;
+        myCanvas1.closePath();
+        myCanvas1.stroke();
+//        myCanvas1.fill();
+        // arcTo()
+        myCanvas1.beginPath();
+        myCanvas1.moveTo(350,700);// 创建开始点
+        myCanvas1.arcTo(330,750,300,750,90); // 创建弧
+        myCanvas1.stroke();
+
+        // 贝塞尔去曲线实例
+        // 【二】
+        /*myCanvas1.beginPath();
+        myCanvas1.moveTo(500,700);
+        myCanvas1.quadraticCurveTo(600,605,700,700);
+        myCanvas1.stroke();*/
+        // 【三】
+        myCanvas1.beginPath();
+        myCanvas1.moveTo(500,700);
+        myCanvas1.bezierCurveTo(520,505,670,505,700,700);
+        myCanvas1.stroke();
+
+/*********************绘制及填充的【样式属性】设置**********************/
+        /*
+        【fillStyle】：设置或返回用于填充绘画的【颜色color、渐变或模式】
+             color	指示绘图填充色的 CSS 颜色值。默认的填充颜色是[黑色]
+             gradient	用于填充绘图的渐变对象（线性或放射性）
+             pattern	用于填充绘图的pattern对象
+
+        【strokeStyle】设置或返回用于[笔触]的颜色、渐变或模式
+             color	指示绘图填充色的 CSS 颜色值。默认的填充颜色是[黑色]
+             gradient	用于填充绘图的渐变对象（线性或放射性）
+             pattern	用于填充绘图的pattern对象
+
+        【shadowColor=color设置或返回用于【阴影的颜色】；默认的填充颜色是[黑色]
+        shadowBlur=number	设置或返回用于阴影的【模糊级别】
+        shadowOffsetX=number	设置或返回阴影距形状的水平距离
+        shadowOffsetY=number】	设置或返回阴影距形状的垂直距离
+
+        【createLinearGradient(x0,y0,x1,y1)】创建【线性】渐变色（用在画布内容上）
+         x0	渐变【开始点】的 x 坐标;y0 渐变【开始点】的 y 坐标;x1 渐变【结束点】的 x 坐标;y1 渐变【结束点】的 y 坐标
+        【createRadialGradient(x0,y0,r0,x1,y1,r1)】创建【放射性】渐变色
+             x0	渐变的开始圆的 x 坐标 ；y0	渐变的开始圆的 y 坐标；r0	开始圆的半径
+             x1	渐变的结束圆的 x 坐标；y1	渐变的结束圆的 y 坐标；r1	结束圆的半径
+        【context.createPattern(image,"repeat|repeat-x|repeat-y|no-repeat")】在指定的方向内【重复指定的元素】。
+         元素可以是【图片、视频，或者其他 <canvas> 元素】。被重复的元素可用于【绘制/填充】矩形、圆形或线条等等。
+         image	规定要使用的图片、画布或视频元素。
+         repeat	默认。该模式在水平和垂直方向重复。
+         repeat-x	该模式只在水平方向重复。
+         repeat-y	该模式只在垂直方向重复。
+         no-repeat	该模式只显示一次（不重复）。
+
+        【gradient.addColorStop(stop,color);】规定渐变对象中的【颜色和停止位置】
+         stop	介于 0.0 与 1.0 之间的值，表示渐变中开始与结束之间的位置。
+         color	在结束位置显示的 CSS 颜色值
+
+        【lineJoin】属性设置或返回当两条线交汇时的【夹角的类型】。
+             miter	默认。创建尖角。
+             bevel	创建斜角。
+             round	创建圆角。
+         【lineCap】属性设置或返回线条【末端线帽】的样式。
+             butt	默认。向线条的每个末端添加平直的边缘。
+             round	向线条的每个末端添加圆形线帽。
+             square 向线条的每个末端添加正方形线帽。
+
+
+        */
+        // 【fillStyle】的三种属性设置实例
+        // myCanvas1.fillStyle = "red";// 1.color颜色
+
+        /*var gradient1 = myCanvas1.createLinearGradient(150,300,150,500);// 2.gradient线性渐变色
+        gradient1.addColorStop(0,"darkred");
+        gradient1.addColorStop(0.5,"red");
+        gradient1.addColorStop(1,"yellow");
+        myCanvas1.fillStyle =gradient1;*/
+        /*var gradient2 = myCanvas1.createRadialGradient(150,400,0,150,400,100);// 2.gradient放射性渐变色
+        gradient2.addColorStop(0,"darkred");
+        gradient2.addColorStop(0.5,"red");
+        gradient2.addColorStop(1,"yellow");
+        myCanvas1.fillStyle =gradient2;*/
+
+        var oImg = document.getElementById('img1');
+        var imgFill =myCanvas1.createPattern(oImg,"repeat");// 3.pattern对象
+        myCanvas1.fillStyle = imgFill;
+        // myCanvas1.fillRect(50,300,200,200);
+
+        // 【strokeStyle】的三种属性设置实例
+        // myCanvas1.strokeStyle = "red";// 1.color颜色
+
+         /*var gradient1 = myCanvas1.createLinearGradient(150,300,150,500);// 2.gradient渐变色
+         gradient1.addColorStop(0,"darkred");
+         gradient1.addColorStop(0.5,"red");
+         gradient1.addColorStop(1,"yellow");
+         myCanvas1.strokeStyle =gradient1;*/
+
+         var oImg = document.getElementById('img1');
+         var imgFill =myCanvas1.createPattern(oImg,"repeat");// 3.pattern对象
+         myCanvas1.strokeStyle = imgFill;
+         myCanvas1.lineWidth = 5;
+         myCanvas1.strokeRect(50,300,200,200);
+
+        // 【设置阴影实例】
+        myCanvas1.save();
+        myCanvas1.fillStyle="pink";
+        myCanvas1.shadowColor = "yellow";
+        myCanvas1.shadowBlur=100;
+        /*myCanvas1.shadowOffsetX=20;
+        myCanvas1.shadowOffsetY=-20;*/
+        myCanvas1.fillRect(300,300,200,200);
+        myCanvas1.restore();
+
+/******************************转换***********************************/
+        /*
+         方法	描述
+         scale(num,num)	缩放当前绘图至更大或更小
+         rotate(angel)	旋转当前绘图
+         translate(x,y)	重新映射画布上的 (0,0) 位置
+             x	添加到水平坐标（x）上的值
+             y	添加到垂直坐标（y）上的值
+         transform(a,b,c,d,e,f)	替换绘图的当前转换矩阵
+             a	水平缩放绘图
+             b	水平倾斜绘图
+             c	垂直倾斜绘图
+             d	垂直缩放绘图
+             e	水平移动绘图
+             f	垂直移动绘图
+         setTransform(a,b,c,d,e,f)	将当前【转换重置】为单位矩阵。然后运行 transform()
+             a	水平旋转绘图
+             b	水平倾斜绘图
+             c	垂直倾斜绘图
+             d	垂直缩放绘图
+             e	水平移动绘图
+             f	垂直移动绘图
+        */
+        /*myCanvas1.save();
+        myCanvas2.strokeRect(50,50,200,100);
+        myCanvas2.scale(1.5,1.5);
+        myCanvas2.strokeRect(15,15,200,100);
+        myCanvas2.scale(1.5,1.5);
+        myCanvas2.strokeRect(15,15,200,100);
+        myCanvas1.restore();*/
+
+        /*myCanvas1.save();
+        myCanvas2.rotate(Math.PI/2);// 整个画布旋转
+        myCanvas2.strokeRect(0,-100,200,100);
+        myCanvas1.restore();*/
+
+        /*myCanvas1.save();
+        myCanvas2.translate(80,20);
+        myCanvas2.strokeRect(0,0,200,100);
+        myCanvas1.restore();*/
+/*****************************设置文本***************************************/
+        /*
+        属性
+         【font】 设置或返回文本内容的当前字体【属性】
+             font-style:normal/italic/oblique/
+             font-variant:normal/small-caps/
+             font-weight:normal/bold/bolder/lighter/100-900
+             font-size/line-height/font-family/caption/icon/menu/message-box/small-caption/status-bar/
+         【textAlign】设置或返回文本内容的当前对齐方式【水平方位】
+             start	默认。文本在指定的位置开始。
+             end	文本在指定的位置结束。
+             center	文本的中心被放置在指定的位置。
+             left	文本左对齐。
+             right	文本右对齐。
+         【extBaseline】设置或返回在绘制文本时使用的当前文本基线【垂直方位】
+             alphabetic	默认。文本基线是普通的字母基线。
+             top	文本基线是 em 方框的顶端。。
+             hanging	文本基线是悬挂基线。
+             middle	文本基线是 em 方框的正中。
+             ideographic	文本基线是表意基线。
+             bottom	文本基线是 em 方框的底端。
+        方法	描述
+        【fillText(text，x，y,maxWidth)】在画布上绘制“被填充的”文本
+             text 规定在画布上输出的文本。
+             x	开始绘制文本的 x 坐标位置（相对于画布）。
+             y	开始绘制文本的 y 坐标位置（相对于画布）。
+             maxWidth	可选。允许的最大文本宽度，以像素计。
+        【strokeText(text,x,y,maxWidth)】	在画布上绘制文本（无填充）
+             text	规定在画布上输出的文本。
+             x	开始绘制文本的 x 坐标位置（相对于画布）。
+             y	开始绘制文本的 y 坐标位置（相对于画布）。
+             maxWidth	可选。允许的最大文本宽度，以像素计。
+        【measureText(text).width】	返回包含指定【文本宽度】的对象
+            text	要测量的文本。
+        */
+       /* myCanvas2.font = "30px 宋体";
+        myCanvas2.fillStyle = "blue";
+        myCanvas2.textAlign = "right";
+        myCanvas2.fillText("hello",60,80);*/
+
+        var txt = "hello";
+        myCanvas2.font = "130px 宋体";
+        myCanvas2.textAlign = "right";
+        myCanvas2.strokeStyle = "red";
+        myCanvas2.strokeText(txt,390,120);
+        // alert(myCanvas2.measureText(txt).width);
+
+
+
+
+
+
+    </script>
+
+
+
+
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

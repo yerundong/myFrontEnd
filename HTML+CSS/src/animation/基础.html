@@ -1,0 +1,154 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+        /*
+        【animation】:css动画，IE10+,是一个简写属性，用于设置六个动画属性:
+        【animation-name】/(keyframe名称)/ keyframename|none(无动画效果)
+        【animation-duration】/(动画时长s/ms)/默认值是0，无动画效果
+        【animation-timing-function】/(动画的速度曲线)，速度曲线用于使变化更为平滑
+        linear	动画从头到尾的速度是相同的。
+        ease	默认。动画以低速开始，然后加快，在结束前变慢。
+        ease-in	动画以低速开始。
+        ease-out	动画以低速结束。
+        ease-in-out	动画以低速开始和结束。
+        cubic-bezier(n,n,n,n)	在【cubic-bezier函数】中自己的值。可能的值是从 0 到 1 的数值
+
+        【animation-delay】/动画【开始之前】的延迟 (s/ms) 默认0；允许负值，-2s表示【跳过】前2秒动画,从2秒状态开始
+        【animation-iteration-count】/动画【播放的次数】 n(允许小数)|infinite(无限次)，【正向反向都算一次】;
+        【animation-direction】 设置是否轮流【反向播放动画】
+        normal 默认不反向
+        reverse 【反向】播放
+        alternate 动画在奇数次（1、3、5...）正向播放，在偶数次（2、4、6...）反向播放。
+        alternate-reverse 动画在奇数次（1、3、5...）反向播放，在偶数次（2、4、6...）正向播放
+        【animation-play-state】动画状态，属性规定动画正在【运行还是暂停】 paused|running(默认);
+        【animation-fill-mode】 属性规定动画在播放之前或之后，其动画效果是否可见。
+	其属性值是由逗号分隔的一个或多个填充模式关键词：   
+        none(运动结束回到【原始状态】)
+        forwards(动画停止后停在动画【最后一帧】（在最后一个关键帧中定义）)
+        backwards(在animation-delay的时间内，显示的样式（在第一个关键帧中定义）)
+        both:forwards+backwards
+
+        【@keyframes】 :插入关键帧，在@keyframes中【目标】CSS样式，就能创建由当前样式逐渐改为新样式的【动画效果】
+                     关键词 "from" 和 "to"，等价于 0% 和 100%。
+*/
+        .box{
+            width: 150px;
+            height: 150px;
+            line-height: 150px;
+            font-weight: 900;
+            position: absolute;
+            text-align: center;
+            cursor: pointer;
+            user-select: none;
+        }
+        .d1 {
+            animation-name: gogo;
+            animation-duration: 5s;
+            animation-timing-function: cubic-bezier(.65,.4,.65,.4);
+            animation-delay: 1s;
+            animation-iteration-count: infinite;
+            animation-direction: alternate;
+            animation-play-state: running;
+            animation-fill-mode: both;
+
+            /*简写*/
+            /*animation: gogo 4s linear -3s 1.5 alternate running both;*/
+        }
+
+        /*动画1*/
+
+        @keyframes gogo {
+            from {
+                border-radius: 0%;
+                left: 0;
+                top: 0;
+                background: green;
+                transform: rotate(0deg);
+            }
+            25% {
+                border-radius: 10%;
+                left: 500px;
+                top: 200px;
+                background: yellow;
+                transform: rotate(90deg);
+            }
+            50% {
+                border-radius: 30%;
+                left: 500px;
+                top: 600px;
+                background: deepskyblue;
+                transform: rotate(180deg);
+            }
+            to {
+                border-radius: 50%;
+                left: 1000px;
+                top: 600px;
+                background: red;
+                transform: rotate(0deg);
+            }
+        }
+
+        .d2 {
+            animation-name: comeon;
+            animation-duration: 5s;
+            animation-timing-function: linear;
+            animation-delay: 1s;
+            animation-iteration-count: infinite;
+            animation-direction: alternate;
+            animation-play-state: running;
+            animation-fill-mode: both;
+        }
+        /*动画2*/
+        @keyframes comeon {
+            0% {
+                border-radius: 0%;
+                right: 0;
+                top: 0;
+                background: aqua;
+            }
+            25% {
+                border-radius: 10%;
+                right: 500px;
+                top: 200px;
+                background: yellow;
+            }
+            50% {
+                border-radius: 30%;
+                right: 500px;
+                top: 600px;
+                background: deepskyblue;
+            }
+            100% {
+                border-radius: 50%;
+                right: 1000px;
+                top: 600px;
+                background: red;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="box d1" id="box">
+        点我切换动画
+    </div>
+    <script type="text/javascript">
+        const oBox = document.querySelector("#box");
+        oBox.onclick = function () {
+            console.log(oBox.classList);
+            if (oBox.classList[1] == "d1") {
+                oBox.classList.remove('d1');
+                oBox.classList.add('d2');
+            } else {
+                oBox.classList.remove('d2');
+                oBox.classList.add('d1');
+            }
+        }
+    </script>
+</body>
+
+</html>

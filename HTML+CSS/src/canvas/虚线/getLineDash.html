@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>getLineDash</title>
+</head>
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+    }
+
+    .clearfix {
+        height: 800px;
+    }
+
+    .cavs {
+        border: 1px solid #ccc;
+        float: left;
+    }
+</style>
+
+<body class="clearfix">
+    <div style="padding-left: 85px;height: 30px;line-height: 30px;">X→</div>
+    <div style="width: 40px;float: left;height: 100%;text-align: center;width: 30px;margin-left: 50px">
+        <p>Y</p>
+        <p>↓</p>
+    </div>
+    <canvas id="cavs" class="cavs" width="1400" height="800"></canvas>
+    <script>
+        const oCavs = document.querySelector("#cavs");
+        const ctx = oCavs.getContext('2d');
+
+        // 先画一个坐标
+        ctx.moveTo(0, 0);
+        ctx.lineTo(oCavs.width, 0);
+        ctx.moveTo(0, 0);
+        ctx.lineTo(0, oCavs.height);
+        for (let i = 0; i < 50; i++) {
+            let k = 50 * (i + 1);
+            ctx.moveTo(k, 0);
+            ctx.lineTo(k, 5);
+            ctx.strokeText(k, k - 5, 20);
+            ctx.moveTo(0, k);
+            ctx.lineTo(5, k);
+            ctx.strokeText(k, 10, k + 5);
+        }
+        ctx.stroke();
+
+        // [getLineDash()]
+        // 获取当前线段样式的方法
+        // 即是获取setLineDash(array)里的array
+        ctx.beginPath();
+        ctx.setLineDash([10]);
+        ctx.moveTo(100, 100);
+        ctx.lineTo(500, 100);
+        ctx.stroke();
+        console.log(ctx.getLineDash());
+    </script>
+</body>
+
+</html>

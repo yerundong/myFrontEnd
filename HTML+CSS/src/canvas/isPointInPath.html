@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>isPointInPath</title>
+</head>
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+    }
+
+    .clearfix {
+        height: 800px;
+    }
+
+    .cavs {
+        border: 1px solid #ccc;
+        float: left;
+    }
+</style>
+
+<body class="clearfix">
+    <div style="padding-left: 85px;height: 30px;line-height: 30px;">X→</div>
+    <div style="width: 40px;float: left;height: 100%;text-align: center;width: 30px;margin-left: 50px">
+        <p>Y</p>
+        <p>↓</p>
+    </div>
+    <canvas id="cavs" class="cavs" width="1400" height="800"></canvas>
+    <script>
+        const oCavs = document.querySelector("#cavs");
+        const ctx = oCavs.getContext('2d');
+
+        // [isPointInPath(x,y)]
+        // 测试指定的点是否位于当前路径中，是返回 true，否则返回false
+        // x 	测试的 x 坐标
+        // y 	测试的 y 坐标
+        ctx.rect(10, 10, 100, 100);
+        ctx.stroke();
+        ctx.closePath();
+        console.log(ctx.isPointInPath(20, 20));
+        console.log(ctx.isPointInPath(110, 110));
+
+        ctx.beginPath();
+        ctx.rect(200, 10, 100, 100);
+        ctx.stroke();
+        ctx.closePath();
+        console.log(ctx.isPointInPath(20, 20));
+    </script>
+</body>
+
+</html>

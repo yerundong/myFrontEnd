@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>textBaseline</title>
+</head>
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+    }
+
+    .clearfix {
+        height: 800px;
+    }
+
+    .cavs {
+        border: 1px solid #ccc;
+        float: left;
+    }
+</style>
+
+<body class="clearfix">
+    <div style="padding-left: 85px;height: 30px;line-height: 30px;">X→</div>
+    <div style="width: 40px;float: left;height: 100%;text-align: center;width: 30px;margin-left: 50px">
+        <p>Y</p>
+        <p>↓</p>
+    </div>
+    <canvas id="cavs" class="cavs" width="1400" height="800"></canvas>
+    <script>
+        const oCavs = document.querySelector("#cavs");
+        const ctx = oCavs.getContext('2d');
+
+        // [textBaseline]
+        // 设置或返回在绘制文本时的当前文本基线
+        // alphabetic 	默认。文本基线是普通的字母基线。
+        // top 	文本基线是 em 方框的顶端。。
+        // hanging 	文本基线是悬挂基线。
+        // middle 	文本基线是 em 方框的正中。
+        // ideographic 	文本基线是表意基线。
+        // bottom 	文本基线是 em 方框的底端
+
+        ctx.moveTo(0, 400);
+        ctx.strokeStyle = "red";
+        ctx.lineTo(1400, 400);
+        ctx.stroke();
+
+        ctx.beginPath();
+        ctx.font = "25px Arial";
+        ctx.textBaseline = "alphabetic";
+        ctx.fillText('textBaseline-alphabetic', 0, 400);
+
+        ctx.beginPath();
+        ctx.font = "25px Arial";
+        ctx.textBaseline = "top";
+        ctx.fillText('textBaseline-top', 0, 400);
+
+        ctx.beginPath();
+        ctx.font = "25px Arial";
+        ctx.textBaseline = "hanging";
+        ctx.fillText('textBaseline-hanging', 200, 400);
+
+        ctx.beginPath();
+        ctx.font = "25px Arial";
+        ctx.textBaseline = "middle";
+        ctx.fillText('textBaseline-middle', 450, 400);
+
+        ctx.beginPath();
+        ctx.font = "25px Arial";
+        ctx.textBaseline = "ideographic";
+        ctx.fillText('textBaseline-ideographic', 700, 400);
+
+        ctx.beginPath();
+        ctx.font = "25px Arial";
+        ctx.textBaseline = "bottom";
+        ctx.fillText('textBaseline-bottom', 1000, 400);
+    </script>
+</body>
+
+</html>

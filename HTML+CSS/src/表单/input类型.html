@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        /*range分为两个部分：表单和滚轮*/
+        #rank{/*选中表单*/
+            -webkit-appearance: none;  /*【清除】表单元素的【默认样式】才能重置*/
+            -moz-appearance:none;
+            background: -webkit-linear-gradient(left,mediumvioletred,white);
+            background: -moz-linear-gradient(left,mediumvioletred,white);
+            height: 10px;
+            width: 250px;
+            outline: none;
+            border: none;
+        }
+        #rank::-webkit-slider-thumb{/*选中滚轮*/
+            -webkit-appearance: none; /*【清除】滚轮元素的【默认样式】才能重置*/
+            width: 15px;
+            height: 30px;
+            background: pink;
+            border-radius: 40%;
+            background: url(img/2.jpg) 200px 200px;
+            background-size: auto;
+        }
+        #rank::-moz-range-thumb{/*选中滚轮*/
+            -moz-appearance: none; /*【清除】滚轮元素的【默认样式】才能重置*/
+            width: 15px;
+            height: 30px;
+            background: pink;
+            border-radius: 40%;
+            background: url(img/2.jpg) 200px 200px;
+            background-size: auto;
+            border: none;
+        }
+    </style>
+</head>
+<body>
+<!--novalidate="novalidate" 在form标签里设置，可以让form标签内的input元素都【不需要通过正则规则】,直接可以提交 不建议使用-->
+    <form action="" method="post">
+        <!--【required】属性禁止输入为空通过提交 -->
+        <!--【email】定义用于e-mail地址的文本字段【multiple】支持一次提交多个邮箱，用","隔开-->
+        <!--<input autofocus="autofocus" type="email" multiple="multiple" required="required" value="请输入邮箱"/>-->
+        
+        <!--【autofocus】自动聚焦，只能有一个，多个只认第一个-->
+        <!--<input autofocus="autofocus" type="number" min="0" max="100" step="2" value="0"/>-->
+
+        <!--【range】定义带有slider控件的数字字段。-->
+        <!--<input type="range" id="ran" min="0" max="100" step="10" value="0"/><span></span>-->
+
+        <!--【file】附加文件,【multiple】支持一次提交多组文件-->
+        <!--<input type="file" multiple="multiple"/>-->
+
+        <!--【search】右端有个取消所有输入文字功能的"X"的文本框-->
+        <!--<input type="search" value="我有个“X">-->
+
+        <!--【rel】定义用于电话号码的文本字段？？？？-->
+        <!--<input type="rel" value="定义用于电话号码的文本字段">-->
+
+        <!--【url】定义用于URL的文本字段-->
+        <input type="url" value="定义用于URL的文本字段">
+
+        <!--【hidden】我是隐藏输入字段-->
+        <!--<input type="hidden" value="我是隐藏输入字段">-->
+
+        <!--【color】拾色器-->
+        <!--<input type="color">-->
+
+        <!--【datalist】表单输入提示-->
+        <!-- <input type="text" list="com"/>
+        <datalist id="com">
+            <option label="http://www.google.com" value="google"></option>
+            <option label="http://www.baidu.com" value="baidu"></option>
+            <option label="http://www.apple.com" value="apple"></option>
+        </datalist>
+        <input type="submit" value="验证提交"/> -->
+
+        <!--修改表单默认样式-->
+        <input type="range" min="0" max="9" value="5" id="rank">
+
+    </form>
+
+
+    <script type="text/javascript">
+        var oSpan = document.getElementsByTagName("span")[0];
+        var ran = document.getElementById("ran");
+        ran.onchange = function(){
+            oSpan.innerHTML = this.value;
+        }
+    </script>
+</body>
+</html>

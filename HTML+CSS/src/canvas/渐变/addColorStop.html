@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>addColorStop</title>
+</head>
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+    }
+
+    .clearfix {
+        height: 800px;
+    }
+
+    .cavs {
+        border: 1px solid #ccc;
+        float: left;
+    }
+</style>
+
+<body class="clearfix">
+    <div style="padding-left: 85px;height: 30px;line-height: 30px;">X→</div>
+    <div style="width: 40px;float: left;height: 100%;text-align: center;width: 30px;margin-left: 50px">
+        <p>Y</p>
+        <p>↓</p>
+    </div>
+    <canvas id="cavs" class="cavs" width="1400" height="800"></canvas>
+    <script>
+        const oCavs = document.querySelector("#cavs");
+        const ctx = oCavs.getContext('2d');
+
+        // [addColorStop(stop, color)]
+        // 规定gradient对象中的颜色和位置，默认是透明的
+        // stop 	介于0.0与1.0之间的值，表示渐变中开始与结束之间的位置。
+        // color 	在结束位置显示的 CSS 颜色值
+
+        // 创建一个CanvasGradient对象
+        const gradt = ctx.createLinearGradient(0, 50, 200, 50);
+
+        gradt.addColorStop(0,"green");
+        gradt.addColorStop(1,"white");
+        ctx.fillStyle = gradt;
+        ctx.fillRect(0, 0, 200, 100);
+    </script>
+</body>
+
+</html>

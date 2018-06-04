@@ -1,0 +1,99 @@
+<html>
+<head>
+    <title>vertical-align</title>
+    <style type="text/css">
+    /* 
+    [vertical-align]
+    vertical-align 属性设置元素的垂直对齐方式。
+    作用对象：行内元素（inline或inline-block ）
+        @value baseline 	默认。元素放置在父元素的基线上。
+        @value sub 	垂直对齐文本的下标。
+        @value super 	垂直对齐文本的上标
+        @value top 	把元素的顶端与行中最高元素的顶端对齐
+        @value text-top 	把元素的顶端与父元素字体的顶端对齐
+        @value middle 	把此元素放置在父元素的中部。
+        @value bottom 	把元素的顶端与行中最低的元素的顶端对齐。
+        @value text-bottom 	把元素的底端与父元素字体的底端对齐。
+        @value length 	 
+        @value % 	使用 "line-height" 属性的百分比值来排列此元素。允许使用负值。
+        @value inherit 	规定应该从父元素继承 vertical-align 属性的值。 
+    */
+   
+        img.top {
+            vertical-align: text-top
+        }
+        img.bottom {
+            vertical-align: text-bottom
+        }
+        img.middle {
+            vertical-align: middle
+        }
+        img.baseline {
+            vertical-align: baseline
+        }
+        img.sub {
+            vertical-align: sub
+        }
+        img.super {
+            vertical-align: super
+        }
+        img.text-bottom {
+            vertical-align: text-bottom
+        }
+        img.text-top {
+            vertical-align: text-top
+        }
+        img.px {
+            vertical-align: 20px
+        }
+        img.percent {
+            vertical-align: 54%
+        }
+    </style>
+</head>
+
+<body>
+
+    <p>
+        这是一幅图像
+        <img class="top" border="0" src="http://www.w3school.com.cn/i/eg_cute.gif" />text-top
+    </p>
+    <p>
+        这是一幅图像
+        <img class="bottom" border="0" src="http://www.w3school.com.cn/i/eg_cute.gif" />text-bottom
+    </p>
+    <p>
+        这是一幅图像
+        <img class="middle" border="0" src="http://www.w3school.com.cn/i/eg_cute.gif" />middle
+    </p>
+    <p>
+        这是一幅图像
+        <img class="baseline" border="0" src="http://www.w3school.com.cn/i/eg_cute.gif" />baseline
+    </p>
+    <p>
+        这是一幅图像
+        <img class="sub" border="0" src="http://www.w3school.com.cn/i/eg_cute.gif" />sub
+    </p>
+    <p>
+        这是一幅图像
+        <img class="super" border="0" src="http://www.w3school.com.cn/i/eg_cute.gif" />super
+    </p>
+    <p>
+        这是一幅图像
+        <img class="text-top" border="0" src="http://www.w3school.com.cn/i/eg_cute.gif" />text-top
+    </p>
+    <p>
+        这是一幅图像
+        <img class="text-bottom" border="0" src="http://www.w3school.com.cn/i/eg_cute.gif" />text-bottom
+    </p>
+    <p>
+        这是一幅图像
+        <img class="px" border="0" src="http://www.w3school.com.cn/i/eg_cute.gif" />px
+    </p>
+    <p>
+        这是一幅图像
+        <img class="percent" border="0" src="http://www.w3school.com.cn/i/eg_cute.gif" />百分比
+    </p>
+</body>
+
+</html>

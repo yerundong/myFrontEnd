@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>width、height</title>
+</head>
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+    }
+
+    .clearfix {
+        height: 800px;
+    }
+
+    .cavs {
+        border: 1px solid #ccc;
+        float: left;
+    }
+</style>
+
+<body class="clearfix">
+    <div style="padding-left: 85px;height: 30px;line-height: 30px;">X→</div>
+    <div style="width: 40px;float: left;height: 100%;text-align: center;width: 30px;margin-left: 50px">
+        <p>Y</p>
+        <p>↓</p>
+    </div>
+    <canvas id="cavs" class="cavs" width="1400" height="800"></canvas>
+    <script>
+        const oCavs = document.querySelector("#cavs");
+        const ctx = oCavs.getContext('2d');
+
+        // [width]
+        // ImageData 对象的宽度
+        // [height]
+        // ImageData 对象的高度
+
+        // 创建一个10000像素的ImageData对象(100×100)
+        const imageData1 = ctx.createImageData(100, 100);
+        for (let i = 0; i < imageData1.data.length; i += 4) {
+            imageData1.data[i] = 0;
+            imageData1.data[i + 1] = 0;
+            imageData1.data[i + 2] = 255;
+            imageData1.data[i + 3] = 255;
+        }
+        ctx.putImageData(imageData1, 10, 10);
+        console.log(imageData1.width, imageData1.height);
+    </script>
+</body>
+
+</html>

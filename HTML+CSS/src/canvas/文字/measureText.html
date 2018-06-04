@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>measureText</title>
+</head>
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+    }
+
+    .clearfix {
+        height: 800px;
+    }
+
+    .cavs {
+        border: 1px solid #ccc;
+        float: left;
+    }
+</style>
+
+<body class="clearfix">
+    <div style="padding-left: 85px;height: 30px;line-height: 30px;">X→</div>
+    <div style="width: 40px;float: left;height: 100%;text-align: center;width: 30px;margin-left: 50px">
+        <p>Y</p>
+        <p>↓</p>
+    </div>
+    <canvas id="cavs" class="cavs" width="1400" height="800"></canvas>
+    <script>
+        const oCavs = document.querySelector("#cavs");
+        const ctx = oCavs.getContext('2d');
+        // [measureText(text)]
+        // 返回包含一个对象，该对象包含以像素计的指定字体宽度
+        // 受到字体样式影响
+        // 如果需要在文本向画布输出之前，就了解文本的宽度，那么请使用该方法
+        const txt = "一切有为法，如梦幻泡影，如露亦如电，应作如是观"
+        console.log(ctx.measureText(txt).width); // 230
+
+        ctx.beginPath();
+        ctx.font = "25px 方正舒体";
+        console.log(ctx.measureText(txt).width); // 575
+        ctx.fillText(txt, 0, 100);
+
+        ctx.beginPath();
+        ctx.font = "30px 方正舒体";
+        console.log(ctx.measureText(txt).width); // 690
+        ctx.fillText(txt, 0, 200);
+    </script>
+</body>
+
+</html>

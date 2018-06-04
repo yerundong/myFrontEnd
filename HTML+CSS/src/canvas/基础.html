@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>基础</title>
+</head>
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+    }
+
+    .clearfix {
+        height: 800px;
+    }
+
+    .cavs {
+        border: 1px solid #ccc;
+    }
+</style>
+
+<body class="clearfix">
+    <div style="padding-left: 85px;height: 30px;line-height: 30px;">X→</div>
+    <div style="width: 40px;float: left;height: 100%;text-align: center;width: 30px;margin-left: 50px">
+        <p>Y</p>
+        <p>↓</p>
+    </div>
+    <!--
+        canvas标签用于绘制图像，不过，canvas元素本身并没有绘制能力（它仅仅是图形的容器），需要脚本（js）来完成实际的绘图任务。
+        canvas是一个特殊的标签，他的大小包含元素的大小和画布的大小，他们默认大小都为300px*150px，而css只能设置元素大小，而画布大小不能设置，所以
+        画布则会被拉伸变形。canvas内部的width、height属性是对元素和画布的大小同时进行设置，所以是正常的。
+        兼容ie9+
+    -->
+    <canvas id="cavs" class="cavs" width="1000" height="800">浏览器不支持Canvas,请升级或改用其它浏览器！</canvas>
+    <script>
+        const oCavs = document.querySelector("#cavs");
+        // [getContext('2d')]
+        // 方法可返回一个对象，该对象提供了用于在画布上绘图的方法和属性
+        // 现在还没3d画布
+        const ctx = oCavs.getContext('2d');
+
+        // 画一个矩形
+        ctx.rect(20, 20, 100, 100);
+        ctx.strokeStyle = 'red';
+        ctx.lineWidth = "1";
+        ctx.stroke();
+        ctx.closePath();
+    </script>
+</body>
+
+</html>

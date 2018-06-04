@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			/*
+			盒模型类型：
+			1标准盒模型  
+			2怪异盒模型
+			设置盒模型类型：box-sizing
+			属性值：
+			content-box(标准盒模型-默认)
+			border-box(怪异盒模型)
+			inherit(遗传);
+
+			怪异盒模型：【内边距】和【边框】都将在【已设定的宽度和高度内】进行绘制；
+			即当给定盒子的高宽，padding不会撑大盒子，border也在原定高宽里绘制；
+			*/
+			#test1{
+				width:300px;
+				height:300px;
+				background:red;
+				padding:50px;
+				border:50px solid black;
+			}
+			#test2{
+				width:300px;
+				height:300px;
+				background:yellow;
+				padding:50px;
+				border:50px solid black;
+				box-sizing:border-box;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="test1">test1</div>
+		<div id="test2">test2</div>
+	</body>
+</html>

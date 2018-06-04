@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>伪类选择器</title>
+    <style>
+        li {
+            list-style: none
+        }
+
+        /************************************************伪类选择器*****************************************************/
+
+        /*【:root】根选择器,即选中html，与html相当*/
+
+        :root {
+            color: #333;
+        }
+
+        /*【:not(selector)】选择除某个元素之外的所有元素*/
+
+        /* li:not(.li2){
+            color: red;
+        } */
+
+        /*【:empty】 选中[完全为空]的标签,空格也不行，内部不能包含标签和文本节点,可以包含注释节点*/
+
+        /* :empty{
+            border: 5px solid red;
+        } */
+
+        /*【:target】目标选择器，必须通过a标签，的href属性 链接到当前div元素的时候，target选择器中的样式[才会起效果]*/
+
+        :target {
+            background: red;
+        }
+
+        /*****************【无筛选的子元素(子元素类型和排序必须一致才能匹配)】选择器*************/
+
+        /*【a:first-child】父元素下的【第一个子元素,【并且为a元素】，方能选中】*/
+
+        /*ul li:first-child{
+            background: red;
+        }*/
+
+        /*【a:last-child】父元素下的【最后一个子元素,【并且为a元素】，方能选中】*/
+
+        /*ul p:last-child{
+            background: red;
+        }*/
+
+        /*【a:nth-child(n)】用来定位父元素的【第n个子元素,【并且为a元素】。其中“n”是其参数，
+        可以是【整数值】(1,2,3,4)，但不能为0，从1开始；
+        也可以是【表达式】(2n+1、-n+5)，从0开始;
+        也可以是【关键词】(odd、even)*/
+
+        /* ul li:nth-child(1){
+            background: red;
+        }*/
+
+        /*ul li:nth-child(2n+1){
+            background: red;
+        }*/
+
+        /*ul li:nth-child(odd){
+            background: red;
+        }*/
+
+        /*【a:nth-last-child(n)】用来定位父元素的【[倒数]第n个子元素,【并且为a元素】其中“n”是其参数，
+        可以是【整数值】(1,2,3,4)，但不能为0，从1开始；
+        也可以是【表达式】(2n+1、-n+5)，从0开始;
+        也可以是【关键词】(odd、even）*/
+
+        /*ul a:nth-last-child(75){
+            background: red;
+        }*/
+
+        /*【a:only-child】父元素中只有一个的子元素，且为a元素，则匹配该a元素。*/
+
+        /*li i:only-child{
+            background: red;
+        }*/
+
+        /*【a:only-of-type】父元素中只有一个的a子元素(有其他类型子元素不相干)，则匹配该a元素。*/
+
+        /*a:only-of-type{
+            background: red;
+        }*/
+
+        /*****************【筛选后的子元素】选择器*************/
+
+        /*【a:first-of-type】某父元素下【a子元素中集合中】的第一个a元素*/
+
+        /*ul b:first-of-type{
+            background: red;
+        }*/
+
+        /*【a:last-of-type】某父元素下【a子元素中集合中】的最后一个a元素*/
+
+        /*ul b:last-of-type{
+            border: 5px solid red;
+        }*/
+
+        /*【a:nth-of-type(n)】用来定位某父元素下【a子元素中集合中,第n个a元素】其中“n”是其参数，
+        可以是【整数值】(1,2,3,4)，但不能为0，从1开始；
+        也可以是【表达式】(2n+1、-n+5)，从0开始;
+        也可以是【关键词】(odd、even）*/
+
+        /*ul b:nth-of-type(2){
+            border: 5px solid red;
+        }*/
+
+        /*【a:nth-last-of-type(n)】用来定位某父元素下【a子元素中集合中,[倒数]第n个a元素】其中“n”是其参数，
+        可以是【整数值】(1,2,3,4)，但不能为0，从1开始；
+        也可以是【表达式】(2n+1、-n+5)，从0开始;
+        也可以是【关键词】(odd、even）*/
+
+        /*ul b:nth-last-of-type(1){
+            border: 5px solid red;
+        }*/
+
+        /************************************************************/
+
+        /*【:checked】选中那些处于选中状态的radio、checkBox元素*/
+
+        :checked {
+            outline: inset;
+        }
+
+        /*【::selection 】页面鼠标选中文本的样式*/
+
+        html ::selection {
+            background: greenyellow;
+            color: red;
+        }
+
+        /*【:enabled】选中disabled=false元素*/
+
+        /*:enabled{
+            background: red;
+        }*/
+
+        /*【:disabled】选中disabled=true表单元素*/
+
+        /*:disabled{
+            background: green;
+        }*/
+
+        /*【:read-only】选中readonly=true元素*/
+
+        /*input:read-only{
+            background: red;
+        }*/
+
+        /*【:read-write】选中处于readonly=false元素*/
+
+        /* :read-write{
+            background: yellow;
+        } */
+
+        /*【::before和::after】
+        这两个主要用来给元素的前面或后面插入内容
+        :befor是Css2的写法，兼容性差，::before是Css3的写法，兼容性好
+        伪类对象不会出现在DOM中，所以不能通过js来操作，仅仅是在 CSS 渲染层加入
+        但可以通过使用:hover伪类样式来激活
+        */
+
+        .imb:before {
+            content: url(../../asset/1.jpg);
+            display: block;
+        }
+
+        .imb::after {
+            content: 'I am ::after';
+            display: block;
+            width: 100px;
+            height: 50px;
+            background: red;
+            color: blue;
+        }
+    </style>
+</head>
+
+<body>
+    <ul>
+        <li class="li1">11</li>
+        <li class="li2">22</li>
+        <li class="li3">33
+            <i>hffhfhfhfhfh</i>
+        </li>
+        <li class="li4">44</li>
+        <li class="li5">55</li>
+        <li class="li6">66</li>
+
+        <input type="text" disabled value="我是不可编辑的">
+        <input type="text" value="我是可编辑的">
+        <input type="radio" checked name="ee">
+        <input type="radio" name="ee">
+        <input type="checkbox">
+        <input type="text" readonly placeholder="我是readonly">
+        <b class="imb">我是b</b>
+        <b class='bbcue'></b>
+        <a href="#gogo">点我！</a>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <p id="gogo">叫你点，你就点~你是猪啊</p>
+    </ul>
+</body>
+
+</html>

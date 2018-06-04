@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>弹性盒模型</title>
+		<style type="text/css">
+			/*
+		Css3引入了新的盒模型——【弹性盒模型】,传统的盒模型基于HTML流在【垂直方向】上排列盒子。
+		使用弹性盒模型可以规定【特定】的顺序，可以很轻松的创建【自适应浏览器窗口】的流动布局或【自适应字体】的弹性布局
+		【开启弹性盒】：
+		使用弹性盒模型的时候【父元素】必须要加display:box或display:inline-box
+		【兼容】：
+		display:-webkit-box;
+		display:-moz-box;
+		display:-o-box;
+		display:box;
+		【属性】：
+		【box-flex】：根据flex值的比例，针对[父容器的宽、高度]按一定规则进行[划分]
+		1.水平弹性布局时，统一将【子元素】width设为0，垂直弹性布局时，统一将【子元素】height设为0
+		2.弹性布局时，不能让【子元素】拥有【定位或者浮动】属性，否者弹性失效,除了【relative】之外！
+		3.父元素设置弹性属性时，【没有弹性属性】的子元素先占空间，【余下】的给弹性子元素比例分配
+		【box-orient】在【父容器中】设置子容器的【布局方向】，是水平还是垂直
+		horizontal(水平-默认)| vertical(垂直)| inline-axis(水平)| block-axis(垂直)| inherit(遗传)????????
+		【box-direction】在【父容器中】设置子容器【排列顺序】normal(正序-默认)| reverse(反序)| inherit(遗传)
+		【box-pack】在【父容器中】设置;在【水平方向】上对子元素的位置进行管理
+		start(左侧显示，富裕空间在右侧-默认)| end(右侧显示，富裕空间在左侧)| center(水平居中)| justify(水平[等分]父容器宽度分布)
+		【box-align】在【父容器中】设置;在【垂直方向】上对子元素的位置进行管理
+		start(居顶对齐-默认)| end(居底对齐)| center(垂直居中对齐)| baseline ??????| stretch????????
+		【ordinal-group:number】设置在[子元素]里，设置子元素的具体顺序
+			*/
+			#outer{
+				display:-webkit-box;
+				width:100%;
+				height:500px;
+				border: 2px solid palegreen;
+				/*-webkit-box-orient:vertical;*/
+				/*-webkit-box-direction:reverse;*/
+				/*-webkit-box-align:stretch;*/
+				/*-webkit-box-pack:justify*/
+			}
+			#outer .inner{
+				width: 0;
+			}
+			#outer .inner:nth-of-type(1){
+				/*-webkit-box-flex:1;*/
+				background:red;
+				width: 200px;
+				height: 400px;
+				-webkit-box-ordinal-group:3;
+			}
+			#outer .inner:nth-of-type(2){
+				/*-webkit-box-flex:1;*/
+				word-wrap: break-word;
+				background:yellow;
+				width: 300px;
+				height: 200px;
+				-webkit-box-ordinal-group:4;
+			}
+			#outer .inner:nth-of-type(3){
+				/*-webkit-box-flex:1;*/
+				background:blue;
+				width: 100px;
+				height: 300px;
+				-webkit-box-ordinal-group:2;
+			}
+			#outer .inner:nth-of-type(4){
+				/*-webkit-box-flex:2;*/
+				background:green;
+				width: 200px;
+				height: 100px;
+				-webkit-box-ordinal-group:1;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="outer">
+			<div class="inner">1</div>
+			<div class="inner">wwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwww</div>
+			<div class="inner">3</div>
+			<div class="inner">4</div>
+		</div>
+	</body>
+</html>

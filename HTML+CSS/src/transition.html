@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+<!--		
+【transition】IE10+,属性是一个简写属性，用于设置四个【过渡属性】【默认值：all 0 ease 0】：
+    transition-property:规定设置过渡效果的CSS【属性】的名称-【none/all/property】
+    transition-duration：规定完成过渡效果需要多少秒或毫秒。【过渡时间】-【s/ms】
+    transition-timing-function：规定速度效果的【速度曲线】-linear(匀速)|ease(慢快慢)|ease-in(慢开始)|ease-out(慢结束)|ease-in-out(慢开始慢结束)|cubic-bezier(n,n,n,n)(自定义速度值);
+    transition-delay：【延迟多久】开始过渡。		
+-->
+	<style type="text/css">
+		*{
+			margin: 0;
+			padding: 0;
+		}
+		.box{
+			width: 200px;
+			height: 200px;
+			margin: 0;
+			background: red;
+			color: blue;
+			font-size: 20px;
+			font-weight: 100;
+			text-align: center;
+			line-height: 200px;
+			
+			transition-property:all;
+			transition-duration:1s;
+			transition-timing-function:linear;
+			transition-delay:0.3s;
+			
+			/*简写*/
+			/*transition:all 1s linear 0.3s;*/
+		}
+		.box:hover{
+			width: 300px;
+			height: 300px;
+			margin: 50px;
+			background: blue;
+			color: red;
+			font-size: 50px;
+			font-weight: 600;
+			line-height: 300px;
+			border-radius: 50%;
+		}
+	</style>
+	<body>
+		<div class="box">
+			智
+		</div>	
+		
+	</body>
+</html>

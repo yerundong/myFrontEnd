@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			/*
+			【resize】自由缩放盒模 ie及edge不支持
+			如果希望此属性生效，需要设置元素的 [overflow ]属性，值可以是 auto、hidden 或 scroll。
+			缩放的【最小高宽】为原定的高宽，即不能比设定的高宽小；
+			属性值：
+			none
+			both 水平垂直都可以缩放
+			horizontal只有水平方向可以缩放
+			vertical只有垂直方向可以缩放
+
+			*/
+			#footer{
+				width:500px;
+				height:100px;
+				border: 2px solid red;
+				overflow: auto;
+				-ms-resize: both;
+			}
+			#footer div{
+				width:15%;
+				height:100%;
+				float: left;
+				border:1px solid black;
+				overflow: auto;
+				-ms-resize: both;
+			}
+			textarea{
+				width:300px;
+				height:200px;
+				-ms-resize: both;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="footer">
+			<div>1</div>
+			<div>2</div>
+			<div>3</div>
+			<div>4</div>
+		</div>
+		<textarea></textarea>
+	</body>
+</html>

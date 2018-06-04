@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>旋转</title>
+</head>
+<style>
+    * {
+        padding: 0;
+        margin: 0;
+    }
+    body{
+        /* perspective:1;
+        perspective-origin:100% 100%; */
+    }
+    .boxes{
+        transform-style:preserve-3d;
+        padding-left: calc(50% - 50px);
+    }
+    .boxes>div {
+        width: 100px;
+        height: 100px;
+        text-align: center;
+        line-height: 100px;
+        cursor: pointer;
+        user-select: none;
+        /*给这些变换添加过渡效果*/
+        transition: transform 1s;
+    }
+    .boxes>div:nth-of-type(1) {
+        background: aqua;
+        /* 旋转的基点，旋转回来时候需要 */
+        transform-origin: 100% 100%;
+    }
+    .boxes>div:nth-of-type(2) {
+        background: red;
+        /* 旋转的基点，旋转回来时候需要 */
+        transform-origin: 50% 50%;
+    }
+
+    /* 
+        [rotate(angle)] 
+        2d旋转
+        （正数顺时针）
+    */
+    .boxes>div.box1 {
+        /* 
+            [transform-origin: x, y] 旋转的基点 
+            默认是中心,即center center
+            写法：
+            center/top/bottom/left/right 两两匹配
+            xpx ypx 确切数值
+            x% y% 百分比
+        */
+        transform-origin: 100% 100%;
+        transform: rotate(180deg);
+    }
+
+    /* 
+        [rotate3d(x,y,z,angle)]
+        3d旋转
+        angle是xyz总的旋转角度，按xyz它们的比例分配
+        只单独设置xyz一项的可用rotateX，rotateY，rotateZ,
+        rotateX，rotateY，rotateZ、rotate3d会覆盖，故只其中一项生效，即最后设置的一项
+    */
+    .boxes>div.box2 {
+        /* 旋转的基点 */
+        transform-origin: 50% 50%;
+        transform: rotate3d(1, 1, 1, 60deg);
+        /* 
+            transform: rotateX(160deg);
+            transform: rotateY(160deg);
+            transform: rotateZ(560deg); 
+        */
+    }
+</style>
+
+<body>
+    <div class="boxes">
+        <div onclick="transformGo(this, 'box1')">2d旋转</div>
+        <div onclick="transformGo(this, 'box2')">3d旋转</div>
+    </div>
+    <script>
+        const transformGo = function (target, classText) {
+            if(target.classList[0] == classText){
+                target.classList.remove(classText);
+            }else{
+                target.classList.add(classText)
+            }
+        }
+    </script>
+</body>
+
+</html>

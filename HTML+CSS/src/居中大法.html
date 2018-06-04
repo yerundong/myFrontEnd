@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        #father {
+            width: 100%;
+            height: 600px;
+            background: greenyellow;
+            position: relative;
+        }
+
+        .son {
+            width: 250px;
+            height: 250px;
+            background: salmon;
+            /*【方式1:】*/
+            /*margin: 0 auto;*/
+            /*水平居中，儿子必须定宽*/
+            /*【方式2:】*/
+            /* position: absolute;
+            top:50%;left: 50%;
+            margin-top:-125px;
+            margin-left: -125px;*/
+            /*margin-top: 是儿子高的负一半;margin-left: 是儿子宽的负一半;*/
+            /*【方式3:】*/
+            /*position: absolute;left: 0;top: 0;right: 0;bottom: 0;margin: auto;*/
+        }
+    </style>
+</head>
+
+<body>
+    <div id="father">
+        <div class="son"></div>
+    </div>
+</body>
+
+</html>

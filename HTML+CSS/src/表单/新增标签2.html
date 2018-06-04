@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+
+<body>
+    <!--【embed】用来插入各种[多媒体],支持flash.swf，音频支持midi、wav、aiff、au、mp3-->
+    <embed src="../material/flash1.swf">
+    <embed src="../material/audio1.mp3" autostart="false">
+    <!--
+属性：
+src=""  文件地址
+autostart=true/false 该属性规定[音频或视频]文件是否在[下载完]之后就[自动播放]。默认：true；自动播放
+loop=正整数/true/false 循环播放;正整数：循环次数；true:音频或视频文件无限循环【默认值】;false:音频或视频文件只播一次不循环；
+hidden=ture/no 该属性规定控制面板显示/隐藏，【默认值为no】
+starttime=mm:ss（分：秒）规定音频或视频文件[开始播放]的时间。【默认从文件开头播放】如starttime="00:07"
+ height="400" width="400"  取值为正整数或百分数，单位为像素。该属性规定控制面板的高度和宽度
+ controls=console/smallconsole/playbutton/pausebutton/stopbutton/volumelever默认值是console
+ name=     属性给对象取名，以便其他对象利用。
+ title=  说明的文字
+palette=color|color  前景色和背景色
+align=top/bottom/center/baseline/left/right/texttop/middle/absmiddle/absbottom;对齐方式
+ -->
+    <!--【mark】突出显示或高亮显示的文字。相当于  span-->
+    <p>my name is
+        <mark>syz</mark>,age is 16,
+        <mark>syz</mark> is handsome!</p>
+    <!--figure/figcaption  是一种元素的组合，带有可选标题figure中只能放置一个figcaption-->
+    <figure>
+        <img src="../images/1.jpg" alt="" />
+        <figcaption>wbb's wife syz’s 经纪人</figcaption>
+    </figure>
+</body>
+
+</html>

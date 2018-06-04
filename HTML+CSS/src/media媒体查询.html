@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="UTF-8">
+	<!--首先我们在使用Media的时候需要先设置下面这段代码，来【兼容移动设备】的展示效果：-->
+	<meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no" />
+	<!--width – viewport的宽度
+			height – viewport的高度
+			width = device-width：宽度等于当前设备的宽度
+			initial-scale： 初始的缩放比例（默认设置为1.0）
+			minimum-scale：允许用户缩放到的最小比例（默认设置为1.0）
+			maximum-scale：允许用户缩放到的最大比例（默认设置为1.0）
+			user-scalable：用户是否可以手动缩放（默认设置为no，因为我们不希望用户放大缩小页面）
+			-->
+	<title></title>
+	<style type="text/css">
+		* {
+			margin: 0;
+			padding: 0;
+		}
+
+		.wrapper {
+			width: 100%;
+			height: 200px;
+			background: yellow;
+			transition: all 1s;
+			position: relative;
+		}
+
+		.wrapper .box {
+			width: 100px;
+			height: 100px;
+			background: red;
+			margin: auto;
+			position: absolute;
+			left: 0;
+			right: 0;
+			bottom: 0;
+			top: 0;
+			transition: all 1s;
+		}
+
+		.wrapper .box:after {
+			content: '大于900';
+			text-align: center;
+			line-height: 100px;
+			width: 100%;
+			height: 100%;
+			display: block;
+		}
+
+		@media only screen and (max-width: 900px) {
+			/*当屏幕小于768时，相反：min-width为当屏幕大于*px时*/
+			.wrapper {
+				background: blue;
+				height: 600px;
+			}
+			.wrapper .box {
+				width: 200px;
+				height: 200px;
+				background: aqua;
+				margin: auto;
+				position: absolute;
+				left: 0;
+				right: 0;
+				bottom: 0;
+				top: 0;
+				border-radius: 50%;
+			}
+			.wrapper .box:after {
+				content: '小于900';
+				line-height: 200px;
+			}
+		}
+
+		/*
+			width:浏览器可视宽度。
+			height:浏览器可视高度。
+			device-width:设备屏幕的宽度。
+			device-height:设备屏幕的高度。
+			orientation:检测设备目前处于横向还是纵向状态。
+			aspect-ratio:检测浏览器可视宽度和高度的比例。(例如：aspect-ratio:16/9)
+			device-aspect-ratio:检测设备的宽度和高度的比例。
+			color:检测颜色的位数。（例如：min-color:32就会检测设备是否拥有32位颜色）
+			color-index:检查设备颜色索引表中的颜色，他的值不能是负数。
+			monochrome:检测单色楨缓冲区域中的每个像素的位数。（这个太高级，估计咱很少会用的到）
+			resolution:检测屏幕或打印机的分辨率。(例如：min-resolution:300dpi或min-resolution:118dpcm)。
+			grid:检测输出的设备是网格的还是位图设备。
+		*/
+
+		/*  意思是在告知设备在打印页面时使用【衬线字体】，在屏幕上显示时用无衬线字体。
+			但是目前我发现很多网站都会【直接省略screen】,因为你的网站【可能不需要考虑用户去打印时】，
+			你可以直接这样写：
+			@media(max-width:960px){
+				body{background:#000;}
+				......
+			}
+		*/
+	</style>
+</head>
+
+<body>
+	<div class="wrapper">
+		<div class="box"></div>
+	</div>
+	<script type="text/javascript">
+
+	</script>
+</body>
+
+</html>

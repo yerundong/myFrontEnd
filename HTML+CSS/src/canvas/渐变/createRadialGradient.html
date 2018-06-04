@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>createRadialGradient</title>
+</head>
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+    }
+
+    .clearfix {
+        height: 800px;
+    }
+
+    .cavs {
+        border: 1px solid #ccc;
+        float: left;
+    }
+</style>
+
+<body class="clearfix">
+    <div style="padding-left: 85px;height: 30px;line-height: 30px;">X→</div>
+    <div style="width: 40px;float: left;height: 100%;text-align: center;width: 30px;margin-left: 50px">
+        <p>Y</p>
+        <p>↓</p>
+    </div>
+    <canvas id="cavs" class="cavs" width="1400" height="800"></canvas>
+    <script>
+        const oCavs = document.querySelector("#cavs");
+        const ctx = oCavs.getContext('2d');
+
+        // [createRadialGradient(x0, y0, r0, x1, y1, r1]
+        // 创建放射状/圆形渐变的gradient对象
+        // x0 	渐变的开始圆心的 x 坐标
+        // y0 	渐变的开始圆心的 y 坐标
+        // r0 	开始圆的半径
+        // x1 	渐变的结束圆心的 x 坐标
+        // y1 	渐变的结束圆心的 y 坐标
+        // r1 	结束圆的半径
+
+        // 创建一个gradient对象
+        const gradt = ctx.createRadialGradient(200, 200, 50, 200, 200, 200);
+        console.log(gradt);
+
+        gradt.addColorStop(0, "green");
+        gradt.addColorStop(0.5, "red");
+        gradt.addColorStop(1, "yellow");
+        ctx.fillStyle = gradt;
+        ctx.fillRect(0, 0, 400, 400);
+    </script>
+</body>
+
+</html>

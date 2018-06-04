@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>background</title>
+    <style>
+        /*
+        background-color：
+        background-image：
+        【background-position】:top/left/right/bottom/num%/num px
+        【background-size】：规定背景图像的尺寸相对于
+        |auto(默认)
+        |length:/num px 分别设置背景[宽度和高度];如果只设置一个值，则第二个值会被设置为 "auto"（按比例）
+        |percentage：/num%
+        |cover:把背景图像【按比例】扩展至足够大，以【完全覆盖】背景区域,不留空白。某些部分也许无法显示。
+        |contain:把图像图像【按比例】扩展至最大尺寸，高宽按比例平铺，也许会【留空白】
+
+        【background-repeat】：
+        /repeat	    默认。背景图像将在垂直方向和水平方向重复。
+        /no-repeat 不重复
+        /repeat-x	背景图像将在水平方向重复。
+        /repeat-y	背景图像将在垂直方向重复。
+        /no-repeat	背景图像将仅显示一次。
+        /inherit	规定应该从父元素继承 background-repeat 属性的设置。
+        【background-origin】：在background-position时起作用
+        border-box	背景图像相对于【边框border】内定位,border会覆盖背景图。
+        padding-box	背景图像相对于【内边距padding】内定位。默认
+        content-box	背景图像相对于【内容content】内定位。
+        注意：如果背景图像的 background-attachment 属性为 "fixed"，则该属性没有效果
+
+        【background-clip】：规定背景的绘制区域,【-origin是设置图片，-clip是图片+颜色】
+        border-box	背景图只能在【内边距padding】内平铺。默认
+        padding-box	背景图像只能在【边框border】内平铺。
+        content-box	背景图像只能在【内容content】内平铺。
+        text 背景图像只能在【文字】内平铺。（将文字颜色设为透明）-webkit-专用
+        注意：同样，如果背景图像的 background-attachment 属性为 "fixed"，则该属性没有效果    
+
+        【background-attachment】:设置背景图像是否固定或者随着页面的其余部分滚动
+        scroll	默认值。背景图像会随着页面其余部分的滚动而移动。
+        fixed	当页面的其余部分滚动时，背景图像不会移动。
+        inherit	规定应该从父元素继承 background-attachment 属性的设置。
+        */
+        *{margin: 0;padding: 0}
+        .d1{
+            border: 4px dotted blue;
+            width: 1000px;/*让背景平铺整个水平窗口，窗口缩放，背景图可以达到【自动居中】与【拉近拉远】的效果*/
+            height: 1000px;/*高比背景图小一些，隐藏图片一点，才可以【拉近拉远】*/
+            margin: 0 auto;
+            padding: 10px;
+            font-size: 50px;
+            font-weight: 600;
+            color: transparent;
+            background-origin:padding-box;
+            background-color: red;
+            background-image:url(../asset/1.jpg);
+            background-repeat:no-repeat;
+            background-position: 0% 0%;
+            background-origin:padding-box;
+           	background-size: contain;
+           	background-clip:border-box;/*背景图像只能在【内容content】内平铺*/
+            background-attachment: scroll; /*固定背景图，不能【自动居中】，但可以【拉近拉远】的效果*/
+
+        }
+    </style>
+</head>
+<body>
+    <div class="d1">
+    	我是文字
+    </div>
+</body>
+</html>

@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>createImageData</title>
+</head>
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+    }
+
+    .clearfix {
+        height: 800px;
+    }
+
+    .cavs {
+        border: 1px solid #ccc;
+        float: left;
+    }
+</style>
+
+<body class="clearfix">
+    <div style="padding-left: 85px;height: 30px;line-height: 30px;">X→</div>
+    <div style="width: 40px;float: left;height: 100%;text-align: center;width: 30px;margin-left: 50px">
+        <p>Y</p>
+        <p>↓</p>
+    </div>
+    <canvas id="cavs" class="cavs" width="1400" height="800"></canvas>
+    <script>
+        const oCavs = document.querySelector("#cavs");
+        const ctx = oCavs.getContext('2d');
+
+        // [createImageData(w, h) 或 createImageData(ImageData)]
+        // 创建新的空白ImageData对象
+        // w  ImageData 对象的宽度，以像素计。
+        // h  ImageData 对象的高度，以像素计。
+        // imageData  另一个ImageData对象。
+
+        // 创建一个1像素的ImageData对象
+        const imageData1 = ctx.createImageData(1, 1);
+        // console.dir(imageData1.data.length);// 4
+        imageData1.data[0] = 255;
+        imageData1.data[1] = 0;
+        imageData1.data[2] = 0;
+        imageData1.data[3] = 255;
+        // console.dir(imageData1);
+        ctx.putImageData(imageData1, 10, 10);
+
+        // 创建一个10000像素的ImageData对象(100×100)
+        const imageData2 = ctx.createImageData(100, 100);
+        for (let i = 0; i < imageData2.data.length; i += 4) {
+            imageData2.data[i] = 0;
+            imageData2.data[i + 1] = 0;
+            imageData2.data[i + 2] = 255;
+            imageData2.data[i + 3] = 255;
+        }
+        // console.dir(imageData2);
+        ctx.putImageData(imageData2, 110, 10);
+
+        // 创建与指定的另一个 ImageData 对象尺寸相同的新 ImageData 对象，但不会复制[像素参数]
+        const imageData3 = ctx.createImageData(imageData2);
+        // console.dir(imageData3);
+        ctx.putImageData(imageData3, 220, 10);
+    </script>
+</body>
+
+</html>

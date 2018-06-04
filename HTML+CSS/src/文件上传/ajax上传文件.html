@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<script src="../../../Lib/Jquery/jquery-3.3.1.min.js" type="text/javascript" charset="utf-8"></script>
+	<body>
+		<form id="form" action="data.js" method="post">
+			<input type="text" name="uname" />
+			<input id="inp1" type="file" name="file" accept="image/*" multiple />
+			<input id="inp2" type="file" name="file" accept="image/jpeg"/>
+			<input id="inp3" type="file" name="file" accept="video/*"/>
+			<input type="submit" value="整个form提交" name="sub1" id="sub1"/>
+			<input type="submit" value="特定元素提交" name="sub2" id="sub2"/>
+			<input type="reset" value="重置" />
+			<input id="cons" type="button" value="cons" />
+		</form>
+		<progress id="progressBar" value="0" max="100"></progress>
+		<script type="text/javascript">
+			
+			var xhr = new XMLHttpRequest();
+			console.log(xhr);
+			
+			//整个form提交
+			$('#sub1').click(function (evt) {
+				//FormData对象 ajax上传一个二进制文件 ie9+
+				//自动会设置Content-Type:multipart/form-data;
+				var oForm = $('#form')[0];
+				var myFormData = new FormData(oForm);
+				
+				
+				var method = $('#form')[0].method;
+				var action = $('#form')[0].action;
+				xhr.open(method,action);
+				xhr.send(myFormData);
+				evt.preventDefault();
+			})
+			
+			//特定表单元素提交
+			$('#sub2').click(function (evt) {
+				evt.preventDefault();
+				
+				// FormData对象 
+				var myFormData = new FormData();
+				
+				//取到文件对象（是个类数组）
+				var oFiles = $('#inp1')[0].files;
+//				console.log($('#inp1')[0].files);
+
+				//将文件对象循环append进去
+				//append(fileName,file)
+				for(var i=0,pfile;pfile=oFiles[i];i++){
+					myFormData.append('file'+i,pfile)
+				}
+				
+				var method = $('#form')[0].method;
+				var action = $('#form')[0].action;
+				xhr.open(method,action);
+				xhr.send(myFormData);
+			});
+			
+			//监听进度条
+//			xhr.upload.addEventListener("progress", function (evt) {
+//				var progressBar = document.getElementById("progressBar");
+//				console.log(evt.lengthComputable)
+//	            if (!evt.lengthComputable) {
+//	                progressBar.max = evt.total;      
+//	                progressBar.value = evt.loaded;
+//	               
+//	            }
+//			}, false);
+			
+		</script>
+	</body>
+</html>

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        li{list-style: none}
+        /***********************************属性选择器************************************/
+        /*【[attr]】选择所有【拥有该属性】的元素，[不分元素类型]*/
+        /*[class]{
+            background: red;
+        }
+        /*【[attr=val]】选择所有拥有【该属性,且属性值只等于val】的元素，[不分元素类型]*/
+        /*[class="li2"]{
+            background: red;
+        }
+        /*【a[attr]】【在a元素中】选择所有拥有【该属性】的元素*/
+       /*li[class]{
+            background: green;
+        }*/
+        /*【a[attr=val]】【在a元素中】选择所有【拥有该属性,且属性值只等于val】的元素*/
+        /*li[class="li2"]{
+            background: green;
+        }*/
+        /*【[attr^=b]】选择所有【拥有该属性,且含有以b字符开头的属性值】的元素，b为字符串*/
+        /*[class^="l"]{
+            background: red;
+        }*/
+        /*【[attr$=b]】选择所有【拥有该属性,且含有以b字符结尾的属性值】的元素，b为字符串*/
+        /*[class$="2"]{
+            background: red;
+        }*/
+        /*【[attr*=b]】选择所有【拥有该属性,且含有b字符属性值】的元素，b为字符串*/
+        /*[class*="i"]{
+            background: red;
+        }*/
+        /*【[attr~=c]】选择所有【拥有该属性,且含有c属性值】的元素，【c为完整的属性值】*/
+        /*[class~="is"]{
+            background: red;
+        }*/
+        /*元素选择器支持【自定义属性】*/
+        /*li[one]{
+            background: green;
+        }*/
+    </style>
+</head>
+<body>
+    <ul>
+        <li class="li1" one="123">11</li>
+        <li class="li2">22</li>
+        <li class="li3">33</li>
+        <li class="li4 is">44</li>
+        <li class="li5">55</li>
+        <li class="li6">66</li>
+        <p class="p1 li2 iswww">我是p</p>
+        <b class="b1 is">我是b</b>
+    </ul>
+</body>
+</html>

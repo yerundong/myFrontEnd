@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			input{
+				-webkit-appearance: none;  /*去除表单元素的默认样式 */
+				-moz-appearance:none;
+				width:400px;
+				height:20px;
+				background:rgba(100,100,100,0.5);
+				outline:none;
+			}
+			input::-webkit-slider-thumb{  /*通过css3的伪元素选择器 选中input range里面的 滑块伪元素 -webkit-的写法*/
+				-webkit-appearance: none;
+				width:10px;
+				height:30px;
+				border-radius:25%;
+				background:rgb(255,0,0);
+			}
+			input::-moz-range-thumb{ /*火狐的写法*/
+				-moz-appearance:none;
+				width:10px;
+				height:30px;
+				border-radius:25%;
+				background:rgb(255,0,0);
+			}
+		</style>
+	</head>
+	<body>
+		<input type="range" id="ran" value="0" min="0" max="100"/>
+	</body>
+</html>

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>quadraticCurveTo</title>
+</head>
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+    }
+
+    .clearfix {
+        height: 800px;
+    }
+
+    .cavs {
+        border: 1px solid #ccc;
+        float: left;
+    }
+</style>
+
+<body class="clearfix">
+    <div style="padding-left: 85px;height: 30px;line-height: 30px;">X→</div>
+    <div style="width: 40px;float: left;height: 100%;text-align: center;width: 30px;margin-left: 50px">
+        <p>Y</p>
+        <p>↓</p>
+    </div>
+    <canvas id="cavs" class="cavs" width="1400" height="800"></canvas>
+    <script>
+        const oCavs = document.querySelector("#cavs");
+        const ctx = oCavs.getContext('2d');
+        const img = new Image();
+        img.src = "../../../asset/quadraticcurve.gif";
+        img.onload = function () {
+            console.log(img);
+            ctx.drawImage(img, 600, 30);
+        }
+
+        // [quadraticCurveTo(cpx, cpy, x, y)]
+        // 二次贝塞尔曲线的指定控制点，向当前路径添加一个点
+        // cpx 	贝塞尔控制点的 x 坐标
+        // cpy 	贝塞尔控制点的 y 坐标
+        // x 	结束点的 x 坐标
+        // y 	结束点的 y 坐标
+
+        ctx.moveTo(200, 200);
+        ctx.quadraticCurveTo(300, 50, 400, 200);
+        ctx.closePath();
+        ctx.stroke();
+    </script>
+</body>
+
+</html>

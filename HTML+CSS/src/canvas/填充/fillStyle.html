@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>fillStyle</title>
+</head>
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+    }
+
+    .clearfix {
+        height: 800px;
+    }
+
+    .cavs {
+        border: 1px solid #ccc;
+        float: left;
+    }
+</style>
+
+<body class="clearfix">
+    <div style="padding-left: 85px;height: 30px;line-height: 30px;">X→</div>
+    <div style="width: 40px;float: left;height: 100%;text-align: center;width: 30px;margin-left: 50px">
+        <p>Y</p>
+        <p>↓</p>
+    </div>
+    <canvas id="cavs" class="cavs" width="1400" height="800"></canvas>
+    <script>
+        const oCavs = document.querySelector("#cavs");
+        const ctx = oCavs.getContext('2d');
+        // gradient对象
+        const grdt = ctx.createLinearGradient(160, 20, 100, 100);
+        grdt.addColorStop("0", "magenta");
+        grdt.addColorStop("0.5", "blue");
+        grdt.addColorStop("1.0", "red");
+        // img对象
+        const img = document.createElement('img');
+        img.src = '../../../asset/+.png';
+
+        // [fillStyle]
+        // 设置或返回用于填充绘画的颜色color、渐变或模式
+        // color	指示绘图填充色的 CSS 颜色值。默认的填充颜色是[黑色]
+        // gradient	用于填充绘图的渐变对象（线性或放射性）
+        // pattern	用于填充绘图的pattern对象
+
+        // color
+        ctx.fillStyle = 'red';
+        ctx.moveTo(30, 100);
+        ctx.lineTo(180, 100);
+        ctx.lineTo(180, 200);
+        ctx.closePath();
+        ctx.stroke();
+        ctx.fill();
+
+        // gradient
+        ctx.beginPath();
+        ctx.fillStyle = grdt;
+        ctx.moveTo(230, 100);
+        ctx.lineTo(380, 100);
+        ctx.lineTo(380, 200);
+        ctx.closePath();
+        ctx.stroke();
+        ctx.fill();
+
+        // pat
+        setTimeout(() => {
+            // 需要延迟执行createPattern生成pat，否则pat为null，我也不知道为什么？？？？？？？？？？？？
+            const pat = ctx.createPattern(img, "repeat");
+            ctx.beginPath();
+            ctx.fillStyle = pat;
+            ctx.moveTo(430, 100);
+            ctx.lineTo(580, 100);
+            ctx.lineTo(580, 200);
+            ctx.closePath();
+            ctx.stroke();
+            ctx.fill();
+        }, 100);
+    </script>
+</body>
+
+</html>

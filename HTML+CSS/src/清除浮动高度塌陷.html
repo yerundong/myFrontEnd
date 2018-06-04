@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8" />
+	<title>Document</title>
+	<style type="text/css">
+		* {
+			margin: 0;
+			padding: 0;
+			list-style: none;
+		}
+
+		ul {
+			background: red;
+		}
+
+		li {
+			float: left;
+			width: 40px;
+			height: 40px;
+			background: blue;
+			text-align: center;
+		}
+
+		/*==============法1==============*/
+
+		.ul1 {
+			overflow: hidden;
+		}
+
+		/*==============法2==============*/
+
+		.ul2 {
+			float: left;
+		}
+
+		/*==============法3==============*/
+
+		.ul3 {
+			position: absolute;
+			/* position: fixed; */
+		}
+
+		/*==============法4==============*/
+
+		.clear:after {
+			clear: both;
+			content: '.';
+			display: block;
+			height: 0;
+			visibility: hidden;
+		}
+
+		/*==============法5==============*/
+
+		.clearfix:after {
+			clear: both;
+			content: ".";
+			display: block;
+			height: 0;
+			visibility: hidden;
+		}
+	</style>
+</head>
+
+<body>
+	<!-- <ul class="ul1">
+		<li>1</li>
+		<li>2</li>
+		<li>3</li>
+	</ul>
+	<ul class="ul2">
+		<li>1</li>
+		<li>2</li>
+		<li>3</li>
+	</ul>
+	<ul class="ul3">
+		<li>1</li>
+		<li>2</li>
+		<li>3</li>
+	</ul> 
+	<ul class="ul4">
+		<li>1</li>
+		<li>2</li>
+		<li>3</li>
+		<div class="clear"></div>
+	</ul> -->
+	<ul class="ul5 clearfix">
+		<li>1</li>
+		<li>2</li>
+		<li>3</li>
+	</ul>
+</body>
+
+</html>
