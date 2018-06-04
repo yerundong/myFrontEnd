@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="myApp"  ng-controller="myCtrl">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="angular.min.js"></script>
+</head>
+<body>
+    <div ng-bind="myUrl"></div>
+    <script>
+        var app = angular.module('myApp', []);
+        app.controller('myCtrl', function($scope, $location,$http) {
+            $scope.myUrl = decodeURIComponent($location.absUrl());//返回【当前页面的URL地址】
+            //$location.path("http//:www.baidu.com");
+            /*$http({
+                url:"http://datainfo.duapp.com/shopdata/datainfo.html",
+                method:"get",
+            }).success(function (res) {
+                   console.log(res);
+            }); */
+        });
+    </script>
+</body>
+</html>

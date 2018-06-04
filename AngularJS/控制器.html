@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="en" ng-app="myApp" ng-controller="ctrl1">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    <input type="text" ng-model="name">
+
+    <script src="angular.min.js"></script>
+    <script>
+        /*AngularJS 控制器控制AngularJS【应用程序的数据】。
+         AngularJS 控制器是常规的【JavaScript对象】。
+
+         ng-controller="myCtrl" 属性是一个 AngularJS 指令。用于【定义一个控制器】。
+         myCtrl 函数是一个JavaScript函数。
+         AngularJS 使用$scope 对象来调用控制器。
+         在 AngularJS 中， $scope 是一个【应用对象】(属于应用【变量和函数】】)。
+         控制器的$scope(相当于【作用域、控制范围】）用来【保存】AngularJS Model(模型)的对象。
+         在大型的应用程序中，通常是把控制器存储在【外部文件】中。
+         只需要把 <script> 标签中的代码复制到名为 personController.js 的外部文件中即可
+        */
+        var app = angular.module('myApp', []);
+        app.controller('ctrl1', function($scope) {
+            $scope.name="yrd";
+        });
+
+    </script>
+
+</body>
+</html>

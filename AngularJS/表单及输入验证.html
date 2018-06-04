@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="myApp" ng-controller="ctrl">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="angular.min.js"></script>
+    <style>
+
+    </style>
+</head>
+<body>
+        <!--
+       ng-model 指令可以为【表单应用数据】提供【状态值】：
+       $invalid:验证不成立的情况下返回true（实时验证：刷新或onkeydown的时候）
+       $dirty:在数据【发生改变】以后 返回为true
+       $touched:点击过后，为true
+       $error:后面可跟表单的【属性与属性值】，如required，email，number,url,ng-pattern,ng-minlength...
+       【不满足】这些属性(值)时返回true；
+       $pristine:表单没有填写记录
+       -->
+    <form action="" name="myForm" novalidate><!--novalidate去除默认提示-->
+        <p>
+            用户名：<input type="text" name="userName" ng-model="user" required ng-minlength="6" ng-maxlength="20"
+        ng-pattern="/[\w+]g/">
+            <span style="color: red" ng-show="myForm.userName.$dirty && myForm.userName.$invalid">
+                <span ng-show="myForm.userName.$error.required">用户名不能为空</span>
+                <!--【ng-show=''】true时显示-->
+               <span ng-show="myForm.userName.$error.minlength">用户名长度不能小于6</span>
+               <span ng-show="myForm.userName.$error.maxlength">用户名长度不能大于20</span>
+               <span ng-show="myForm.userName.$error.pattern">正则不匹配</span>
+            </span>
+        </p>
+        <p>
+            密码：<input type="password" name="psw" ng-model="psw" required>
+        </p>
+        <!--【ng-disabled=''】true时显示-->
+        <input type="submit" ng-disabled="myForm.userName.$dirty && myForm.userName.$invalid" value="提交">
+
+
+    </form>
+
+    <script>
+        var app = angular.module('myApp', []);
+        app.controller('ctrl', function($scope) {
+
+        });
+    </script>
+</body>
+</html>

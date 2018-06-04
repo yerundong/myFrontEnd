@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="myApp">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<!--
+Scope(作用域) 是应用在 HTML (视图层) 和 JavaScript (控制器层)之间的【纽带】。
+Scope 是一个JavaScript对象，带有【属性和方法】
+Scope 的属性和方法可以在【视图和控制器】中使用。
+
+view（视图层V）---$scope 中间对象（模型层M）-----controller（控制层C）:【MVC模式】
+-->
+<div ng-controller="myCtrl1">
+    <input ng-model="pick">
+</div>
+
+<div ng-controller="myCtrl2">
+    <input ng-model="pick">
+</div>
+
+
+
+
+<script src="angular.min.js"></script>
+<script>
+    var app = angular.module('myApp', []);
+    app.controller('myCtrl1', function($scope) {
+        $scope.pick = "hehe";//视图中的所有【变量】都是$scope的属性；可给其设默认值(相当于init)
+    });
+    app.controller('myCtrl2', function($scope,$rootScope) {
+        $scope.pick = "haha";//视图中的所有【变量】都是$scope的属性；可给其设默认值(相当于init)
+        $rootScope.pick = "xixi";//局部scope优先级比较高
+    });
+
+</script>
+</body>
+</html>

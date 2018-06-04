@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        .span1{
+            background: greenyellow;
+        }
+    </style>
+</head>
+<body>
+<!--ng-app 指令定义一个 AngularJS【应用程序】(根元素)。带有ng-app属性【标签内】angularJS才起效果
+一个网页可以包含【多个运行在不同元素中】的AngularJS应用程序。但一般情况下，一个页面当中只有一个ng-app;
+ng-model 指令把【元素值】（比如输入域的值）【绑定到应用程序】。
+ng-bind 指令把应用程序【数据】绑定到 HTML视图（view）-->
+<!--
+AngularJS 表达式写在【双大括号】内：{{ expression }}
+AngularJS 表达式把数据绑定到 HTML，这与【ng-bind】类似，但是如果页面加载过慢，会“暴露”{{}}。
+AngularJS 将在表达式【书写的位置输出数据】。
+-->
+    <div ng-app="">
+        <!--5+5={{5+5}}-->
+        <input type="text" ng-model="number" ng-init="number=10;else=20;name='姓名:';youName='叶润东'">
+        <input type="text" ng-init="obj={a:123,b:'i love you'}">
+        <!--ng-init 指令【初始化】AngularJS 应用程序变量,该变量可以是【各种数据类型】-->
+        {{number}}
+        {{number*else}}
+        {{name+youName}}
+        {{obj.b}}
+        <!--使用【ng-bind】-->
+        <span ng-bind="name+youName" class="span1"></span>
+    </div>
+    <script src="angular.min.js"></script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+

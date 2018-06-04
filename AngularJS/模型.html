@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="myApp" ng-controller="myCtrl">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        /*input.ng-touched {
+            background-color: yellow;
+        }
+        input.ng-untouched {
+            background-color: blue;
+        }*/
+        /*input.ng-empty {
+            background-color: yellow;
+        }
+        input.ng-no-empty {
+            background-color: blue;
+        }*/
+    </style>
+</head>
+<body>
+    <!--ng-model指令用于绑定应用程序【数据】到 HTML控制器(input, select, textarea)的值。-->
+    <!-- View 视图层 -->
+    <!--
+    双向数据绑定：
+    如果你修改了视图，模型和控制器也会相应更新；
+    如果你修改了控制器，模型和视图也会相应更新；
+    -->
+
+    <input type="text" ng-model="name">
+    <span>欢迎光临！</span><span ng-bind="name"></span>
+    <form name="myForm" ng-init="myText = 'test@runoob.com'"><!--ng-init给model设置默认值-->
+        Email:
+        <input type="email" name="myAddress" ng-model="myText" required>
+        <p>编辑邮箱地址，查看状态的改变。</p>
+        <h1>状态</h1>
+        <p>Valid: {{myForm.myAddress.$valid}} (如果输入的值是合法的则为 true)。</p>
+        <p>Dirty: {{myForm.myAddress.$dirty}} (如果值改变则为 true)。</p>
+        <p>Touched: {{myForm.myAddress.$touched}} (如果通过触屏点击则为 true)。</p>
+    </form>
+
+        <!--
+        ng-model 指令可以为【表单应用数据】提供【状态值】：
+        $invalid:验证不成立的情况下返回true
+        $dirty:在数据【发生改变】以后 返回为true
+        $touched:点击过后，为true
+        $error:
+        -->
+        <!--ng-model 指令【基于它们状态】为 HTML 元素提供了【CSS类】:
+        ng-empty
+        ng-not-empty
+        ng-touched
+        ng-untouched
+        ng-valid
+        ng-invalid
+        ng-dirty
+        ng-pending
+        ng-pristine
+         -->
+
+
+
+    <script src="angular.min.js"></script>
+    <script>
+        // $scope 中间对象  同时也叫作模型层(model)
+        var myApp = angular.module('myApp', []);
+        // controller 控制层
+        myApp.controller('myCtrl',function($scope){
+            $scope.name = "rim";//初始值
+        });
+        // MVC  whatever
+
+    </script>
+</body>
+</html>

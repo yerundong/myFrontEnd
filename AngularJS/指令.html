@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="myApp" >
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+        <!--
+       AngularJS 通过被称为指令的新属性来扩展 HTML。
+       AngularJS 通过【内置的指令】来为应用添加功能。
+       AngularJS 允许你【自定义指令】。
+       -->
+
+        <div ng-init="arr=[0,1,2,3,4,5,6,7,8]">
+            <!--【ng-repeat】循环数组、复制html标签-->
+            <!--<li ng-repeat="x in arr">{{x}}</li>-->
+            <!--<li ng-repeat="x in arr" ng-bind="x"></li>-->
+            <li ng-repeat="x in arr"><!--ng-repeat所在的标签被复制-->
+                <span ng-bind="x"></span><!--ng-bind所在的标签填数据-->
+            </li>
+           <!-- <li ng-repeat="x in arr">
+                <span>{{x}}</span>
+            </li>-->
+
+
+            <!--【自定义指令】1.元素名 2.属性 3.类名 4.注释-->
+            <!--1.元素名-->
+            <hey-gay></hey-gay>
+            <!--2.属性 -->
+            <div hey-gay></div>
+            <!--3.类名 -->
+            <div class="hey-gay"></div>
+            <!--4.注释，"--"前后必须有空格-->
+            <!-- directive:hey-gay -->
+        </div>
+
+        <script src="angular.min.js"></script>
+        <script>
+            var app = angular.module("myApp", []);
+            app.directive("heyGay", function() {
+                return {
+                    //restrict : "C",//类名
+                    //restrict 值可以是以下几种:E作为元素名使用 A 作为属性使用 C 作为类名使用 M 作为注释使用
+                    //默认EA;
+                    /*restrict : "M",//注释
+                    replace : true,*/ //替换，把注释替换成template，防止【重复加载】template
+
+                    template : "<h1>自定义指令!</h1>"
+                };
+            });
+        </script>
+
+
+
+
+
+
+
+
+<script src="angular.min.js"></script>
+</body>
+</html>

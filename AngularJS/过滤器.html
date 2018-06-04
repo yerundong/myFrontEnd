@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en"  ng-app="myApp"  ng-controller="myCtrl">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="angular.min.js"></script>
+</head>
+<body>
+    <!--
+    AngularJS 过滤器可用于【转换数据】：
+    currency	格式化数字为货币格式。
+    filter	从数组项中选择一个子集。
+    lowercase	格式化字符串为小写。
+    orderBy	根据某个表达式排列数组。
+    uppercase	格式化字符串为大写。
+    number  数字化
+    date   日期
+    json   格式化json对象
+    limitTo  限制个数
+    -->
+    <div ng-model="sweat" ng-init="name='jackROSE';number='687485';date='1999.10.21';arr=[1,9,2,8,3,4,5]">
+        {{name|uppercase}}
+        {{name|lowercase}}
+        {{number|currency:'RMB ￥'}}<!--默认为$-->
+        {{arr|filter:2}}
+        {{data|orderBy:'-age'}}
+        <!--{{date|date:'yyyy-MM-dd hh:mm:ss EEEE'}}-->
+        <!--{{number|limitTo:3}}-->
+        <!--{{number|json}}-->
+
+
+        <!--{{data|filter:'a'}}-->
+        <!--{{data|filter:4}}-->
+        <!--{{data|filter }}-->
+        <!--{{data|filter: func }}-->
+
+    </div>
+    <script>
+        var myApp = angular.module('myApp', []);
+        myApp.controller('myCtrl',function($scope){
+            $scope.data = [
+                {name:'kimi',age:3},
+                {name:'cindy',age:4},
+                {name:'anglar',age:4},
+                {name:'shitou',age:6},
+                {name:'tiantian',age:5}
+            ];
+            $scope.func = function(e){return e.age>4;}
+
+        });
+    </script>
+
+</body>
+</html>

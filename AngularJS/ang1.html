@@ -1,0 +1,21 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <script src="angular.min.js"></script>
+</head>
+<body>
+<!--
+    ng-app 指令定义一个 AngularJS【应用程序】。
+    ng-model 指令把【元素值】（比如输入域的值）【绑定到应用程序】。
+    ng-bind 指令把应用程序【数据】绑定到 HTML视图（view）。
+    不断用计时器循环检测的方法是【脏检测】特别浪费性能，angular并不是这么实现的数据绑定
+    angular的检测机制是只有【在事件触发的时候（onkeydown/button）】开始检测数据是否改变
+-->
+    <div ng-app=""><!--指令告诉 AngularJS,<div>元素是AngularJS应用程序的"所有者"-->
+        名字：<input type="text" ng-model="youName"><!--指令把输入域的值绑定到【应用程序变量】youName-->
+        <span>{{youName}}</span><!--ng-bind指令把【应用程序变量】youName绑定到某个段落的【innerHTML】-->
+    </div>
+</body>
+</html>
