@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // [startsWith(substring, position)]
+        // 返回布尔值，表示参数字符串是否在源字符串特定部位的头部
+        // substring  字符串值,必填,要检测的字符串值
+        // position  索引位置，选填，指定[从该位置到末尾之间(包含该位置)]进行检测，省略默认为0
+        let str = 'abcde';
+        let s1 = str.startsWith('a');
+        let s2 = str.startsWith('abc');
+        let s3 = str.startsWith('c');
+        let s4 = str.startsWith('c', 2);
+        console.log(s1);// true
+        console.log(s2);// true
+        console.log(s3);// false
+        console.log(s4);// true
+
+    </script>
+</body>
+</html>

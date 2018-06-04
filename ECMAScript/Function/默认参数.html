@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="utf-8">
+	<title></title>
+</head>
+
+<body>
+	<script type="text/javascript">
+		// 参数变量是[默认声明]的，在[函数体]中，不能用let或const再次声明
+		// 显式输入undefined,将触发该参数等于默认值,其他类型则不触发
+		function fn1(a = 1, b = 2, c = 3) {
+			// let a;// 报错
+			console.log(a, b, c);
+		}
+		// fn1();// 1 2 3
+		// fn1(1,undefined,3);// 1 2 3
+
+		// [默认值]与[对象解构赋值]结合使用
+		function fn2({ a = 1, b = 2 }) {
+			console.log(a, b);
+		}
+		// fn2();// 报错 必须传入一个对象，否则无法生成ab参数
+		// fn2({});// 1 2
+		// fn2({ a: 3});// 3 2
+
+		// [默认值]与[数组解构赋值]结合使用
+		function fn3([a, b = 2]) {
+			console.log(a, b);
+		}
+		// fn3();// 报错 必须传入一个数组，否则无法生成ab参数
+		// fn3([]);// undefined 2
+		// fn3({ a: 3});// 3 2
+
+		// 将[整个对象]内设为默认参数
+		function fn4({ m = 1, n = 2 } = { m: 3, n: 4 }) {
+			console.log(m, n);
+		}
+		// fn4();// 3 4
+		// fn4({});// 1 2
+
+		// 将[整个数组]内设为默认参数
+		function fn5([m = 1, n = 2] = [3, 4]) {
+			console.log(m, n);
+		}
+		// fn5();// 3 4
+		// fn5([]);// 1 2
+
+		// 参数默认值设置在[尾部]才有意义
+		// 如果非尾部的参数设置默认值，实际上这个参数是没法省略的
+		// 除非显式输入undefined,将触发该参数等于默认值，null则没有这个效果
+		function fn6(a = 1, b) {
+			console.log(a, b);
+		}
+		// fn6();// 1 undefined
+		// fn6(, 2);// 报错
+		// fn6(undefined, 2);// 1 2
+		// fn6(null, 2);// null 2
+
+		// [对函数的length属性的影响]
+		// 函数的length得到的是[形参个数]，但不包含指定默认值的参数
+		// 指定了默认值以后，函数的length属性，将返回[没有指定默认值的参数个数]（失真）
+		function fn7(a, b, c = 5) { }
+		// console.log(fn7.length);// 2
+
+		// [作用域]
+		// 一旦设置了参数的默认值，函数进行声明初始化时，参数会形成一个[单独的作用域（context）]
+		// 等到初始化结束，这个作用域就会消失。这种语法行为，在不设置参数默认值时，是不会出现的。
+		let x = 1;
+		function fn8(x, y = x) {
+			// let x = 2;// 报错 同一个作用域变量无法定义两次
+			// x = 5;
+			console.log(y);
+		}
+		// fn8(2);// 2
+		// fn8();// undefined
+
+		function fn9(y = x) {
+			// let x = 99999999999;// 不报错
+			console.log(y)
+		}
+		// fn9();// 5
+
+		function fn10(x, y = (() => { x = 1; return 2 })()) {
+			console.log(x, y);
+		}
+		// fn10() // 1 2
+		// fn10(0, 0) // 0 0
+
+		// 利用参数默认值，可以指定某一个参数不得省略，如果省略就抛出一个错误。
+		function throwError() {
+			throw new Error('@> Missing parameter')
+		}
+		function fn11(a = throwError()) {
+			console.log(a);
+		}
+		// fn11();
+	</script>
+</body>
+</html>

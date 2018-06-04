@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // [用于for...of的三个遍历器生成方法]
+        // keys(),values(),entries()分别返回键，值，键值对的[遍历器对象]
+        // Map结构的[默认遍历器接口]（Symbol.iterator属性），就是entries方法
+        const map1 = new Map([
+            [{ a: 1 }, '张三'], 
+            [{ b: 2 }, '李四']
+        ]);
+        const keys_iter = map1.keys();
+		const values_iter = map1.values();
+        const entries_iter = map1.entries();
+        
+        // [默认遍历器接口]
+        for(let item of map1){
+            // console.log(item);
+        }
+        
+        // 三种遍历器的遍历
+        for(let item of keys_iter){
+            // console.log(item);
+        }
+        for(let item of values_iter){
+            // console.log(item);
+        }
+        for(let item of entries_iter){
+            // console.log(item);
+        }
+
+        // [forEach]
+		// 除了for...of，还可以使用forEach进行遍历，使用与遍历数组无异
+		// 
+		map1.forEach((value, key, map1)=>{
+			// console.log(value);
+			// console.log(key);
+		})
+    </script>
+</body>
+</html>

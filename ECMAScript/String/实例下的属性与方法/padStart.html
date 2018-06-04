@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<script>
+			// [padStart(maxLength, fillString)]
+			// 在字符串头部填充字符串，
+			// maxLength  补全后的总长度，若maxLength小于或等于字符串原有的长度，则返回原有字符串
+			// fillString 填充的字符片段,从左往右开始填充，省略默认使用空格补全长度
+			let str = 'abc';
+			let str1 = str.padStart(6);
+			let str2 = str.padStart(6, '123456');
+			console.log(str1);// "   abc"
+			console.log(str1.length);// 6
+			console.log(str2);// 123abc
+
+			//用途：补全时间格式
+			let myDate = '09-15';
+			let myDate_ = myDate.padStart(10, 'YYYY-MM-DD');
+			console.log(myDate_);// YYYY-09-15
+			
+			
+		</script>
+	</body>
+</html>

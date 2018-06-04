@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // [构造函数]Fn,规定首字母大写，
+        // 任何函数，只要通过new操作符来调用，那它就可以作为构造函数
+        // prototype-函数，__proto__-对象
+        // 任何函数的this指向实例对象fnObj
+        // ES6引入了Class（类）这个概念，作为对象的模板,让对象原型的写法[更加清晰、更像面向对象编程]（详见class文件）
+
+        function Fn(age){
+            this.age = age;
+            // console.log(this)
+            // console.log(this.constructor);// 构造函数Fn本身
+        }
+        Fn.prototype.name = 'someName';
+        // console.log(Fn.prototype);
+
+        // new调用,做了三件事
+        // let obj={}; 初始化一个对象a
+        // obj.__proto__ = Fn.prototype; 实例对象继承构造函数的原型对象(传址)
+        // Fn.call(obj); 改变Fn中this，指向obj
+        // 最后返回这个obj
+        
+        const fnObj = new Fn(18);
+        // console.log(fnObj);
+        // console.log(fnObj);
+
+        // console.log(Fn.prototype.isPrototypeOf(fnObj));// 判断一个实例对象是否继承某个构造函数的原型对象(boolean);
+
+        // Array、String、Object等都是内置的构造函数，我们可以在构造函数下添加属性与方法
+        // 如以下添加一个判断数字是否是偶数的方法
+        Number.prototype.isEven = function(){
+            if(this%2 === 1){
+                return false;
+            }else{
+                return true;
+            }
+        }
+        let num = 123;
+        // console.log(num.isEven());
+    </script>
+</body>
+</html>

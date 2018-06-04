@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // [__proto__]
+        // __proto__属性，用来读取或设置当前对象的prototype对象
+        // 该属性没有写入ES6的正文，而是写入了附录，因为它是一个[内部属性]，而不是一个正式的对外的API
+        // 标准明确规定，[只有浏览器]必须部署这个属性，其他运行环境不一定需要部署
+        // 所以不要使用这个属性，而是使用Object.setPrototypeOf()（写）、Object.getPrototypeOf()（读）、Object.create()（生成）代替
+        // 浏览器会自动部署__proto__属性，除非你手动赋值为null
+        console.log({});
+
+        const obj1 = {a: 1}
+        obj1.__proto__.b = 2;
+        console.log(obj1);
+
+        const obj2 = {a: 1}
+        obj2.__proto__ = null;
+        console.log(obj2);
+    </script>
+</body>
+</html>

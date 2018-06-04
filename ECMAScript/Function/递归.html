@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // 输入m.n参数，获取一个m长度的都是n的数组
+        function fn(len, mber, arr) {
+            let list = arr || [];
+            if(list.length < len){
+                list.push(mber);
+                return fn(len, mber, list);
+            }else{
+                return list;
+            }
+        }
+
+        let res = fn(5000, 2);
+        console.log(res);
+    </script>
+</body>
+</html>

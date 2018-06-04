@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <div class="div1">
+        <span class="span1">1</span>
+        <span class="span1">2</span>
+    </div>
+    <input type="text" class="input1" value="123">
+    <script>
+        const oDiv1 = document.querySelector(".div1");
+        const oSpan1 = document.querySelector(".span1");
+        const oInput1 = document.querySelector(".input1");
+        // [innerHTML] 
+        // 读写标签内的所有内容，包括空格、文字、子标签
+        // console.log(oDiv1.innerHTML);
+        // console.log(oSpan1.innerHTML);
+        // console.log(oInput1.innerHTML);
+        // 能够解析html片段
+        // oDiv1.innerHTML = "<i>iiii</i>"
+
+        // [outerHTML]
+        // 比innerHTML外面多包了一个当前标签
+        // console.log(oDiv1.outerHTML);
+        // console.log(oSpan1.outerHTML);
+        // console.log(oInput1.outerHTML);
+        
+        // [innerText]
+        // 读写标签内的所有文字
+        // console.log(oDiv1.innerText);// 1 2
+        // console.log(oSpan1.innerText);// 1
+        // console.log(oInput1.innerText);
+        // 不能够解析html片段
+        // oDiv1.innerText = "<i>iiii</i>"
+
+        // [textContent]
+        // 读写标签内的所有文字、空格
+        // console.log(oDiv1.textContent);// 1 2
+        // console.log(oSpan1.textContent);// 1
+        // console.log(oInput1.textContent);
+
+        // [value]
+        // 读写拥有value属性的标签的value值
+        // console.log(oDiv1.value);// undefined
+        // console.log(oSpan1.value);// undefined
+        // console.log(oInput1.value);// 123
+
+    </script>
+</body>
+</html>

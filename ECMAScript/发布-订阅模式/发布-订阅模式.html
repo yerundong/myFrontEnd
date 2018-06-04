@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>发布-订阅模式</title>
+</head>
+
+<body>
+    <script>
+        // 发布—订阅模式定义对象间的一种一对多的依赖关系，当一个对象的状态发生变化时，所依赖于他的对象都将得到通知。
+        // 发布-订阅模式的优点:
+        // 1、可以广泛应用于异步编程，它可以代替我们传统的回调函数 
+        // 2、我们不需要关注对象在异步执行阶段的内部状态，我们只关心事件完成的时间点
+        // 3、取代对象之间硬编码通知机制，一个对象不必显式调用另一个对象的接口，而是松耦合的联系在一起 
+        // 4、虽然不知道彼此的细节，但不影响相互通信。更重要的是，其中一个对象改变不会影响另一个对象
+        // 总结：
+        // 时间上解耦
+        // 对象间解耦
+
+        const obj = {};
+        obj.list = {};// 侦听函数的集合对象
+
+        // 侦听器
+        obj.listener = function (key, fn) {
+            if (!this.list[key]) {
+                this.list[key] = [];
+            }
+            this.list[key].push(fn);
+        };
+
+        // 触发器
+        obj.trigger = function (key, ...args) {
+            let fns = this.list[key];
+            if (!fns || fns.length === 0) {
+                console.warn('%c不存在名为"'+key+'"侦听!!', 'color:red');
+                return false;
+            }
+            for (let i = 0, fn; fn = fns[i++];) {
+                fn.apply(this, args);
+            }
+        };
+
+        // 移除侦听
+        obj.remove = function (key, fn) {
+            if(this.list[key]){
+                if(!fn){
+                    delete this.list[key];// 移除整个回调数组
+                }else if(this.list[key].length > 0){
+                    let fns = this.list[key];
+                    for (let i = 0; i < this.list[key].length;i++) {
+                        if(this.list[key][i] === fn){
+                            this.list[key].splice(i, 1)// 移除特定回调
+                        }
+                    }
+                }
+            }
+        }
+
+        // 添加侦听函数(订阅)（一个发布者可以对应多个订阅者）
+        obj.listener('sub', function (a, b, c) {
+            console.log(a, b, c);
+        });
+
+        let fn_sum = function (a, b, c) {
+            console.log(a + b + c);
+        };
+        obj.listener('sub', fn_sum);
+        
+        // 触发侦听函数（发布）
+        obj.trigger('sub', 1, 2, 3);
+        // obj.remove('sub', fn_sum);
+        // obj.trigger('sub', 4, 5, 6);
+        // obj.remove('sub');
+        // obj.trigger('sub', 3, 4, 5);
+        console.log(obj);
+    </script>
+</body>
+
+</html>

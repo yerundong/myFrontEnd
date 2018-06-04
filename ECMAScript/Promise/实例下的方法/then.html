@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // then()
+        // 在实例下then方法可以接受resolve、reject函数作为两个参数，传入promise
+        const promise1 = new Promise(function (resolve, reject) {
+            if (true) {
+                // resolve('resolve');
+            } else {
+                reject('reject');
+            }
+        });
+        promise1.then((res) => {
+            console.log(res)
+        }, (err) => {
+            console.log(err)
+        });
+
+        // then的链式写法1
+        // then方法返回的是一个新的Promise实例,因此可以采用链式写法
+        // 前一个then的回调函数完成后，return返回的值自动会被[作为参数]传入后一个then的回调函数
+        // 这种直接返回值的链式写法，new Promise只实例化一次
+        const promise2 = new Promise(function (resolve, reject) {
+            // console.log('我是实例化时执行的');
+            // resolve(1);
+        });
+        promise2.then((res) => {
+            console.log(res);// 1
+            return res + 1;
+        }).then((res) => {
+            console.log(res);// 2
+            return res + 1;
+        }).then((res) => {
+            console.log(res);// 3
+        });
+
+        // then的链式写法2
+        // 前一个then的回调函数完成后，返回带不同参数的一个实例化函数，替换原有的promise对象
+        // 这种链式写法，每次链接一个then时，都会实例化一次Promise，适用与不同参数实例化的需求，如请求ajax
+        function justDoIt(x) {
+            return new Promise(function (resolve, reject) {
+                // console.log('我是实例化时执行的');
+                // resolve(x);
+            });
+        }
+        justDoIt('a').then((res) => {
+            console.log(res);// a
+            return justDoIt('b');
+        }).then((res) => {
+            console.log(res);// b
+            return justDoIt('c');
+        }).then((res) => {
+            console.log(res);// c
+        });
+    </script>
+</body>
+
+</html>

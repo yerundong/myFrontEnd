@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // [Promise.race(p1, p2, p3...)]
+        // Promise.race方法用于将多个Promise实例，包装成一个新的Promise实例
+        // 接受一个(类)数组（array，set，map...任何可遍历的数据结构）作为参数
+        // promises状态规则：
+        // p1、p2、p3之中状态最先定型的（resolved），则它把返回值传递给promises的回调函数
+
+
+        const promise1 = new Promise(function (resolve, reject) {
+            // setTimeout会让promise1慢于promise2定型，所以返回的是promise2返回值
+            setTimeout(()=>{
+                if (true) {
+                    resolve('resolve1');
+                } else {
+                    reject('reject1');
+                }
+            });
+        });
+        const promise2 = new Promise(function (resolve, reject) {
+            if (true) {
+                resolve('resolve2');
+            } else {
+                reject('reject2');
+            }
+        });
+        const promise3 = new Promise(function (resolve, reject) {
+            if (true) {
+                resolve('resolve3');
+            } else {
+                reject('reject3');
+            }
+        });
+        const promises = Promise.race([promise1, promise2, promise3]);
+        promises.then(res => {
+            console.log(res);
+        }).catch(err => {
+            console.log(err);
+        }).finally(()=>{
+            console.log('finally');
+        });
+
+        // 成员的fulfilled、rejected回调会照常执行，与promises[不相干扰]
+        promise1.then(res=>{
+            console.log(res);
+        }).catch(err=>{
+            console.log(err);
+        }).finally(()=>{
+            console.log('finally');
+        })
+    </script>
+</body>
+</html>

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<button onclick="change()">copy</button>
+		<button onclick="cons()">cons</button>
+		<script type="text/javascript">
+			//赋值：传递对象的引用而已,原始列表name改变，被赋值的n也会做相同的改变。
+			
+			let obj1 = {a:1,b:2},
+				obj1_c = obj1;
+			
+			let change = ()=>{
+				obj1.a = 666;//影响obj1_c
+				obj1.fn = ()=>{//影响obj1_c
+					alert(123)
+				}
+				obj1 = {a:777};//不影响obj1_c
+				obj1 = 555;//不影响obj1_c
+			}
+			let cons = ()=>{
+				console.log(obj1_c);
+			}
+		</script>
+	</body>
+</html>

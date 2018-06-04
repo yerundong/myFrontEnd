@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // [replace(searchvalue, newvalue)]
+        // 在字符串中用一些字符替换另一些字符并返回，不改变原字符串
+        // searchvalue 	必须。字符串值，或RegExp对象。
+        // newvalue 	必须。字符串值。替换文本或生成替换文本的函数。
+        // 若searchvalue是字符串值，则匹配到首次出现的字符被替换
+        // 若是RegExp对象,根据是否g的情况进行替换，有g则全部替换
+
+        const str = 'aabbccdd';
+        const str1 = str.replace('c', '8');
+        const str2 = str.replace(/c/, '8');
+        const str3 = str.replace(/c/g, '8');
+        console.log(str);// aabbccdd
+        console.log(str1);// aabb8cdd
+        console.log(str2);// aabb8cdd
+        console.log(str3);// aabb88dd
+    </script>
+</body>
+
+</html>

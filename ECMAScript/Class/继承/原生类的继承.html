@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 原生类有：
+        // Boolean、Number、String、Array、Date、Function、RegExp、Error、Object
+        // es6以前，这些原生构造函数是无法继承的，比如，不能自己定义一个Array的子类
+        // 现在我们可以使用extends关键字继承原生类,进一步来定制我们需要的子类
+
+        // 原生的Array类
+        const array1 = new Array(1, 2, 3);
+        // console.log(array1);
+
+        // 创建一个Array的子类
+        class MyArray extends Array {
+            constructor(...arg) {
+                super(...arg);
+                // 添加一个子类自身的属性sum，表示所有数字之和
+                let sum = 0;
+                arg.forEach((val) => {
+                    if (typeof val === 'number') {
+                        sum += val;
+                    }
+                })
+                this.sum = sum;
+            }
+            // 子类自身的去重方法removal
+            removal() {
+                return new MyArray(...new Set(this))
+            }
+        };
+        const myArray1 = new MyArray(1, 2, 3, 'a', 'b', 4, 4, 4);
+        const myArray1_rem = myArray1.removal();
+        myArray1.push(666);
+        // console.log(myArray1);
+        // console.log(myArray1_rem);
+
+        // 注意，继承Object的子类，有一个行为差异
+        // 一旦发现Object方法不是通过new Object()这种形式调用，ES6 规定Object构造函数会[忽略参数]
+        class MyObject extends Object {
+            constructor(...arg) {
+                super(...arg);// 参数被忽略
+            }
+        }
+        var myObject1 = new MyObject({a: 1});
+        // console.log(myObject1);// {}
+        // console.log(myObject1.a);// undefined
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,20 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8" />
+	<title>Document</title>
+	<script src="jquery-1.11.2.min.js" type="text/javascript" charset="utf-8"></script>                                                                                                    
+</head>
+<body>
+	<a href="">点我查看战图</a>
+	<script type="text/javascript">
+		$(function () {
+			var $token = "Ev97wOUSAtJusc3Vsd9O2ngr_vfVFH67";
+			var $screenID ="14c5448c00ecde02b065c231d1659f38";
+			var $time = new Date().valueOf();
+			var $stringToSign = $screenID +'|'+ $time;
+			$('a').attr('href','http://datav.aliyun.com/screen/17203?spm=0.0.0.0.t2hinn');
+		})
+	</script>
+</body>
+</html>

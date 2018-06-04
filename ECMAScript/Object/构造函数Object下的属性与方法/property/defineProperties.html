@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // [defineProperties] 与defineProperty基本相似,只不过可以同时定义或修改多个属性
+        // defineProperties(obj, props)
+        // obj-目标对象 props-需要定义或修改的属性集合对象
+        let obj = {}, bri;
+        Object.defineProperties(obj, {
+            a: {
+                value: 1,
+                writable: false,
+                enumerable: false,
+                configurable: true
+            },
+            b: {
+                get() {
+                    if (bri) {
+                        return bri
+                    } else {
+                        return 2
+                    }
+                },
+                set(newVal) {
+                    bri = newVal
+                }
+            }
+        });
+        console.log(obj)
+        console.log(Object.getOwnPropertyDescriptors(obj))
+    </script>
+</body>
+
+</html>

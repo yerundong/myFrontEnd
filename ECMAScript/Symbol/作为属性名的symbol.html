@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+
+	<body>
+		<script type="text/javascript">
+			// 由于每一个 Symbol值都是不相等的，这意味着 Symbol值可以作为标识符
+			// 用于对象的属性名，能保证不会出现同名的属性,这对于一个对象由多个模块构成的情况非常有用，能防止某一个键被不小心改写或覆盖
+
+			const sym1 = Symbol();
+			const sym2 = Symbol();
+			let obj1 = {},
+				obj2 = {};
+
+			// 作为属性名，可以有以下3种写法：
+
+			// Symbol值作为对象属性名时，不能用点运算符,这样sym1实际上是一个字符串，不是一个 Symbol值
+			// 需要用方括号[]写法
+			obj1.sym1 = 1;
+			obj1[sym1] = 2;
+
+			// defineProperty写法
+			Object.defineProperty(obj1, sym2, {
+				value: 3
+			});
+
+			// 在对象的内部，使用 Symbol值定义属性时，Symbol值必须放在方括号[]之中
+			let obj3 = {
+				[sym1]: 4
+			};
+
+			console.log(obj1);
+			// 读取属性只能通过变量名来取
+			// console.log(obj1[sym1]);//2
+			// 而不能通过Symbol值来取
+			// console.log(obj1[Symbol()]);//undefined
+
+			// Symbol类型可以用于定义一组常量，保证这组常量的值都是不相等的
+			// 它们的值是多少并不重要，只需要保证它们一一对应，互不相等即可
+			const COLOR_RED = Symbol();
+			const COLOR_GREEN = Symbol();
+
+			function getComplement(color) {
+				switch(color) {
+					case COLOR_RED:
+						return 'is red';
+					case COLOR_GREEN:
+						return 'is green';
+					default:
+						throw new Error('Undefined color');
+				}
+			}
+			//			console.log(getComplement(COLOR_RED));
+			//			console.log(getComplement(COLOR_GREEN));
+
+			// Symbol属性的遍历（不会被常规方法遍历得到）
+			// 除了Object.getOwnPropertySymbols、Reflect.ownKeys方法，其他像for...in、for...of、
+			// Object.keys()、Object.getOwnPropertyNames()、JSON.stringify()均不能遍历出Symbol类型属性
+			// 但它不是私有属性
+			// 当一个构造函数内需要一些属性仅用于内部使用，不需要被外部遍历取到，但又不是私有属性时，可用Symbol类型
+			let size = Symbol('size');
+			class Collection {
+				constructor() {
+					this[size] = 0;
+				}
+			}
+			
+		</script>
+	</body>
+
+</html>

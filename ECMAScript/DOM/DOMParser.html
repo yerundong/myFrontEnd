@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // [new DOMParser()]
+        // 用来解析XML文本、html字符串成一个DOM对象
+
+        // 首先实例化DOMParser，返回一个实例对象
+        const dompser = new DOMParser();
+        // console.log(dompser);
+
+        // 该实例对象下有一个parseFromString方法
+        // [parseFromString(text, type)]
+        let strHTML = `
+            <ul>
+                <li>1</li>
+                <li>2</li>
+                <li>3</li>
+            </ul>
+		`;
+        let domHTML = dompser.parseFromString(strHTML, "text/xml");
+        // console.log(domHTML);
+    </script>
+</body>
+
+</html>

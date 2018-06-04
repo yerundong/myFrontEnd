@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+</head>
+
+<body>
+	<script type="text/javascript">
+		// 'use strict'
+
+		// ECMAScript5标准中 getter 和 setter 的实现,由getter和setter读写的属性被称为“存取器属性”或“访问器属性”
+		// 此处为普通定义getter 、setter的方法，使用Object.defineProperty定义的方法详见“访问器属性”文件笔记
+
+		//这是一个无 getter 、setter的普通对象，可以任意读写
+		let obj1 = {},
+			bri;
+		obj1.a = 2
+		//			console.log(obj1.a);
+
+		//一般getter 、setter需要同时使用，否则在严格模式下会报错
+		//这是一个只有getter，没有setter的对象，可读不可写（严格模式下不可用）
+		let obj2 = {
+			get a() {
+				return 1
+			}
+		}
+		obj2.a = 2;
+		//	console.log(obj2.a);//undefined
+
+		//这是一个有setter，getter的对象，可读可写
+		//需要一个中间值（a_）来赋值，直接赋值会进入死循环
+		let obj3 = {
+			get a() {
+				if (bri) {
+					return bri
+				} else {
+					return 1 //默认值
+				}
+			},
+			set a(newVal) {
+				bri = newVal
+			}
+		}
+		obj3.a = 2;
+		console.log(obj3);
+	</script>
+</body>
+
+</html>

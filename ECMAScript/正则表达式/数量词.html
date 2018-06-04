@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // 说明：x代表某字符，n代表一个非负整数
+        // 对于正则来说，字符串由“占有字符”和“零宽度”构成（不懂看图：字符与位置.png）
+        // 0次用来匹配位置(零宽度)
+        // 如果某占有字符或某占有字符段已匹配成功，则该占有字符（段）之间及之后的零宽度则跳过匹配检索
+        // 空字符串''只拥有一个零宽度，无占有字符，NUL字符'\0'有一个占有字符和两个零宽度
+
+        const str1 = 'aabcaa';
+        const str2 = '\0';
+        const str3 = 'helllo';
+        // x？
+        // 匹配前一项x出现0次或1次，等价于{0, 1}
+        // console.log(str1.replace(/a?/g, '='));// ===b=c===
+        // console.log(str1.replace(/a?/, '='));// =abcaa
+        // console.log(str2.replace(/a?/g, '='));// ==
+        // console.log(''.replace(/a?/g, '='));// =
+
+        // x+
+        // 匹配前一项x出现1次或多次，等价于{1,}，优先匹配多次
+        // console.log(str1.replace(/a+/g, '='));// =bc=
+
+        // x*
+        // 匹配前一项x出现0次或多次，等价于{0,}，优先匹配多次
+        // console.log(str1.replace(/a*/g, '='));// ==b=c==
+
+        // x{n}
+        // 匹配前一项x出现n次。匹配确定的n次
+        // console.log(str1.replace(/a{2}/g, '='));// ==bc==
+        // console.log(str3.replace(/l{2}/g, '='));// he=lo
+
+        // x{n,}
+        // 匹配前一项x出现至少n次（>=n）
+        // console.log(str1.replace(/a{2,}/g, '='));// =bc=
+
+        // x{n, m}
+        // 匹配前一项x出现至少n次，最多出现m次(>=n且<=m)
+        // console.log(str1.replace(/a{1,2}/g, '='));// =bc=
+
+    </script>
+</body>
+</html>

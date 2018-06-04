@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // [fromCodePoint()]
+        // 与fromCharCode作用相同，但fromCharCode不能识别 32 位的 UTF-16 字符（Unicode 编号大于0xFFFF）
+        // ES6 提供了String.fromCodePoint()方法，可以识别大于0xFFFF的字符，弥补了String.fromCharCode()方法的不足。
+        // 在作用上，正好与fromCharCode()方法相反
+        console.log(String.fromCodePoint(65, 66, 67));// ABC
+        console.log(String.fromCharCode(0x20BB7));// ஷ
+        console.log(String.fromCodePoint(0x20BB7));// 𠮷
+    </script>
+</body>
+
+</html>

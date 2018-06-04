@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+</head>
+
+<body>
+	<script>
+		// [getOwnPropertySymbols(obj)]
+		// 与Object.getOwnPropertyNames(obj)基本相同，唯一区别是只限于Symbol属性
+		// 取到Symbol属性
+		// 返回可枚举、不可枚举属性
+		// 无法取到原型上的属性
+
+		const obj = {
+			a: 1,
+			b: 2,
+			fn() {
+
+			},
+			[Symbol('1')]: 3
+		};
+		Object.defineProperty(obj, Symbol('2'), {
+			value: 4,
+			writable: true,
+			enumerable: false,
+			configurable: true
+		})
+
+		console.log(obj);
+
+		const keysList = Object.getOwnPropertySymbols(obj);
+		console.log(keysList);//[Symbol(1), Symbol(2)]
+
+	</script>
+</body>
+
+</html>

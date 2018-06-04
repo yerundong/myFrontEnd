@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<style>
+    .div1{
+        color: red;
+        font-size: 14px;
+        background: yellow;
+    }
+
+</style>
+<body>
+    <div class="div1" style="font-size: 25px; background: blue;">111111</div>
+    <script>
+        const oDiv1 = document.querySelector('.div1');
+
+        // [style]
+        // node.style是节点的样式对象，但只限于行内样式
+        console.log(oDiv1.style);// object
+        console.log(oDiv1.style.fontSize);// 25px
+        console.log(oDiv1.style.background);// blue
+        console.log(oDiv1.style.cssText);// font-size: 25px; background: blue;
+    </script>
+</body>
+
+</html>

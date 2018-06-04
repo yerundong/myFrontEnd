@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <ul class="wrapper">
+        <li class="li1" name="li1">1</li>
+        <li class="li2" name="li2">2</li>
+        <li class="li3" name="li3"><span>3</span></li>
+    </ul>
+    <script>
+        // [ querySelector(selectors)]
+        // 返回匹配指定选择器的第一个元素对象
+        // selectors:选择器名称
+        const oWrapper = document.querySelector('.wrapper');
+        const oLi1 = document.querySelector('.wrapper li');
+        const oLi2 = document.querySelector('.wrapper>[name = li2]');
+        const oLi3 = document.querySelector('li:last-child');
+        const oLi22 = document.querySelector('li:nth-child(2)');
+        // console.log(oLis.innerHTML);// 1
+        // console.log(oLi2.innerHTML);// 2
+        // console.log(oLi3.innerHTML);// 3
+        // console.log(oLi22.innerHTML);// 2
+
+        // [querySelectorAll(selectors)]
+        // 返回匹配指定选择器的所有元素对象的集合（静态NodeList），不随文档对象模型的任何改动而发生变化
+        // getElementsBySomething返回的是[动态的NodeList]，会随文档对象模型的变化而变化，而querySelectorAll返回的是[静态的NodeList]。
+        const oLies = document.querySelectorAll('.wrapper .li1');
+        const oLi23 = document.querySelector('li:nth-child(2), li:nth-child(3)');
+        // console.log(oLies);
+        // console.log(oLi23);
+        // console.log(oLies[0].innerHTML);// 1
+        
+        // NodeList转成数组，可以使用数组方法
+        let arrList = [...oLies];
+        // console.log(arrList[0].innerHTML)
+
+        // [childNodes]
+        // 获取所有子节点，不仅是元素节点，还包括文本节点
+        const oLiess = oWrapper.childNodes;
+        console.log(oLiess);// 1
+    </script>
+</body>
+</html>

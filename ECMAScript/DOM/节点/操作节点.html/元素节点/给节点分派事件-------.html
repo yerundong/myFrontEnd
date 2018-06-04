@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <div class="div1">111111</div>
+    <div class="div2">222222</div>
+    <script>
+        // 等复习事件时再来看？？？？？？？？？？？？？
+        // 该方法将分派一个合成事件，它由 Document.createEvent() 创建，由 Event 接口或它的某个子接口定义的初始化方法初始化
+        const oDiv1 = document.querySelector('.div1');
+        const oDiv2 = document.querySelector('.div2');
+        const oDiv3 = document.createElement('div');
+        oDiv3.innerHTML = 333333;
+        oDiv2.appendChild(oDiv3);
+        
+        oDiv3.dispatchEvent()
+    </script>
+</body>
+
+</html>

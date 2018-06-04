@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="wrapper"></div>
+    <script>
+        const preloadImage = function (path) {
+            return new Promise(function (resolve, reject) {
+                const image = new Image();
+                image.src = path;
+                image.onload = resolve(image);
+                image.onerror = reject(image);
+            });
+        };
+        preloadImage('https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1523448452036&di=f8406f66a0becc10bcad697670699294&imgtype=0&src=http%3A%2F%2Fc.hiphotos.baidu.com%2Fzhidao%2Fpic%2Fitem%2F35a85edf8db1cb1353fd8b78de54564e93584bc0.jpg')
+            .then(res => {
+                console.log(res);
+                const wrapper = document.querySelector('#wrapper');
+                wrapper.appendChild(res);
+            });
+        
+    </script>
+</body>
+
+</html>

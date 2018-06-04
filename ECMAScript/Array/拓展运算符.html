@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 该运算符主要用于函数调用,将一个数组，变为[参数序列]
+        let fn = (a, b, c) => {
+            console.log(a, b, c)
+        };
+        // fn(1, ...['a', 'b', 'c'], 2);// 1 "a" "b"
+
+        // 扩展运算符后面允许放置表达式
+        const arr1 = [1, 2, 3], arr2 = ['a', 'b', 'c'];
+        // fn(...true ? arr1 : arr2);
+
+        // ES5 的写法
+        fn.apply(null, [0, 1, 2]);
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // [search(searchvalue)]
+        // 返回某个指定的字符串值在字符串中首次出现的索引位置，未找到返回-1
+        // searchvalue 	必须。查找的字符串值，或RegExp对象。
+
+        const str = 'aabbccdd';
+        console.log(str.search('b'));// 2
+        console.log(str.search(/c/ig));// 4
+    </script>
+</body>
+
+</html>

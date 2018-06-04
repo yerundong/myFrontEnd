@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>执行上下文</title>
+</head>
+<body>
+    <script>
+        // [执行上下文或执行环境（Execution Context，简称EC）]
+        // 上下文就是当前函数执行所处的环境（语境），[准确地讲是：一段代码、一个函数、甚至一条语句在执行时所能访问到的变量的集合]，
+        // 函数执行上下文与作用域的区别：作用域代表各个变量的作用区域，执行上下文在运行时确定，随时可能改变；作用域在定义时确定，永远不会改变
+
+        // 每当调用一个函数时，一个新的EC就会被创建出来，会创建一个私有作用域，并且每个EC都有属于它的变量对象（Variable object，简称VO）和
+        // 活动对象（Activation Object-简称AO）
+        
+        // VO是一个抽象的概念中的‘对象’，它用于存储执行上下文中的:
+        // 变量
+        // 函数声明
+        // 函数参数
+
+        // 当我们需要访问变量时，由于VO不能直接访问，所以建立VO，把VO赋予AO（VO(functionContext) === AO）,
+        // 并添加arguments对象，然后对AO进行访问
+
+        // EC分为三种：
+        // 全局级别的EC –– 这个是默认的代码运行环境，一旦代码被载入，引擎最先进入的就是这个环境。
+        // 函数级别的EC ––当执行一个函数时，运行函数体中的代码。
+        // Eval的代码 –– 在Eval函数内运行的代码。
+
+        // EC建立分为两个阶段：1、进入执行上下文（词法分析阶段）；2、执行阶段（激活/执行代码）
+        
+        // 1）、进入上下文阶段：发生在函数调用时，但是在执行具体代码之前（比如，对函数参数进行具体化之前）
+        // 创建作用域链（Scope Chain）
+        // 创建变量、函数、arguments对象、形参。
+        // 确定this的值
+        
+        // 2）、执行代码阶段：
+        // 变量赋值（VO中的一些属性undefined值将会确定）
+        // 函数引用
+        // 解释/执行其他代码。
+
+        // 正是这样的EC建立分为两个阶段的原因，才导致var和function存在变量提升
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // [match(searchvalue)]
+        // 在字符串内检索指定的首次出现的字符串值，或找到[一个或多个]正则表达式的匹配。结果以数组的形式返回，无匹配返回null，不改变原字符串
+        // 该方法类似indexOf、lastIndexOf、search，但是它返回匹配的值，而不只是的索引位置
+        // searchvalue  必需。规定要检索的字符串值，或RegExp对象
+        // match需要配合RegExp对象才能发挥它独有的作用
+        const str = 'aa3bb1cc2dd';
+        const str1 = str.match('c');
+        const str2 = str.match(/c/);// 相当于match('c')
+        const str3 = str.match(/c/g);
+        const str4 = str.match(/k/g);
+        const str5 = str.match(/[a-z]/g).join('');
+        console.log(str1);// ["c"]
+        console.log(str2);// ["c"]
+        console.log(str3);// ["c", "c"]
+        console.log(str4);// null
+        console.log(str5);// 提取纯字母
+
+    </script>
+</body>
+
+</html>

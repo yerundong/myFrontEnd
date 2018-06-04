@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>hasOwnProperty</title>
+</head>
+<body>
+    <script>
+        // hasOwnProperty(property)
+        // 返回一个布尔值，判断对象是否包含特定的自身（非继承）属性
+        /**
+         * @param {String} property 属性名称
+         */
+        const obj = {
+            a:1,
+            __proto__:{
+                b:2
+            }
+        }
+        console.log(obj.hasOwnProperty('a'));// true
+        console.log(obj.hasOwnProperty('__proto__'));// false
+    </script>
+</body>
+</html>

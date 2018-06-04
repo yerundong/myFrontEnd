@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <div>
+        <p>
+            <button id="set">set</button>
+        </p>
+        <p>
+            <button id="read">read</button>
+        </p>
+        <p>
+            <button id="key">key</button>
+        </p>
+        <p>
+            <button id="del">delete a</button>
+        </p>
+        <p>
+            <button id="clear">clear</button>
+        </p>
+    </div>
+    <script>
+        // [localStorage]
+        // localStorage属于window下的对象，window.localStorage
+        // 它是没有时间限制的数据存储，只要用户不手动清除将会一直保留在本地
+        // 只要站点没变化，在该站点内任意跨页面访问都不影响读取到原先设置的localStorage
+        const oSet = document.querySelector("#set");
+        const oRead = document.querySelector("#read");
+        const oKey = document.querySelector("#key");
+        const oDel = document.querySelector("#del");
+        const oClear = document.querySelector("#clear");
+
+        // [设置或添加]
+        // 使用setItem或对象属性操作方法
+        // 值自动回转换成string类型
+        oSet.onclick = function () {
+            localStorage.setItem("a", "1");
+            localStorage.b = 2;
+            localStorage.arr = ['a', 'b', 'c'];
+        }
+
+        // [读取]
+        // 使用getItem或对象属性操作方法
+        oRead.onclick = function () {
+            let a = localStorage.getItem('a');
+            let b = localStorage.b;
+            let arr = localStorage.arr;
+            // localStorage是个特殊对象，具有length
+            console.log(localStorage);
+            // console.log(a, b, arr);
+        }
+
+        // [遍历]
+        // [localStorage.key(index)]
+        // 返回key名,结合length进行遍历
+        oKey.onclick = function () {
+            // console.log(localStorage.key(0));
+            let key;
+            for (let i = 0; i < localStorage.length; i++) {
+                key = localStorage.key(i)
+                console.log(localStorage[key]);
+            }
+        }
+
+        // [删除]
+        // localStorage.removeItem(key)
+        oDel.onclick = function () {
+            localStorage.removeItem("a");
+        }
+
+        // [清空]
+        // localStorage.clear()
+        oClear.onclick = function () {
+            localStorage.clear();
+        }
+    </script>
+</body>
+
+</html>

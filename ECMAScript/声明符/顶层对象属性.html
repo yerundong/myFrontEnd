@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+</head>
+
+<body>
+	<script type="text/javascript">
+		'use strict'
+		// [全局变量与顶层对象]
+		// 顶层对象，在浏览器环境指的是window对象，在Node指的是global对象
+		// 在ES5之中，全局变量等价于顶层对象的属性，这被认为是JavaScript语言最大的设计败笔之一
+		// ES6一方面为了改变这一点，let、const 、class等命令声明的全局变量，不再属于顶层对象的属性
+		// 一方面为了保持兼容性, var、function命令声明的全局变量，依旧是顶层对象的属性,与顶层对象脱钩
+		var a1 = 1;// 定义一个全局变量
+		// console.log(window.a1);// 1 自动添加到顶层对象window下
+		function fn1() {
+			alert('醉乡路常至，他处不堪行')
+		}
+		// console.log(window.fn1);// 自动添加到顶层对象window下
+		// window.fn1();
+
+		let b1 = 1;// 定义一个全局变量
+		// console.log(window.b1);// undefined 不会添加到顶层对象window下
+
+		// 函数里面的this，如果函数不是作为对象的方法运行，而是单纯作为函数运行，this会指向顶层对象,严格模式下，this为undefined
+		let obj1 = {
+			fn2
+		};
+		function fn2() {
+			console.log(this);
+		}
+		// obj1.fn2();// obj
+		// fn2();// 严格模式下，this为undefined,普通模式下，this为window,
+	</script>
+</body>
+
+</html>

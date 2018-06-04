@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+    
+<body>
+    <script>
+        // [new.target]
+        // 判定调用类的方式
+        // 如果类是用new调用的，则会返回这个类本身
+        class Cla1 {
+            constructor(x, y) {
+                this.x = x;
+                this.y = y;
+                // console.log(new.target === this.constructor);// true
+            }
+        }
+        const cla1_INSTANCE = new Cla1(1, 2);
+
+        // ES5写法：如果构造函数不是通过new命令调用的，new.target会返回undefined
+        function Cla2() {
+            console.log(new.target)
+        }
+        // Cla2();// undefined
+        // new Cla2();// Cla1
+
+        // 子类继承父类时，new.target会[返回子类]
+        class Sup1 {
+            constructor(){
+                console.log(new.target);// Sub1
+            }
+        }
+        class Sub1 extends Sup1{}
+        // new Sub1();
+    </script>
+</body>
+
+</html>

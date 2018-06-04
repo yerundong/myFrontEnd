@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+        <div class="div1">111111</div>
+        <div class="div2">
+            222222
+            <div class="div3">333333</div>
+        </div>
+    <script>
+        // [node1.compareDocumentPosition(node2)]
+        // 返回node1与node2的位置关系，是数字参数，对应以下的关系码
+        // 如果节点之间是多重关系，则这个数字参数是它们关系码的和
+        //                                       0     元素一致
+        // Node.DOCUMENT_POSITION_DISCONNECTED   1     节点在不同的文档（或者一个在文档之外）
+        // Node.DOCUMENT_POSITION_PRECEDING      2     node1在node2之后
+        // Node.DOCUMENT_POSITION_FOLLOWING      4     node1在node2之前
+        // Node.DOCUMENT_POSITION_CONTAINS       8     node1包含在node2之中
+        // Node.DOCUMENT_POSITION_CONTAINED_BY   16    node1包含node2
+        // Node.DOCUMENT_POSITION_IMPLEMENTATION_SPECIFIC      32     浏览器的私有使用
+        const oDiv1 = document.querySelector('.div1');
+        const oDiv2 = document.querySelector('.div2');
+        const oDiv3 = document.querySelector('.div3');
+        let p1 = oDiv1.compareDocumentPosition(oDiv2);
+        let p2 = oDiv2.compareDocumentPosition(oDiv3);
+        let p3 = oDiv1.compareDocumentPosition(oDiv3);
+        let p4 = oDiv3.compareDocumentPosition(oDiv1);
+        let p5 = oDiv2.compareDocumentPosition(oDiv1);
+        let p6 = oDiv3.compareDocumentPosition(oDiv2);
+        let p7 = oDiv3.compareDocumentPosition(oDiv3);
+        console.log(p1, p2, p3, p4, p5, p6, p7);// 4 20 4 2 2 10 0
+    </script>
+</body>
+</html>

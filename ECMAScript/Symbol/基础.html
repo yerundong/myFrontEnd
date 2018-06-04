@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<script type="text/javascript">
+			// ES6 引入了一种新的原始数据类型Symbol，表示[独一无二的值]。它是 JavaScript语言的第七种数据类型
+			// 基本上，它是一种类似于[字符串]的数据类型
+			// Symbol值通过Symbol函数生成,如下：
+			let sym1 = Symbol();
+			let sym2 = Symbol();
+//			console.log(sym1);//Symbol()
+
+			// Symbol不是[构造函数]，不能使用new命令调用,否则报错
+			// new Symbol();//Symbol is not a constructor
+			
+			//Symbol数据可以转为字符串
+			let sym1_str = sym1.toString();
+			let sym2_str = sym2.toString();
+//			console.log(sym1_str);//Symbol()
+			
+			// sym1和sym2都是Symbol函数的返回值，即使它们都没参数或参数相同，它们[都是不相等的]
+			// 若要比较，可以先转为字符串格式
+//			console.log(sym1 == sym2);//false
+//			console.log(sym1_str == sym2_str);//true
+			
+			// Symbol函数可以接受一个[字符串]作为参数，作为[名称]，只是表示对 Symbol实例的[描述]，为了容易区分
+			let sym3 = Symbol("abc");
+			let sym3_str = sym3.toString();
+//			console.log(sym3);//Symbol(abc)
+//			console.log(sym3_str);//Symbol(abc)
+			
+			// 如果 Symbol的参数是一个[对象]，就会调用该对象的toString方法，将其转为[字符串]，然后才生成一个 Symbol值
+			let obj4 = {
+				a:1
+			};
+			let sym4 = Symbol(obj4);
+//			console.log(sym4);//Symbol([object Object])
+			// 如果在对象下定义一个toString方法，覆盖原有的obj.toString()即可，但这又有什么卵用？
+			let obj5 = {
+				toString(){
+					return 'abc'
+				}
+			};
+			let sym5 = Symbol(obj5);
+//			console.log(sym5);//Symbol([object Object])
+
+			// Symbol值不能进行[运算]，会报错
+//			console.log(sym5 + 'asd');//报错
+			
+			// Symbol 值可以显式转为字符串,也可以转为布尔值;
+//			console.log(String(sym5));//Symbol(abc)
+//			console.log(Boolean(sym5));//true
+			
+		</script>
+	</body>
+</html>

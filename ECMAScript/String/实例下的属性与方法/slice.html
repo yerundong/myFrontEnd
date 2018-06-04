@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+
+        // [slice(start, end)]
+        // 截取字符串片段，并返回该片段字符，不改变原字符串
+        // start 	必须.截取的起始索引（包含该位置）
+        // end 	可选。 截取的末尾索引（不包含该位置），默认为string.length
+        // 如果该参数是负数，那么它规定的是从字符串的尾部开始算起的位置(相当于string.length - 2)。
+        const str = 'aabbccdd';
+        const str_s1 = str.slice(2);
+        const str_s2 = str.slice(2, 4);
+        const str_s3 = str.slice(2, -2);
+        const str_s4 = str.slice(2, str.length - 2);
+        console.log(str_s1);// bbccdd
+        console.log(str_s2);// bb
+        console.log(str_s3);// bbcc
+        console.log(str_s4);// bbcc
+    </script>
+</body>
+
+</html>

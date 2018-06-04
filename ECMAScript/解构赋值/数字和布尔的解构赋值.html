@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+</head>
+
+<body>
+	<script type="text/javascript">
+		// 解构赋值时，如果等号右边是数值和布尔值，则会先转为对象。
+		// 只要等号右边的值不是对象或数组，就先将其转为对象
+		let { constructor: a1, toString: b1, __proto__: c1 } = 123;
+		// console.log(a1);
+		// console.log(b1);
+		// console.log(c1);
+
+		let { constructor: a2 } = false
+		// console.log(a2);
+
+		// undefined和null无法转为对象，所以对它们进行解构赋值
+		// let {__proto__:a3} = undefined;// 报错
+		// let {__proto__:a4} = null;// 报错
+
+
+
+	</script>
+
+
+
+</body>
+
+</html>

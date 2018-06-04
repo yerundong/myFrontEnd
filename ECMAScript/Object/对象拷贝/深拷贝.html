@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+
+	<body>
+		<button onclick="change()">change</button>
+		<button onclick="cons()">cons</button>
+		<button onclick="ale()">alert</button>
+		<script type="text/javascript">
+			//深拷贝：不仅将原对象的各个属性逐个复制出去，而且将原对象【各个属性所包含的对象】也依次采用深拷贝的方法递归拷贝到新对象上。
+			//这就不会存在上面 obj.c和 obj_c.c指向同一块内存地址。
+			let pobj = {a:1}
+			let obj = {
+					a: 1,
+					b: 2,
+					object:pobj,
+					fn(){
+						alert(this.b)
+					},
+					arr:[1,2,3],
+				};
+				obj.fn.prototype = {q:888};
+//				pobj.b = obj;//循环引用
+				
+			let	obj_c = darkCopy(obj);
+			
+			//通过JSON解析解决(黑科技)
+			//会丢失函数
+			//原型链没了，对象就是object，所属的类没了。
+			//存在对象循环引用时，报错
+			function darkCopy(obj) {
+				let dst = JSON.parse(JSON.stringify(obj));
+				return dst;
+			}
+			
+			
+			let change = () => {
+				obj.a = 666; //不影响obj_c
+				obj.fn = () => { //不影响obj_c
+					alert(345)
+				}
+				obj.object.c = 345;//不影响obj_c
+				obj.arr[0] = 'ttt';//不影响obj_c
+				obj.arr = [7];//不影响obj_c
+			}
+			let cons = () => {
+				console.log(obj);
+				console.log(obj_c);
+				console.log(pobj);
+			}
+			let ale = () => {
+				obj.fn()
+			}
+		</script>
+	</body>
+
+</html>

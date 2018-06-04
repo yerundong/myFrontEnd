@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 修饰符一共5个：igmuy，es6新增了uy，还未深入理解
+        const str = 'hello word';
+        
+        // i
+        // 不区分大小写搜索
+        const re1 = /L/;
+        const re2 = /L/i;
+        const res1 = re1.test(str);
+        const res2 = re2.test(str);
+        // console.log(res1, res2);// false true
+
+        // g
+        // 执行全局匹配（匹配所有，而非匹配第一个后停止）
+        const re3 = new RegExp('l', 'g');
+        const res3 = re3.exec(str);
+        const str31 = str.replace(re3, '+');
+        const str32 = str.replace(/l/, '+');
+        // console.log(res3);
+        // console.log(str31);// he++o word
+        // console.log(str32);// he+lo word
+
+        // m
+        // 执行多行匹配
+        // 如果字符串是多行的（有\r或\n切割），若添加m修饰符，那么把每一行都当作重新开始的字符串匹配
+        const str4 = 'abc\nefg';
+        const re4_1 = new RegExp('^e');
+        const re4_2 = new RegExp('^e', 'm');
+        const res4_1 = re4_1.test(str4);
+        const res4_2 = re4_2.test(str4);
+        // console.log(res4_1);// false
+        // console.log(res4_2);// true
+
+        // u
+        // 开启Unicode模式，用来正确处理大于\uFFFF的Unicode字符
+        // 不加u，会将其识别为两个字符，加了u以后，就会识别其为一个字符
+        const uncd = '\uD83D\uDC2A';
+        const re5_1 = new RegExp('\uD83D');
+        const re5_2 = new RegExp('\uD83D', 'u');
+        const res5_1 = re5_1.test(uncd);
+        const res5_2 = re5_2.test(uncd);
+        // console.log(res5_1);// true
+        // console.log(res5_2);// false
+
+        // y
+        // 粘性匹配，仅匹配目标字符串中此正则表达式的lastIndex属性指示的索引(并且不尝试从任何后续的索引匹配)
+        // 实际上，y 修饰符号隐含了头部匹配的标识^
+        const str6 = 'abcok';
+        const re6_1 = new RegExp('ok', 'g');
+        const re6_2 = new RegExp('ok', 'y');
+        const res6_1 = re6_1.exec(str6);
+        const res6_2 = re6_1.exec(str6);
+        const res6_3 = re6_2.exec(str6);
+        const res6_4 = re6_2.exec(str6);
+        // console.log(res6_1);// true
+        // console.log(res6_2);// false
+    </script>
+</body>
+
+</html>

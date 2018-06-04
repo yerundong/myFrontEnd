@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+
+	<body>
+		<script type="text/javascript">
+			// 属性的简洁表示法 
+			// 当属性名与变量相同时，可简写：
+			const a = 1;
+			const obj1 = {
+				a
+			}
+
+			//方法的简洁表示法 
+			const obj2 = {
+				fn() {
+					//....
+				}
+			}
+			// 如果是一个generator函数，前面需要加上*
+			const obj3 = {
+				*m() {
+					yield 'hello world';
+				}
+			};
+			// es6允许表达式生成属性名与方法名，但不能同时简写，否则报错
+			const obj4 = {
+				[a + 'ak47']:123,
+				[a + 'fn'](){
+					//...
+				},
+//				[a + 'ppp'],//报错
+			};
+		</script>
+	</body>
+
+</html>

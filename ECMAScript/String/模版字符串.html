@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>Document</title>
+</head>
+
+<body>
+	<script>
+		// 单行字符串模版
+		let str1 = `ab""'c'""123`;
+
+		// 多行字符串模版,所有的空格和缩进都会被保留在输出之中
+		let str2 = `
+					<ul>
+						<li>1</li>
+						<li>2</li>
+						<li>3</li>
+					</ul>
+				`;
+		let xmlDoc = new DOMParser().parseFromString(str2, "text/xml");
+		// console.dir(xmlDoc);
+		// document.body.appendChild(xmlDoc.childNodes[0]);
+
+		// [${}]
+		// ${}里可以放置变量、表达式、对象属性、调用函数
+		let name = '张三',
+			age = '23',
+			obj = {
+				a: 'a',
+				b: 'b',
+			},
+			fn = () => 'fnNanana~~~';
+		let str3 = `1-${name},2-${age},3-${fn()},4-${true ? 't' : 'f'},5-${'nochangeHHH'},6-${obj},7-${obj.a}`;
+		console.log(str3);
+		// 模板编译
+		console.log();
+	</script>
+</body>
+
+</html>

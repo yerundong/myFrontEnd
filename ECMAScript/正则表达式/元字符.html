@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // .
+        // 匹配任意单个字符，但是行结束符除外：\n \r \u2028 或 \u2029。
+        const str1 = 'a k123/.--\n\t*\r=';
+        const re1 = /./gm;
+        // console.log(str1);
+        // console.log(str1.match(re1));
+
+        // \	
+        // 对于那些通常被认为字面意义的字符来说，表示下一个字符具有特殊用处，并且不会被按照字面意义解释。
+
+        // \d
+        // 匹配任意数字。等价于[0-9]
+        const str2 = 'aksj123ak';
+        const re2 = /\d/g;
+        // console.log(str2.match(re2));// ["1", "2", "3"]
+
+        // \D
+        // 匹配任意非数字。等价于[^0-9]
+        const str3 = 'ak1.pp=-\'@#$%sj123ak_';
+        const re3 = /\D/g;
+        // console.log(str3.match(re3));// ["a", "k", ".", "p", "p", "=", "-", "'", "@", "#", "$", "%", "s", "j", "a", "k", '_']
+
+        // \w	
+        // 匹配任意字母、数字、下划线。等价于 [A-Za-z0-9_]。
+        const re4 = /\w/g;
+        // console.log(str3.match(re4));// ["a", "k", "1", "p", "p", "s", "j", "1", "2", "3", "a", "k", "_"]
+
+        // \W
+        // 匹配任意非字母、数字、下划线。等价于 [^A-Za-z0-9_]。
+        const re5 = /\W/g;
+        // console.log(str3.match(re5));// [".", "=", "-", "'", "@", "#", "$", "%"]
+
+        // \s	
+        // 匹配一个空白符，包括空格、制表符、换页符、换行符和其他 Unicode 空格。
+        // 等价于 [ \f\n\r\t\v​\u00a0\u1680​\u180e\u2000​\u2001\u2002​\u2003\u2004​ \u2005\u2006​\u2007\u2008​\u2009\u200a​\u2028\u2029​​\u202f\u205f​ \u3000]
+        const str6 = '1\r2\t3\n4\v5\f6\u202f';
+        const re6 = /\s/g;
+        // console.log(str6.match(re6));// ["", "	", "", "", "", " "]
+
+        // \S
+        // 匹配一个非空白符，包括空格、制表符、换页符、换行符和其他 Unicode 空格。
+        // 等价于 [^ \f\n\r\t\v​\u00a0\u1680​\u180e\u2000​\u2001\u2002​\u2003\u2004​ \u2005\u2006​\u2007\u2008​\u2009\u200a​\u2028\u2029​​\u202f\u205f​ \u3000]
+        const re7 = /\S/g;
+        // console.log(str6.match(re7));// ["1", "2", "3", "4", "5", "6"]
+
+        // \t	
+        // 匹配一个水平制表符（tab）
+        const re9 = /\t/g;
+        // console.log(str6.match(re9));// ["	"]
+
+        // \r
+        // 匹配一个回车符（carriage return）
+        const re10 = /\r/g;
+        // console.log(str6.match(re10));// [""]
+        
+        // \n
+        // 匹配一个换行符（linefeed）
+        // console.log(str6.match(/\n/g));// ["โต"]
+
+        // \v
+        // 匹配一个垂直制表符（vertical tab）
+        // console.log(str6.match(/\v/g));// [""]
+        
+        // \f
+        // 匹配一个换页符（form-feed）
+        // console.log(str6.match(/\f/g));// [""]
+        
+        // [\b]	
+        // 匹配一个退格符（backspace）（不要与 \b 混淆)
+        
+        // \0	
+        // 匹配一个 NUL 字符。不要在此后面跟小数点。
+        const str7 = 'abc\0edf';
+        // console.dir(new String(str7));
+        // console.log(str7.match(/\0/g));// [""]
+
+        // \cX	
+        // X 是 A - Z 的一个字母。匹配字符串中的一个控制字符。
+
+        // \xhh	
+        // 匹配编码为 hh （两个十六进制数字）的字符。
+
+        // \uhhhh	
+        // 匹配 Unicode 值为 hhhh （四个十六进制数字）的字符。
+
+    </script>
+</body>
+</html>

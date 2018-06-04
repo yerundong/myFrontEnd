@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<style>
+
+    *{
+        position: sticky
+    }
+</style>
+<body>
+    <script>
+        // 一
+        // 固定相加元素的写法
+        const add = function (x) {
+            return function (y) {
+                return function (z) {
+                    return x + y + z;
+                }
+            }
+        }
+        const sum1 = add(1)(2)(3);
+        console.log(sum1); // 6
+
+        // 二
+        // 可以无限的链式
+        function add2(num) {
+            let count = num;
+            const f = function (x) {
+                count += x;
+                return f
+            }
+            f.getSum = function () {
+                return count
+            }
+            return f
+        }
+        const sum2 = add2(1)(2)(3);
+        console.log(sum2.getSum()); // 6
+
+        // 三
+        // 可以无限的链式
+        // 飘逸的写法
+        function add3(num) {
+            num += ~~add3;
+            add3.num = num;
+            return add3;
+        }
+        add3.getSum = add3.toString = function () {
+            return add3.num
+        };
+        const sum3 = add3(1)(2)(3);
+        console.log(sum3.getSum()); // 6
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // [extends]
+        // 通过extends关键字，继承父类的所有属性和方法
+        // 继承操作做了两件事：
+        // Sub1.prototype.__proto__ = Sup1.prototype，子类继承父类的原型对象prototype
+        // constructor.call(sub1_INSTANCE) 子类实例化的时其实是执行的是父类的constructor，实例化时把this改指向子类的实例（super）
+        class Sup1 {
+            constructor(a, b) {
+                this.a = a;
+                this.b = b;
+                this.z = 666;
+            }
+            fn1() {
+                console.log('fn1')
+            }
+        }
+        const Sup1_PROTOTYPE = {
+            m: 1
+        }
+        Object.assign(Sup1.prototype, Sup1_PROTOTYPE);
+
+        // 继承父类Sup1
+        class Sub1 extends Sup1 { }
+
+        // Sub1.prototype.__proto__与Sup1.prototype是等同的，具有相同引用地址
+        // console.log(Sup1.prototype);
+        // console.log(Sub1.prototype.__proto__);
+        // console.log(Sup1.prototype === Sub1.prototype.__proto__);// true
+
+        const sup1_INSTANCE = new Sup1(1, 2);
+        const sub1_INSTANCE = new Sub1(3, 4);
+
+        // console.log(sup1_INSTANCE);
+        console.log(sub1_INSTANCE);
+        // sup1_INSTANCE.fn1();// fn1
+        // sub1_INSTANCE.fn1();// fn1
+        // console.log(sup1_INSTANCE.m);// 1
+        // console.log(sub1_INSTANCE.m);// 1
+
+        // sup1_INSTANCE.__proto__和sub1_INSTANCE.__proto__.__proto__是等同的，具有相同引用地址
+        // console.log(sup1_INSTANCE.__proto__ === sub1_INSTANCE.__proto__.__proto__);// true
+
+        // 各自实例下的构造函器
+        // console.log(sub1_INSTANCE.constructor);// Sub1
+        // console.log(sub1_INSTANCE.__proto__.constructor);// Sub1
+        // console.log(sub1_INSTANCE.__proto__.__proto__.constructor);// Sup1
+        // console.log(sup1_INSTANCE.__proto__.constructor);// Sup1
+
+        // [Object.getPrototypeOf(subclass)]
+        // 以子类为参数，返回父类，可以用来从子类上获取父类
+        class Sup2 {
+            constructor(a, b) {
+                this.a = a;
+                this.b = b;
+            }
+            fn1() {
+                console.log('fn1')
+            }
+        }
+        class Sub2 extends Sup2{}
+        // console.log(Object.getPrototypeOf(Sub2));// Sup2
+
+        // [extends的继承目标]
+        // 凡有prototype属性的数据，就能被继承如类、函数
+        // 函数都有prototype属性（除了Function.prototype函数）
+        class Sub3 extends Object{};
+        
+        function fn1(){}
+        fn1.prototype.a = 1;
+        class Sub4 extends fn1{};
+
+    </script>
+</body>
+
+</html>

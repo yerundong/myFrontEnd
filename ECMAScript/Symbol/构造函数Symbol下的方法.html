@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<script type="text/javascript">
+			// [Symbol.for(str)]
+			// Symbol.for()与Symbol()这两种写法，都会生成新的 Symbol,区别是，前者会[被登记]在全局环境中供搜索
+			// 若希望重新使用同一个Symbol值，Symbol.for方法可以做到这一点
+			// 先搜索有没有以该参数作为名称的以Symbol.for方法创建的Symbol值,
+			// 如果有，就[返回]这个Symbol值，否则就[新建]一个以该字符串为名称的Symbol值
+			// 比如，如果你调用Symbol.for("cat")30 次，每次都会返回同一个 Symbol值，
+			// 但是调用Symbol("cat")30 次，会返回 30 个不同的 Symbol值
+			const sym1 = Symbol('a');
+			const sym2 = Symbol.for('a');
+			const sym3 = Symbol.for('a');
+			// 实际上是同一个值,相当于直接赋值:
+			const sym4 = sym3;
+			// console.log(sym1);// Symbol(a)
+			// console.log(sym2);// Symbol(a)
+			// console.log(sym1 === sym2);//false
+			// console.log(sym2 === sym3);//true
+			// console.log(sym3 === sym4);//true
+
+			// [Symbol.keyFor(var)]
+			// 用于检测一个变量是否是[已登记]的Symbol数据，若是，则返回其名称,否则返回undefined
+			const sym5 = Symbol('b');//未登记
+			const sym6 = Symbol.for('c');//已登记
+			// console.log(Symbol.keyFor(sym5));//undefined
+			// console.log(Symbol.keyFor(sym6));//c
+		</script>
+	</body>
+</html>

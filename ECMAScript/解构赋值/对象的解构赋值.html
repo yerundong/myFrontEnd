@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+</head>
+
+<body>
+	<script type="text/javascript">
+		// 数组的解构取值是根据索引，而对象的解构取值根据属性名(key)对应的
+		// {a,b,...c} = targetObj
+		// targetObj若不是对象格式，会先包装成对象格式，故若是数字、null、undefined会报错
+		let { aa: a1, bb: b1 } = { bb: 2, aa: 1 };
+		// let { aa: a1, bb: b1 } = null;// 报错
+		// let { aa: a1, bb: b1 } = undefined;// 报错
+		// console.log(a1);// 1
+		// console.log(b1);// 2
+
+		//简写
+		let { a2, b2 } = { b2: 2, a2: 1 };
+		// console.log(a2);// 1
+		// console.log(b2);// 1
+
+		//嵌套模式
+		let {
+			dt,//变量
+			arr: [a3, b3],
+			cc: c3,
+			dt: {//模式
+				dd: d3
+			}
+		} = {
+				arr: [1, 2],
+				cc: 3,
+				dt: {
+					dd: 4
+				}
+			}
+		// console.log(a3);//1
+		// console.log(b3);//2
+		// console.log(c3);//2
+		// console.log(d3);//2
+		// console.log(dt);//2
+
+		//[默认值]
+		let { a4 = 3 } = {};
+		// console.log(a4);//3
+
+		let a5;
+		// {a5} = {a5:1};// 报错,JavaScript 引擎会将{x}理解成一个代码块
+		({ a5 } = { a5: 1 });// 不将大括号写在行首，避免JavaScript将其解释为代码块，才能解决这个问题
+		// console.log(a5);// 1
+
+		// 对象的解构赋值，可以很方便地将[现有内置对象的方法]，赋值到某个变量。
+		let { log, sin, cos } = Math;
+		// console.log(log);
+		// console.log(sin);
+		// console.log(cos);
+
+		// 由于数组本质是特殊的对象，因此可以对数组进行对象属性的解构。
+		let { 0: a6, 1: b6, 2: c6 } = [1, 2, 3];
+		// console.log(a6);//1
+		// console.log(b6);//2
+		// console.log(c6);//3
+
+		// [...]扩展运算符号运用
+		// 必须是最后一位，否则报错
+		let { x1, k1, y1, ...z1 } = { x1: 1, y1: 2, a1: 3, b1: 4 };
+		// console.log(x1);// 1
+		// console.log(k1);// undefined
+		// console.log(y1);// 2
+		// console.log(z1);// {3, 4}
+
+		// [...]符号取不到非枚举性的属性
+		const { c1, d1, ...e1 } = Object.defineProperties({}, {
+			'c1': {
+				value: 1,
+				writable: true,
+				enumerable: true,
+				configurable: true
+			},
+			'd1': {
+				value: 2,
+				writable: true,
+				enumerable: false,
+				configurable: true
+			},
+			'e1': {
+				value: 3,
+				writable: true,
+				enumerable: false,
+				configurable: true
+			},
+			'f1': {
+				value: 4,
+				writable: true,
+				enumerable: true,
+				configurable: true
+			},
+		});
+		// console.log(c1);// 1
+		// console.log(d1);// 2
+		// console.log(e1);// {f1: 4}
+
+		// [...]符号取不到继承自原型对象的属性
+		const obj1 = {};
+		obj1.__proto__ = {
+			a7: 1,
+			b7: 2,
+			c7: 3,
+		}
+		const { ...c7 } = obj1;
+		// console.log(obj1);
+		// console.log(a7);// 1
+		// console.log(b7);// 2
+		// console.log(c7);// {}
+
+		// 有一用途：将所有可遍历属性，拷贝到另一对象之中。
+		const obj2 = Object.defineProperties({}, {
+			'a2': {
+				value: 1,
+				writable: true,
+				enumerable: true,
+				configurable: true
+			},
+			'b2': {
+				value: 2,
+				writable: true,
+				enumerable: false,
+				configurable: true
+			},
+			'c2': {
+				value: 3,
+				writable: true,
+				enumerable: false,
+				configurable: true
+			},
+		});
+
+		// console.log(obj2);
+
+		const { ...obj2_1 } = obj2;
+		// 或者const obj2_1 = { ...obj2};
+		// console.log(obj2_1);
+		
+		// Object.assign也可以做到
+		const obj2_2 = Object.assign({}, obj2);
+		// console.log(obj2_2);
+
+	</script>
+</body>
+
+</html>

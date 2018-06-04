@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <div class="div1">111111</div>
+    <div class="div2">222222</div>
+    <script>
+        // [replaceChild(new_node, old_node)]
+        // 用其他节点替换某个子节点
+        // new_node 必需 新的节点。
+        // old_node 必需 被替换的节点
+        // 如成功，该方法返回被替换的节点，如失败，则返回 null
+        // new_node新的节点的取替换别人之后就会消失，相当于移动+覆盖
+        const oDiv1 = document.querySelector('.div1');
+        const oDiv2 = document.querySelector('.div2');
+        const oDiv3 = document.createElement('div');
+        oDiv3.innerHTML = '333333';
+        document.body.replaceChild(oDiv2, oDiv1);
+        console.log(oDiv3);
+        // document.body.replaceChild(oDiv3, oDiv2);
+    </script>
+</body>
+</html>

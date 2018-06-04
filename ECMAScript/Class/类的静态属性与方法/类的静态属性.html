@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // [静态属性]
+        // 静态属性，其实是类对象下自身属性，不会被实例继承，只能直接通过类来调用
+        // 其它定义在指向实例的this下的或在类的prototype下的属性，都会被实例继承。
+        // 写法：与静态方法不同，静态属性不能在类内部定义，只能在类外部定义
+        class Cla1 {
+			constructor(x, y) {
+				this.x = x;
+				this.y = y;
+			}
+		}
+        Cla1.z = 3;
+        Cla1.prototype.m = 4;
+		const cla1_INSTANCE = new Cla1(1, 2);
+        // console.log(cla1_INSTANCE.x);// 1 继承
+        // console.log(cla1_INSTANCE.y);// 2 继承
+        // console.log(cla1_INSTANCE.m);// 4 继承
+        // console.log(cla1_INSTANCE.z);// undefined 未继承
+        // console.log(Cla1.z);// 3
+
+        // 静态属性是类对象下自身属性
+        // console.log(Cla1.hasOwnProperty('z'));// true
+
+        // 目前有一个静态属性的提案，在类内部规定一个定义静态属性的写法（还未支持 18/4/12）
+        // 结构更清晰，语义更好
+        // class Cla2 {
+		// 	constructor(x, y) {
+		// 		this.x = x;
+		// 		this.y = y;
+		// 	}
+        //     static z = 3;
+		// }
+        // const cla2_INSTANCE = new Cla2(1, 2);
+        // console.log(Cla2.z);// 3
+
+        // [静态属性的继承]
+        // 父类的静态属性，可以被子类继承
+        class Sup1 {
+            constructor() {
+				this.a = 1;
+			}
+        }
+        Sup1.b = 2;
+        class Sub1 extends Sup1{}
+        // console.log(Sub1.b);// 2
+
+
+
+
+    </script>
+</body>
+</html>

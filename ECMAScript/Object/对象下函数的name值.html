@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<script type="text/javascript">
+			// 方法的name属性
+			const obj5 = {
+				fn(){
+					//...
+				},
+				get a(){
+					return 1
+				}
+			};
+			//普通函数则正常取法
+			console.log(obj5.fn.name);//fn
+			//get、set则需要先获取属性描述对象descriptor
+			const descriptor = Object.getOwnPropertyDescriptor(obj5, 'a');
+			console.log(descriptor.get.name);//fn
+		</script>
+	</body>
+</html>

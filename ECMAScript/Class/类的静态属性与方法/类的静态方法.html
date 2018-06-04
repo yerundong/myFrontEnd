@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // [静态方法]
+        // 静态方法，其实是类对象下自身方法，不会被实例继承，只能直接通过类来调用
+        // 除了静态方法，其它在类中定义的方法是定义在类的prototype下的，都会被实例继承。
+        // 写法：在一个方法前，加上static关键字
+        // 静态方法内的this指向的是类本身，而非实例
+        class Cla1 {
+			constructor(x, y) {
+				this.x = x;
+				this.y = y;
+			}
+
+            fn1(){
+                console.log(this.x);
+            }
+            
+            static fn2(){
+                // console.log(this);// Cla1
+                // console.log(this.y, 'fn2');// undefined "fn2"
+            }
+		}
+		const cla1_INSTANCE = new Cla1(1, 2);
+        // console.log(cla1_INSTANCE.fn1);// 继承
+        // console.log(cla1_INSTANCE.fn2);// undefined 未继承
+        // cla1_INSTANCE.fn1();// 1
+
+        // 静态方法是[类对象]下的自身方法
+        // console.log(Cla1.hasOwnProperty('fn2'));// true
+
+        // 静态方法只能直接通过类来调用
+        // Cla1.fn2();
+        // console.log(typeof Cla1);
+
+        // 静态方法可以和非静态方法重名，不冲突
+        class Cla2 {
+			constructor(x) {
+				this.x = x;
+			}
+
+            fn1(){
+                console.log(this.x);
+            }
+            
+            static fn1(){
+                console.log(2);// undefined "fn2"
+            }
+		}
+        const cla2_INSTANCE = new Cla1(1);
+        // cla2_INSTANCE.fn1();// 1
+        // Cla2.fn1();// 2
+
+        // [静态方法的继承]
+        // 父类的静态方法，可以被子类继承
+        class Sup1 {
+            constructor() {
+				this.a = 1;
+			}
+            static fn1(){
+                console.log(2)
+            }
+        }
+        class Sub1 extends Sup1{}
+        // Sub1.fn1();// 2
+    </script>
+</body>
+</html>

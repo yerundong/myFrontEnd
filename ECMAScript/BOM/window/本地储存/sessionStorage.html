@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <div>
+        <p>
+            <button id="set">set</button>
+        </p>
+        <p>
+            <button id="read">read</button>
+        </p>
+        <p>
+            <button id="key">key</button>
+        </p>
+        <p>
+            <button id="del">delete a</button>
+        </p>
+        <p>
+            <button id="clear">clear</button>
+        </p>
+    </div>
+    <script>
+        // [sessionStorage]
+        // sessionStorage属于window下的对象，window.sessionStorage
+        // sessionStorage生命周期为当前窗口或标签页，一旦窗口或标签页被永久关闭，那么sessionStorage存储的数据也将被清空
+        // 只要站点没变化，在该站点内任意跨页面访问都不影响读取到原先设置的sessionStorage
+        const oSet = document.querySelector("#set");
+        const oRead = document.querySelector("#read");
+        const oKey = document.querySelector("#key");
+        const oDel = document.querySelector("#del");
+        const oClear = document.querySelector("#clear");
+
+        // [设置或添加]
+        // 使用setItem或对象属性操作方法
+        // 值自动回转换成string类型
+        oSet.onclick = function () {
+            sessionStorage.setItem("a", "1");
+            sessionStorage.b = 2;
+            sessionStorage.arr = ['a', 'b', 'c'];
+        }
+
+        // [读取]
+        // 使用getItem或对象属性操作方法
+        oRead.onclick = function () {
+            let a = sessionStorage.getItem('a');
+            let b = sessionStorage.b;
+            let arr = sessionStorage.arr;
+            // sessionStorage是个特殊对象，具有length
+            console.log(sessionStorage);
+            // console.log(a, b, arr);
+        }
+
+        // [遍历]
+        // [sessionStorage.key(index)]
+        // 返回key名,结合length进行遍历
+        oKey.onclick = function () {
+            // console.log(sessionStorage.key(0));
+            let key;
+            for (let i = 0; i < sessionStorage.length; i++) {
+                key = sessionStorage.key(i)
+                console.log(sessionStorage[key]);
+            }
+        }
+
+        // [删除]
+        // sessionStorage.removeItem(key)
+        oDel.onclick = function () {
+            sessionStorage.removeItem("a");
+        }
+
+        // [清空]
+        // sessionStorage.clear()
+        oClear.onclick = function () {
+            sessionStorage.clear();
+        }
+    </script>
+</body>
+
+</html>

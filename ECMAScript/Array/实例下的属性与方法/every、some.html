@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<script type="text/javascript">
+			//every():对数组检测，返回布尔值
+			//若对数组的每一项返回true,则返回true，【若有一项为false或未返回】，则返回false
+			let arr = [1,2,3];
+			let _arrbool = arr.every(function (value, index, array) {
+				//每一项都为number类型，并且大于0的数组
+				if(!isNaN(value) && value>0){
+					return true;
+				}
+			});
+//			console.log(_arrbool);
+			
+			//some():对数组检测，返回布尔值
+			//若对数组的有一项返回true,则返回true，【若都为false或都未返回】，则返回false
+			let arr2 = [1,2,3];
+			let _arr2bool = arr2.some(function (value, index, array) {
+				//判断该书组是否存在一项为number类型，并且大于2的元素
+				if(!isNaN(value) && value>2){
+					return true;
+				}
+			});
+//			console.log(_arr2bool);
+		</script>
+	</body>
+</html>

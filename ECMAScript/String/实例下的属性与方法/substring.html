@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // substring(start, end)
+        // 截取字符串片段，并返回该片段字符，不改变原字符串
+        // start 	必须.截取的起始索引（包含该位置）
+        // end 	可选。 截取的末尾索引（不包含该位置），默认为string.length
+        // 与slice区别：如果start或end为NaN或者负数，那么将其替换为0
+        const str = '012345';
+        const str1 = str.substring(1);
+        const str2 = str.substring(1, 3);
+        const str3 = str.slice(1, 3);
+        const str4 = str.substring(1, -2);
+        console.log(str1);// 12345
+        console.log(str2);// 12
+        console.log(str3);// 12
+        console.log(str4);// 12
+    </script>
+</body>
+</html>

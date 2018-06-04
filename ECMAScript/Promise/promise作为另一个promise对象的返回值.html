@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // resolve函数的参数除了正常的值以外，还可能是另一个p实例
+        // 因为p2需要使用到p1，所以p1的状态决定p2的状态，p2的resolve必须等到p1状态结束（resolved）才执行
+        // 注意：p2的resolve会获取到p1[已结束状态的值]，而p2的reject是获取到p1的整个实例对象
+
+        // 例1 p2的resolve会获取到p1fulfilled的返回值，必须等到p1定型
+        const p1 = new Promise((resolve, reject) => {
+            setTimeout(() => {
+                if (true) {
+                    resolve('resolve');
+                } else {
+                    reject('reject');
+                }
+            }, 1000);
+        });
+        const p2 = new Promise((resolve, reject) => {
+            resolve(p1);
+        });
+        // 此时p2相当于p1，但是地址不同（类似深拷贝）
+        // console.log(p1 === p2);// false
+        p2.then(result => {
+            // console.log(result);// resolve
+        }).catch(error => {
+            // console.log(error);// reject
+        });
+
+        // 例2 p4的reject是在catch里获取到p3的整个实例对象
+        const p3 = new Promise((resolve, reject) => {
+            if (false) {
+                resolve('resolve');
+            } else {
+                reject('reject');
+            }
+        });
+
+        const p4 = new Promise((resolve, reject) => {
+            reject(p3);
+        });
+        p4.then(result => {
+            console.log(result);
+        }).catch(p => {
+            // console.log(p === p3);// true
+            p.then(res => {
+                // console.log(res)// resolve
+            }).catch(err => {
+                // console.log(err);// reject
+            })
+        });
+    </script>
+</body>
+
+</html>

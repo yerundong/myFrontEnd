@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<div></div>
+		<div></div>
+		<script>
+			// 对象的Symbol.iterator属性，指向该对象的默认遍历器方法
+			// 原生具备Iterator接口的数据结构如下：
+			// Array、Map、Set、String、TypedArray、函数的arguments对象、NodeList对象
+			// 对于原生部署Iterator接口的数据结构，不用自己写遍历器生成函数，for...of循环会自动遍历它们。
+			// 除此之外，其他数据结构（主要是对象）的Iterator 接口，需要在Symbol.iterator属性上面手动部署，这样才会被for...of循环遍历
+			// 本质上，遍历器是一种线性处理，只能处理线性结构的数据（如数组），对于任何非线性结构的数据，部署遍历器接口，就等于部署一种线性转换
+			// **Iterator的详细用法详见Iterator目录文件下**
+			
+			const obj = {};
+			const arr = [1,2,3];
+			const str = 'asd';
+			const set = new Set(str);
+			function fn(){
+				console.log(arguments[Symbol.iterator]);
+			}
+			const divs = document.querySelectorAll('div');
+			// console.log(obj[Symbol.iterator]);// undefined
+			// console.log(arr[Symbol.iterator]);// native code
+			// console.log(str[Symbol.iterator]);// native code
+			// console.log(set[Symbol.iterator]);// native code
+			// fn();// native code
+			// console.log(divs[Symbol.iterator]);// native code
+
+			// Symbol.iterator属性本身是一个函数，执行这个函数，就会返回一个遍历器(iterator)对象
+			const arr_iter = arr[Symbol.iterator]();
+			const str_iter = str[Symbol.iterator]();
+			const set_iter = set[Symbol.iterator]();
+			const divs_iter = divs[Symbol.iterator]();
+			// console.log(arr_iter);
+			// console.log(str_iter);
+			// console.log(set_iter);
+			// console.log(divs_iter);
+
+
+
+		</script>
+	</body>
+</html>

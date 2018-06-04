@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // 用于[函数调用],将一个Set数据，变为[参数序列]，如数组的的拓展运算符一样
+        const map1 = new Map([
+            ['a', 1], 
+            ['b', 2]
+        ]);
+        function* gen1(a, b){
+            yield a;
+            yield b;
+        }
+        const gen1_iter = gen1(...map1);
+        // console.log(gen1_iter.next());// {value: ['a', 1], done: false}
+        // console.log(gen1_iter.next());// {value: ['b', 2], done: false}
+
+        // 转换成数组
+        // 实质是内部使用for...of循环，任何具有iterator的数据均可以做到
+        // 除了使用简单的[]号进行转换外，还可以使用new Array()、Array.form()
+        const map2 = new Map([
+            ['a', 1], 
+            ['b', 2]
+        ]);
+        // console.log([...map2]);// [['a', 1], ['b', 2]]
+        // console.log([...map2.entries()]);// [['a', 1], ['b', 2]]
+        // console.log([...map2.keys()]);// ['a', 'b']
+        // console.log([...map2.values()]);// [1, 2]
+
+        // 由于Map与数组转换方便，数组的方法也可以[间接]用于Map了，如map和filter
+    </script>
+</body>
+</html>

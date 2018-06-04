@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>jsonp百度搜索</title>
+</head>
+<body>
+    <input type="text" id="search" placeholder="请输入内容进行搜索">
+    <ul id="content"></ul>
+    <script>
+        const oSearch = document.querySelector("#search");
+        
+        oSearch.oninput = function () {
+            let val = oSearch.value;
+            const oSct = document.createElement('script');
+            oSct.src = "https://sp0.baidu.com/5a1Fazu8AA54nxGko9WTAnF6hhy/su?wd="+val+"&cb=callback";
+            document.body.appendChild(oSct);
+            document.body.removeChild(oSct);
+        }
+
+        // 定义回调函数
+        function callback(arg){
+            const oContent = document.querySelector("#content");
+            let lis = '';
+            for (let i = 0, val; val = arg.s[i]; i++) {
+                lis += `<li>${val}</li>`;
+            }
+            oContent.innerHTML = lis;
+        }
+    </script>
+</body>
+
+</html>

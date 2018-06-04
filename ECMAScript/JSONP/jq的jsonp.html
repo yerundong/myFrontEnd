@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>jq的jsonp</title>
+    <script src="../../Lib/Jquery/jquery-3.3.1.min.js"></script>
+</head>
+
+<body>
+    <input type="text" id="search" placeholder="请输入内容进行搜索">
+    <ul id="content"></ul>
+
+    <iframe id="ifrm" src="https://sp0.baidu.com/5a1Fazu8AA54nxGko9WTAnF6hhy/su?wd=2" frameborder="0"></iframe>
+    <script>
+        $('#search').on('input',function () {
+            let sVal = $('#search').val();
+            $.ajax({
+                url: "https://sp0.baidu.com/5a1Fazu8AA54nxGko9WTAnF6hhy/su?wd=" + sVal + "&cb=getSearchResult",
+                dataType: "jsonp",
+                jsonpCallback: "getSearchResult",
+                success(res) {
+                    let lis = '';
+                    for (let i = 0, val; val = res.s[i]; i++) {
+                        lis += `<li>${val}</li>`;
+                    }
+                    $('#content').html(lis);
+                }
+            });
+        })
+    </script>
+</body>

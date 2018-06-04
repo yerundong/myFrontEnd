@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+</head>
+
+<body>
+	<script type="text/javascript">
+		// [交换变量的值]
+		let x = 1, y = 2;
+		[x, y] = [y, x];
+		// console.log(x, y);
+
+		// [获取函数返回的值]
+		function fny() {
+			return {
+				a: 1,
+				b: 2
+			}
+		}
+		let { a, b } = fny();
+		// console.log(a, b);
+
+		// [函数参数]
+		// 参数是一组有次序的值
+		function f([x, y, z]) { }
+		f([1, 2, 3]);
+
+		// 参数是一组无次序的值
+		function f({ x, y, z }) { }
+		f({ z: 3, y: 2, x: 1 });
+
+		// [提取JSON数据]
+		let json = {
+			js: 'qwe',
+			cy: 'we',
+			ol: [1, 2, 3]
+		}
+		let { js, cy, ol } = json;
+		// console.log(js);
+		// console.log(cy);
+		// console.log(ol);
+
+		// [遍历Map结构]？？？
+		var map = new Map();
+		map.set('first', 'hello');
+		map.set('second', 'world');
+
+		for (let [key, value] of map) {
+			console.log(key + " is " + value);
+		}
+		// 如果只想获取键名，或者只想获取键值，可以写成下面这样。
+		// 获取键名
+		for (let [key] of map) {
+			// ...
+		}
+
+		// 获取键值
+		for (let [, value] of map) {
+			// ...
+		}
+
+		// [输入模块的指定方法]
+		// 加载模块时，往往需要指定输入哪些方法。解构赋值使得输入语句非常清晰
+		// const { SourceMapConsumer, SourceNode } = require("source-map");
+	</script>
+</body>
+
+</html>

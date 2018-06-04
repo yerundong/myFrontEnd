@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // [size]
+        // size属性返回 Map 结构的成员总数。
+        const map1 = new Map([
+            [{ a: 1 }, '张三'], 
+            [{ b: 2 }, '李四']
+        ]);
+        // console.log(map1.size);// 2
+
+        // [set(key, value)]
+        // set方法新增一个成员或修改一个成员的值，然后返回修改后的Map
+        const obj2 = { a: 1 };
+        const map2 = new Map([
+            [obj2, '张三'], 
+            [{ b: 2 }, '李四']
+        ]);
+        // 新增
+        const map2_1 = map2.set({ a: 1 }, '王五');
+        // console.log(map2);// 被修改
+        // console.log(map2_1);
+        // 修改 
+        // 必须已存在相同的key变量名，然后修改它的值
+        const map2_2 = map2.set(obj2, '张三改');
+        // console.log(map2_2);
+        // console.log(map2_2);
+        // 由于set返回修改后的Map，所以可以使用链式写法
+        map2.set(obj2, '张三再改').set('go', ['六娃']);
+        // console.log(map2);
+
+        // [get(key)]
+        // 以key名（变量）作为参数获取值
+        const obj3 = { a: 1 };
+        const str3 = '范德彪';
+        const map3 = new Map([
+            [obj3, '张三'], 
+            [str3, '赵四']
+        ]);
+        const map3_get1 = map3.get(obj3);
+        const map3_get2 = map3.get(str3);
+        // console.log(map3_get1);// '张三'
+        // console.log(map3_get2);// '赵四'
+
+        // [has(key)]
+        // has方法返回一个布尔值，表示某个键是否在当前Map对象之中
+        const obj4 = { a: 1 };
+        const str4 = '范德彪';
+        const num4 = 123;
+        const map4 = new Map([
+            [obj4, '张三'], 
+            [str4, '赵四']
+        ]);
+        const map4_has1 = map4.has(obj4);
+        const map4_has2 = map4.has(str4);
+        const map4_has3 = map4.has(num4);
+        // console.log(map4_has1);// true
+        // console.log(map4_has2);// true
+        // console.log(map4_has3);// false
+
+        // [delete(key)]
+        const obj5 = { a: 1 };
+        const str5 = '范德彪';
+        const map5 = new Map([
+            [obj5, '张三'], 
+            [str5, '赵四']
+        ]);
+        const map5_del1 = map5.delete(obj5);
+        const map5_del2 = map5.delete(str4);
+        // console.log(map5_del1);// true
+        // console.log(map5_del2);// true
+        // console.log(map5.size);// 0
+
+        // [clear()]
+        // 清除所有成员，没有返回值
+        const obj6 = { a: 1 };
+        const str6 = '范德彪';
+        const map6 = new Map([
+            [obj6, '张三'], 
+            [str6, '赵四']
+        ]);
+        map6.clear();
+        // console.log(map6.size);// 0
+
+
+
+        
+    </script>
+</body>
+</html>

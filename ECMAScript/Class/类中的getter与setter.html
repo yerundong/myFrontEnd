@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+</head>
+<style>
+</style>
+<body>
+	<script>
+		// get函数会将属性添加到实例（this）和Cla1.prototype下
+		class Cla1 {
+			constructor(x, y) {
+				this.x = x;
+				this.y = y;
+			}
+			get a() {
+				return this.a_
+			}
+			set a(newVal) {
+				this.a_ = newVal;
+			}
+		}
+		const cla1_INSTANCE = new Cla1(1, 2);
+		cla1_INSTANCE.a = 123;
+		// console.log(cla1_INSTANCE)
+
+		const obj = {
+			*fn(){
+				yield 1
+			}
+		}
+		console.log(obj)
+	</script>
+</body>
+
+</html>

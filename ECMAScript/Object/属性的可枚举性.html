@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>Document</title>
+</head>
+
+<body>
+	<script>
+		// 描述对象属性的“可枚举性”,利用enumerable属性，如果该属性为false，就表示某些操作会忽略当前属性。
+		// 目前，有四个操作会忽略enumerable为false的属性：
+		// for...in循环：只遍历对象自身的和继承的可枚举的属性。
+		// Object.keys()：返回对象自身的所有可枚举的属性的键名。
+		// JSON.stringify()：只串行化对象自身的可枚举的属性。
+		// Object.assign()： 忽略非枚举性的属性，只拷贝对象自身的可枚举属性
+		// *只有for...in会返回继承的属性，其他三个方法都会忽略继承的属性，只处理对象自身的属性
+
+		// obj.c为非枚举性属性
+		const obj = Object.defineProperty({
+			a: 1,
+			b: 2
+		}, 'c', {
+			value: 3,
+			writable: true,
+			enumerable: false,
+			configurable: true
+		});
+		// console.log(obj);
+
+		// for...in
+		for (let key in obj) {
+			// console.log(key); //a,b
+		}
+
+		// Object.keys()
+		// console.log(Object.keys(obj));//["a", "b"]
+
+		// JSON.stringify()
+		// console.log(JSON.stringify(obj));//'{"a":1,"b":2}'
+		// console.log(JSON.parse(JSON.stringify(obj)));//{a: 1, b: 2}
+
+		// Object.assign()
+		// 作为合并项对象，其非枚举性属性无法被复制
+		// console.log(Object.assign(obj));//{a: 1, b: 2, c: 3}
+		// console.log(Object.assign({}, obj));//{a: 1, b: 2}
+		// console.log(Object.assign(obj, {}));//{a: 1, b: 2, c: 3}
+	</script>
+</body>
+
+</html>

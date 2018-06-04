@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <div class="div1" name="name1">111111</div>
+    <div class="div2" title="title2" abc="qwe">222222</div>
+    <script>
+        const oDiv1 = document.querySelector('.div1');
+        const oDiv2 = document.querySelector('.div2');
+        
+        // [attributes]
+        // 返回元素节点的属性节点集合（动态NodeList）
+        // console.log(oDiv1.attributes);// NodeList
+        // console.log(oDiv2.attributes);// NodeList
+
+        // [createAttribute(nodeName)]
+        // 创建一个属性节点
+        const attr_node0 = document.createAttribute('wuwukai');
+        attr_node0.nodeValue = 'niubi';
+        // console.log(attr_node0);
+
+        // [hasAttribute(attrName)]
+        // 判断一个元素是否具有指定的属性,若有返回 true，否则返回 false
+        // attrName 必填 属性名
+        // console.log(oDiv2.hasAttribute('title'));// true
+
+        // [hasAttributes()]
+        // 判断一个元素是否具有任意一个及以上的属性,若有返回 true，否则返回 false
+        const oDiv3 = document.createElement('div');
+        // console.log(oDiv2.hasAttributes());// true
+        // console.log(oDiv3.hasAttributes());// false
+
+        // [getAttribute(attrName)]
+        // 返回元素节点的某属性的值，包括自定义属性
+        // attrName 必填 属性名
+        const attr1 = oDiv1.getAttribute('name');
+        const attr2 = oDiv2.getAttribute('abc');
+        // console.log(attr1, attr2);// name1 qwe
+
+        // [getAttributeNode(attrName)]
+        // 返回元素节点的某属性节点，包括自定义属性节点
+        // attrName 必填 属性名
+        const attr_node1 = oDiv1.getAttributeNode('name');
+        const attr_node2 = oDiv2.getAttributeNode('abc');
+        // console.log(attr_node1, attr_node2);
+        // console.log(attr_node1.nodeValue);
+        // console.log(attr_node2.nodeValue);
+
+        // [setAttribute(attrName, attrValue)]
+        // 修改属性值或添加新属性节点
+        // attrName  必填 属性名
+        // attrValue 必填 属性值
+        oDiv1.setAttribute('name', 'name1-change');
+        oDiv1.setAttribute('faker', 'niubi');
+        
+        // [setAttributeNode(att_node)]
+        // 添加或替换属性节点（通常没有setAttribute好用）
+        // att_node 必填 只能是由createAttribute创建的、新的、未用的、属性节点，不能是获取到的属性节点
+        oDiv1.setAttributeNode(attr_node0);
+
+        // setAttributeNode使用两次及以上新建的属性节点att_node，或使用获取到的属性节点，都会报错
+        // oDiv2.setAttributeNode(oDiv1.attributes[1]);// 报错
+        // oDiv2.setAttributeNode(attr_node0);// 报错
+
+        // [removeAttribute(attrName)]
+        // 删除指定的属性
+        // attrName  必填 属性名
+        oDiv1.removeAttribute('faker');
+
+        // [removeAttributeNode(att_node)]
+        // 删除指定的属性节点（通常没有removeAttribute好用）
+        // att_node 必填 属性节点
+        oDiv1.removeAttributeNode(oDiv1.attributes[1]);
+        oDiv1.removeAttributeNode(attr_node0);
+
+    </script>
+</body>
+
+</html>

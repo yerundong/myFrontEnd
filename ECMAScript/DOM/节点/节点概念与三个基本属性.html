@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <div class="div1">div1div1div1</div>
+    <span class="span1">span1span1span1</span>
+    <script>
+        // [节点]
+        // 根据W3C的HTML DOM标准，HTML文档中的所有内容都是节点
+        // 一般我们常用的节点有三个：元素节点（1）、文本节点（3）、属性节点（2），元素节点和文本节点又统称非属性节点
+
+        // ******************************节点的三个基本属性************************************
+        // 一般地，节点至少拥有nodeType、nodeName、nodeValue这三个基本属性
+        
+        // [nodeType]
+        // 节点类型（只读），共有12种节点类型：
+        // 元素节点--Node.ELEMENT_NODE(1)
+        // 属性节点--Node.ATTRIBUTE_NODE(2)
+        // 文本节点--Node.TEXT_NODE(3)
+        // CDATA节点--Node.CDATA_SECTION_NODE(4)
+        // 实体引用名称节点--Node.ENTRY_REFERENCE_NODE(5)
+        // 实体名称节点--Node.ENTITY_NODE(6)
+        // 处理指令节点--Node.PROCESSING_INSTRUCTION_NODE(7)
+        // 注释节点--Node.COMMENT_NODE(8)
+        // 文档节点--Node.DOCUMENT_NODE(9)
+        // 文档类型节点--Node.DOCUMENT_TYPE_NODE(10)
+        // 文档片段节点--Node.DOCUMENT_FRAGMENT_NODE(11)
+        // DTD声明节点--Node.NOTATION_NODE(12)
+        const div1 = document.getElementsByClassName('div1')[0];
+        const div1_text = div1.childNodes[0];
+        const div1_attr = div1.attributes[0];
+        // console.log(document.nodeType); // 9
+        // console.log(div1.nodeType); // 1
+        // console.log(div1_text.nodeType); // 3
+        // console.log(div1_attr.nodeType); // 2
+
+        // [nodeName]
+        // 节点名称（只读）
+        // 元素节点返回标签名
+        // console.log(div1.nodeName);// DIV 
+        // 属性节点返回属性名
+        // console.log(div1_attr.nodeName);// class
+        // 特殊节点返回对应名称
+        // console.log(document.nodeName);// #document
+        // console.log(div1_text.nodeName);// #text
+
+        // [nodeValue]
+        // 节点值（可读可写）
+        // 文本节点返回文本值
+        // console.log(div1_text.nodeValue);// div1div1div1
+        // 属性节点返回属性值
+        // console.log(div1_attr.nodeValue);// div1
+        // 特殊节点返回null
+        // console.log(document.nodeValue);// null
+        // console.log(div1.nodeValue);// null
+        // div1_text.nodeValue = 233333333;
+
+        // [查看节点对象的所有属性与方法]
+        // console.log打印不出详细的信息，console.dir可以显示一个对象所有的属性和方法
+        // console.dir(div1);
+        // console.dir(div1_text);
+        // console.dir(div1_attr);
+    </script>
+</body>
+</html>

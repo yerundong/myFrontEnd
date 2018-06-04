@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // [Promise.resolve]
+        // Promise.resolve相当于[侧重于fulfilled状态回调]的new Promise简写方式
+        // Promise.resolve方法的参数分成四种情况:
+
+        // 一、参数是没有then方法的对象或非对象数据
+        // 该参数直接作为fulfilled回调的返回值
+        const promise1 = Promise.resolve({ a: 1 });
+        // 等同于
+        // const promise1 = new Promise(resolve => resolve({a:1}) );
+        promise1.then(res => {
+            // console.log(res);// {a:1}
+        });
+        // 非对象数据可以是：String、Array、Number...
+        const promise2 = Promise.resolve('res1');
+        promise2.then(res => {
+            // console.log(res);// res1
+        });
+
+        // 二、参数是具有then方法的对象
+        const promise3 = Promise.resolve({
+            then(resolve, reject) {
+                if (false) {
+                    resolve('resolve3');
+                } else {
+                    reject('reject3');
+                }
+            }
+        });
+        promise3.then(res => {
+            // console.log(res);// resolve3
+        }).catch(err => {
+            // console.log(err);// reject3
+        });
+
+        // 三、不带任何参数
+        // 直接返回一个fulfilled状态的Promise对象,返回值为undefined
+        // 如果希望得到一个fulfilled的Promise对象，这是比较方便的方法
+        const promise4 = Promise.resolve();
+        // 等同于：
+        // const promise4 = new Promise(resolve => resolve(undefined));
+        promise4.then(res => {
+            // console.log(res);// undefined
+        });
+
+        // 四、参数是一个Promise实例
+        // 原封不动的返回
+        const promise5_ = new Promise((resolve, reject) => {
+            if (true) {
+                resolve('resolve5');
+            } else {
+                reject('reject5');
+            }
+        });
+        const promise5 = Promise.resolve(promise5_);
+        promise5.then((res) => {
+            // console.log(res);// resolve5
+        }).catch(err => {
+            // console.log(err);// reject5
+        });
+        // console.log(promise5 === promise5_);// true
+    </script>
+</body>
+
+</html>

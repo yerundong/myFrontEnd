@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // [Promise.reject]
+        // Promise.reject相当于[侧重于rejected状态回调]的new Promise简写方式
+        // Promise.reject方法的参数分成四种情况:
+
+        // 一、参数是没有then方法的对象或非对象数据
+        // 该参数直接作为fulfilled回调的返回值
+        const promise1 = Promise.reject({ a: 1 });
+        // 等同于
+        // const promise1 = new Promise((resolve, reject) => reject({a:1}) );
+        promise1.catch(res => {
+            // console.log(res);// {a:1}
+        });
+        // 非对象数据可以是：String、Array、Number...
+        const promise2 = Promise.reject('reject1');
+        promise2.catch(err => {
+            // console.log(err);// reject1
+        });
+
+        // 二、参数是具有then方法的对象（thenable）
+        // 注意：与Promise.resolve方法不同的是，返回的是这个具有then方法的对象（thenable）
+        const thenable = {
+            then(resolve, reject) {
+                if (false) {
+                    resolve('resolve3');
+                } else {
+                    reject('reject3');
+                }
+            }
+        }
+        const promise3 = Promise.reject(thenable);
+        promise3.catch(obj => {
+            // console.log(obj);// thenable
+            obj.then(res => {
+                // console.log(res);// resolve3
+            }, err => {
+                // console.log(err);// reject3
+            })
+        });
+
+        // 三、不带任何参数
+        // 直接返回一个rejected状态的Promise对象,返回值为undefined
+        // 如果希望得到一个reject的Promise对象，这是比较方便的方法
+        const promise4 = Promise.reject();
+        // 等同于：
+        // const promise4 = new Promise((resolve, reject) => reject(undefined));
+        promise4.catch(res => {
+            // console.log(res);// undefined
+        });
+
+        // 四、参数是一个Promise实例
+        // 注意：与Promise.resolve方法原封不动的返回不同，promise5的reject是在catch里获取到promise5_的整个实例对象
+        const promise5_ = new Promise((resolve, reject) => {
+            if (true) {
+                resolve('resolve5');
+            } else {
+                reject('reject5');
+            }
+        });
+        const promise5 = Promise.reject(promise5_);
+        // 等同于(参考promise作为另一个promise对象的返回值.html)：
+        // const promise5 = new Promise((resolve, reject)=>{
+        //     reject(promise5_);
+        // });
+        promise5.catch(p => {
+            // console.log(p);// promise5_
+            p.then(res => {
+                // console.log(res)// resolve5
+            }).catch(err => {
+                // console.log(err);// reject5
+            })
+        });
+        // console.log(promise5 === promise5_);// false
+    </script>
+</body>
+
+</html>

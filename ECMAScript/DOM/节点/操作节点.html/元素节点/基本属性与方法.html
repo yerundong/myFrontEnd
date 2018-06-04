@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    txtxtxtxt
+    <div class="div1">111111</div>
+    <div class="div2">222222</div>
+    <div class="div3">
+        <span>333333</span>laslaslast</div>
+    <span class="sp"></span>
+    <span class="sp"></span>
+</body>
+<script>
+    // 非属性节点即元素节点与文本节点
+
+    const oDiv1 = document.querySelector('.div1');
+    const oDiv2 = document.querySelector('.div2');
+    const oDiv3 = document.querySelector('.div3');
+    const sps = document.querySelectorAll('.sp');
+
+    //************节点下的属性************************************
+
+    // [tagName]
+    // 元素节点的元素名（nodeName），其他类型节点返回undefined
+    // console.log(oDiv1.tagName);// DIV
+    // console.log(oDiv1.nextSibling.tagName);// undefined
+
+    // [className]
+    // 元素节点的class值
+    // console.log(oDiv1.className);// div1
+
+    // [classList]
+
+    //************节点下的方法************************************************
+    // [hasChildNodes()]
+    // 返回元素是否拥有子节点,有true，无false
+    // console.log(document.body.hasChildNodes());// true
+    // console.log(oDiv2.childNodes[0].hasChildNodes());// false
+
+    // [isEqualNode(node)]
+    // 检查两节点是否相等,是true，否false
+    // console.log(oDiv1.isEqualNode(oDiv2));// false
+    // console.log(sps[0].isEqualNode(sps[1]));// true
+
+    // [isSameNode()]
+    // 检查两节点是否为同一节点,是true，否false
+    // console.log(sps[0].isSameNode(sps[1]));// false
+    // console.log(sps[1].isSameNode(sps[1]));// true
+
+    // [appendChild(node)]
+    // 向一个存在的节点末尾添加一个子节点
+    // 如果这个被添加的子节点是已存在的节点，则相当于[移动]该节点，插入父节点
+    oDiv1.appendChild(oDiv2);
+    // 由于appendChild是移动了节点，而没有进行克隆，一个节点只能存在一处，所以效果只凭最后一次appendChild，
+    // 推及insertBefore、replaceChild也是如此
+    oDiv1.appendChild(oDiv2);// 没任何变化，不会多一个oDiv2
+
+    // [insertBefore(new_node,existing_node)]
+    // 向一个存在的节点前添加一个兄弟节点
+    // new_node 必填 需要插入的节点
+    // existing_node 必填 已有节点，在此节点之前插入新节点。
+    // 如果这个被添加的子节点是已存在的节点，则相当于[移动]该节点，插入父节点
+    oDiv1.insertBefore(oDiv3, oDiv2);
+
+    // [removeChild(node)]
+    // 删除子节点，包括元素节点和文本节点
+    // node 必需,规定要删除的子节点
+    // 删除成功，则返回被删除的节点，否则返回NULL
+    const addem = document.createElement('em')
+    oDiv1.appendChild(addem);
+    oDiv1.removeChild(addem);
+</script>
+
+</html>

@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // 自定义遍历器属性Symbol.iterator
+        // 由于Generator函数就是遍历器生成函数，因此可以把Generator用来部署Iterator接口
+        const obj1 = { a: 1, b: 2, c: 3 };
+        obj1[Symbol.iterator] = function* () {
+            yield this.a;
+            yield this.b;
+            yield this.c;
+        }
+        // console.log([...obj1]);
+
+        const obj1_iterator = obj1[Symbol.iterator]();
+        // console.log(obj1_iterator);
+        // console.log(obj1_iterator.next());
+    </script>
+</body>
+</html>

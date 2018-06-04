@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+</head>
+
+<body>
+	<script type="text/javascript">
+		// [数组型参数]
+		// 除非有默认参数，否则不传参数会报错
+		function fn1([a, b, c = 5, ...d]) {
+			console.log(a);
+			console.log(b);
+			console.log(c);
+			console.log(d);
+		}
+		// fn1();//报错
+		// fn1([]);
+		// fn1([1,2,3,4,5,6]);
+
+		// 默认参数[1, 2, 3, 4, 5, 6, 7]
+		function fn1_a([a, b = 5, c, ...d] = [1, 2, 3, 4, 5, 6, 7]) {
+			console.log(a);
+			console.log(b);
+			console.log(c);
+			console.log(d);
+		}
+		// fn1_a();//不报错，使用默认参数
+		// fn1_a([]);
+		// fn1_a([12,21,33,44,53,61]);
+
+
+		// [对象型参数]
+		// 除非有默认参数，否则不传参数会报错
+		function fn2({ a, b, c = 5, ...d }) {
+			console.log(a);
+			console.log(b);
+			console.log(c);
+			console.log(d);
+		}
+		// fn2()//报错
+		// fn2({})
+		// fn2({ a: 1, f: 2, g: 3, k: 4 });
+
+		// 默认参数{ a: 1, b: 2, c: 3, d: 4, e: 5, f: 6 }
+		function fn2a({ a, b, c = 5555, ...d } = { a: 1, b: 2, c: 3, d: 4, e: 5, f: 6 }) {
+			console.log(a);
+			console.log(b);
+			console.log(c);
+			console.log(d);
+		}
+		// fn2a()//不报错，使用默认参数
+		// fn2a({});
+		// fn2a({ a: 1213, f: 21, g: 33, k: 44 });
+
+
+	</script>
+
+
+</body>
+
+</html>

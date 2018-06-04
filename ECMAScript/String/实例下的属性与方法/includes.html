@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // [includes(substring, position)]
+        // 返回一个布尔值，该值指示传入字符串是否包含在字符串中
+        // substring  字符串值,必填,要检测的字符串值
+        // position  索引位置，选填，指定从该位置到末尾之间进行检测，省略默认为0
+        let str = 'abcde';
+        let s1 = str.includes('c');
+        let s2 = str.includes('b', 2);
+        console.log(s1);// true
+        console.log(s2);// false
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<meta http-equiv="X-UA-Compatible" content="ie=edge" />
+	<title>Document</title>
+</head>
+<body>
+	<script type="text/javascript">
+		// ES65语法中，生成实例对象的传统方法是通过构造函数（constructor）。
+		// ES6提供了更接近传统语言的写法，引入了 Class（类）这个概念，作为对象的模板
+		// 新的class写法本质还是函数，只不过经过[语法糖包装]，让对象原型的写法[更加清晰、更像面向对象编程]，完全可以看作构造函数的另一种写法
+		// [构造器]里的this指向的是[实例对象],如：Cla1里的所有this都指向cla1_INSTANCE
+		
+		// [定义类]
+		// 类名规定首字母大写
+		class Cla1{
+			constructor(x, y) {
+			    this.x = x;
+			    this.y = y;
+			    this.fn0 = ()=>{
+			    	console.log('fn0', this.x, this.y);
+			    }
+			}
+			fn1(){
+				console.log('fn1', this.x, this.y);
+				return this.x + this.y
+			}
+		}
+		// console.log(Cla1);
+		// console.log(typeof Cla1);// function
+		// console.log(Cla1.prototype);
+
+		// 类的所有方法都定义在类的prototype属性上面
+		// console.log(Cla1.prototype);// {constructor,fn1...}
+
+		// 类的prototype对象不能被[整体覆盖]，以下操作无效
+		Cla1.prototype = {
+			abc: 123
+		}
+
+		// 如果需要添加类prototype成员，可以使用合并对象或新增对象成员的方法
+		Object.assign(Cla1.prototype, {
+			fn2(){
+				console.log('fn2', this.x, this.y);
+				return this.x + this.y
+			}
+		});
+		Cla1.prototype.lol = 1;
+		// console.log(Cla1.prototype);
+
+		// 类的构造器是native code
+		// console.log(Cla1.constructor);// native code
+
+		// 类必须使用new调用，否则会报错,这是它跟普通构造函数的一个主要区别
+		// Cla1();// 报错
+		
+		// [类实例化]
+		const cla1_INSTANCE = new Cla1('a', 'b');
+		// console.log(cla1_INSTANCE);
+		// cla1_INSTANCE.fn0();// fn0 a b
+		// cla1_INSTANCE.fn1();// fn1 a b
+		// cla1_INSTANCE.fn2();// fn2 a b
+		
+		// new操作做了两件事：
+		// cla1_INSTANCE.__proto__ = Cla1.prototype，完成属性与方法的继承
+		// constructor.call(cla1_INSTANCE) 执行并改变了构造函数constructor内部this指向，指向了实例对象，使得可在构造函数constructor里定义实例的属性
+
+		// Cla1.prototype是[直接赋值]给cla1_INSTANCE.__proto__，所以相当于是同一个对象
+		// 由于所有实例的__proto__与Cla1.prototype都是同一个对象，则其中一个改动，则所有的都会变动
+		// 所以Cla1.prototype不宜放置那些需要变动值的属性和方法，因为它是所有实例共用的
+		// console.log(cla1_INSTANCE.__proto__ === Cla1.prototype);// true 
+		
+		// cla1_INSTANCE、cla1_INSTANCE.__proto__、Cla1.prototype的构造器都是类Cla1
+		// console.log(cla1_INSTANCE.constructor);// class Cla1
+		// console.log(cla1_INSTANCE.__proto__.constructor);// class Cla1
+		// console.log(Cla1.prototype.constructor);// class Cla1
+		
+		// 与ES5不同的是，类内部定义的方法均为不可枚举，如fn1
+		// 外部往Cla1.prototype添加的方法可枚举，如fn2
+		// console.log(Object.keys(Cla1.prototype));// ["fn2"]
+
+		// 类不存在[变量提升]（hoist），这一点与ES5完全不同
+		// new Cla2(); // 报错
+		// class Cla2 {}
+
+	</script>
+</body>
+</html>

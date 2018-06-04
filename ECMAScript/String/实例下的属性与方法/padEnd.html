@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // [padEnd(maxLength, fillString)]
+        // 在字符串尾部填充字符串，
+        // maxLength  补全后的总长度，若maxLength小于或等于字符串原有的长度，则返回原有字符串
+        // fillString 填充的字符片段,从左往右开始填充，省略默认使用空格补全长度
+        let str = 'abc';
+        let s1 = str.padEnd(6);
+        let s2 = str.padEnd(6, '123456');
+        console.log(s1);// "abc   "
+        console.log(s1.length);// 6
+        console.log(s2);// abc123
+    </script>
+</body>
+
+</html>

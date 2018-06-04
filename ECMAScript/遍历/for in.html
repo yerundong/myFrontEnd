@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<script type="text/javascript">
+			// for...in主要用于遍历对象，也可用于数组,类数组（数组与类数组本质也是对象的一种），字符串，但不推荐
+			// for...in可以遍历到自身的属性与继承的属性
+			// 取到原型上的属性
+			// 无法取到非枚举性属性
+    		// 无法取到Symbol属性
+			let obj = {
+				a:'1',
+				b:{
+					c:3
+				}
+			}
+			let arr = [1,2,{a:1,b:3}];
+			let str = 'asdgfhg';
+			for(let i in obj){
+//				console.log(i);//a b
+			}
+			
+			for(let i in arr){
+//				console.log(i)
+			}
+			
+			for(let i in str){
+//				console.log(i)
+			}
+		</script>
+	</body>
+</html>

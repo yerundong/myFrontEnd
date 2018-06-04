@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        const str1 = 'abcfffkkk';
+        // [abc]
+        // 匹配方括号之间的任何字符，范围内的字符在匹配时可以当做相同的字符
+        // console.log(str1.replace(/[cfk]{2}/g, '='));// ab===k
+
+        // [^abc]
+        // 匹配非方括号之间的任何字符，非范围内的字符在匹配时可以当做相同的字符
+        // ^有2种用法：一种是用在中括号种作为反义字符，另一种是用在parttern的最开始位置或(圆括号的最开始位置)作为行首匹配符
+        // console.log(str1.replace(/[^cfk]{2}/g, '='));// =cfffkkk
+
+        // [0-9]	
+        // 查找任何从 0 至 9 的数字。
+
+        // [a-z]
+        // 查找任何从小写 a 到小写 z 的字符。
+
+        // [A-Z]
+        // 查找任何从大写 A 到大写 Z 的字符。
+
+        // [A-z]
+        // 查找任何从大写 A 到小写 z 的字符。
+
+    </script>
+</body>
+</html>

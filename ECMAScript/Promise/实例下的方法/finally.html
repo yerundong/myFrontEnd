@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // [finally]
+        // finally方法用于指定不管Promise对象最后状态如何，即不管是resolve、reject还是报错，都会执行的操作
+        // finally方法的回调函数不接受任何参数，与状态无关的，不依赖于Promise的执行结果
+        // 必须有resolve、reject（包括报错）这两种状态之一，否则finally也不执行
+        // finally里的报错回把它前面的then、catch里的报错“吃掉”，即掩盖
+        const promise1 = new Promise(function (resolve, reject) {
+            // ttt();//
+            // resolve('resolve');
+            // reject('reject');
+        });
+        promise1.then(res=>{
+            console.log(res);
+            xxx()
+        }).catch(err=>{ 
+            console.log(err);
+            yyy()
+        }).finally(()=>{
+            console.log('finally');
+            zzz()
+        });
+    </script>
+</body>
+</html>

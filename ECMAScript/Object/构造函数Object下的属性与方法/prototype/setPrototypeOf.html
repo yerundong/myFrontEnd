@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // [Object.setPrototypeOf(object, prototype)]
+        // object 必填 目标对象 若非对象格式，会隐式转换成对象格式，所以undefined和null会报错
+        // prototype 必填 新的原型对象，即__proto__对象，会覆盖旧的原型对象
+        const obj1 = Object.create({
+            a: 1,
+            b: 2
+        });
+        Object.setPrototypeOf(obj1, {c: 3})
+        // console.log(obj1);
+    </script>
+</body>
+
+</html>

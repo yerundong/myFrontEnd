@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="div">click</div>
+    <script>
+        // [闭包(closure)]
+        // 闭包就是能够访问函数内部变量的函数，在本质上，闭包就是将函数内部和函数外部连接起来的一座桥梁。
+        // 闭包有两个用途：
+        // 1、函数外部可以读取函数内部的变量，代替全局变量的写法，既不污染命名空间，也不可被随意修改，只能通过指定的函数接口来操作
+        // 2、让这些变量的值始终保持在内存中
+
+        // 以下是一个最简单的闭包：
+        function add() {
+            let a = 0;
+
+            function fn() {
+                a++;
+                console.log(a);
+            }
+            return fn
+        }
+        // 本来呢，当add执行结束后，变量a就会被自动回收，但是fn仍然保持对a的引用，避免了a被回收，延长了a的存在
+        let add_1 = add();
+        let add_2 = add();
+        add_1(); // 1
+        add_1(); // 2
+        add_2(); // 1 
+        add_2(); // 2 
+
+        // 以下也是一个的闭包：
+        // 本来呢，当fn1执行结束后，num就会被自动回收，但是fn2仍然保持对num的引用，避免了num被回收，延长了num的存在
+        const obj = {
+            fn1(c) {
+                this.fn2 = function () {
+                    console.log(num);
+                }
+            }
+        };
+        // obj.fn1(10);
+        // obj.fn2();// 10
+
+        // 闭包会使变量始终保存在内存中，如果不当使用会增大内存消耗,影响性能
+        function clickDiv() {
+            let oDiv = document.querySelector("#div");
+            let c = 0;
+            oDiv.onclick = function () {
+                console.log(c++);
+            }
+            oDiv = null;
+            c = null;
+        }
+        clickDiv();
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // [位运算符]
+        // [|] 
+        // 位的或运算
+        // 先将两边值[隐式转换]成number类型，并且剔除小数位，然后转化成二进制数进行位的或运算，最后再转回10进制
+        // 或运算法则：有一个1的便取1，两个都为0的取0，例如：10001与110110合并结果为：110111
+        const num1 = 1 | 1;// 1
+        const num2 = 3 | 4;// 7
+        const num3 = 8 | 11;// 11
+        const num4 = 8.99 | 11.99;// 11
+        const num5 = true | false;// 1
+        const num6 = 'true' | 0;// 0
+        const num7 = 'qwerty' | 0;// 0
+        const num8 = 123 | 456;// 507
+        // 可用来剔除小数点
+        const num9 = 123.5533 | 0;// 123
+
+        // [&] 
+        // 位的与运算
+        // 先将两边值[隐式转换]成number类型，并且剔除小数位，然后转化成二进制数进行位的与运算，最后再转回10进制
+        // 与运算法则：有一个0的便取0，两个都为1的取1，例如：10001与110110合并结果为：10000
+        const num11 = 3 & 4;// 0
+        const num12 = 123 & 456;// 72
+        // console.log(num11);
+    </script>
+</body>
+
+</html>

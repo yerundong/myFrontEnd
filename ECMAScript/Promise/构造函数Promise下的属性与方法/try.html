@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 让同步函数同步执行，异步函数异步执行
+        const f1 = () => {
+            console.log('f1');
+        };
+        const f2 = () => {
+            setTimeout(() => {
+                console.log('f2');
+            });
+        };
+
+        new Promise(
+            resolve => resolve(f1())
+        )
+        console.log('next');
+
+        // 现在有一个提案，提供Promise.try方法替代上面的写法
+        
+
+    </script>
+</body>
+
+</html>

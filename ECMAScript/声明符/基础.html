@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // ES5只有两种声明变量的方法：var、function
+        // ES6有6种声明变量的声明符号，即var、let、const、import、class、function
+        // 使用ES6新增的let、const、class等声明符定义的变量拥有[块级作用域]，而var、function没有（详见作用域）
+        // 使用ES6新增的let、const、class等声明符定义的变量不允许在[同一作用域内]，重复声明同一个变量，而var、function允许（详见作用域）
+
+        // 使用ES6新增的let、const、class等声明符定义的变量不存在变量提升,从而避免运行时错误
+        // console.log(a);// undefined
+        var a = 1;
+        // console.log(b);// 直接报错
+        let b = 2;
+
+        // 使用ES6新增的let、const、class等声明符定义的变量拥有“暂时性死区”，而var、function没有（详见作用域）
+    </script>
+</body>
+</html>

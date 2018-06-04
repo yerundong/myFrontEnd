@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // test(str)
+        /**
+         * @param str - 字符串 
+         */
+        // 检测一个字符串是否匹配某个模式，如果字符串中含有匹配的文本，则返回 true，否则返回 false
+        const str = 'hello word';
+        const re = new RegExp('l', 'ig');
+        const res = re.test(str);
+        console.log(res);
+    </script>
+</body>
+</html>

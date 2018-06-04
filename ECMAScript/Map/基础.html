@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // JavaScript的对象（Object），本质上是键值对的集合（Hash结构），但是传统上只能用[字符串]当作键，这给它的使用带来了很大的限制。
+        // ES6 提供了Map数据结构。它类似于对象，也是键值对的集合，但是键的范围[不限于字符串，任何类型的数据都可以当作键与值]，是一种更完善的Hash结构实现
+        // 任何具有Iterator接口、且每个成员都是一个[双元素的数组]的数据结构都可以当作Map构造函数的参数
+        // key名相同的值，前面的会被后面的覆盖
+        // 0和-0就是一个键，true和'true'则是两个不同的键
+        const obj1 = {}
+        const map1 = new Map([
+            [],// =>[undefined, undefined]
+            [1],// =>[1, undefined]
+            [,1],// =>[undefined, 1]
+            [0,1],
+            [-0,2],
+            [null, undefined], 
+            [undefined, null], 
+            [{ b: 2 }, '李四'],
+            [()=>{}, Symbol()],
+            [new Set(), new Map()],
+        ]);
+        console.log(map1);
+
+        const set2 = new Set([
+            [{ a: 1 }, '张三'], 
+            [{ b: 2 }, '李四']
+        ]);
+        const map2 = new Map(set2);
+        // console.log(map2);
+    </script>
+</body>
+
+</html>

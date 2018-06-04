@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // [trim()]
+        // 去除字符串两边的空白
+        const str = ' aabb cc    dd ';
+        const str1 = str.trim();
+        // console.log(str1);// "aabb cc  dd"
+
+        // 补全去除所有空白的方法
+        String.prototype.allTrim = function () {
+            const str = this.split(' ').join('');
+            return str
+        }
+        const str2 = str.allTrim();
+        console.log(str2);// aabbccdd
+    </script>
+</body>
+</html>

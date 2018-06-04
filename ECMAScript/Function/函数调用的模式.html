@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>函数调用的模式</title>
+</head>
+<body>
+    <div id="div">123</div>
+    <script>
+        // js函数有4种调用模式：
+
+        // 一、[方法调用模式](The Method Invocation Pattern)
+        // 当函数作为对象的方法的时候，我们就叫函数为方法。当一个方法被调用的时候，this绑定到调用的对象
+        const obj1 = {
+            fn() {
+                console.log(this);
+            }
+        }
+        // obj1.fn();// obj1
+         
+        // 二、[函数调用模式](The Function Invocation Pattern)
+        // 当一个函数作为函数调用模式来调用的时候，this默认绑定到全局对象。这是JavaScript设计时的错误并延续了下来
+        function fn1() {
+            ~function () {
+                console.log(this); // Window  
+            }();
+            console.log(this); // Window     
+        }
+        // fn1();
+        
+        // 三、[构造函数调用模式](The Constructor Invocation Pattern)
+        // 如果在一个函数前面带上new来调用，this也将会绑定到实例对象
+        function Fn() {
+            console.log(this);
+        }
+        // let obj2 = new Fn();// obj2
+
+        // 四、[Apply调用模式](The Apply Invocation Pattern)
+        // 利用Apply、call、bind调用函数
+        function fn2() {
+            console.log(this);    
+        }
+        // fn1.call(fn1); // fn1 
+        // fn1.bind(fn1)(); // fn1 
+
+        // 五、事件绑定
+        function fn3() {
+            console.log(this);
+        }
+        const odiv = document.querySelector("#div");
+        // odiv.onclick = fn3;// odiv
+    </script>
+</body>
+</html>

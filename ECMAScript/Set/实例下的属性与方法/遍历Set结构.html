@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+</head>
+
+<body>
+	<script type="text/javascript">
+		// [用于for...of的三个遍历器生成方法]
+		// keys(),values(),entries()分别返回键，值，键值对的[遍历器对象]
+		// 由于Set结构键名与键值合一，所以keys(),values()是相同的
+		// Set结构的实例默认可遍历，默认遍历器生成函数是values()，所以keys(),values()毫无意义
+
+		const set1 = new Set([1, 2, 3]);
+		const keys_iter = set1.keys();
+		const values_iter = set1.values();
+		const entries_iter = set1.entries();
+
+		// console.log(set1)
+
+		for (let item of set1) {
+			// console.log(item);// 123
+		}
+		for (let item of keys_iter) {
+			// console.log(item);// 123
+		}
+
+		for (let item of values_iter) {
+			//console.log(item);// 123
+		}
+
+		for (let item of entries_iter) {
+			// console.log(item);// [1,1][2,2][3,3]
+		}
+		
+		// [forEach]
+		// 除了for...of，还可以使用forEach进行遍历，使用与遍历数组无异
+		// 由于Set结构键值合一,value与index相同
+		set1.forEach((value, index)=>{
+			// console.log(value);// 123
+		})
+
+	</script>
+</body>
+
+</html>

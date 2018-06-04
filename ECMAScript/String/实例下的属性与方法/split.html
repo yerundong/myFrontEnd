@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+
+        // [split(separator, limit)]
+        // 把一个字符串分割成字符串数组，并返回该数组，不改变原字符串
+        // separator 	可选。字符串，或RegExp对象，从该参数指定的地方分割,并且剔除该字符
+        // limit 	可选。该参数可指定返回的数组的最大长度，不设全部返回
+        const str = 'a  b c,d';
+        const str_s1 = str.split();// 相当于[str]
+        const str_s2 = str.split('');// 相当于[...str]
+        const str_s3 = str.split(' ');
+        const str_s4 = str.split(',');
+        const str_s5 = str.split(/,| /g);
+        const str_s6 = str.split(',', 1);
+        
+
+        console.log(str_s1);// ["a  b c,d"]
+        console.log(str_s2);// ["a", " ", " ", "b", " ", "c", ",", "d"]
+        console.log(str_s3);// ["a", "", "b", "c,d"]
+        console.log(str_s4);// ["a  b c", "d"]
+        console.log(str_s5);// ["a", "", "b", "c", "d"]
+        console.log(str_s6);// ["a  b c"]
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <div class="div1">
+        111111
+        <span>ssssss</span>
+    </div>
+    <script>
+        // [cloneNode(flag)]
+        // 克隆节点
+        // 此方法返回被克隆的节点
+        // flag 默认false，若为true，则克隆这个节点及其所有子节点，false只克隆该节点
+
+        // 克隆元素节点
+        const oDiv1 = document.querySelector('.div1');
+        const oDiv2 = oDiv1.cloneNode(true);
+        document.body.appendChild(oDiv2);
+
+        // 克隆属性节点
+        const attr_node = document.createAttribute('abc');
+        const attr_node1 = attr_node.cloneNode(true);
+        // console.log(attr_node);
+
+        // 克隆文本节点
+        const text_node = document.createTextNode('txt');
+        text_node.nodeValue = 'txtxtxtxt'
+        const text_node1 = text_node.cloneNode(true);
+        // console.log(text_node1);
+    </script>
+</body>
+</html>

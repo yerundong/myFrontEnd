@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // [lastIndexOf(searchvalue, start)]
+        // 返回某个指定的字符串值在字符串中最后出现的位置，未找到返回-1,与并且是由后
+        // searchvalue 	必需。规定需检索的字符串值。
+        // start 	可选的整数参数。规定从0到该位置之间进行检索。取值是0~string.length - 1。省略默认为string.length - 1
+        const str = 'aabbccdd';
+        console.log(str.lastIndexOf('b'));// 3
+        console.log(str.lastIndexOf('b', 1));// -1
+        console.log(str.lastIndexOf('b', 2));// 2
+        console.log(str.lastIndexOf('b', 3));// 3
+        console.log(str.lastIndexOf('b', 4));// 3
+    </script>
+</body>
+</html>

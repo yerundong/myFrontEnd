@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        let str1 = 'abcabcd555kk';
+        let str2 = '123 456   789';
+        // 分组，圆括号内的变成一个整体，相当于一个特定的字符
+        // 其实pattern的第一层隐形的包了一个()，即/()/，只不过省略了
+
+        // console.log(str1.replace(/(abc){2}/g, '='));// =d555kk
+        // console.log(str2.replace(/(\s+)/g, '='));// 123=456=789
+        // 
+        // console.log(str2.replace(/(^123)/g, '='));// = 456   789
+        // 与中括号的区别
+        // console.log(str1.replace(/[abc]{2}/g, '='));// ====d555kk
+
+    </script>
+</body>
+</html>

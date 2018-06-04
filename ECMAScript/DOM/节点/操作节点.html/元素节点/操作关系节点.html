@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    txtxtxtxt
+    <div class="div1">111111</div>
+    <div class="div2">222222</div>
+    <div class="div3">
+        <span>333333</span>laslaslast</div>
+    <span class="sp"></span>
+    <span class="sp"></span>
+    <script>
+        const oDiv1 = document.querySelector('.div1');
+        const oDiv2 = document.querySelector('.div2');
+        const oDiv3 = document.querySelector('.div3');
+        const sps = document.querySelectorAll('.sp');
+
+        // [childNodes]
+        // 返回所有子节点，包括元素子节点、文本子节点
+        const childs1 = document.body.childNodes;
+        // console.log(childs1);// 1
+
+        // [children]
+
+        // [firstChild]
+        // 返回节点的第一个子节点
+        // console.log(document.body.firstChild.nodeValue);// txtxtxtxt
+
+        // [lastChild]
+        // 返回节点的最后一个子节点
+        // console.log(oDiv3.lastChild.nodeValue);// laslaslast
+
+        // [nextSibling]
+        // 返回节点之后紧跟的节点
+        // console.log(oDiv1.nextSibling.nextSibling);// 222222
+
+        // [previousSibling]
+        // 返回元素之前紧随的节点
+        // console.log(oDiv2.previousSibling.previousSibling);// 111111
+
+        // [parentNode]
+        // 返回节点的父节点
+        // console.log(oDiv1.parentNode);// body
+        // console.log(oDiv1.);// body
+    </script>
+</body>
+</html>

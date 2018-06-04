@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>rest参数</title>
+</head>
+
+<body>
+    <script>
+        // [rest参数]
+        // 用于获取函数的多余参数
+        // 只能作为最后一个参数），否则会报错
+        // rest参数是一个数组，将多余的实参放入数组中
+        // 函数的length属性，不包括rest参数。
+        function fn1(a, ...arr) {
+            console.log(a);
+            console.log(arr);
+        }
+        // fn1(1, 2, 3, 5, 6, 'a', 'b');
+
+        // 代替arguments，arguments是一个类数组，不能使用数组方法，十分不便
+        // 访问arguments十分影响性能
+        function fn2(...lits) {
+            // console.log(lits);
+            let sum = 0;
+            for (let v of lits) {
+                sum += v * 1;
+            }
+            console.log(sum);
+        }
+        // fn2(1,2,3);
+
+        // [严格模式]
+        // es6规定函数内使用了默认值、解构赋值、或者扩展运算符，函数内就不能显式设定为严格模式，否则会报错。
+    </script>
+</body>
+
+</html>

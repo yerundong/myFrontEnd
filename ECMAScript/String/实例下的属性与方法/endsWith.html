@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // [endsWith(substring, position)]
+        // 返回布尔值，表示参数字符串是否在源字符串特定部位的尾部
+        // substring  字符串值,必填,要检测的字符串值
+        // position  索引位置，选填，指定[从0位置到该位置之间(不包含该位置)]进行检测，省略默认为length
+        let str = 'abcde';
+        let s1 = str.endsWith('e');
+        let s2 = str.endsWith('cde');
+        let s3 = str.endsWith('c');
+        let s4 = str.endsWith('c', 3);
+        console.log(s1);// true
+        console.log(s2);// true
+        console.log(s3);// false
+        console.log(s4);// true
+    </script>
+</body>
+</html>

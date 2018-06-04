@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 使用var 定义变量的时候，在整个循环中是全局的，每一次的循环实际上是为i赋值，循环一次赋值一次，10次循环完成，i最后的结果赋值就为10；取arr[5]的值，就是被最终赋值的i，就是10；
+        for (var i = 1; i <= 3; i++) {
+            // 事件处理器在线程空闲之前不会运行。
+            setTimeout(function () {
+                console.log(i);
+            }, 0);
+        };
+        // 4 4 4
+
+        // 把i存入函数作用域内
+        for (var i = 1; i <= 3; i++) {
+            (function (a) {
+                setTimeout(function () {
+                    console.log(a); //
+                }, 0);
+            })(i);
+        };
+        // 1 2 3
+
+        // let的作用局的块级作用局，即每次循环的i的作用域就是本次循环，下一次循环重新定义变量
+        for (let i = 1; i <= 3; i++) {
+            // let 声明了一个块级域的局部变量，并且可以给它一个初始化值。
+            setTimeout(function () {
+                console.log(i);
+            }, 0);
+        };
+        // 1 2 3
+
+         // 用let在全局下声明，与var一样
+        let n;
+        for (n = 1; n <= 3; n++) {
+            setTimeout(function () {
+                console.log(n);
+            }, 0);
+        };
+        // 4 4 4
+    </script>
+</body>
+
+</html>

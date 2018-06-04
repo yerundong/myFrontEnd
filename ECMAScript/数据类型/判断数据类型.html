@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>判断数据类型</title>
+</head>
+
+<body>
+    <script>
+        const str1 = 'a';
+        const str2 = new String('b');
+        const num1 = 123;
+        const num2 = new Number(123);
+        const arr1 = [1, 21, 3];
+        const arr2 = new Array([1, 21, 3]);
+        const obj1 = { a: 1 };
+        const obj2 = new Object({ a: 1 });
+        const fn1 = function () { };
+        const fn2 = new Function();
+        const bool1 = true;
+        const bool2 = new Boolean(true);
+        const sym = Symbol('abc');
+
+
+        // [typeof]
+        // console.log(typeof str1);// string
+        // console.log(typeof str2);// object
+
+        // console.log(typeof num1);// number
+        // console.log(typeof num2);// object
+
+        // console.log(typeof arr1);// object
+        // console.log(typeof arr2);// object
+
+        // console.log(typeof obj1);// object
+        // console.log(typeof obj2);// object
+
+        // console.log(typeof fn1);// function
+        // console.log(typeof fn2);// function
+
+        // console.log(typeof bool1);// boolean
+        // console.log(typeof bool2);// object
+
+        // console.log(typeof sym);// symbol
+
+        // console.log(typeof undefined);// undefined
+        // console.log(typeof null);// object
+
+        // [instanceof]
+        // 判断一个对象是否为某一数据类型，或一个变量是否为一个对象的实例
+        // console.log(str1 instanceof String);// false
+        // console.log(str2 instanceof String);// true
+
+        // console.log(num1 instanceof Number);// false
+        // console.log(num2 instanceof Number);// true
+
+        // console.log(arr1 instanceof Array);// true
+        // console.log(arr2 instanceof Array);// true
+
+        // console.log(obj1 instanceof Object);// true
+        // console.log(obj2 instanceof Object);// true
+
+        // console.log(fn1 instanceof Function);// true
+        // console.log(fn2 instanceof Function);// true
+
+        // console.log(bool1 instanceof Boolean);// false
+        // console.log(bool2 instanceof Boolean);// true
+
+        // console.log(sym instanceof Symbol);// false
+
+        // console.log(undefined instanceof Object);// false
+        // console.log(null instanceof Object);// false
+
+        // [constructor]
+        // console.log(str1.constructor === String);// true
+        // console.log(str2.constructor === String);// true
+
+        // console.log(num1.constructor === Number);// true
+        // console.log(num2.constructor === Number);// true
+
+        // console.log(arr1.constructor === Array);// true
+        // console.log(arr2.constructor === Array);// true
+
+        // console.log(obj1.constructor === Object);// true
+        // console.log(obj2.constructor === Object);// true
+
+        // console.log(fn1.constructor === Function);// true
+        // console.log(fn2.constructor === Function);// true
+
+        // console.log(bool1.constructor === Boolean);// true
+        // console.log(bool2.constructor === Boolean);// true
+
+        // console.log(sym.constructor === Symbol);// true
+
+        // console.log(undefined.constructor);// 报错
+        // console.log(null.constructor);// 报错
+
+        // [Array.isArray()] 		
+        //  console.log(Array.isArray(arr1));// true
+        //  console.log(Array.isArray(arr2));// true
+
+        // [isNaN()]
+        // 是否为 非数字类型
+        // console.log(isNaN(num1));// false
+        // console.log(isNaN(num2));// false
+        // console.log(isNaN(obj1));// true
+
+        let arr = [1, 1, 2, 2, 2, 3, 3];
+        // let arr_ = [...new Set(arr)];
+        let rnum = [];
+        for (let i = 0; i < 50000; i++) {
+            rnum.push(Math.ceil(Math.random()*10000));
+        }
+        // console.log(rnum);
+    </script>
+</body>
+
+</html>

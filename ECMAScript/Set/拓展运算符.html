@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 用于函数调用,将一个Set数据，变为[参数序列]，如数组的的拓展运算符一样
+        const set1 = new Set([1, 2, 3]);
+        function fn(a, b, c) {
+            console.log(a, b, c)
+        }
+        // fn(0, ...set1);// 0 2 3
+
+        // 转换成数组
+        // 实质是内部使用for...of循环，任何具有iterator的数据均可以做到
+        const arr1 = [...set1];
+
+        // [数组去重]
+        // 利用set值不重复的特性，通过拓展运算符，再转成数组
+        const set2 = new Set([1, 2, 3, 3, 4, 4, 5]);
+        const arr2_1 = [...set2];
+        const arr2_2 = new Array(...set2);
+        const arr2_3 = Array.from(set2);
+        // console.log(arr2_1);// [1, 2, 3, 4, 5]
+        // console.log(arr2_2);// [1, 2, 3, 4, 5]
+        // console.log(arr2_3);// [1, 2, 3, 4, 5]
+
+        // 由于Set与数组转换方便，数组的方法也可以[间接]用于Set了，如map和filter
+        let set3 = new Set([1, 2, 3]);
+        set3 = new Set([...set3].map(x => x * 2));
+        // console.log(set3);// {2, 4, 6}
+    </script>
+</body>
+
+</html>

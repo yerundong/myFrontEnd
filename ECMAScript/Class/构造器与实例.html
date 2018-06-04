@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<script type="text/javascript">
+			// constructor方法是类的默认方法，通过new命令生成对象实例时，自动调用该方法
+			// 一个类必须有constructor方法，如果没有显式定义，一个空的constructor方法会被[默认添加]
+			class Cla1{
+				printSomething(){
+					console.log('printSomething')
+				}
+			}
+			const cla1_INSTANCE = new Cla1();
+			// console.log(cla1_INSTANCE);
+			// cla1_INSTANCE.printSomething();
+
+			// constructor方法默认返回实例对象（即return this）,不需要手动return
+			// 若返回其他对象，将导致实例对象不是该类的实例,也无法继承类的原型
+			class Cla2{
+				constructor(x, y){
+					this.x = x;
+					this.y = y;
+					return {a: 1}
+				}
+				printSomething(){
+					console.log('printSomething')
+				}
+			}
+			const cla2_INSTANCE = new Cla2();
+			// console.log(cla2_INSTANCE);// {a: 1}
+			// cla2_INSTANCE.printSomething();// 报错
+
+			// 构造函数里用this定义的属性与方法是属于[实例自身的属性],而类原型上的属性，实例这是通过[继承]存放在__proto__对象里
+			class Cla3{
+				constructor(x, y, z){
+					this.x = x;
+					this.y = y;
+				}
+				printSomething(){
+					console.log('printSomething');
+				}
+			}
+			const cla3_INSTANCE = new Cla3(1, 2);
+			// console.log(cla3_INSTANCE);
+			// console.log(cla3_INSTANCE.hasOwnProperty('x'));// true
+			// console.log(cla3_INSTANCE.hasOwnProperty('printSomething'));// false
+
+			// __proto__ 并不是语言本身的特性，这是各大厂商具体实现时添加的私有属性,不推荐使用
+			// 避免对环境产生依赖,可以使用 Object.getPrototypeOf方法来获取实例对象的原型(即构造函数的prototype属性)
+			const cla3_INSTANCE_prototype = Object.getPrototypeOf(cla3_INSTANCE);
+			// 然后再根据需求修改添加原型属性、方法
+			cla3_INSTANCE_prototype.makeMoreTime = ()=>{
+				// console.log('Make More Time');
+			}
+			// console.log(cla3_INSTANCE_prototype);	
+			// cla3_INSTANCE.makeMoreTime();
+
+			// [class表达式]
+			// 与函数一样，类也可以使用表达式的形式定义
+			// 注意，这个类的名字是myCla4而不是Cla4,Cla4只在 Class的内部代码可用，指代[当前类]
+			const MyCla4 = class Cla4{
+				constructor(x, y, z){
+					this.x = x;
+					this.y = y;
+				}
+				printSomething(){
+					console.log(Cla4);
+					console.log(Cla4.prototype);
+				}
+			}
+			// const cla4_INSTANCE = new Cla4(1, 2);// 报错 Cla4非类名
+			const cla4_INSTANCE = new MyCla4(1, 2);
+			// console.log(cla4_INSTANCE);
+			// cla4_INSTANCE.printSomething()
+			
+			// 如果内部不需要使用Cla4，可以省略，如：
+			// const MyCla4 = class{...}
+			
+			// 采用 Class表达式，可以写出立即执行的 Class,匿名class
+			const cla5_INSTANCE = new class{
+				constructor(x, y){
+					this.x = x;
+					this.y = y;
+				}
+				printSomething(){}
+			}
+			// console.log(cla5_INSTANCE);
+
+			
+		</script>
+	</body>
+</html>

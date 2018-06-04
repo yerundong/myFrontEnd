@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 正则表达式（Regular Expression，简写为regExp或RE）一种描述字符串模式的对象。
+        // 1.字面量创建RegExp对象
+        // 语法：/pattern/modifiers
+        /**
+         * @param pattern - 模式 
+         * @param [modifiers] - 修饰符
+         */
+
+        const re1 = /a/;
+        // console.dir(re1);// /a/
+        // RegExp对象是一个object类型的数据
+        // console.log(typeof re1);// object
+        // console.log(re1.constructor);// RegExp
+
+        // 2.构造函数创建RegExp对象
+        // 语法：RegExp(pattern|RegExp, modifiers)
+        /**
+         * @param pattern|RegExp - 模式或另一个正则对象
+         * @param [modifiers] - 修饰符，将覆盖第一个正则对象的修饰符 
+         */
+        const re2 = new RegExp('a');
+        const re3 = new RegExp(/a/i, 'ig');
+        const re4 = new RegExp(re2, 'ig');
+        // console.dir(re2);
+        // console.dir(re3);
+        // console.dir(re4);
+    </script>
+</body>
+
+</html>∏

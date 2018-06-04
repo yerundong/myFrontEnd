@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // [super]
+        // super即是超类（父类）的构造函数（constructor），但this指向的是子类的实例对象
+        // 子类的构造函数（constructor）里必须执行一次父类的构造函数（constructor），即super，才能完成继承
+        // super[必须且只能]执行一次，而且只能用在子类的构造函数之中，否则报错
+        // super执行返回子类对象，如果不调用super方法，子类就得不到更无法使用this对象，因为子类实例的构建，是基于对父类实例加工
+        class Sup1 {
+            constructor(a) {
+                this.a = a;
+                this.b = 2;
+            }
+            f1() {
+                console.log('f1')
+            }
+        }
+        
+        // 这种写法其实是简写
+        // class Sub1 extends Sup1 {}
+        // 等同于：
+        class Sub1 extends Sup1 {
+            constructor(a) {
+                super(a);
+            }
+        }
+        const Sub1_INSTANCE = new Sub1(1);
+        // console.log(Sub1_INSTANCE);
+
+        // super关键字除了当函数执行，还可以当对象使用
+        // super对象即是this，this === super，也即是子类实例对象，但是super无法单独使用
+        class Sup2 {
+            constructor(a) {
+                this.a = a;
+                this.b = 2;
+            }
+            f1() {
+                console.log(this.a)
+            }
+        }
+        class Sub2 extends Sup2 {
+            constructor(a) {
+                super(a);
+                // this指向Sub2_INSTANCE
+                // console.log(this);// Sub2_INSTANCE
+
+                // super对象
+                // console.log(super);// 无法单独使用 报错
+                // console.log(super.__proto__ === this.__proto__);// true
+                // console.log(super.__proto__ === Sub2.prototype);// true
+                // console.log(this.__proto__.__proto__ === Sup2.prototype);// true
+            }
+        }
+        const Sup2_INSTANCE = new Sup2(1);
+        const Sub2_INSTANCE = new Sub2(2);
+        // console.log(Sup2_INSTANCE);
+        // console.log(Sub2_INSTANCE);
+
+        // 子类除了可以继承父类属性与方法，还可以拥有自身的属性与原型下的方法，且不影响到父类
+        class Sup3 {
+            constructor(a) {
+                this.a = a;
+                this.x = 'x';
+            }
+            f1() {
+                console.log(this.a)
+            }
+        }
+        class Sub3 extends Sup3 {
+            constructor(a, b) {
+                super(a);
+                // 以下为子类自身的、非继承的属性
+                this.b = b;
+                this.y = 'y';
+            }
+            // 子类原型下的方法，即Sub3.prototype
+            f2(){
+                console.log(this.b)
+            }
+        }
+        const Sup3_INSTANCE = new Sup3(1);
+        const Sub3_INSTANCE = new Sub3(2, 3);
+        // console.log(Sup3_INSTANCE);
+        // console.log(Sub3_INSTANCE);
+        // Sub3_INSTANCE.f2();// 3
+    </script>
+</body>
+</html>
