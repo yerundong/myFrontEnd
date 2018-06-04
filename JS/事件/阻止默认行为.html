@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        ul{border:1px solid black;margin: 0;padding:10px;width:80px;height:100px;position: absolute;list-style: none;
+        display: none;cursor: pointer;}
+    </style>
+    <script>
+        //【W3C】【preventDefault】
+        //【IE】【returnValue=false】
+        //【阻止默认行为兼容封装】：
+        function preDef(evt){
+            var ev = evt||event;
+            if(ev.preventDefault){
+                return ev.preventDefault();
+            }else if(ev.returnValue = false)
+                return ev.returnValue = false;
+        }
+
+        addEvent(window,'load', function () {
+            var oA = document.getElementsByTagName('a')[0];
+            var oUl = document.getElementsByTagName('ul')[0];
+
+            oA.onclick = function () {
+                //return false;//有缺陷，阻止了return false后面的语句执行；
+                //alert();
+            };
+            addEvent(oA,'click',function(evt){
+                //var ev = evt || event;
+                //ev.preventDefault();//支持标准浏览器及IE8以上浏览器
+                //ev.returnValue=false//仅支持IE8及以下浏览器
+                preDef(evt);
+            });
+            //【取消默认右键菜单，自定义菜单】
+            addEvent(oA,'contextmenu',function(evt){
+                var ev = evt||event;
+                preDef(evt);
+                var x = ev.clientX;
+                var y = ev.clientY;
+                if(oUl.style.display = 'none'){
+                    oUl.style.display = 'block';
+                    oUl.style.left = x + 'px';
+                    oUl.style.top = y + 'px';
+                }
+                addEvent(document,'mousedown',function(){
+                    oUl.style.display = 'none';
+                })
+             });
+        });
+
+        //【兼容封装：获取鼠标事件对象中的button属性值】
+        function getBtn(e){
+            if(e){
+                return e.button;
+            }
+            else if(window.event){
+                switch (event.button){
+                    case 1:
+                        return 0;
+                    case 4:
+                        return 1;
+                    case  2:
+                        return 2;
+                }
+            }
+        }
+        //1跨浏览器事件添加：
+        function addEvent(obj,evt,fn){
+            if(obj.addEventListener){
+                obj.addEventListener(evt,fn,false);
+            }else if(obj.attachEvent){
+                obj.attachEvent('on'+evt,fn);
+            }
+        }
+        //2跨浏览器事件删除：
+        function removeEvent(obj,evt,fn){
+            if(obj.removeEventListener){
+                obj.removeEventListener(evt,fn,false);
+            }else if(obj.detachEvent){
+                obj.detachEvent('on'+evt,fn);
+            }
+        }
+        //3跨浏览器 获取事件目标对象：
+        function getTarget(evt){
+            if(evt.target){
+                return evt.target;
+            }else if(window.event.srcElement){
+                return window.event.srcElement;
+            }
+        }
+    </script>
+</head>
+<body>
+    <a href="www.baidu.com">跳转到百度</a>
+    <ul>
+        <li>aaaa</li>
+        <li>bbbb</li>
+        <li>cccc</li>
+    </ul>
+</body>
+</html>

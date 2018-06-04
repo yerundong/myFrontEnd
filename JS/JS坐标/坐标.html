@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        *{margin: 0;padding: 0}
+        .a{width: 400px;height: 400px;background: red;margin: 0 auto;border:5px solid black;color: blue;font-size: 20px;text-align: center}
+        .b{width: 600px;height: 400px;background: greenyellow;margin-left:400PX;position:relative;color: red;font-size: 20px;text-align: center}
+        .c{width: 200px;height: 200px;background: blue;margin:50px;border-left:30px solid black;border-top:20px solid lightyellow;float: left;color: yellow;font-size: 20px;}
+        .d{width: 400px;height: 250px;background: deepskyblue;position:absolute;left:50px;top:50px;color: orangered;font-size: 20px;text-align: center}
+    </style>
+    <script>
+    window.onload = function(){
+        var oA = document.getElementsByTagName('div')[0];
+        var oB = document.getElementsByTagName('div')[2];
+        var oC = document.getElementsByTagName('div')[1];
+        var oD = document.getElementsByTagName('div')[3];
+
+        //【client】
+        var DocCLI_H = document.documentElement.clientHeight;//浏览器可视区高、宽（不包括滚动条、工具栏）
+        var DocCLI_W = document.documentElement.clientWidth;
+
+        var ACli_H = oA.clientHeight;//= height + padding;盒子a的内容高、宽度 (不包括盒子border厚度)
+        var ACli_W = oA.clientWidth;//= width + padding;
+
+        var CClie_T = oC.clientTop;//盒子b周围边框的厚度
+        var CClie_L = oC.clientLeft;
+
+        //event.clientX/Y   相对于【浏览器可视区】的偏移量，属于事件对象属性
+        //event.screenX/Y   相对于【相对于电脑屏幕】的偏移量，属于事件对象属性
+
+        //【offset】
+        var Aoff_H = oB.offsetHeight;//= height + padding + border;盒子a的绝对高、宽度 （包含border厚度）
+        var Aoff_W = oB.offsetWidth;
+
+        var Boff_L = oB.offsetLeft;//盒b距离可视区边框水平/垂直位置距离；盒子b父对象为document
+        var Boff_T = oB.offsetTop;
+        var Doff_L = oD.offsetLeft;//盒d距离盒b的水平/垂直位置距离；盒d定位于盒b，所以盒b为盒d的父对象；
+        var Doff_T = oD.offsetTop;
+        var Coff_L = oC.offsetLeft;//盒c距离可视区边框水平/垂c直位置距离；盒子c父对象为document
+        var Coff_T = oC.offsetTop;
+        //event.offsetX/Y   相对于【事件源对象】的偏移量,也就是元素坐标，相对坐标。
+
+        document.onclick = function(ev1){
+            //console.log("浏览器可视区高、宽：" + DocCLI_H + "、" + DocCLI_W);
+            //console.log("盒a的内容高、宽：" + ACli_H + "、" + ACli_W);
+            //console.log("盒c左边框厚度：" + CClie_T);
+            //console.log("盒c上边框厚度：" + CClie_L);
+            //console.log("相对于可视区的偏移量：" + ev1.clientX + "、" + ev1.clientY);
+            //console.log("相对于电脑屏幕的偏移量：" + ev1.screenX + "、" + ev1.screenY);
+            //console.log("鼠标相对于事件源对象的偏移量：" + ev1.offsetX + "、" + ev1.offsetY);
+            //console.log("盒a的绝对高、宽：" + Aoff_H + "、" + Aoff_W);
+            //console.log("盒b距离可视区水平、垂直距离：" + Boff_L + "、" + Boff_T);
+            //console.log("盒d距离盒b的水平/垂直位置距离：" + Doff_L + "、" + Doff_T);
+            //console.log("盒c距离可视区水平、垂直距离：" + Coff_L + "、" + Coff_T);
+
+        };
+
+        /*oB.onclick = function(ev1){
+            console.log("相对于可视区的偏移量：" + ev1.clientX + "、" + ev1.clientY);
+            console.log("鼠标相对于事件源对象的偏移量：" + ev1.offsetX + "、" + ev1.offsetY);
+        }*/
+    };
+    </script>
+</head>
+<body>
+    <div class="a">
+        盒子a
+        <div class="c">
+            盒子c
+        </div>
+    </div>
+    <div class="b" style="width: 600px">盒子b
+        <div class="d">盒子d</div>
+    </div>
+
+</body>
+</html>

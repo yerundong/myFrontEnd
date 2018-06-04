@@ -1,0 +1,23 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8" />
+	<title>Document</title>
+</head>
+<body>
+	<script type="text/javascript">
+		function textFormat(txt) {
+			if(txt.search('<br>') > -1 || txt.search('&nbsp;') > -1) {
+				txt = txt.replace(/\<br>/gi, '\r');
+				txt = txt.replace(/\<br>/gi, '\n');
+				txt = txt.replace(/\&nbsp;/gi, ' ');
+			} else {
+				txt = txt.replace(/\r/gi, '<br>');
+				txt = txt.replace(/\n/gi, '<br>');
+				txt = txt.replace(/\ /gi, '&nbsp;');
+			}
+			return txt;
+		}
+	</script>
+</body>
+</html>

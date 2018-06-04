@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src = "jquery-1.11.3.js"></script>
+    <script>
+        $(function(){
+//********************【筛选--过滤】*****************************
+            //【eq(index|-index)】 获取第N个元素 [可正可负]
+            //$('ul li').eq(2).css('background','pink');
+            //$('ul li').eq(-1).css('background','pink');
+            //【first()】 获取第一个元素
+            //$('ul li').first().css('background','pink');
+            //【last()】 获取最后一个元素
+            //$('ul li').last().css('background','pink');
+            //【hasClass(class)】 检查当前的元素是否含有某个特定的类，如果有，则返回true。
+            //alert($('ul li').eq(2).hasClass('li3'));//true
+            //【filter(expr|obj|ele|fn)】筛选出与指定表达式匹配的元素集合。
+            // 这个方法用于缩小匹配的范围。用逗号分隔多个表达式
+            //expr:一个用于匹配元素的选择器字符串。[.li3,#id,li]
+            // jq obj:[现有的jQuery对象]，以匹配当前的元素。[:eq(2),:first]
+            // ele:一个用于匹配元素的DOM元素[$('oLi')]
+            // function(index) :一个函数用来作为测试元素的集合。它接受一个参数index，这是元素在jQuery集合的索引。在函数， this指的是当前的DOM元素
+
+            //$('ul li').filter('.li3').css('background','pink');
+            //$('ul li').filter(':first').css('background','pink');
+            //$('ul li').filter($('.li3')).css('background','pink');
+            /*$('ul li').filter(function(index) {
+                return $(this).attr('class') == 'li3';//return index%2 == 0;
+            }).css('background','pink');*/
+            //【a.is(selector|obj|ele|fn)】判断a是否存在于某集合。
+            //alert($("span:eq(0)").is('span'));//true
+            //alert($("span").is('span:eq(0)'));//true
+            //【map(callback)】将一组元素转换成其他数组（不论是否是元素数组）
+            //
+//********************【筛选--查找】*****************************
+            //【children([expr])】取得一个包含匹配的元素集合中每一个元素的所有[子元素]的元素集合。
+            //$('ul').children().css('background','pink');
+            //$('ul').children('.li3').css('background','pink');
+            //【a.closest(b)】从a元素开始，逐级向[上级]元素匹配，匹配第一个的b元素
+            //$('a').closest('ul').css('border','1px solid red');
+            //$('ul').css('color','red');
+            //【find(expr,[context]|object|element)】搜索所有与指定表达式匹配的元素。这个函数是找出正在处理的元素
+            // 的后代元素的好方法。
+            //$('ul:eq(0)').find('.li3').css('background','pink');
+            //【next([expr])】取得一个包含匹配的元素集合中每一个元素紧邻的后面同辈元素的元素集合。
+            //$('li:eq(0)').next().css('background','pink');
+            //$('li:eq(0)').next('li').css('background','pink');
+            //【nextAll([expr])】以下所有兄弟
+            //$('li:eq(0)').nextAll().css('background','pink');
+            //$('li:eq(0)').nextAll('span').css('background','pink');
+            //【a.nextUntil(b)】a元素(不包括a)往下的所有兄弟，直遇到b元素(不包括b)停下
+            //$('li:eq(0)').nextUntil('li:eq(4)').css('background','pink');
+            //$('li:eq(0)').nextUntil(3,'span').css('background','pink');????????????
+            //【offsetParent()】匹配最近一个拥有定位属性的父节点。
+            //$('li:eq(0)').offsetParent().css('background','pink');
+            //【parent()】匹配父子找爸爸
+            //$('p').parent().css('background','pink');
+            //$('p').parent('.li2').css('background','pink');
+            //【parents()】匹配祖孙找祖先
+            //$('p').parents('[style]').css('background','pink');
+            //【parentsUntil([expr|element][,filter])】匹配祖孙找祖先，直到遇到匹配的那个祖先为止(不包括那个祖先)。
+            //如果没有遇到终止祖先的，则一直延续到根节点
+            //$('p').parentsUntil('body').css('background','pink');
+            //$('p').parentsUntil('div').css('background','pink');
+            //【prev([expr])】a.prev(c)获取a上一个c元素。如果上一个不是c元素，则不匹配
+            //$('span:eq(1)').prev().css('background','pink');//c不填，默认是a
+            //$('span:eq(1)').prev('a').css('background','pink');
+            //【prevAll([expr])】a.prevAll(c)查找a元素之前所有c元素
+            //$('span:eq(2)').prevAll().css('background','pink');//c不填，默认是a
+            //$('span:eq(2)').prevAll('li').css('background','pink');
+            //【prevUntil([exp|ele][,fil])】a.prevUntil(c)查找a元素之前所有的同辈元素，直到遇到c元素为止。
+            //$('span:eq(2)').prevUntil('span:first').css('background','pink');
+            //$('span:eq(2)').prevUntil().css('background','pink');//c不填，默认是全部
+            //【siblings([expr])】a.siblings(c)除了a的所有c元素
+            //$('span:eq(0)').siblings().css('background','pink');//c不填，默认是全部兄弟元素
+            //$('span:eq(0)').siblings('li').css('background','pink');
+//********************【筛选--串联】*****************************
+            //【add(expr|ele|html|obj[,con]))】为匹配的元素添加一个或者多个元素
+            //$('span:eq(0)').add('a:eq(0)').css('background','pink');
+            //【add(expr|ele|html|obj[,con]))】加入[先前所选]的加入当前元素中(可以使用多次)
+            //$('ul:eq(0)').find('li:first').andSelf().css('border','1px solid red');
+            //【contents()】查找匹配元素内部所有的子节点（包括文本节点）。如果元素是一个iframe，则查找文档内容
+            //$('span').contents('a').css('background','pink').css('fontSize','25px');
+            //$('span').contents().css('background','pink').css('fontSize','25px');
+            //【end()】回到最近的一个"破坏性"操作之前。即，将匹配的元素列表变为【上一级】的状态。【每筛选一次为一级】
+            //$('div p span').find('a').css('background','red').end().css('background','pink');
+            // end()后选中$('div p span')
+            //$('div').eq(1).find('p').find('span').find('a').css('background','red').end().css('background','pink');
+            //end()后选中$('div').eq(1).find('p').find('span')
+            //$('div').eq(1).find('p').find('span').find('a').css('background','red').end().end().css('background','pink');//可以多次返回上一级
+
+
+        });
+    </script>
+</head>
+<body>
+    <div>233333333</div>
+    <ul style="position: relative">
+        <li class="li1">1 <p>1111111111111111</p></li>
+        <li class="li2">2 <p>2222222222222222</p></li>
+        <li class="li3">3</li>
+        <li>4</li>
+        <li>5</li>
+        <span>11</span>
+        <a>454545454</a>
+        <span>22</span>
+        <span>33</span>
+    </ul>
+    <div>dddddddddd
+        <p>pppppp
+            <span>ssssssss
+                <a>aaaaaaaaaa</a>
+                <b>bbbbbbbbbb</b>
+            </span>
+        </p>
+    </div>
+</body>
+</html>

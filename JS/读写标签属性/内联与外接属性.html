@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <link href="style1.css" title="外接样式" rel="stylesheet" type="text/css">
+    <style title="">
+        .bbb{width: 300px;height: 120px;background: lightpink;}
+    </style>
+    <script>
+        window.onload = function(){
+            var oLink = document.getElementsByTagName('link')[0];
+            //alert(oLink);//[object HTMLLinkElement]
+            var oStyle = document.getElementsByTagName('style')[0];
+            //alert(oStyle);//[object HTMLStyleElement]
+            var sheet1 = oLink.sheet;// IE8及以下用oLink.styleSheet;
+            var sheet2 = oStyle.sheet;// IE8及以下用oStyle.styleSheet;
+            //IE8及以下不支持
+            //alert(sheet1);//[object CSSStyleSheet]
+            //alert(sheet2);//[object CSSStyleSheet]
+            //跨浏览器兼容写法
+            var sheet3 = oStyle.sheet || oStyle.styleSheet;
+            var sheet4 = oLink.sheet || oLink.styleSheet;
+            //alert(sheet3);
+            //alert(sheet4);
+            //【disabled】样式是否被禁用【默认是false】
+            //alert(sheet3.disabled);//false
+            //sheet3.disabled = true;//禁用内联样式
+            //sheet4.disabled = true;//禁用外接样式
+            //获取【外接样式路径】
+            //alert(sheet4.href);
+            //获取【样式标题】
+            //alert(sheet3.title);//或者alert(oStyle.title);
+            //alert(sheet4.title);//或者alert(oLink.title);
+            //获取【样式规则】:IE8及以下不支持
+            //alert(sheet3.cssRules);//[object CSSRuleList] 集合
+            //alert(sheet4.cssRules);//[object CSSRuleList] 集合
+            //alert(sheet4.cssRules[0]);//[object CSSRule]
+            //cssText：获取当前规则对应的文本
+            //alert(sheet3.cssRules[0].cssText);//
+            //alert(sheet4.cssRules[0].cssText);//.bbb { color: purple; font-size: 35px; line-height: 120px; text-align: center;
+            //alert(sheet3.cssText);//仅IE支持
+            //alert(sheet4.cssText);//仅IE支持
+            //获取样式规则【兼容写法】
+            //alert(sheet3.cssText||sheet3.cssRules[0].cssText);
+            //删除【样式规则】:IE8及以下不支持
+            //sheet3.deleteRule(0);//删除内联样式  IE sheet3.removeRule(0);
+            //sheet4.deleteRule(0);//删除外联样式  IE  sheet4.removeRule(0);
+            //删除样式规则【兼容写法】?????
+
+            //添加【样式规则】:IE8及以下不支持
+//            sheet3.insertRule('.bbb{background:green}',1);//1代表插入的位置，覆盖了前面的样式
+//            sheet4.insertRule('.bbb{color:red}',1);// IE
+                sheet4.addRule('.bbb','color:red',1);
+        }
+    </script>
+</head>
+<body>
+    <div id="aaa" class="bbb">
+        hello world！！
+    </div>
+</body>
+</html>

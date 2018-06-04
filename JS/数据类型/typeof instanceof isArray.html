@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script>
+        var arr = [1,21,3];
+        var obj = {};
+        var fn = function () {};
+        var str = new String('a');
+        var num = 123;
+//============instanceof
+        //alert(typeof arr);//object
+        //alert(typeof obj);//object
+        //alert(typeof fn);//function
+        //alert(typeof str);//object
+        //alert(typeof num);//number
+//============instanceof    
+        //alert(obj instanceof Object);//true
+		//alert(fn instanceof Object);//true
+		//alert(arr instanceof Object);//true
+		//alert(str instanceof String);//true
+		//alert(str instanceof Object);//true
+        //alert(arr instanceof Array);//true 
+        //alert(fn instanceof Function);//true 
+        //alert(arr instanceof String);//false
+        //alert(num instanceof false);//false
+//============constructor      
+		//alert(arr.constructor==Array);//true
+		//alert(obj.constructor==Object);//true
+		//alert(fn.constructor==Function);//true
+		//alert(str.constructor==String);//true
+		//alert(num.constructor==Number);//true
+//============isArray 		
+        //alert(Array.isArray(arr));//true 二、只能判断是否是数组(方法)
+
+
+    </script>
+</head>
+<body>
+
+</body>
+</html>

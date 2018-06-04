@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script>
+    	//onscroll：存在滚动条并且滚动条出现滚动时（滚轮或拖动）触发
+    	document.onscroll = function(evt){ 
+            //console.log(1)
+        };
+        //onmousewheel/DOMMouseScroll:不管存不存在滚动条，滚动滚轮即触发
+        //【mousewheel】(非火狐)和【DOMMouseScroll】(火狐)，鼠标滚轮【滚动之前触发一次】
+        addEvent(document,'mousewheel', function (evt) {//(非火狐)120
+            var ev = evt || window.event;
+            //alert('鼠标滚动触发了我！');
+            //alert(ev.wheelDelta);
+            //alert(getWD(evt));
+            console.log(getWD(evt))
+        });
+        addEvent(document,'DOMMouseScroll', function (evt) {//{(火狐)-3
+            var ev = evt || window.event;
+            //alert('鼠标滚动触发了我！');
+            //alert(ev.detail);
+            //alert(getWD(evt));
+            console.log(getWD(evt))
+        });
+        //【兼容封装】：跨浏览器获取鼠标上下【滚动距离】
+        function getWD(evt){
+            var ev = evt || window.event;
+            if(ev.wheelDelta){
+                return ev.wheelDelta;
+            }else if(ev.detail){
+                return -ev.detail*40;//同意变成向上120，向下-120
+            }
+        }
+
+        //添加事件
+        function addEvent(obj,evt,fn){
+            if(obj.addEventListener){
+                obj.addEventListener(evt,fn,false);
+            }else if(obj.attachEvent){
+                obj.attachEvent('on'+evt,fn);
+            }
+        }
+    </script>
+</head>
+<body>
+    <div>asdkjhalksdh</div>
+    <div>asdkjhalksdh</div>
+    <div>asdkjhalksdh</div>
+    <div>asdkjhalksdh</div>
+    <div>asdkjhalksdh</div>
+    <div>asdkjhalksdh</div>
+    <div>asdkjhalksdh</div>
+    <div>asdkjhalksdh</div>
+    <div>asdkjhalksdh</div>
+    <div>asdkjhalksdh</div>
+    <div>asdkjhalksdh</div>
+    <div>asdkjhalksdh</div>
+    <div>asdkjhalksdh</div>
+    <div>asdkjhalksdh</div>
+    <div>asdkjhalksdh</div>
+    <div>asdkjhalksdh</div>
+    <div>asdkjhalksdh</div>
+    <div>asdkjhalksdh</div>
+    <div>asdkjhalksdh</div>
+    <div>asdkjhalksdh</div>
+    <div>asdkjhalksdh</div>
+    <div>asdkjhalksdh</div>
+    <div>asdkjhalksdh</div>
+    <div>asdkjhalksdh</div>
+    <div>asdkjhalksdh</div>
+    <div>asdkjhalksdh</div>
+    <div>asdkjhalksdh</div>
+    <div>asdkjhalksdh</div>
+    <div>asdkjhalksdh</div>
+    <div>asdkjhalksdh</div>
+    <div>asdkjhalksdh</div>
+    <div>asdkjhalksdh</div>
+    <div>asdkjhalksdh</div>
+    <div>asdkjhalksdh</div>
+    <div>asdkjhalksdh</div>
+    <div>asdkjhalksdh</div>
+    <div>asdkjhalksdh</div>
+    <div>asdkjhalksdh</div>
+    <div>asdkjhalksdh</div>
+    <div>asdkjhalksdh</div>
+</body>
+</html>

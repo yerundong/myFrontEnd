@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+	<script src="../jquery-1.11.2.min.js" type="text/javascript" charset="utf-8"></script>
+	<style type="text/css">
+		*{
+			margin: 0;paddding:0;user-select: none;
+			
+		}
+		html,body{
+			width: 100%;height: 100%;
+		}
+		.clWin{
+			border: 1px solid #ccc;position: fixed;overflow: hidden;
+		}
+		.active_clWin{
+			z-index: 99999999999999;
+		}
+		.clWin_head{
+			height: 36px;width: 100%;border-bottom: 4px solid #000;box-sizing: border-box;
+		}
+		.clWin_operate{
+			height: 32px;float: right;#333;cursor: default;
+		}
+		.clWin_operate>input{
+			width: 32px;height: 32px;float: right;border: none;background: none;
+			text-align: center;line-height: 32px;margin-left: 1px;outline: none;
+		}
+		.clWin_operate>input:hover{
+			background: #ccc;color: #fff;
+		}
+		.clWin_operate .clWin_close:hover{
+			background: orangered;color: #fff;
+		}
+		.clWin_content{
+			background: silver;
+		}
+		.leftPull,.rightPull,.topPull,.bottomPull{
+			position: absolute;z-index: 999999;/*background: red;*/
+		}
+		.leftPull{
+			
+			width: 3px;
+			height: 100%;
+			left: 0;
+			top: 0;
+			cursor: w-resize;
+		}
+		.rightPull{
+			width: 3px;
+			height: 100%;
+			right: 0;
+			top: 0;
+			cursor: e-resize;
+		}
+		.topPull{
+			height: 3px;
+			width: 100%;
+			left: 0;
+			top: 0;
+			cursor: n-resize;
+		}
+		.bottomPull{
+			height: 3px;
+			width: 100%;
+			left: 0;
+			bottom: 0;
+			cursor: s-resize;
+		}
+		.ltPull,.lbPull,.rtPull,.rbPull{
+			position: absolute;
+			height: 4px;
+			width: 4px;
+			/*background: blue;*/
+			z-index: 99999999;
+		}
+		.ltPull{
+			left: 0;
+			top: 0;
+			cursor: nw-resize;
+		}
+		.lbPull{
+			left: 0;
+			bottom: 0;
+			cursor: sw-resize;
+		}
+		.rtPull{
+			right: 0;
+			top: 0;
+			cursor: ne-resize;
+		}
+		.rbPull{
+			right: 0;
+			bottom: 0;
+			cursor: se-resize;
+		}
+	</style>
+	<body>
+		<!--<div id="clWin" class="clWin">
+			<div class="clWin_head"></div>
+			<div class="clWin_content">
+				<iframe src="open_iframe2.html" frameborder="no"></iframe>
+			</div>
+		</div>-->
+	</body>
+	<script type="text/javascript">
+		function CLWind (wid,hei,lef,top,src,bgcolor,isBig) {
+			this.wid = wid;
+			this.hei = hei;
+			this.lef = lef;
+			this.top = top;
+			this.src = src;
+			this.bgcolor = bgcolor;
+			this.isBig = false || isBig;
+			this.isPickUp = false;
+			this.move_authority = false;
+		}
+		CLWind.prototype = {
+			create:function () {
+				this.wapEle_obj = document.createElement('div');
+				this.$clWin = $(this.wapEle_obj);
+				var html = '<div class="clWin_head" id="clWin_head"><div class="clWin_operate" id="clWin_operate"><input type="button" class="clWin_close" value="X"/><input type="button" class="clWin_resize" value="口"/><input type="button" class="clWin_pickUp" value="_"/></div></div><div class="clWin_content"><iframe src='+this.src+' frameborder="no"></iframe></div><div class="rightPull"></div><div class="leftPull"></div><div class="topPull"></div><div class="bottomPull"></div><div class="rbPull"></div><div class="lbPull"></div><div class="rtPull"></div><div class="ltPull"></div>'
+				this.$clWin.append(html);
+				$('body').append(this.$clWin);
+				this.$clWin_head = this.$clWin.find('.clWin_head');
+				this.$clWin_content = this.$clWin.find('.clWin_content');
+				this.$clWin_operate = this.$clWin.find('.clWin_operate');
+				this.$clWin_close = this.$clWin_operate.find('.clWin_close');
+				this.$clWin_resize = this.$clWin_operate.find('.clWin_resize');
+				this.$clWin_pickUp = this.$clWin_operate.find('.clWin_pickUp');
+				this.$clWin.attr({
+					'class':'clWin'
+				}).css({
+					'width':this.wid,
+					'height':this.hei,
+					'top':this.top,
+					'left':this.lef
+				});
+				this.$clWin_head.css({
+					'background':this.bgcolor
+				});
+				this.content_adapt();
+			},
+			content_adapt:function () {
+				this.$clWin_content.css({
+					'height':this.$clWin.height()-this.$clWin_head.height()
+				})
+			},
+			move:function (mX,mY,offX,offY) {
+				this.$clWin.css({
+					'left':mX-offX,
+					'top':mY-offY
+				})
+			},
+			//win拖动驱动
+			move_trigger:function () {
+				var isMouseDown = false;
+				var mX,mY,offX,offY;
+				var that = this;
+				this.$clWin_head.mousedown(function (e) {
+					that.$clWin.addClass('active_clWin').siblings('.clWin').removeClass('active_clWin');
+					if(getBtn(e)==0){
+						offX = e.offsetX;
+						offY = e.offsetY;
+						isMouseDown = true
+					}
+				}).mouseup(function (e) {
+					if(getBtn(e)==0){
+						that.$clWin_head.css('cursor','default');
+						isMouseDown = false;
+						that.move_authority = false;
+					}
+				}).mouseleave(function () {
+					isMouseDown = false;
+					that.move_authority = false;
+					that.$clWin_head.css('cursor','default');
+				});
+				$(window).mousemove(function (e) {
+					if (isMouseDown && !that.isBig)
+						that.move_authority = true;
+					else
+						that.move_authority = false;
+					if(that.move_authority){
+						mX = e.pageX;
+						mY = e.pageY;
+						that.$clWin_head.css('cursor','all-scroll');
+						that.move(mX,mY,offX,offY);
+					}
+				});
+				this.$clWin_operate.bind('mousemove click',function (e) {
+					isMouseDown = false
+				});
+				this.$clWin.click(function () {
+					$(this).focus()
+				})
+			},
+			close:function(){
+				this.$clWin.remove();
+			},
+			resize:function(w,h,l,t){
+				if(!this.isBig){
+					this.$clWin.css({
+						'width':'100%',
+						'height':'100%',
+						'left':0,
+						'top':0
+					});
+					this.isBig = true;
+				}else{
+					this.$clWin.css({
+						'width':w,
+						'height':h,
+						'left':l,
+						'top':t
+					});
+					this.isBig = false;
+				}
+				this.content_adapt();
+				this.isPickUp = false;
+			},
+			pickUp:function (w,h) {
+				if(!this.isPickUp){
+					this.$clWin.css({
+						'height':this.$clWin_head.height()+4
+					});
+					this.isPickUp = true;
+				}else{
+					this.$clWin.css({
+						'width':w,
+						'height':h
+					});
+					this.isPickUp = false;
+				}
+				this.content_adapt();
+			},
+			operate_trigger:function () {
+				var that = this;
+				this.$clWin_close.click(function () {
+					that.close();
+				});
+				var w,h,l,t;//窗口放大前的大小与位置
+				var w2,h2;//窗口收起前的大小
+				this.$clWin_resize.click(function () {
+					if(!that.isBig && !that.isPickUp){
+						w = that.$clWin.width();
+						h = that.$clWin.height();
+						l = that.$clWin.offset().left;
+						t = that.$clWin.offset().top;
+						that.resize();
+					}else if(!that.isBig && that.isPickUp){
+						w = w2;
+						h = h2;
+						l = that.$clWin.offset().left;
+						t = that.$clWin.offset().top;
+						that.resize();
+					}else{
+						that.resize(w,h,l,t);
+					}
+				});
+				this.$clWin_pickUp.click(function () {
+					if(!that.isPickUp){
+						w2 = that.$clWin.width();
+						h2 = that.$clWin.height();
+						that.pickUp();
+					}else{
+						that.pickUp(w2,h2);
+					}
+				})
+				$(window).resize(function () {
+					that.content_adapt(w,h);
+				})
+			},
+			//总开关
+			riseUp:function () {
+				this.create();
+				this.move_trigger();
+				this.operate_trigger();
+			}
+		}
+		//【兼容封装：获取鼠标事件对象中的button属性值】
+        function getBtn(e){
+            if(e){
+                return e.button;
+            }
+            else if(window.event){//IE
+                switch (event.button){
+                    case 1:
+                        return 0;
+                    case 4:
+                        return 1;
+                    case  2:
+                        return 2;
+                }
+            }
+        }
+		var clWind1 = new CLWind(500,300,300,300,'open_iframe2.html','#eee');
+		clWind1.riseUp();
+		
+		var clWind2 = new CLWind(500,300,300,300,'open_iframe2.html','yellow');
+		clWind2.riseUp();
+	</script>
+</html>

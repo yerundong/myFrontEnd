@@ -1,0 +1,35 @@
+创建ssh密钥：
+打开git bash，输入cd ~/.ssh
+如果找不到文件目录，说明之前没生成过
+
+1.配置
+git config --global user.name 'yerundong'
+git config --global user.email '414868970@qq.com'
+
+2.生成秘钥
+ssh-keygen -t rsa -C  "414868970@qq.com"
+代码参数含义： 
+-t指定密钥类型，默认是rsa，可以省略。 
+-C设置注释文字，比如邮箱。 
+-f指定密钥文件存储文件名。
+
+3.输入生成文件夹
+你也可以不输入文件名，使用默认文件名（推荐），那么就会生成id_rsa和id_rsa.pub两个秘钥文件
+
+4.输入、确认密码（输入但看不见），也可以直接回车，不设验证密码
+
+5.输入cd ~/.ssh找到文件目录，说明创建成功
+
+最后在.ssh目录下得到了两个文件：id_rsa（私有秘钥）和id_rsa.pub（公有密钥）
+
+如果想登陆远端，则需要将rsa.pub里的秘钥添加到github上：
+setting->ssh keys->save
+
+6.测试：ssh -T git@github.com
+若提示你输入密码或提示“Hi yerundong...”，则设置成功了！！
+
+
+
+
+
+

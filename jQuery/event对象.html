@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src = "jquery-1.11.3.js"></script>
+    <script>
+        $(function () {
+            //【事件属性】：
+            //ev.type:事件类型
+            // ev.target:【最初】触发事件的DOM元素。【可能是绑定元素的子元素】
+            // ev.currentTarget:【绑定】事件的DOM对象，在事件冒泡阶段中的[当前]DOM元素
+            // ev.relatedTarget: 对于 mouseout 事件，它指向被进入的元素；对于 mousein 事件，它指向被离开的元素
+            // ev.data:执行事件的时候，【数据】传递给jQuery.fn.bind
+            // ev.pageX/Y:鼠标相对于文档的左边缘的位置。
+            // ev.which:获取鼠标左、中、右按钮对应的数字1、2、3
+            //ev.shiftKey/altKey/ctrlKey/metaKey
+
+            $('input').bind('click',{name:'huanghe'},function(ev){
+                //alert(ev.type);
+                //alert(ev.target);
+                //alert(ev.currentTarget);
+                //alert(ev.data.name);
+
+            });
+            //【区别】：
+            $('div').bind('click',function(ev){
+                //alert(ev.target);//可以是div，也可以是div
+                //alert(ev.currentTarget);//总是div，因为事件绑定的是div
+            });
+            $('input').bind({
+                //mouseenter:function(ev){alert(ev.relatedTarget)},//从哪里来
+                //mouseout:function(ev){alert(ev.relatedTarget)}//去哪里
+            });
+            //【鼠标坐标】
+            $(document).click(function (ev) {
+                //alert(ev.pageX + '-' + ev.pageY)//页面坐标
+                //alert(ev.clientX + '-' + ev.clientY);//可视区坐标
+                //alert(ev.screenX + '-' + ev.screenY)//屏幕坐标
+                //alert(ev.which);
+            });
+            $(document).keydown(function (ev) {
+                //alert(ev.ctrlKey);
+            })
+        })
+    </script>
+</head>
+<body>
+    <div style="width: 200px;height: 200px;background: red">
+        <input type="button" value="Send">
+    </div>
+
+</body>
+</html>

@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        .div1{width:500px;height: 500px;background: red;}
+        .div2{width:350px;height: 350px;background: blue;}
+        .div3{width:250px;height: 250px;background: greenyellow;}
+    </style>
+    <script src = "jquery-1.11.3.js"></script>
+    <script>
+        //【阻止事件冒泡】:
+        //ev.stopPropagation();
+        //或者return false;
+        //【ev.isPropagation()】根据事件对象中是否调用过 event.stopPropagation() 方法来返回一个【布尔值】。
+        $(function () {
+            $('.div1').click(function (ev) {
+                $(this).css('background','yellow');
+                //ev.stopPropagation();
+                return false;
+            });
+            $('.div2').click(function (ev) {
+                $(this).css('background','yellow');
+               ev.stopPropagation();
+                alert(ev.isPropagationStopped());//true  调用过 event.stopPropagation()
+                //return false;
+            });
+            $('.div3').click(function (ev) {
+                $(this).css('background','yellow');
+                //ev.stopPropagation();
+                return false;
+            });
+            //【阻止默认行为】:
+            //ev.preventDefault()
+            //【ev.isDefaultPrevented()】根据事件对象中是否调用过 event.preventDefault() 方法来返回一个【布尔值】。
+            $(document).contextmenu(function (ev) {
+                ev.preventDefault();
+                alert(ev.isDefaultPrevented());//true 调用过event.preventDefault()
+            });
+            //【ev.stopImmediatePropagation()】:1、阻止该对象【剩余相同的事件】执行；2、阻止事件冒泡
+            //【ev.isImmediatePropagationStopped()】根据事件对象中是否调用过event.stopImmediatePropagation()方法来返回一个布尔值。】。
+
+            $('a').click(function (ev) {
+                alert('1111111111111111');
+                ev.stopImmediatePropagation();
+                alert(ev.isImmediatePropagationStopped());//true 调用过event.stopImmediatePropagation()
+            });
+            $('a').click(function (ev) {
+                alert('222222222222222');
+            });
+        })
+    </script>
+</head>
+<body>
+    <div class="div1">div1
+        <div class="div2">div2
+            <div class="div3">
+                div3
+            </div>
+        </div>
+    </div>
+    <a href="javascript:;">点点点</a>
+</body>
+</html>

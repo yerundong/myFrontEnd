@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script src="../jquery-1.11.2.min.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+	<body>
+		<script type="text/javascript">
+			//添加cookie
+			function addCookie(key, val, lifeCircle) {//lifeCircle:天数
+				var oDate = new Date();
+				oDate.setDate(new Date().getDate() + lifeCircle);
+				document.cookie = key + "=" + val + ";expires=" + oDate + ";path=/";
+			};
+			//获取cookie
+			function getCookie(key) {
+				var cookies = document.cookie;
+				var reg = /\s+/g;
+				cookies = cookies.replace(reg, "");
+				var cookiesArr = cookies.split(";");
+				for(var i = 0; i < cookiesArr.length; i++) {
+					var nowKey = cookiesArr[i].split("=")[0];
+					var val = cookiesArr[i].split("=")[1];
+					if(nowKey == key) {
+						return val;
+					}
+				}
+			};
+			//删除cookie
+			function delCookie(key) {
+				var oDate = new Date();
+				oDate.setDate(new Date().getDate() - 1);
+				document.cookie = key + "=123;expires=" + oDate + ";path=/";
+			};
+			addCookie('myName','414868970',7);
+			var myName = getCookie('myName');
+			//delCookie('myName');
+			console.log(myName);
+		</script>
+	</body>
+</html>

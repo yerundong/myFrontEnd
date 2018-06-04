@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script>
+    	//*****【修改】修改被处理的数组，【返回】返回一个新的数据**************
+        var arr = ["你好","千锋",8.2,true];
+		//【toString】
+        //alert(arr.toString());//toString()是默认的，返回字符型数组【返回】
+		//【join】
+        //alert(arr.join("/"));//你好/千锋/8.2/true；数组转字符串，'/'替换','【返回】
+		//【push】
+        //alert(arr.push("哈哈","嘻嘻","呵呵"));//向数组末尾添加，返回修改后的数组长度【修改、返回】
+		//【pop】
+        //alert(arr.pop());//true 删除数组末尾一个数据，返回该删除的数据【修改、返回】
+		//【unshift】
+        // alert(arr.unshift("哈哈","嘻嘻","呵呵"));//向数组开头添加，返回修改后的数组长度【修改、返回】
+	    //【shift】
+        //alert(arr.shift());//向数组开头删除一个数据，返回该删除的数据【修改、返回】
+		//【concat】//【】
+        var arr2 = arr.concat("啥啥啥","来啊",[1,2,3,[55],[[[40]]]]);//数组连接，参数不限，可以是元素，也可以是另一个数组
+		//返回连接后的数组【返回】
+        //多数组的拼接
+        var a = [1,2,3,4];
+        var b = [5,6,7,8];
+        var c = [9,10,11,12];
+        var abc = a.concat(b).concat(c);
+        //alert(abc);//1,2,3,4,5,6,7,8,9,10,11,12
+		//【slice】
+        //var arr3 = arr.slice(1,4);//截取[1,4)数据，不包含4；【返回】
+        //以数组的格式返回被截取的元素；
+        //var arr3 = arr.slice(1);//从1到末尾截取
+        //var arr3 = arr.slice(1,-1);//-1 即从左往右数1个数据,但【截取只能从左往右截】
+        //var arr3 = arr.slice(-3,2);//
+        //console.log(arr3)
+		//【splice】
+        var arr4 = arr.splice(1,2,"ia");//1代表[1]开始，2代表删除2个,"ia"代表插入替换的,并返回被替换的元素【修改、返回】
+        //alert(arr);
+        //var arr4 = arr.splice(1);//从[1]到末尾删除
+		//【reverse】
+        var arr5 = [1,2,3,4];
+        //alert(arr5.reverse());//4,3,2,1  将数据顺序颠倒，并返回【修改、返回】
+        //alert(arr5);//不变
+		//【sort】
+        var arr6 = [5,2,7,5,1,9];
+        var arr7 = ["a","c","g","e","h",'b','d'];
+        var arr8 = [5,2,54,5,1,19];//无法排序成功；超过10的数据排序，则不能单靠sort（）排序
+        //alert(arr6.sort());//按【ASCII表】升序排列数组项。【字符串排序，数字排序，对象排序】【修改、返回】
+        //alert(arr7.sort());//a,b,c,d,e,g,h
+        /*alert(arr8.sort(
+                function(a,b){
+                    return a>b;//
+                }
+        ));*///把一个【比较函数】作为sort的参数，即可完成超过10的数字排序。a>b:由小到大；a<b:由大到小
+        
+        //**********ES5 IE9+******************
+        //filter()、map()、some()、every()、forEach()、lastIndexOf()、indexOf()、indexOf
+		//【filter(fn(curVal,index?,arr?),thisValue?)】筛选   【返回】
+		//fn函数对数组进行处理，curVal是当前元素，index是当前索引，arr是被处理的数组
+		//thisValue是函数内部this指向对象,省略的话默认为window
+		//对数组进行遍历检测,返回true表示保留该元素（通过测试），false则不保留。
+		var objj = {};
+		var arrt =[];
+		var arr9 = [1,2,3,4,'a'];
+		var arr9_ = arr9.filter(function(curVal,index,arr) {
+			if(curVal%2 == 0){
+				return true;
+			}else{
+				return false;
+			}
+		});
+//		console.log(arr9_);
+		
+		
+		
+    </script>
+</head>
+<body>
+</body>
+</html>

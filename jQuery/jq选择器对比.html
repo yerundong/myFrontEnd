@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src = "jquery-1.11.3.js"></script>
+    <style>
+        #a{color:blue}/*选中全部*/
+        .b{color:blue}/*选中全部*/
+    </style>
+    <script>
+        window.onload = function(){
+            var oA = document.getElementById('a');
+            oA.style.fontSize = '25px';
+
+        };
+        $(function(){
+            //【ID选择器】
+            $('#a').css('background','red');//只选中第一个
+            //alert( $('#a').size());//1  或者alert( $('#a').length);//1
+            //【class选择器】
+            $('.b').css('background','red');//选中全部class为b的
+            //alert( $('.b').size());//2
+        })
+    </script>
+</head>
+<body>
+    <div id="a">111</div>
+    <div id="a">222</div>
+    <div class="b">333</div>
+    <div class="b">444</div>
+</body>
+</html>

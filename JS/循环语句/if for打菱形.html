@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script type="text/javascript">
+
+
+                    var i ;
+                    var j;
+        for(i = 1;i <=5;i ++){    //5行 循环5次打隔行
+            if(i <= 3) {  //i=1，2，3上半部
+                for (j = 1; j <= 3 - i;j++) {
+                    document.write("&ensp;")
+                }
+                for (j = 1; j <= 2*i - 1;j++) {
+                    document.write("*")
+                }
+            }else{        //i=4，5下半部
+                for(j = 1;j <= i - 3;j++){
+                    document.write("&ensp;")
+                }
+                for(j = 10;j >= 2*i;j--){   //???
+                    document.write("*");
+                }
+            }
+            document.write("<br/>")
+        }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    </script>
+</head>
+<body>
+
+</body>
+</html>

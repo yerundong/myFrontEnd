@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script src="jquery-1.11.2.min.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+	<body>
+		<input type="submit" name="" id="btn" value="btn"  style="width: 60px;height: 40px;margin: 50 auto;outline: none;border: none;"/>
+		<script type="text/javascript">
+			initBtn('#btn');
+			
+			 function initBtn (selector) {
+			 	$(selector).css('background','#00A8FF');//初始状态
+		    	$(selector).mousedown(function () {
+		    		$(this).css('background','#0085FF');//鼠标按下
+		    	});
+		    	$(selector).mouseup(function () {
+		    		$(this).css('background','#0098FF');//鼠标抬起
+		    	});
+		    	$(selector).hover(function () {
+		    		$(this).css('background','#0098FF');//在按钮悬停
+		    	},function () {
+		    		$(this).css('background','#00A8FF');//离开按钮
+		    	});
+		    }
+		</script>
+	</body>
+</html>

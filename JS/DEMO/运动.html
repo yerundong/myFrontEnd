@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+        *{margin: 0;padding: 0}
+        div{width:100px;height:100px;background: skyblue;transition:background 2s;font-size: 200px;color: #1199ff;
+        line-height: 1000px;text-align: center;font-weight: 900}
+    </style>
+    <script>
+        window.onload = function(){
+            var oDiv = document.getElementsByTagName('div')[0];
+            var speed = 20;
+            var timer1,timer2;
+            timer1 = setInterval(function(){
+                if (oDiv.offsetWidth != 1000) {
+                    oDiv.style.width = oDiv.offsetWidth + speed + 'px';
+                }else {
+                  clearInterval(timer1);
+                  timer2 = setInterval(function(){
+                      if (oDiv.offsetHeight != 1000) {
+                          oDiv.style.height = oDiv.offsetHeight + speed + 'px';
+                      }else {
+                          clearInterval(timer2);
+                          oDiv.style.background = 'red';
+                          oDiv.innerHTML = 'BINGO!!!'
+                      }
+                  },30)
+                }
+            },30)
+        }
+    </script>
+</head>
+<body>
+    <div></div>
+</body>
+</html>

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<button id="o">打开一个新页面</button>
+		<button id="b">back</button>
+		<button id="f">forward</button>
+		<button id="g">go</button>
+		<script type="text/javascript">
+			var o=document.getElementById("o");
+			var b=document.getElementById("b");
+			var f=document.getElementById("f");
+			var g=document.getElementById("g");
+			o.onclick=function () {
+				window.open('BOM.html','_parent');
+			}
+		</script>
+		<script type="text/javascript">
+			//history.length浏览器历史列表中的 URL数量
+			//console.log(window.history.length)//1
+			//history.back()加载 history列表中的前一个 URL。
+			b.onclick=function () {
+				window.history.back()
+			}
+			//history.forward()加载 history列表中的下一个 URL。
+			f.onclick=function () {
+				window.history.forward()
+			}
+			//go(number|URL) 方法可加载历史列表中的某个具体的页面。
+			//number 参数使用的是要访问的 URL 在 History 的 URL 列表中的【相对位置】。
+			g.onclick=function () {
+				//window.history.go(-1)//上一个页面
+				//window.history.go(1)//上一个页面
+				//window.history.go(0)//本页面刷新
+			}
+			
+			//H5：
+			//history.pushState(statedata, title, url);  
+			//history.replaceState(stateData, title, url);  
+			//HTML5新增了可以监听history和hash访问变化的全局方法：
+//　　　　window.onpopstate：当调用history.go()、history.back()、history.forward()时触发；pushState()\replaceState()方法不触发。
+//　　　　window.onhashchange：当前 URL 的锚部分(以 '#' 号为开始) 发生改变时触发。触发的情况如下：
+//　　　　　　a、通过设置Location 对象 的 location.hash 或 location.href 属性修改锚部分；
+//　　　　　　b、使用不同history操作方法到带hash的页面;
+//　　　　　　c、点击链接跳转到锚点。
+		</script>
+	</body>
+</html>

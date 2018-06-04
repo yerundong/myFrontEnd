@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="jquery-1.11.3.js"></script>
+    <script>
+        $(function () {
+//            $(':has(:checkbox:enabled)').css("outline","1px solid red");
+            if($('input:eq(0)').checked){//DOM方式判断
+                //$('input').css("outline","1px solid red");
+            }
+            if($('input:eq(0):checked')){//jq方式判断
+                //$('input').css("outline","1px solid red");
+            }
+            //或
+            if($('input:eq(0)').is(":checked")){
+                //$('input').css("outline","1px solid red");
+            }
+
+            var $j = jQuery.noConflict();//变量$的控制权让渡给第一个实现它的那个库
+            //$j('input:eq(0)').css("outline","1px solid red");
+//            $('input:eq(0)').css("outline","1px solid red");//无效
+
+            jQuery.noConflict();//如果不想写命名
+            jQuery(function ($) {
+                //$('input:eq(0)').css("outline","1px solid red");
+            });
+            //或者
+           (function ($) {
+               $(function () {
+                   $('input:eq(0)').css("outline","1px solid red");
+               })
+            })(jQuery);
+//            $('input:eq(1)').css("outline","1px solid red");//
+        });
+    </script>
+</head>
+<body>
+    <input type="checkbox" checked>
+    <input type="checkbox" disabled>
+    <input type="checkbox">
+</body>
+</html>

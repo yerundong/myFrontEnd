@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script>
+
+        window.onload = function(){
+            var oDiv = document.getElementById('div');
+            var x = null;
+            var y = null;
+                oDiv.onmousedown = function(ev){
+                    var ev = ev || event;
+                    x = ev.clientX - oDiv.offsetLeft;//ev.clientX,这是鼠标事件（onmousedown）的距离
+                    y = ev.clientY - oDiv.offsetTop;
+                document.onmousemove = function(ev){//鼠标移动，为了保持
+                    var ev = ev || event;
+                    oDiv.style.left = ev.clientX -x + 'px';
+                    oDiv.style.top = ev.clientY -y + 'px';
+                    //oDiv不出边界
+                    var l = ev.clientX - x;
+                    var t = ev.clientY - y;
+                    if(l <= 0){
+                        oDiv.style.left = 0;
+                    }
+                    if(l >= document.documentElement.clientWidth - oDiv.offsetWidth){
+                        oDiv.style.left = document.documentElement.clientWidth - oDiv.offsetWidth + 'px';
+                    }
+                    if(t <= 0){
+                        oDiv.style.top = 0;
+                    }
+                    if(t > document.documentElement.clientHeight - oDiv.offsetHeight){
+                        oDiv.style.top = document.documentElement.clientHeight - oDiv.offsetHeight + 'px';
+                    }
+
+
+                };
+                    oDiv.onmouseup = function(){
+                        document .onmouseup = null;
+                        document.onmousemove = null;
+                    }
+            };
+        }
+    </script>
+</head>
+<body>
+    <div id="div" style="width: 100px;height: 100px;background: #19f;position: absolute;left: 0px;top:0px;cursor: move;">
+        
+    </div>
+</body>
+</html>

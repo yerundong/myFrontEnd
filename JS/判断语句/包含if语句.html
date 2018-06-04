@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script type="text/javascript">
+        var x= 60;
+        if(x>=85 && x<=100)/*85-100*/
+        {alert("优秀");
+            if (x>=95 && x<100) {alert("奖学金1000，恭喜恭喜");}/*包含用if*/
+            else if(x>=90 && x<95) {alert("奖学金800，恭喜恭喜");}/*并列用else if*/
+            else if(x>=85 && x<90) {alert("奖学金300，恭喜恭喜");}
+        }
+        else/*85以下*/
+        {
+            alert("一毛都没有");
+            if (x < 85 && x >= 75) {
+                alert("良好")
+            }
+            else if (x < 75 && x >= 60) {
+                alert("及格")
+            }
+            else if (x < 60 && x >= 0) {
+                alert("不及格")
+            }
+        }
+    </script>
+</head>
+<body>
+
+</body>
+</html>

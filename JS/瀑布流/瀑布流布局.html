@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        #contain{position: relative;margin: 0 auto}
+        #contain div{float: left;padding: 10px;border: 1px solid black;text-align: center;}
+        #contain div img{width: 200px}
+    </style>
+    <script>
+        window.onload = function(){
+            var oContain = document.getElementById('contain');
+            var aDiv = oContain.getElementsByTagName('div');
+            var cols = Math.floor(document.documentElement.clientWidth / aDiv[0].offsetWidth);//5hang
+            oContain.style.width = cols*aDiv[0].offsetWidth + 'px';
+            var i;
+            var arr = [];
+            for(i = 0; i < aDiv.length;i++){
+                    if(i < cols){
+                        arr.push(aDiv[i].offsetHeight);
+                        //console.log(arr);
+                }else{
+                    var minIndex = getMinIndex(arr);//最小索引
+                    var minValue = arr[minIndex];//最小高度
+                    aDiv[i].style.position = 'absolute';//第一行没有定位
+                    aDiv[i].style.top = minValue + 'px';
+                    aDiv[i].style.left = aDiv[minIndex].offsetLeft + 'px';
+                    arr[minIndex] +=  aDiv[i].offsetHeight;//高度累加
+                }
+            }
+        };
+        function getMinIndex(array){
+            var index = 0;
+            var minHeight = array[index];
+            for(i = 0;i < array.length;i++){
+                if(array[index] > array[i]){
+                    index = i;
+                    //minHeight = array[i];
+                }
+            }
+            return index;
+        }
+
+    </script>
+</head>
+<body>
+    <div id="contain">
+        <div>
+            <img src="image/1.jpg">
+            <p>
+                LADIES LOOK AT ME
+            </p>
+        </div>
+        <div>
+            <img src="image/2.jpg">
+            <p>
+                LADIES LOOK AT ME
+            </p>
+        </div>
+        <div>
+            <img src="image/3.jpg">
+            <p>
+                LADIES LOOK AT ME
+            </p>
+        </div>
+        <div>
+            <img src="image/4.jpg">
+            <p>
+                LADIES LOOK AT ME
+            </p>
+        </div>
+        <div>
+            <img src="image/5.jpg">
+            <p>
+                LADIES LOOK AT ME
+            </p>
+        </div>
+        <div>
+            <img src="image/6.jpg">
+            <p>
+                LADIES LOOK AT ME
+            </p>
+        </div>
+        <div>
+            <img src="image/7.jpg">
+            <p>
+                LADIES LOOK AT ME
+            </p>
+        </div>
+        <div>
+            <img src="image/8.jpg">
+            <p>
+                LADIES LOOK AT ME
+            </p>
+        </div>
+        <div>
+            <img src="image/9.jpg">
+            <p>
+                LADIES LOOK AT ME
+            </p>
+        </div>
+        <div>
+            <img src="image/10.jpg">
+            <p>
+                LADIES LOOK AT ME
+            </p>
+        </div>
+        <div>
+            <img src="image/11.jpg">
+            <p>
+                LADIES LOOK AT ME
+            </p>
+        </div>
+        <div>
+            <img src="image/12.jpg">
+            <p>
+                LADIES LOOK AT ME
+            </p>
+        </div>
+        <div>
+            <img src="image/13.jpg">
+            <p>
+                LADIES LOOK AT ME
+            </p>
+        </div>
+        <div>
+            <img src="image/14.jpg">
+            <p>
+                LADIES LOOK AT ME
+            </p>
+        </div>
+        <div>
+            <img src="image/15.jpg">
+            <p>
+                LADIES LOOK AT ME
+            </p>
+        </div>
+        <div>
+            <img src="image/16.jpg">
+            <p>
+                LADIES LOOK AT ME
+            </p>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script>
+        //for循环省略表达式，但 【分号不可省略】
+        //一,省略表达式1,可成立
+      /*  var i = 0;
+        for(;i <= 5;i++){
+            document.write("++");
+        }*/
+        //二,省略表达式2,成无条件死循环，不可成立
+       /* for(var i = 0;;i++){
+            document.write("++");
+        }*/
+        //三,省略表达式3,补在执行框里，可成立
+        /*for(var i = 0;i < 5;){
+            document.write("++");
+            i++;
+        }*/
+        //四,省略全部表达式，成无条件死循环，不可成立
+        /* for(;;){
+         document.write("++");
+         }*/
+
+
+
+
+
+
+
+        //断点调试
+        /*var sum=0;
+         for(var i=1;i<=10;i++){
+         debugger;
+         sum+=i;
+         }
+         alert(sum);*/
+
+    </script>
+</head>
+<body>
+
+</body>
+</html>

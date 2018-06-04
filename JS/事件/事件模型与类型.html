@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <script>
+       /* var a = 0;
+        if(a);
+        a=3;
+        alert(a);*/
+        //事件模型：内联模型，脚本模型，DOM2模型（IE8及以下不支持）
+        //事件类型：鼠标事件，键盘事件，html事件
+
+        //【内联模型】:html与事件代码不分离，不建议使用
+        function fn1(){
+            //alert('我是内联模型触发的');
+        }
+
+        //【脚本模型】:html与事件代码实现分离，但有【诸多问题】，不建议使用
+        //问题1：最后一个window.onload的事件【覆盖】前面的window.onload;即【只有最后一个window.onload有效】
+        window.onload = function(){//无效！！！
+            //alert(0);
+        };
+        window.onload = function(){
+            //alert(1);
+        };
+        //封装方法：
+       //【添加事件】
+        /*function addEvent(obj,evt,fn){
+            var ref = null;
+            if(typeof obj['on' + evt] == 'function'){
+                ref = obj['on' + evt];
+            }
+            obj['on' + evt] = function () {
+                if(ref)
+                    ref();
+                fn.call(this);
+            }
+        }*/
+       //或者直接使用dom2级事件
+       function addEvent(obj,evt,fn){
+            if(obj.addEventListener){
+                obj.addEventListener(evt,fn,false);
+            }else if(obj.attachEvent){
+                obj.attachEvent('on'+evt,fn);
+            }
+        }
+       //【删除事件】（避免出现多次递归，影响运行）
+       function removeEvent(obj,evt){
+           if (obj['on' + evt]){
+               obj['on' + evt] = null;
+           }
+       }
+       //应用：
+        addEvent(window,'load',function(){
+            alert(0);
+        });
+       addEvent(window,'load',function(){
+           alert(1);
+       });
+    </script>
+</head>
+<body>
+        <!--【内联模型】-->
+<input type="text" value="我是内联模型，快来点我！" onclick = 'fn1()'>
+<input type="text" value="我是内联模型，快来点我！" onclick = "alert('我是内联模型触发的')">
+</div>
+</body>
+</html>

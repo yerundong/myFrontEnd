@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<meta http-equiv="X-UA-Compatible" content="ie=edge" />
+	<title>Document</title>
+</head>
+<body>
+	<script type="text/javascript">
+		//forEach(function(curVal,index?,arr?){},thisValue?) 方法用于调用数组的每个元素，并将元素传递给回调函数
+		//curVal:当前值，index当前索引，arr：所属数组，thisValue：传递给回调函数内this值的参数，不传为window
+		//IE9+
+		
+		var arr1 = [1,2,3,'a'];
+		var obj = {
+			v : 'haha'
+		}
+		arr1.forEach(function (curVal,index,arr) {
+//			console.log(curVal);
+//			console.log(index);
+//			console.log(arr);
+//			this.arr = arr;
+			console.log(this);
+		},obj);
+		
+		
+		
+		
+	</script>
+</body>
+</html>

@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        *{margin: 0 auto;padding:0;}
+        #d1{background: red}
+        #d1{background: yellow}
+    </style>
+    <script>
+        window.onload = function(){
+            var oD1 = document.getElementById('d1');
+            var oD2 = document.getElementById('d2');
+            //js里定义的属性相当于【行内属性】
+            //优先级：【直接法】定义的属性 =【Attribute法】定义的属性 = 【attributes】定义的属性 >行内>css
+/********************js里【get/setAttribute方法】操作属性【可读可写】**********************************/
+            //getAttribute(attribute)方法是一个函数，他只有一个参数——你打算查询的属性的名字;它只能获取【行内】及【js】
+            // 里的属性而不能获得【css】的属性；而且，它只能获取【属性里的所有值】，如style，不能只获得style的width，而是用全部;
+            //setAttribute('属性','全部属性值')设置【全部】属性值；会把原来属性删除再替换，可对【行内】及【js】属性操作，不可对【css】里属性操作；
+            oD1.setAttribute('nana','uuu:我是js里的自定义函数');//f12里可以看到
+            oD1.setAttribute('style','width: 100px;height: 100px;border:10px solid blue;background:pink');//
+            //oD1.setAttribute('nana','uuu:我可以修改js里定义的属性');
+            var d1_1 = oD1.getAttribute('id');//
+            var d1_2 = oD1.getAttribute('style');
+            var d1_3 = oD1.getAttribute('abc');
+            var d1_4 = oD1.getAttribute('nana');
+            //alert(d1_1);
+            //alert(d1_2);
+            //alert(d1_3);
+            //alert(d1_4);
+ /********************基于【属性节点】方法操作属性【可读可写】**********************************/
+            //【nodeValue 】只操作【js】及【行内】属性/文本节点的节点值。【可读可写】
+            //【文本】始终位于【文本节点】中，必须先找到【元素节点】与【文本节点】：
+            //alert(oD1.attributes[1].nodeValue);//读【所有】属性内容
+            //oD2.attributes[1].nodeValue = 'width: 150px;height: 150px;border: 1px solid red;background: pink';
+            // 写入【所有】属性内容
+/********************js【直接方法】操作属性【可读可写】行内非自定义属性（复合与具体的属性都可以）**************************/
+            //alert(oD2.style.border);//可以获得属性里【单一】的值，较Attribute方法【针对性】强;
+            //但只是获取书面上的值，不是真实的值，显然真实的border已被修改，但它还是输出初始值，也就是说他是【静态的】
+            //alert(oD2.style);//但不能获得属性的所有值；
+            //alert(oD2.style.abc);//但不能获得【所有的自定义属性】；
+            //alert(oD2.style.background)//不能获得【内联和外接】的css属性，不能获得【js】里的属性，
+            // 只能获得【行内非自定义属性】；
+            //oD2.style.background = "black";//不能设置【css】里的属性，不能设置【js】里的属性，只能设置【行内非自定义属性】设置
+            //oD2.style.abc = "我好像与自定义一点都不能挂边啊";//不能修改自定义属性
+/********************removeAttribute('style')删除属性**********************************/
+            //oD1.removeAttribute('style');//nmb你好吊啊，不管谁定义的，你都能删掉,删就删，还只能全删了
+
+            //alert(window.getComputedStyle(oD2,null)['background']);？？？？
+
+        }
+    </script>
+</head>
+<body>
+
+</body>
+    <div id="d1" style="width: 100px;height: 100px;border: 1px solid blue;" abc = "我是自定义属性">
+
+    </div>
+    <div id="d2" style="width: 150px;height: 150px;border: 1px solid red;background: none">
+
+    </div>
+</html>

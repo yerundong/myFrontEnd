@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script>
+        //栗1：
+//      function fn(){
+//          var arrA = [];
+//          for(var i = 0;i < 3;i++){//这里循环不会执行函数，i最终等于3
+//              arrA[i] = function () {
+//                  return i;
+//              };
+//          }
+//          return arrA;
+//      }
+//      var arrB = fn();
+//      for(var i=0;i < arrB.length;i++){
+//          console.log(arrB[i]());//333
+//      }
+
+        //栗2：利用自执行函数解决栗1的问题
+//      function fn(){
+//          var arrA = [];
+//          for(var i = 0;i < 3;i++){
+//              arrA[i] = (function(){//让他先自执行
+//                  return i;
+//              })();
+//          }
+//          return arrA;
+//      }
+//      var arrB = fn();
+//      for(var i=0;i < arrB.length;i++){
+//          console.log(arrB[i]);//0 1 2
+//      }
+
+        //栗3：利用闭包函数解决
+        function fn() {
+        	var arrA = [];
+        	for(var i = 0; i < 3; i++) {
+        		arrA[i] = (function(num) { //利用闭包函数局部变量不会立即消失，储存了3个num
+        			return function() {
+        				return num;
+        			}
+        		})(i);
+        	}
+        	return arrA;
+        }
+        var arrB = fn();
+        for(var i = 0; i < arrB.length; i++) {
+        	console.log(arrB[i]()); //0 1 2
+        };
+    </script>
+</head>
+<body>
+
+</body>
+</html>

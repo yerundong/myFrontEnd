@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script type="text/javascript" src="jquery-1.11.3.js"></script>
+    <script>
+       $(function () {
+           //【$.each】以每一个匹配的元素作为上下文来执行一个函数。专用于jquery对象的遍历
+           //alert($('li').html());//只匹配到第一个
+           var arr = {a:[1,2,3],b:[4,5,6],c:[7,8,9]};
+            $('li').each(function (index,value) {//index:下标 value：下标对应的值(js【原生】对象)
+                //alert(index);//遍历匹配
+                //alert(value.innerHTML);
+                value.style.background="red";
+            });
+           $(arr.b).each(function (index,value) {
+               //alert(index);
+               //alert(value);
+           });
+
+           //【$.each(obj,fn)】用于遍历任何的集合(无论是数组或对象)
+           $.each(arr, function (i,val) {//遍历json数据
+               //alert(i);
+               //alert(val);
+           });
+           $.each(arr.a, function (i,val) {//遍历json数据里a的属性
+               //alert(i);
+               //alert(val);
+           });
+           $.each(arr, function (i,val1) {//遍历json数据所有的属性
+               $.each(val1, function (j,val2) {
+                   //alert(j);
+                   //alert(val2);
+               });
+           });
+
+
+
+
+//********************【自定义】*****************************
+           //【$.trim(str)】去前后空格【修改】
+           var str = ' asa ';
+           //alert($.trim(str).length);
+           //【$.grep(array, callback, [invert])】使用过滤函数过滤数组元素。【生成】
+           var arr=[1,2,3,4,5,6];
+           var newArray = $.grep(arr, function (value,index) {
+               //return index<3 && value>2;
+               //return value!=5;
+           });
+           //alert(newArray);
+           //【$.map(arr|obj,callback)】将一个数组中的元素转换到另一个数组中。【生成】
+           var newArray = $.map(arr, function (value,index) {
+               return value+5;
+           });
+           //alert(newArray);
+           //【inArray(value,array,[fromIndex])】确定第一个参数在[数组中的位置]，从0开始计数(如果没有找到则返回 -1 )。
+            //alert($.inArray(6,newArray))
+           //【merge(first,second)】合并两个数组——第一个数组的元素后面跟着第二个数组的元素
+           var tarr = $.merge(newArray,[2,3,3,3,3,3]);
+           //alert(tarr);
+           //【unique(array)】数组去重。只处理删除DOM元素数组，而不能处理[字符串]或者[数字数组]
+           var oarr = $.unique(tarr);
+           //alert(oarr);
+       })
+    </script>
+</head>
+<body>
+<div class="a" style="width: 200px">
+
+</div>
+    <ul>
+        <li>1</li>
+        <li>2</li>
+        <li>3</li>
+        <li>4</li>
+        <li>5</li>
+    </ul>
+</body>
+</html>

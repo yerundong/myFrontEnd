@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>aaaa</title>
+    <script src="../jquery-1.11.2.min.js" type="text/javascript" charset="utf-8"></script>
+</head>
+<body>
+	<button id="o">open</button>
+	<button id="c">close</button>
+	<button id="s">我的窗口状态</button>
+	<textarea name="" rows="" cols="" id="text"></textarea>
+	<script>
+		//open返回的是object对象类型
+		//      open("http://www.baidu.com","_blank");//,"_blank"可省略,每次刷新都打开一个新窗口
+		//      open("http://www.baidu.com","name1");//声明了新窗口的名称,即window.name;
+				//如果name参数指定了一个已经存在的窗口，那么 open() 方法就[不再创建一个新窗口]
+		//      open("http://www.baidu.com","_parent");//在当前窗口显示页面
+	
+		//第三个属性设置新窗口的一些相关属性(很多)
+		//window.open("BOM.html","","width=300,height=300,left=100,top=100,location=yes,toolbar=yes,");
+		//window.closed 布尔值 只读 检测窗口是否已关闭
+		var o = document.getElementById("o");
+		var c = document.getElementById("c");
+		var s = document.getElementById("s");
+		var oWindow;
+		o.onclick = function() {
+			oWindow = window.open('', 'name1', 'width=200,height=100');//获取其他窗口的window对象地址
+			console.log(oWindow.opener.location.href);//父窗口
+			console.log(oWindow.location.href);//子窗口
+		};
+		c.onclick = function() {
+			if(oWindow) {
+				oWindow.close();
+			}
+		};
+		s.onclick = function() {
+			if(oWindow.closed) {
+				alert('窗口已关闭');
+			} else {
+				alert('窗口已打开');
+			}
+		}
+		//oWindow子窗口对象
+		//oWindow.opener父窗口对象
+		$('#text')[0].onchange = function () {
+			oWindow.opener.document.write($('#text').val());
+		};
+	</script>
+</body>
+</html>

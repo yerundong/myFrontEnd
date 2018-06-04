@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8" />
+	<title>Document</title>
+	<script src="../jquery-1.11.2.min.js" type="text/javascript" charset="utf-8"></script>
+</head>
+<body>
+	<!--
+		【函数节流技术】的主要思路是，【通过一个定时器，阻断连续重复的函数调用】。对于我们自己内部使用的函数，
+		这通常意义不大，也不推荐使用这个技术，它【可能会丢失对某些数据的处理】。但是对于在用户界面调用的函数，
+		却非常有意义。例如一个 mousemove 或者 IE 中 resize 事件的监听函数。这类事件监听函数往往伴随着
+		两个主要特征：1. 短时间内连续多次重复触发 ; 2. 大量的 DOM 操作。众所周知，DOM 操作对内存和 CPU 
+		的开销是比较大的，特别是当同时满足特征1时，往往给浏览器造成不小的压力。函数节流技术的意义在于在用户察觉范围外，
+		降低函数调用的频率，从而提升性能。
+	-->
+	<script type="text/javascript">
+		//【例子1】
+		
+		var num = 0;
+		
+		function count () {
+			console.log(num);
+			num++;
+		};
+		
+		//节流器1
+		function throttle1(fn,obj,delay){//函数节流器throttle1(执行函数，作用对象，延迟时间)
+            clearTimeout(fn.tId);
+            fn.tId=setTimeout(function(){
+                fn.call(obj);
+            },delay);
+        }
+		
+		$(window).resize(function () {
+			throttle1 (count,window,500)
+		});
+		
+		/*
+		 原理：利用定时器，让函数执行延迟500毫秒，在500毫秒内如果有函数又被调用则删除上一次调用，
+		 这次调用500毫秒后执行，如此往复
+		*/
+		
+		//【例子2】
+		
+		var i = 0;
+		
+		function couns () {
+			console.log(i);
+			i++;
+		};
+		
+		//节流器2
+		function throttle2(fn,delay){//函数节流器throttle2(执行函数，延迟时间)
+            var timer=null;
+            return function(){
+                var context=this, args=arguments;
+                clearTimeout(timer);
+                timer=setTimeout(function(){
+                    fn.apply(context,args);
+                },delay);
+            }
+        }
+		
+		$(document).mousemove(throttle2(couns,500));//因为返回的是函数句柄，不必再封装函数了
+		
+		//节流器2 加强版：超过设置时间duration则立即执行一次
+		/*
+		function throttle2plus(method,delay,duration){
+            var timer=null, begin=new Date();
+            return function(){
+                var context=this, args=arguments, current=new Date();;
+                clearTimeout(timer);
+                if(current-begin>=duration){
+                     method.apply(context,args);
+                     begin=current;
+                }else{
+                    timer=setTimeout(function(){
+                        method.apply(context,args);
+                    },delay);
+                }
+            }
+		}
+		*/
+	</script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+

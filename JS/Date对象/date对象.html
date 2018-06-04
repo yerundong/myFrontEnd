@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script>
+//      【创建date对象】
+//		创建当前时间对象
+       	var nowDate = new Date();
+//     	var nowDate = Date();//简写
+//     	console.log(nowDate)
+//		创建特定时间对象
+//		可以使用,-/:或空格隔开，时区不能设置
+//		var anyDate = new Date('2016/3/3 11:11:05');
+//		毫秒数(1970 年 1 月 1 日午夜起算)
+		var anyDate = new Date(1507730498188);
+//     	console.log(anyDate)
+        //其实使用Date.parse('2016/10/3')转换成毫秒数，再计算与，与三同;但Date.parse存在兼容问题
+//		【date对象下的方法】
+//		【getFullYear()】	获取年份	
+		var myYear = nowDate.getFullYear()
+//		【getMonth()】获取月份，0-11	
+		var myMonth = nowDate.getMonth()+1		
+//		【getDate()】	获取日	
+		var myDate = nowDate.getDate()
+//		【getHours()】获取时	
+		var myHours = nowDate.getHours()
+//		【getMinutes()】	获取分	
+		var myMinutes = nowDate.getMinutes()
+//		【getSeconds()】	获取秒	
+		var mySeconds = nowDate.getSeconds()	
+//		【getMilliseconds()】	获取毫秒 0-1000	
+		var myMilliseconds = nowDate.getMilliseconds()	
+//		【getTime()】	获取距 1970 年 1 月 1 日午夜（GMT 时间）之间的毫秒数
+		var myTime = nowDate.getTime()	
+//		【getTimezoneOffset()】获取本地时间与 GMT 时间之间的时间差，以分钟为单位。
+		var myMilliseconds = nowDate.getMilliseconds()	
+//		【getUTCFullYear、getUTCMonth、getUTCDate()...】获取UTC世界时的时间(加上UTC)
+		var myUTCDate = nowDate.getUTCFullYear()	
+//		【Date.parse()】	获取指定的日期和时间据 1970/1/1 午夜（GMT 时间）之间的毫秒数。
+		var myparse = Date.parse(Date());//与nowDate.getTime()相同
+//		【setFullYear()、setMonth()】	设置date对象,调整过的日期的毫秒表示。
+		var setFullYear = nowDate.setFullYear(2018,8);
+
+		console.log(nowDate.toString())
+		console.log(nowDate.toTimeString())
+		console.log(nowDate.toLocaleString())
+		console.log(nowDate.toLocaleTimeString())
+		console.log(nowDate.toLocaleDateString())
+		
+
+
+
+        //Date.parse支持：2008-8-7，8/7/2008，2008-8-7，August 7 2008,2008,8,7
+        var  time1 = Date.parse("1,1,1970 8:00") ;//转为毫秒  一；Date.parse存在兼容问题；
+        var  time2 = Date.UTC(1970,0,1,0,0,0) ;//转为毫秒  二；不存在兼容问题 ；UTC国际协调时间，
+        //固定写法：年，月，日，时，分，秒；月是0-11，时分秒可省略，为0；时收时区影响，东八区，所以要减8
+        //alert(time1);//0
+        //alert(time2);//0
+        var time3 = new Date(time1);//又由毫秒转为 日期
+        //alert(time3);//time1存在某些兼容问题 如将日改为32,chrome会出错；IE，火狐会变成2/1;
+        var time4 = new Date(time2);//由毫秒转为 日期
+        //alert(time4);
+
+
+
+
+
+
+
+
+
+
+
+
+        var year = date.getFullYear(2014);
+        var sety = date.setFullYear(year);
+        //alert (sety);
+
+        //	从指定时间开始计时
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    </script>
+</head>
+<body>
+
+</body>
+</html>

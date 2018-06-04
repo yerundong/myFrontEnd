@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8" />
+	<title>Document</title>
+	<script src="jquery-1.11.2.min.js" type="text/javascript" charset="utf-8"></script>
+</head>
+<body>
+	<div class="unSelect" style="cursor: pointer;width: 40px;height: 20px;border: 1px solid #000;">提交</div>
+	<script type="text/javascript">
+		
+		unSelcet('.unSelect');
+		
+		//按钮文本无法选中
+		function unSelcet(container) {
+			$(container).css({
+				'-moz-user-select':'none',/*火狐*/
+				'-webkit-user-select':'none',/*webkit浏览器*/
+				'-ms-user-select':'none',/*IE10*/
+				'-khtml-user-select':'none',/*早期浏览器*/
+				'user-select':'none'
+			});
+			//ie6-9文本无法选中
+			$.each($(container), function(i,v) {
+				v.onselectstart=v.ondrag=function(){
+					return false;
+				}
+			});
+		}
+
+	</script>
+</body>
+</html>

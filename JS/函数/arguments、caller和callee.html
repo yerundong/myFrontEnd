@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<script type="text/javascript">
+			//arguments:类数组，存有实参，callee，symbol
+			//callee:正被执行的 Function对象,可用于匿名函数递归，可查看形参，callee.length为形参个数
+			//caller:返回调用了当前函数的那个函数，若是全局调用，则返回null，可用于递归
+			//访问 arguments 是个很昂贵的操作，因为它是个很大的对象
+			//严格模式已经弃用callee和caller了，影响性能，不建议使用
+			function fn1 (a,b,c) {
+				console.log(arguments);
+				console.log(arguments.callee);
+				console.log(arguments.callee.length);
+				console.log(fn1.caller);
+			}
+			function fn2(){
+//				fn1()
+			}
+			fn2();
+			//callee匿名函数递归
+			console.log((function fnc(num){
+				if(num ==1){
+					return 1
+				}else{
+					return num*arguments.callee(num-1);//建议使用直接使用函数名fnc
+				}
+			})(3));
+			
+		</script>
+	</body>
+</html>

@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <script>
+
+        //写入cookie
+        var date = new Date();
+        date.setDate(date.getDate() + 10);//将date加10天
+        document.cookie = 'userName ='+ 'zhangsan' +'; expires=' + date;
+
+
+
+        //封装添加 addCookie
+        function addCookie(key,value,days){
+            var date=new Date();
+            date.setDate(date.getDate()+days);
+            document.cookie=key+'='+encodeURI(value)+';expires='+date;
+        }
+
+        addCookie('username','赵六',366);
+        addCookie('name','田七',366);
+        addCookie('key','老八',366);
+        addCookie('hehe','孙九',366);
+
+        //alert(document.cookie);
+        //封装获取 getCookie
+        function getCookie(key){
+            var str=decodeURI(document.cookie);
+            str.replace('; ','=');
+            var str1=str.replace(/\;\s/g,'=');
+            var arr=str1.split('=');
+            for(var i=0;i<arr.length;i++){
+                if(arr[i]==key){
+                    return arr[i+1];
+                }
+            }
+        }
+        alert(getCookie('hehe'));
+
+        /*//删除   delCookie
+         function delCookie(key){
+         addCookie(key,'',-1);
+         }
+
+         delCookie('username');
+         delCookie('name');
+         delCookie('key');
+         delCookie('hehe');*/
+
+    </script>
+
+</head>
+<body>
+
+</body>
+</html>

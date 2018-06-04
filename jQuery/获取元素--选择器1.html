@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src = "jquery-1.11.3.js"></script>
+    <script>
+        //查询DOM对象：和css选择器类似
+        $(function(){
+//********************【基本选择器】*****************************
+            //【ID选择器】---$('#div1')
+            //$('#div1').css('color','red');
+            //【类选择器】---$('.div2')
+            //$('.div2').css('color','y' +'ellow');
+            //$('div.div2').css('color','y' +'ellow');//匹配class为div2并且是div元素
+            //【元素(element)选择器】---$('div')
+            //$('div').eq(2).css('color','purple');
+            //【通配(*)选择器】---$('*')
+            //$('*').css('color','y' +'ellow');//所有
+            //$('ul *').css('color','y' +'ellow');//ul下的所有
+            //【群组选择器】---$('a,b,c')
+            //$('#div1,.div2,div:eq(2)').css('fontWeight','900');
+//********************【层级选择器】*****************************
+            //【子代选择器】---$('a b')【只获取子代元素(第一代)】
+            //$('.div2 span').css('font-size','12px');
+            //【后代选择器】---$('a>c')【获取所有后代元素】
+            //$('.div2 > span').css('fontStyle','italic');
+            //【next one选择器】---$('a+c')【匹配[紧接]在a元素后的[下一个]c元素】【一定要是c;c一定要在a后面[第一个]】
+            //$('div:eq(2) + b').css('color','lightblue');
+            //$('div:eq(2) + *').css('color','lightblue');//【匹配[紧接]在a元素后的[下一个]元素】【无论任何元素】
+            //【next All选择器】---$('a~c')【匹配所有在a元素后的[所有]c元素】【一定要是c;c一定要在a后面;所有的c】
+            //$('div:eq(2) ~ b').css('background','pink');
+//********************【属性选择器】【集合；对所有选中的操作】**********************
+            //【a[attribute]】查找所有含有attribute属性的a元素
+            //alert($('div[style]').length);//3
+            //$('div[style]').css('background','pink');//
+            //【a[attribute=value]】匹配给定的属性是某个[特定值](值一定要全等)的a元素
+            //$('div[id="b"]').css('background','pink');//
+            //$('div[abc="123"]').css('background','pink');//支持【自定义属性】
+            //【a[attribute!=value]】匹配所有【不全等于】指定的属性的a元素。
+            //$('div[style!="width: 100px"]').css('background','pink');//
+            //【a[attribute^=value]】匹配给定的属性是[以某些值开始]的a元素。
+            //$('div[style^="width: 100px"]').css('background','pink');//
+            //【a[attribute$=value]】匹配给定的属性是[以某些值结尾]的a元素。
+            //$('div[id$="b"]').css('background','pink');//
+            //$('div[style$="border: 1px solid red"]').css('background','pink');//
+            //【a[attribute*=value]】匹配给定的属性是以[包含某些值]的a元素。
+            //$('div[style*="height: 10px;"]').css('background','pink');//
+            //【a[attribute1 ..][attribute2 ..][attributeN ..]】复合属性选择器,匹配同时[满足多个条件]时使用的a元素。
+            //$('div[style*="height: 10px"][id="c"]').css('background','pink');//
+        });
+    </script>
+</head>
+<body>
+    <div id="div1">hello you!!</div>
+    <div class="div2">what the hell???<span>啦啦啦啦<a>啦啦啦</a>啦啦啦啦啦</span></div>
+    <div>我是div3</div>
+    <b>我是div3的邻居1</b>
+    <b>我是div3的邻居2</b>
+    <strong  class="div2">我是第一！</strong>
+    <ul>
+        <li>0</li>
+        <li>1</li>
+        <li>2</li>
+        <li>3</li>
+        <li>4</li>
+    </ul>
+
+</body>
+</html>

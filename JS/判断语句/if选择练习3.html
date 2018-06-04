@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script>
+        //
+        var numb = prompt("请输入一个五位数：");
+
+        if (numb > 99999 || numb < 10000 || isNaN(numb)){  //筛选5位数
+            alert("输入五位数啊");
+        }
+        else if(numb - parseInt(numb) !== 0){   //筛选整数
+            alert("请输入整数啊");
+        }
+
+        else{
+            a = parseInt(numb / 10000);         //万位
+            b = parseInt((numb / 1000) % 10);  //千位
+            c = parseInt((numb/ 100) % 10);    //百位
+            d = parseInt((numb/ 10) % 10);     //十位
+            e = parseInt(numb % 10);           //个位
+            alert("您输入的数字，个位为："+e+","+"十位为："+d+","+"百位为："+c+","
+                    +"千位为："+b+","+"万位为："+a);
+        }
+    </script>
+</head>
+<body>
+
+</body>
+</html>

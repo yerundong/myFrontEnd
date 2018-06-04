@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script type="text/javascript">
+        var height = prompt("请输入身高");
+        var weight = prompt("请输入体重");
+        var EX = weight/(height*height);
+        if (EX>=32){
+            alert("非常肥胖");
+        }
+        else if(EX<32 && EX>=28){
+            alert("肥胖");
+        }
+        else if(EX<28 && EX>=25){
+            alert("过重");
+        }
+        else if(EX>18.5 && EX<=24.99){
+            alert("正常");
+        }
+        else if(EX>0 && EX<=18.5){
+            alert("过轻");
+        }
+        else{                           //以上所有情况不满足后，执行以下
+            alert("输入有误，请重新输入");
+        }
+    </script>
+</head>
+<body>
+
+</body>
+</html>

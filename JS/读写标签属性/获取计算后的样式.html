@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script>
+        //计算后的样式：设置的样式使用的是设置的样式，没设置的样式使用的默认的。
+        //计算后的样式是行内，内联，外接以及js中设定的样式综合计算的最后结果；一直留在浏览器中，随时可以获取
+        window.onload = function(){
+            var oDiv = document.getElement('div');
+            //var oStyle = window.getComputedStyle(oDiv,null);//null:伪类;用来获取计算后的样式;【IE8及以下不支持】
+            //var oStyle = oDiv.currentStyle;//仅IE支持
+            //【兼容写法】
+            var oStyle = window.getComputedStyle?window.getComputedStyle(oDiv,null):null||oDiv.currentStyle;
+//            alert(oStyle.backgroundColor);//得到计算后的属性值
+//            alert(oStyle.width);
+//            alert(oStyle.color);//没设置的使用默认的
+//            alert(oStyle.fontSize);//没设置的使用默认的
+//            alert(oStyle.border);//获取不了复合属性，必须是具体的(borderWidth之类的);
+//            alert(oDiv.style.border);//【直接法】可以获取复合与具体的样式
+        }
+    </script>
+</head>
+<body>
+    <div id="div" class="aaa" style="width: 100px;height: 100px;background: red;border: 1px solid black">
+        javascript
+    </div>
+</body>
+</html>

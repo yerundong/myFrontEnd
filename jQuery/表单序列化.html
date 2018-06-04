@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<script src="jquery-1.11.3.js" type="text/javascript" charset="utf-8"></script>
+	<body>
+		<form action="ajax/自定义json.json" method="post" id="form">
+			<input type="text" name="uname" />
+			<input type="text" name="uid" />
+			<input type="submit" value="提交" id="submit"/>
+		</form>
+		<script type="text/javascript">
+			$('#submit').click(function (evt) {
+				let xhr = new XMLHttpRequest();
+				let method = $('#form')[0].method;
+				let action = $('#form')[0].action;
+				xhr.open(method,action);
+				
+//				xhr.setRequestHeader('content-type','');
+				
+				//将表单内容序列化成一个字符串。如name=123&id=110
+				var data = $("#form").serialize();
+				
+				//将页面表单序列化成一个JSON结构的对象，需要转为字符串
+//				var data = $("#form").serializeArray();
+//				data=JSON.stringify(data)
+				
+				console.log(data)
+				xhr.send(data);
+				evt.preventDefault();
+			})
+		</script>
+	</body>
+</html>

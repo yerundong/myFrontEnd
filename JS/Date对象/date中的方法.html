@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script>
+       //通用方法
+       var date1 = new Date(2016,8,4,0,48,0);//UTC,实际时间加8
+        //alert(date1.toString());//默认的 可省略
+       //alert(date1.toLocaleString());//本地时间格式
+       //alert(date1.valueOf());//转为毫秒
+
+        //日期格式化
+       //alert(date1.toDateString());//只获取日期，无时分秒
+       //alert(date1.toLocaleDateString());//2016/8/4;只获取本地日期，无时分秒
+       //alert(date1.toTimeString());//只获取时分秒
+       //alert(date1.toLocaleTimeString());//只获取本地时分秒:上午8点4分
+       //alert(date1.toUTCString());//得到UTC格式的日期时间
+
+        //组件方法：单独获取各种日期/时间
+        //alert(date1.getFullYear());//2016 获取返回4位年份
+      //alert(date1.getMonth());//8 获取返回月份 0-11，实际月=getMonth（）+1
+       //alert(date1.getDate());//4 获取返回日
+       //alert(date1.getDay());//0 星期 0-6，0表示星期日
+       //alert(date1.getHours());//0 获取返回时
+       //alert(date1.getMinutes());//48 获取返回分 0-59
+       //alert(date1.getSeconds());//0 获取返回秒 0-59
+       //alert(date1.getMilliseconds());//0 获取返回毫秒
+       //alert(date1.getTime());//147292820000 转换返回毫秒 与valueOf()一样
+       //alert(date1.getTimezoneOffset());//-480  本地时间与UTC时间相差分钟：本地-UT
+     // 获取UTC格式时间直接在get后加上UTC即可如：getUTCFullYear()
+        //设置日期/时间组件将一以上get变成set即可：如date1.setFullYear(2012);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    </script>
+</head>
+<body>
+
+</body>
+</html>

@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script>
+ //****计时器
+       /* function double(v) {
+            return v < 10 ? '0' + v : v;
+        }
+        window.onload = function() {
+            var sec = 0;
+            setInterval(function() {
+                sec++;
+                var date = new Date(0,0);// 重置时间。否则为当前时间
+                date.setSeconds(sec);
+                document.body.innerHTML=double(date.getHours())+':'+double(date.getMinutes())+':'+double(date.getSeconds());
+            }, 1000);
+        };*/
+ //*********从指定时间开始计时
+         //法一、
+         /*window.onload = function () {
+          var date1 = new Date("2019/7/1 08:01:58");//输入指定时间，开始计时
+          var year = date1.getFullYear();
+          var month = date1.getMonth();
+          var dat = date1.getDate();
+          var hour = date1.getHours();
+          var min = date1.getMinutes();
+          var sec = date1.getSeconds();
+          setInterval(function(){
+          document.body.innerHTML =new Date(year,month,dat,hour,min,sec++).toLocaleString();
+          },1);
+          };*/
+         //法二、
+         /*window.onload = function() {
+          var date = new Date(2016, 7, 8, 12, 30, 30);
+          var s = date.getTime();
+          setInterval(function() {
+          s+=1000;
+          date.setSeconds(s);
+          document.body.innerHTML =new Date(s).toLocaleString();
+          },1000)
+          }*/
+ //******已知年月，求当月天数
+       /* function daysum(year,month){
+            var date=new Date(year,month,0);
+            return date.getDate();
+        }
+        alert(daysum(1984,11));*/
+
+ //	判断某年份是否为闰年
+         /* var y = parseInt(prompt("请输入一个年份"));
+          var date = new Date(y);//输入一个年份
+          var year = date.setFullYear(date.getFullYear());
+          alert(year % 4 === 0 && year % 100 != 0 ||year % 400 === 0?"闰年":"平年");*/
+
+ //	将日期格式化输出 “2015-08-24”
+         /*var y = prompt("请输入一个日期");       //以/分开年月日
+          var date = new Date(y);//输入日期
+          var year =date.getFullYear();
+          var month = date.getMonth();
+          var dat = date.getDate();
+          alert(year + "-" + (month+1) + "-" + dat);*/
+
+ //	获得某个月份的天数
+         /* var y = prompt("请输入一个年份");
+          var m = prompt("请输入一个月份");
+          var date = new Date(y,m,0);//?????
+          alert("当月共有："+date.getDate());*/
+
+ //	将字符串转换为日期
+         /* var date1 = "2016年6月16号";
+          alert( date1.replace(/年|月|号/ig,"/"));*/
+
+ //	判断两个日期相差的天数
+         /*var date1 = prompt("请输入一个日期");
+          var date2 = prompt("请输入另一个日期");
+          var date3 = new Date(date1);
+          var date4 = new Date(date2);
+          date12 = Math.abs(date3 - date4);
+          var days = date12/86400000;
+          alert("两个日期相隔：" + days +"天");*/
+
+ //获得N天以后的日期
+         /*var date1 = prompt("请输入一个日期");
+          var days = parseInt(prompt("请输入N天"));
+          var date2 = new Date(date1);
+          date2.setDate(date2.getDate()+days);
+          alert(date2.toLocaleDateString());*/
+
+
+
+    </script>
+</head>
+<body>
+
+</body>
+</html>

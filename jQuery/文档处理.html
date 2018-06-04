@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src = "jquery-1.11.3.js"></script>
+    <script>
+        $(function () {
+            //内容：<a>11111</a>、<a>[解析标签]
+            //元素：$('li:first') [剪切复制]
+            //文本：纯文本  [不解析标签]
+//********************【内部插入】*****************************
+            //【a.append('b')】向每个匹配的a元素[内部后面]加[所有的][b元素/内容/文本]。
+            //$('li:first').append('<p>haaaaaaaaaaaaaaaaaaaaaa</p>');
+            //$('li:first').append('haaaaaaaaaaaaaaaaaaaaaa');
+            //$('li:first').append($('b'));
+            //【a.appendTo(b)】把所有匹配的a元素追加到b元素[后面]。
+            //$('b:first').appendTo('li:eq(1)');
+            //【a.prepend(b)】向每个匹配的a元素[内部前面]加[b文本/元素]。
+            //$('li').prepend('hahah');
+            //$('li').prepend($('b'));
+            //【a.prependTo(b)】向每个匹配的a元素[放到][b元素内部前面]。
+            //$('li').prependTo($('b'));
+//********************【外部插入】*****************************
+            //【a.after(b)】在每个匹配的[a元素]之后插入[b内容/元素]。
+            //$('b').after('<p>hheheheeeeeeeeeeee</p>');
+            //$('b').after($('li:eq(1)'));
+            //【a.before(b)】在每个匹配的[a元素]之前插入[b内容/元素]。
+            //$('b').before('<p>hheheheeeeeeeeeeee</p>');
+            //$('b').before($('li:first'));
+            //【a.insertAfter(b)】把所有匹配的[a元素]插入到[b元素/集合]的后面。
+            //$('b:first').insertAfter($('li:first'));
+            //【a.insertBefore(b)】把所有匹配的[a元素]插入到[b元素/集合]的前面。
+            //$('b').insertBefore($('li:first'));
+//********************【包裹】*****************************
+            //a.【wrap(b)】把所有匹配的a元素用b元素的结构化标记包裹起来。
+            //$('b').wrap('<a class = "a">');
+            //$('b').wrap($('li:first'));//用li:first把所有的b元素包起来
+            //【a.unwrap(b)】将[b元素]移出[a父元素],并去除a标签【内容还在】。这能快速取消 .wrap()方法的效果。
+            // 匹配的元素（以及他们的同辈元素）会在DOM结构上替换他们的父元素。
+            //$('span').unwrap('em');
+            //【a.wrapAll(b)】将[所有的a元素]用[b元素]包裹起来
+            //$('li').wrapAll('<a>');
+            //$('b').wrapAll($('li:first'));
+            //【a.wrapInner(b)】将[每一个a元素]的[子元素/文本]用b包裹起来
+            //$('div').wrapInner('<a>');
+            //$('div').wrapInner($('li:first'));
+//********************【替换】*****************************
+            //【a.replaceWith(b)】将所有匹配的a元素[替换成][b元素/文本/内容]。
+            //$('b').replaceWith('<a>aaaaaaaaaa</a>');
+            //$('b').replaceWith('aaaaaaaaaa');
+            //$('b').replaceWith($('li:eq(1)'));
+            //【a.replaceAll(b)】将所有匹配的a元素[替换][b元素]。
+            //$('b').replaceAll(C);
+            //$('li').replaceAll(C);
+//********************【删除】*****************************
+            //【a.empty()】删除[所有]匹配到a元素中所有的[元素+文本]。
+            //$('b').empty();
+            //$('li').empty('.li3');
+            //【a.remove(b)】删除[所有]匹配到的a元素(中的特殊ab元素)
+            //$('li').remove();//所有
+            //$('li').remove('.li3');//li.li3
+            //$('li').remove(':eq(2)');//li:eq(2)
+            //【a.detach(b)】删除[所有]匹配到的a元素(中的特殊ab元素)
+            //$('li').detach();//所有
+            //$('li').detach('.li3');//li.li3
+            //$('li').detach(':eq(2)');//li:eq(2)
+            //【remove()与detach()区别】：
+            //remove():不会把匹配的元素从jQuery对象中删除
+            //detach():把匹配的元素从jQuery对象中删除
+//********************【复制】*****************************
+            //【a.clone(true/false)】克隆所有的a元素并且[选中]这些克隆的副本(操作)。
+            //clone()==clone(false)
+            //clone(true)复制一个元素[及其所有事件],clone()方法是复制一个元素，[不包含]其所有事件
+            //$('b').clone().prependTo($('li'));//克隆b放到li,这样就不会【剪贴】
+            //$('ul').clone(true).prependTo($('i'));//克隆b放到li,这样就不会【剪贴】
+        })
+
+    </script>
+</head>
+<body>
+    <ul>
+        <b>ooooooooooo</b>
+        <li>11111111111</li>
+        <li>22222222222</li>
+        <li class="li3">33333333333</li>
+        <li>44444444444</li>
+        <li>55555555555</li>
+        <b>88888888888888</b>
+    </ul>
+   <div>dddddddd
+       <em>eeeeeeeee
+           <span>
+               sssssssssss
+           </span>
+       </em>
+   </div>
+    <i></i>
+ul.ul1>li*5
+</body>
+</html>

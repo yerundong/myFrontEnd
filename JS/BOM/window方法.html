@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+    	<script src="../jquery-1.11.2.min.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+	<body>
+		<button id="focus">focus</button>
+		<button id="blur">blur</button>
+		<br />
+		<button id="satrt">start</button>
+		<button id="left">left</button>
+		<button id="right">right</button>
+		<button id="goto">goto</button>
+		<button id="print">print</button>
+		<br />
+		宽：<input type="number" id="wid" />
+		高：<input type="number" id="hei" />
+		<button id="resizeBy">resizeBy</button>
+		<button id="resizeTo">resizeTo</button>
+		<br />
+		滚动x：<input type="number" id="scX" />
+		滚动y：<input type="number" id="scY" />
+		<button id="scrollBy">scrollBy</button>
+		<button id="scrollTo">scrollTo</button>
+		<br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
+		<script type="text/javascript">
+		//【createPopup()】方法用来创建一个弹出窗口。	
+		//只有 IE浏览器支持 createPopup() 方法，【其他浏览器都不支持。】	
+			/*function show_popup(){
+				var p=window.createPopup()
+				var pbody=p.document.body
+				pbody.style.backgroundColor="lime"
+				pbody.style.border="solid black 1px"
+				pbody.innerHTML="This is a pop-up! Click outside to close."
+				p.show(150,150,200,50,document.body)
+			}*/
+			//show_popup();
+		//【focus()】 方法可把键盘焦点给予一个窗口。	
+		//【blur()】 方法可使得一个窗口失去键盘焦点。	
+		//【moveBy(a,b)】 方法可相对窗口的当前坐标把它移动指定的像素。所有主要浏览器都支持 moveBy() 方法
+		//【moveTo(x,y)】方法可把窗口的左上角移动到一个【指定的坐标。】
+		//a	要把窗口右移的像素数;x 窗口新位置的 x坐标
+		//b	要把窗口下移的像素数;y 窗口新位置的 y坐标
+			var lef = 0,top = 0,oWin;
+			$('#satrt').click(function () {
+				oWin = window.open('','name1','width=300,height=300');
+				oWin.moveBy(lef,top);
+			})
+			$('#focus').click(function () {
+				oWin.focus();
+			})
+			$('#blur').click(function () {
+				oWin.blur();
+			})
+			$('#left').click(function () {
+				lef=-10;
+				oWin.moveBy(lef,top);
+				console.log(lef)
+			})
+			$('#right').click(function () {
+				lef=10;
+				oWin.moveBy(lef,top);
+				console.log(lef)
+			})
+			$('#goto').click(function () {
+				oWin.moveTo(500,200);
+			})
+			
+		//【print()】打印当前窗口的内容,产生一个对话框
+			$('#print').click(function () {
+				window.print()
+			})
+		//【resizeBy(a,b)】 根据指定的像素来调整窗口的大小。
+		//【resizeTo(x,y)】 把窗口大小调整为指定的宽度和高度。
+			//a	必需。窗口宽度增加的像素数。可以是正、负数值;x 窗口指定窗口的宽度
+			//b	可选。窗口高度增加的像素数。可以是正、负数值;y 窗口指定窗口的高度
+			$('#resizeBy').click(function () {
+				var wid = $('#wid').val();
+				var hei = $('#hei').val();
+				oWin.resizeBy(wid,hei)
+			})
+			$('#resizeTo').click(function () {
+				var wid = $('#wid').val();
+				var hei = $('#hei').val();
+				oWin.resizeTo(wid,hei)
+			})
+		//【scrollBy(a,b)】滚动指定的像素数。
+		//【scrollTo(x,y)】滚动到指定的坐标。
+			$('#scrollBy').click(function () {
+				var scX = $('#scX').val();
+				var scY = $('#scY').val();
+				window.scrollBy(scX,scY)
+			})
+			$('#scrollTo').click(function () {
+				var scX = $('#scX').val();
+				var scY = $('#scY').val();
+				window.scrollTo(scX,scY)
+			})
+		</script>
+	</body>
+</html>

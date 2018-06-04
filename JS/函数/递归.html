@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script type="text/javascript">
+    	'use strict'
+		//函数自身调用自身叫作递归，若是最后一步调用自身，则为【尾递归】
+		//普通递归：需要同时保存成千上百个调用记录，很容易发生"栈溢出"错误（stack overflow）
+		function add1 (num) {
+			if(num!=0){
+				return num + add1(num-1)
+			}else{
+				return 0
+			}
+		}
+		let sum1 = add1(3);
+//		console.log(sum1)
+		
+		//尾递归:只存在一个调用记录，所以永远不会发生"栈溢出"错误
+		function add2 (num,total) {
+			if(num!=0){
+				return add2(num-1,num+total)
+			}else{
+				return total
+			}
+		}
+		let sum2= add2(3,0);
+//		console.log(sum2)
+		
+		//尾递归柯里化:经过封装，不需要再传入中间参数
+		function add3 (num,total) {
+			if(num!=0){
+				return add3(num-1,num+total)
+			}else{
+				return total
+			}
+		}
+		function getsum (num) {
+			return add3(num,0);
+		}
+		let sum3 = getsum(3);
+//		console.log(sum3)
+		
+		//es6默认参数实现柯里化
+		function add4 (num,total=0) {
+			if(num!=0){
+				return add3(num-1,num+total)
+			}else{
+				return total
+			}
+		}
+		let sum4= add4(3);
+//		console.log(sum4)
+	</script>
+</head>
+<body>
+
+</body>
+</html>

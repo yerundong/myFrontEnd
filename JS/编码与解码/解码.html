@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script src="../jquery-2.2.3.min.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+	<body>
+		<input type="text" id="aaa" style="width: 700px;"/>
+		<button id="aa">默认获参</button>
+		</br>
+		<input type="text" id="bbb" style="width: 700px;"/>
+		<button id="bb">decodeURI获参</button>
+		</br>
+		<input type="text" id="ccc" style="width: 700px;"/>
+		<button id="cc">decodeURIComponent获参</button>
+		<script type="text/javascript">
+			var tip1 = getQuery1('tip');
+			var tip2 = getQuery2('tip');
+			var tip3 = getQuery3('tip');
+			$('#aa').click(function () {
+				$('#aaa').val(tip1);
+			})
+			$('#bb').click(function () {
+				$('#bbb').val(tip2);
+			})
+			$('#cc').click(function () {
+				$('#ccc').val(tip3);
+			})
+			
+			//默认获参
+			function getQuery1 (name) {
+				var reg = new RegExp("(^|&)"+ name +"=([^&]*)(&|$)",'i');
+         		var r = window.location.search.substr(1).match(reg);
+         		if(r!=null)
+	        		return r[2]; 
+	        	return null;
+			}
+			//decodeURI获参
+			function getQuery2 (name) {
+				var reg = new RegExp("(^|&)"+ name +"=([^&]*)(&|$)",'i');
+         		var r = window.location.search.substr(1).match(reg);
+         		if(r!=null)
+	        		return  decodeURI(r[2]); 
+	        	return null;
+			}
+			//decodeURIComponent获参(最优)
+			function getQuery3 (name) {
+				var reg = new RegExp("(^|&)"+ name +"=([^&]*)(&|$)",'i');
+         		var r = window.location.search.substr(1).match(reg);
+         		if(r!=null)
+	        		return  decodeURIComponent(r[2]); 
+	        	return null;
+			}
+		</script>
+	</body>
+</html>

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src = "jquery-1.11.3.js"></script>
+    <style>
+    </style>
+    <script>
+        $(function () {
+            //【$.ajax(url,[settings])】执行一个异步的HTTP（Ajax）的请求
+            //url:一个用来包含发送请求的URL字符串。
+           /* $.ajax({
+                url:'自定义json.json',
+                type:'get',
+                success:function(){
+
+                }
+            })*/
+            //【load(url, [data], [callback])】载入远程 HTML 文件代码并插入至 DOM 中。
+            $('input').click(function () {
+                $('.box').load("自定义html.html");
+            })
+
+
+        })
+    </script>
+</head>
+<body>
+    <input type="button" value="发送请求">
+    <div class="box"></div>
+</body>
+</html>

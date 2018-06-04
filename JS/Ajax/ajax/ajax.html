@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+
+<body>
+    <input type="submit" id="in" value="get">
+    <script type="text/javascript">
+        var oInput = document.getElementById('in');
+        //ajax事件触发
+        oInput.onclick = function () {
+            //ajax:异步的javascript 和 xml无刷新局部更新
+            //新建ajax对象（兼容问题）
+            var xhr = null;
+            try {
+                xhr = new XMLHttpRequest();//XMLHttpRequest对象
+            } catch (e) {
+                xhr = new ActiveXObject('Microsoft.XMLHTTP');//ie5、6支持ActiveXObject对象
+            }
+
+            //【事件监听】readyState就绪状态,每当readyState改变时，就会触发 onreadystatechange 事件。
+            //当使用 async=false 时，请不要编写 onreadystatechange 函数,把代码放到send()语句后面即可
+            //        responseText	获得【字符串形式】的响应数据。
+            //        responseXML	获得【XML形式】的响应数据。如果来自服务器的响应并非XML，请使用 responseText 属性。
+            /*
+             【readyState】：
+             存有 XMLHttpRequest 的状态。从 0 到 4 发生变化。
+             0: 请求未初始化 还没有调用send()方法
+             1: 服务器连接已建立,已调用send()方法，正在发送请求
+             2: 请求已接收,send()方法执行完成，已经接收到全部响应内容
+             3: 请求处理中,正在解析响应内容
+             4: 请求已完成，且响应已就绪,响应内容解析完成，可以在客户端调用了
+             【status】：
+             0:根本就没通过服务器
+             200: "OK"
+             404: 未找到页面
+             */
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState == 4) {
+                    if (xhr.status == 200) {
+                        console.log(xhr.responseXML);
+                        //console.log(xhr.responseText);
+                        //var txt=eval(xhr.responseText);
+                        //console.log(txt[0].name);
+                    } else {
+                        console.log('status:' + xhr.status)
+                    }
+                }
+            };
+
+            //打开url链接
+            //open(method, url, async)
+            xhr.open('post', 'xml.xml', false);
+
+            //setRequestHeader(header,value) 向请求添加【HTTP头】;header: 规定头的名称  value: 规定头的值
+            //设置头信息前必须先调用open方法，如果需要在send()或url里【传递参数】则setRequestHeder是必须的。
+            xhr.setRequestHeader('content-type', 'application/x-www-form-urlencoded');
+
+            //发送请求
+            //send(string);string：仅用于 POST 请求;get直接写在url中;XMLHttpRequest对象和设置【作为参数传递给回调函数】。
+            xhr.send();
+
+        }
+
+    </script>
+</body>
+
+</html>

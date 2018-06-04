@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src = "jquery-1.11.3.js"></script>
+    <style>
+        .div1{color: #1199ff}
+    </style>
+    <script>
+        $(function () {
+            //【attr(name|properties|key,value|fn)】(读写行内属性;支持自定义属性)设置或返回被选元素的属性值。
+            //$('.div1').attr('style','background: blue');//写一个属性
+            //$('.div1').attr({'style':'background: blue',abc:'nonono'});//写多个属性
+            //alert($('.div1').attr('style'));//读行内样式
+            //【prop(name|properties|key,value|fn)】(读写行内属性;不支持自定义属性)设置或返回被选元素的属性值。
+            //$('.div1').prop('style','background: blue');//写一个属性
+            //$('.div1').prop({'style':'background: blue','title':'nonono'});//写多个属性
+            //alert($('.div1').prop('style'));//读行内样式
+            //【prop()对于表单属性的布尔值】【区别与attr()】
+            $('input:eq(0)').prop('checked',false);//不勾选
+            $('input:eq(0)').prop('checked',true);//勾选
+            //alert( $('input:eq(1)').prop('disabled'));//true 布尔值
+            //【removeAttr(name)】删除属性[仅删行内属性]支持删自定义属性
+            //$('.div1').removeAttr('style');//
+            //【removeProp(name)】删除属性[仅删行内属性]不支持删自定义属性
+            //$('.div1').removeProp('style');//
+
+
+        })
+    </script>
+</head>
+<body>
+    <div class="div1" style="height: 20px;background: red" title = "hahah" abc = "你好呀">div1</div>
+    <input type="checkbox">
+    <input type="radio" disabled>
+    <select>
+        <option>11</option>
+        <option selected>22</option>
+        <option>33</option>
+    </select>
+</body>
+</html>

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>open_Son</title>
+	</head>
+	<script src="../jquery-1.11.2.min.js" type="text/javascript" charset="utf-8"></script>
+	<style type="text/css">
+		#sel{
+			width: 100px;
+		}
+	</style>
+	<body>
+		<select id="sel">
+			<option value="1">i</option>
+			<option value="2">do</option>
+			<option value="3">not</option>
+		</select>
+		<button id="off">关闭</button>
+		<script type="text/javascript">
+			var win1 = window.opener;
+			$('#off').click(function () {
+				var val = $('#sel').find('option:selected').html();
+				win1.setCallback(val);
+				window.close();
+			})
+			$(window).on('unload',function () {
+				win1.moonfunoff();
+			})
+		</script>
+	</body>
+</html>

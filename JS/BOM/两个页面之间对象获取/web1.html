@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script src="../../jquery-1.11.2.min.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+	<body>
+		<input type="text" name="inp" id="inp" value="" />
+		<button id="btn">start</button>
+		<script type="text/javascript">
+			window.name = 'name1';
+			$('#btn').click(function () {
+				window.open('web2.html?callback=AAAInfo.setCallback','name2')
+			});
+			var AAAInfo = {
+				setCallback:function (obj) {
+					$(inp).val(obj.txt)
+				}
+			}
+		</script>		
+	</body>
+</html>

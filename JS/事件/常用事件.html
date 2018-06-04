@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script>
+        //【window.onresize】窗体大小发生变化触发
+        window.onresize = function(){
+            //alert('窗体大小发生变化后我执行了');
+        };
+        //【window.onscroll】滚动条滑动时触发
+        window.onscroll = function(){
+            //alert('滚动条滑动时我执行了');
+        };
+        //【window.onload】页面加载完成执行【只能有一个，最后一个会把前面的覆盖】
+        window.onload = function(){
+            //alert('整个页面加载完成后我执行了');
+            //【onselect】当内容被选中时触发
+            var oIput = document.getElementById('ipu');
+            oIput.onselect = function(){
+                //alert('当内容被选中我触发了');
+            };
+            //【onchange】当内容被修改完成时(失焦之后)触发。
+            oIput.onchange = function(){
+                //alert('当内容被修改完成时我触发了');
+            };
+            //【onfocus】获得焦点时触发。
+            oIput.onfocus = function(){
+                //alert('获得焦点时我触发了');
+            };
+            //【onblur】失去焦点时触发。
+            oIput.onblur = function(){
+                //alert('失去焦点时我触发了');
+            };
+            //【onsubmit】【onreset】表单提交、重置事件;对象必须是【表单form】
+            var oForm = document.getElementsByTagName('form')[0];
+            oForm.onsubmit = function(){
+                //alert('表单提交时执行了我！');
+            };
+            oForm.onreset = function(){
+                //alert('表单重置时执行了我！');
+            };
+        }
+    </script>
+</head>
+<body>
+    <form>
+        <input id="ipu"><br>
+        <input type="submit" value = "提交">
+        <input type="reset" value = "重置">
+    </form>
+</body>
+</html>

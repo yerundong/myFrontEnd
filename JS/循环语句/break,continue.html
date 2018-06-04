@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script>
+        //break:跳出循环；
+       //continue：结束本次循环，进入下次循环
+
+        /*var i;
+         for(i = 1;i <= 10;i++){  //i = 不能写外面
+         document.write("123—");
+         break;  //到break直接跳出循环,只执行一次break之前的循环体，只跳本一层循环（break可用于选择与循环语句）。
+         //continue;//到continue直接跳回循环初始处,去执行i++，即只执行continue之前的循环体，
+         // 即跳过document.write("**");（continue只能在循环语句中使用）
+         document.write("**");
+         }
+         document.write("++");*/
+
+        /*var i;
+         for(i = 1;i < 10;i++) {
+         if(i <= 5){
+         document.write("123—");
+         //break;//直接跳出循环
+         //continue;//对选择语句无效
+         }else{
+         document.write("**");
+         }
+         if(i > 5) {
+         document.write("++");
+         }
+         }*/
+
+
+        //break在嵌套for循环中的作用
+        //其一：
+        /*for (var i = 0;i <= 5;i++){
+            for (var j = 0;j <= 5;j++){
+                if(j / 2 == 0)
+                {break;}//结束内部循环
+            }
+            document.write(i);
+        }*/
+
+
+        //其二：
+       /* flag:for (var i = 0;i <= 5;i++){   //flag作为标记
+         for (var j = 0;j <= 5;j++){
+         if(j / 2 == 0)
+         {break flag;}          //结束外部循环
+         }
+         document.write(i);
+         }*/
+
+         //continue在循环中的作用
+        //其一：
+           /*  for (var j = 0;j <= 5;j++){
+                 if(j % 2 == 0)
+                 {continue;}//满足j % 2 == 0，直接回到j++，所以0，2，4没有输出
+             document.write(j);//135
+             }*/
+
+        //其二：
+       /*  flag:for (var i = 0;i <= 5;i++){   //flag作为标记
+             for (var j = 0;j <= 5;j++){
+                 if(j / 2 == 0)
+                 {continue flag;}//回到i++，结束外部循环的某一次循环
+             }
+         document.write(i);//无输出值
+         }*/
+
+    </script>
+</head>
+<body>
+
+</body>
+</html>

@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src = "jquery-1.11.3.js"></script>
+    <script>
+        $(function(){
+            //swing:慢-快-慢  linear：匀速
+            //【show([speed,[easing],[fn]])】显示隐藏的匹配元素。
+            //【hide([speed,[easing],[fn]])】隐藏显示的匹配元素。
+            /*
+             speed:三种预定速度之一的字符串("slow","normal","fast")或表示[动画时长]的[毫秒]数值(如：1000)
+             easing:(Optional) 用来指定切换效果，默认是"swing"，可用参数"linear"
+             fn:在动画完成时执行的函数，每个元素执行一次。
+             */
+            /*$(document).click(function () {
+                $('div.a').show(1000,'linear', function () {
+                    $('div.a').hide('normal','linear', function () {
+                        $('div.a').show('fast','swing');
+                    });
+                })
+            });*/
+            //【toggle(fn1,fn2,,,,,)】????????????????
+            /*$(document).click(function () {
+                $('div.a').toggle(1000 )
+            });*/
+            //【slideDown([speed],[easing],[fn])】通过高度变化（向下增大）来动态地显示所有匹配的元素，[可选地]触发一个[回调函数]。
+            //【slideUp([speed],[easing],[fn])】通过高度变化（向上减小）来动态地显示所有匹配的元素，[可选地]触发一个[回调函数]。
+            /*$(document).click(function () {
+                $('div.a').slideDown(1000,'swing', function () {
+                    $('div.a').slideUp('normal','linear', function () {
+                        $('div.a').slideDown('fast','swing');
+                    });
+                })
+            })*/
+            //【slideToggle([speed],[easing],[fn])】【开关】隐藏就slideDown，显示就slideUp
+            /*$(document).click(function () {
+                $('div.a').slideToggle(1000,'swing')
+            });*/
+            //利用arguments.callee实现无限循环运动
+            /*$(document).click(function () {
+                $('div.a').slideToggle(1000,'swing', function () {
+                    $(this).slideToggle(1000,'swing',arguments.callee)
+                })
+            });*/
+            //【fadeIn([speed],[easing],[fn])】淡入【出现】
+            //【fadeOut([speed],[easing],[fn])】淡出【消失】
+            /*$(document).click(function () {
+                $('div.a').fadeIn(1000,'linear', function () {
+                    $('div.a').fadeOut(1000,'linear', function () {
+                        $('div.a').fadeIn(1000,'linear');
+                    });
+                })
+            })*/
+            //【fadeTo([[speed],opacity,[easing],[fn]])】淡出【消失】[指定透明度]
+            /*$(document).click(function () {
+                $('div.a').fadeTo(1000,'1','linear', function () {
+                    $('div.a').fadeTo(1000,'0.1','linear', function () {
+                        $('div.a').fadeTo(1000,'1','linear');
+                    });
+                })
+            })*/
+            //【fadeToggle([[speed],[easing],[fn]])】【开关】隐藏就fadeIn，显示就fadeOut
+            /*$(document).click(function () {
+                $('div.a').fadeToggle(1000,'linear', function () {
+                    $('div.a').fadeToggle(1000,'linear', function () {
+                        $('div.a').fadeToggle(1000,'linear');
+                    });
+                })
+            })*/
+//********************【自定义】*****************************
+            //【animate(params,[speed],[easing],[fn])】用于创建自定义动画的函数。
+            //params:一组包含作为[动画属性]和[终值]的样式属性和及其值的集合
+            /*$(document).click(function () {
+                $('div.a').show(100, function () {
+                    $('div.a').animate({
+                        left:'1000px',
+                        opacity:'0.1',
+                    },1000,'linear', function () {
+                        $('div.a').animate({
+                            top:'500px',
+                            opacity:'1',
+                            borderRadius:'50%'
+                        },1000,'linear')
+                    })
+                });
+            })*/
+            //【a.delay(duration,[queue])】设置一个延时来推迟执行队列中之后的项目
+            //【a.stop([queue],[clearQueue],[jumpToEnd])】停止所有在a元素上正在运行的动画。
+            /*queue:用来停止/延迟[动画队列]名称?????????????????????
+             duration：延迟时间
+             clearQueue:如果设置成true，则[清空]队列。可以【停止】动画。
+             jumpToEnd:如果设置成true，则[完成]队列。可以【立即完成】动画。*/
+            /*$('[type=button]:eq(0)').click(function () {
+                $('div.a').show(1000, function () {
+                    $('div.a').animate({
+                        left:'1000px',
+                    },1000).delay(1000,); //第一链
+                    $('div.a').animate({
+                        top:'500px',
+                    },1000);         //第二链
+                    $('div.a').animate({
+                        left:'0',
+                    },1000);        //第三链
+                    $('div.a').animate({
+                        top:'100px',
+                    },1000);        //第四链
+                });
+            });*/
+            $('[type=button]:eq(1)').click(function (){
+                //$('div.a').stop();//=stop(false)=stop(false,false)：停止【当前链】的运动，立即继续下一链的运动
+                //$('div.a').stop(true);//=stop(true,false);停止[所有链]的运动；
+                //$('div.a').stop(false,true);//马上到【当次链】的目标,继续下一链运动
+                //$('div.a').stop(true,true)//马上到【当次链】的目标,停止[所有链]的运动
+            });
+            //【delay(duration,[queueName])】设置一个延时来推迟执行队列中之后的项目。
+            /*$(document).click(function () {
+                $('div.a').delay(1000).slideDown(1000).delay(1000).slideUp(1000);
+            });*/
+//********************【设置】*****************************
+            //【jQuery.fx.off】关闭页面上[所有]的动画。
+            /*$(document).click(function () {
+                $('div.a').slideDown(1000).slideUp(1000);
+                $.fx.off(true);
+                $('div.a').slideDown(1000).slideUp(1000);
+            });*/
+
+
+
+
+
+
+
+
+        });
+    </script>
+</head>
+<body>
+    <div class="a" style="width: 200px;height: 200px;background: blueviolet;display: none;position: absolute;top:100px;"></div>
+    <input type="button" value="开始">
+    <input type="button" value="停止">
+</body>
+</html>

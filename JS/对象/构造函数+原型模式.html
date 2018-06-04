@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script>
+        //【分离模式】
+        //构造函数里存放【需要传参、修改】的信息
+        function Student(name,age,sex,family){
+            this.name = name;
+            this.age = age;
+            this.sex = sex;
+            this.family = family;
+            this.phone = ['Nokia','Iphone','Vivo','ChuiZi']
+        }
+        //原型里存【不需要传参、修改】的信息
+        Student.prototype = {
+            fn : function(){
+                alert('姓名：' + this.name + '年龄：' + this.age + '岁'+'性别：' + this.sex + '家庭成员：'+this.family +
+                    "他们拥有的手机："+ this.phone);
+            }
+        };
+
+        /*var stu1 = new Student('王二',18,'男',['爸爸','妈妈']);
+        stu1.fn =  function(){alert('myName：' + this.name + 'myAge：' + this.age + '岁'+ 'mySex：'
+            + this.sex + 'Families：'+this.family+this.phone)};//不会影响后面
+        stu1.phone.push('baomihua');//不会影响后面
+        stu1.fn();
+
+        var stu2= new Student('张三',20,'女',['爸爸','妈妈','老公']);
+        stu2.fn();
+*/
+        //【动态原型模式】:将原型写在构造函数里
+        function Student2(name,age,sex,family){
+            this.name = name;
+            this.age = age;
+            this.sex = sex;
+            this.family = family;
+            this.phone = ['Nokia','Iphone','Vivo','ChuiZi'];
+            if(typeof fn != 'function') {//判断，只初始化一次，加快运行速度
+                Student2.prototype.fn = function () {//固定写法；不能写成 Student.prototype = {}这种格式；
+                    alert('姓名：' + this.name + '年龄：' + this.age + '岁' + '性别：' + this.sex + '家庭成员：' + this.family +
+                            "他们拥有的手机：" + this.phone);
+                };
+            }
+        }
+        var stu1 = new Student2('王二',18,'男',['爸爸','妈妈']);
+        stu1.fn();
+        var stu2= new Student2('张三',20,'女',['爸爸','妈妈','老公']);
+        stu2.fn();
+        alert(stu1.fn == stu2.fn)//true
+    </script>
+</head>
+<body>
+
+</body>
+</html>

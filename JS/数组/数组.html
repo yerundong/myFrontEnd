@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script>
+
+        //【创建数组】
+
+        //一.1【使用new创建数组】分为：var arr =new Array(length);var arr =new Array();var arr =new Array(1,2,3,4);
+        //var arr =new Array(数组长度);
+        var arr =new Array(10);//定义一个可以储存10个数的数组，
+        // 0为初始长度，可以被加长、剪短，
+        //（）可以为空。new可以被省略.new 后的Array（）为构造函数，arr为实例函数
+        arr[0] = 12;//为arr添加数组子集
+        arr[1] = true;//数组中可以放入【任意类型】的数据,包括object、array、路径、string、function......
+        arr[12] = 14;//一次性只能添加一个 arr[12,13] = 14,15;这个是错误写法
+        //arr.length = 3;//将arr剪短到只有3，截取前三个
+        //alert(arr);//12,true,,,,,,,,,,14 输出数组所有数值，用，隔开
+         //alert(arr[6]);//undefined未定义
+
+      //一.2var arr =new Array(1,2,3,4);
+        var arr1 = new Array(1,2,3,"nihaoya",false);//可直接在（）内放入数组初始数值,初始数据可以被改变
+        arr1[4] = true;//true覆盖原来初始的false
+        //alert(arr1);//1,2,3,nihaoya,true
+
+        //二、【使用字面量创建数组】
+        var arr2 = [0,1,2,3];
+        arr2[4] = 12;
+        arr2[5] = true;
+        arr2[12] = 14;//长度加长至14
+ /*****************数组中可包含各种类型数据***********************************/
+        var arr3 = [
+            {
+                name:"xx",
+                age:23,
+                fn:function(){
+                    alert("我是object中的一个功能");
+                }
+            },//arr3[0]  子对象
+            [new Object(),1,2,3],//arr3[1]  子数组
+            "我是arr3[2]",//arr3[2]  字符串
+            new Array("html","css","javascript","hello"),//arr3[3] 子数组
+            function(){
+               alert(123);
+            }//arr3[4]  子函数
+        ];
+        //alert(arr3 );//原样输出，没有执行
+        //alert(arr3[4]());//调用数组中函数（勿忘()）
+         //alert(arr3[1]);//new Object(),1,2,3
+        //alert(arr3[1][3]);//3
+       // alert(arr3[3][3]);//hello
+
+    </script>
+</head>
+<body>
+
+</body>
+</html>

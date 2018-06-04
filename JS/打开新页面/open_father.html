@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>open</title>
+		<script src="../jquery-1.11.2.min.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+	<style type="text/css">
+		.moon{
+			width: 100%;height: 100%;background: #333;position: fixed;left: 0;top: 0;opacity: 0.3;
+			display: none;z-index: 99999999999999999999999;
+		}
+	</style>
+	<body>
+		<input type="text" name="inp" id="inp" value="" />
+		<button id="on">打开新页面</button>
+		<div class="moon" id="moon">
+			
+		</div>
+		<script type="text/javascript">
+			var win2;
+			$('#on').click(function () {
+				moonfunon();
+				var text = $('#inp').val();
+				win2 = window.open('open_son.html?text='+text,'web2','width=300,height=300,left=300,top=300,modal=yes');
+			});
+			function setCallback(text){
+				$('#inp').val(text);
+			}
+			//是否有价值
+			function isValueble(data) {
+				if(data || data==0 || data==''){
+					return true;
+				}else{
+					return false;
+				}
+			}
+			//遮罩开
+			function moonfunon () {
+				$('#moon').show();
+			}
+			//遮罩关
+			function moonfunoff () {
+				$('#moon').hide();
+			}
+			$(window).on('beforeunload',function () {
+				win2.close();
+			})
+//			window.onfocus=function (){
+//				if(!win2.closed){
+//					win2.focus();
+//				}
+//			};
+			$('#moon').click(function (){
+				if(!win2.closed){
+					win2.focus();
+				}
+			});
+		</script>
+	</body>
+</html>

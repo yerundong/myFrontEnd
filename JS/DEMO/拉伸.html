@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<script src="../Lib/Jquery/jquery-2.2.3.min.js" type="text/javascript" charset="utf-8"></script>
+	<style type="text/css">
+		*{
+			margin: 0;padding: 0;
+		}
+		html,body{
+			width: 100%;height: 100%;position: relative;
+		}
+		.box{
+			width: 200px;height: 200px;border: 1px solid #ccc;position: absolute;left: 500px;top: 50px;
+		}
+	</style>
+	<body>
+		<div class="box" id="box">
+			
+		</div>
+		<script type="text/javascript">
+			function pickLong (option) {
+				var $targObj = option.targetObj;
+				var x2;
+				var w2;
+				var hei = $targObj.height();
+				var mousePush = false;
+				var mouseStayR = false,
+					mouseStayL = false,
+					mouseStayT = false,
+					mouseStayB = false,
+					pickLongR = false,
+					pickLongL = false,
+					pickLongT = false,
+					pickLongB = false;
+				$(document).mousemove(function(e) {
+					lineMove(option.type,e);
+				});
+				
+				function lineMove(type,e) {
+					var x = e.pageX; //鼠标坐标x
+					var wid = $targObj.width();
+					var $targObj_left = $targObj.offset().left; //目标对象左距
+					var rightLineX = $targObj_left + wid; //右边框的坐标
+					var leftLineX = $targObj_left; //左边框的坐标
+					var right_condition = (x <= rightLineX + 5 && x >= rightLineX - 5)?true:false;
+					var left_condition = (x <= leftLineX + 5 && x >= leftLineX - 5)?true:false;
+					
+					if(type=='right'){
+						moveR();
+						if(right_condition) {
+							$targObj.css({
+								cursor: 'e-resize'
+							});
+						}else{
+							$targObj.css({
+								cursor: 'default'
+							});
+						}
+					}else if(type=='left'){
+						moveL();
+						if(left_condition) {
+							$targObj.css({
+								cursor: 'w-resize'
+							});
+						}else{
+							$targObj.css({
+								cursor: 'default'
+							});
+						}
+					}else if(type=='horizontal'){
+						moveL();
+						moveR();
+						if(right_condition) {
+							$targObj.css({
+								cursor: 'e-resize'
+							});
+						}else if(left_condition){
+							$targObj.css({
+								cursor: 'w-resize'
+							});
+						}else{
+							$targObj.css({
+								cursor: 'default'
+							});
+						}
+					}
+					
+					function moveR () {
+						if(pickLongR) {
+							$targObj.css('width', x - $targObj_left);
+						} 
+						if(right_condition) {
+							mouseStayR = true;
+						} else {
+							mouseStayR = false;
+						}
+					}
+					function moveL () {
+						if(pickLongL) {
+							$targObj.css({
+								'left':x,
+								'width':w2+x2-x
+							});
+						} 
+						if(left_condition) {
+							mouseStayL = true;
+						} else {
+							mouseStayL = false;
+						}
+					}
+				};
+				//监听鼠标左键
+				$(document).on('mousedown', function(e) {
+					if(getBtn(e) == 0) {
+						x2 = e.pageX;
+						w2 = $targObj.width();
+						mousePush = true;
+						if(mouseStayR && mousePush) {
+							pickLongR = true;
+						}
+						if(mouseStayL && mousePush) {
+							pickLongL = true;
+						}
+						if(mouseStayT && mousePush) {
+							pickLongT = true;
+						}
+						if(mouseStayB && mousePush) {
+							pickLongB = true;
+						}
+					}
+				});
+				//监听鼠标左键
+				$(document).on('mouseup', function(e) {
+					if(getBtn(e) == 0) {
+						mousePush = false;
+						pickLongR = false;
+						pickLongL = false;
+						pickLongB = false;
+						pickLongT = false;
+					}
+				
+				});
+				//获取鼠标键码
+				function getBtn(e){
+		            if(e){
+		                return e.button;
+		            }
+		            else if(window.event){//IE
+		                switch (event.button){
+		                    case 1:
+		                        return 0;//左
+		                    case 4:
+		                        return 1;//中
+		                    case  2:
+		                        return 2;//右
+		                }
+		            }
+		        }
+			};
+			pickLong({
+				targetObj:$('#box'),
+				type:'horizontal' 
+			});
+		</script>
+	</body>
+</html>

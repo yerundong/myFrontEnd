@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    除了Object类型的(包括实例对象)，每个引用类型都【默认】拥有prototype属性，该属性指向对象
+
+    构造函数的prototype下【默认】拥有两个属性：constructor，__proto__。
+    实例对象下【默认】拥有一个属性：__proto__，__proto__下有个constructor。
+
+    每个(构造)函数都有一个prototype属性，其所【指向】的是【prototype.constructor属性】，这一属性又指向【(构造)函数自身】,
+    所以a.prototype.constructor就是函数本身；
+    而实例对象下【默认】拥有一个属性：__proto__，且__proto__.constructor永远指向【构造函数】的prototype.constructor。
+    所以，obj.__proto__ = 构造函数.prototype(这是通过new创建实例改变的)。
+
+    所有实例对象【需要共享】的属性和方法，都放在prototype对象里面；
+    那些【不需要共享】的属性和方法，就放在【构造函数】里面。
+
+    原型链的关键在于__proto__
+
+    (构造）函数--prototype；
+    对象--__proto__；
+
+    【new的过程】，做了三件事：
+    var obj = new Fn();
+    var obj={}; 初始化一个对象a。
+    obj.__proto__= Fn.prototype;继承
+    Fn.call(obj);也就是说构造obj，也可以称之为初始化obj,改变Fn中this，指向obj
+
+    <script>
+        function Goto(where){
+            this.position = where;
+            this.isgood = function(){
+                if(where != '霞浦'){
+                    alert('去' + this.position + 'not good!');
+                }else{
+                    alert('去' + this.position + 'good!');
+                }
+            }
+        }
+        Goto.__proto__= {
+            fun: function () {
+                console.log(1);
+            }
+        };
+
+
+        //console.log(Goto.__proto__);
+        var obj = {
+            constructor:Goto,//【强制】让构造方法为构造函数本身，不管构造函数有没有定义prototype
+            a: function(){
+                alert('我是新增功能');
+            },
+            position:'哈珀'
+        };
+        Goto.prototype= obj;//覆盖了Goto原有的原型对象；这是pos1与pos2【共同】的功能；
+        Goto.prototype.name = 'Tom';//给原型添加属性与属性值【可以不定义obj，这样构造方法就是构造函数了本身了】
+
+        console.log(Goto.prototype);//即obj object类型的对象
+        //console.log(Goto.prototype.position);//构造函数只有【通过prototype】才能调用原型下的属性和方法，
+        //console.log(Goto.prototype.__proto__);//object  到底了，再往下追寻就是null了。
+        //alert(pos1.__proto__.__proto__);//即Goto.prototype.__proto__  [object Object]
+        //alert(Goto.prototype.__proto__.__proto__);//null;__proto__到[object Object]就到头了，不能再往上追溯了
+        var pos1 = new Goto('杭州');//
+        var pos2 = new Goto('霞浦');
+        //实例对象pos1.__proto__【继承】了构造他的函数的原型(即【Goto.prototype】)的【属性和方法】
+        console.log(pos1.__proto__);
+
+        //【isPrototypeOf】用于判断一个对象是否指向构造函数的原型对象【布尔】
+        //alert(Goto.prototype.isPrototypeOf(pos1));//true
+
+        //实例对象可以【直接调用原型对象】中的属性与方法
+        //alert(pos1.position);
+        //pos1.isgood();
+        //pos1.a();
+        //pos2.a();
+        //alert(pos2.position);//当原实例和原型中拥有【相同的属性或方法】，则【优先】使用实例自身的。如果自身没有，再去原型中寻找
+
+        //【delete】删除对象属性或方法
+        /*delete pos2.position;
+        delete Goto.prototype.position;//或obj.position
+        alert(pos2.position);*/
+
+        //【hasOwnProperty('')】：判断【实例对象本身】是否有某属性或方法[一]
+        //alert(pos1.hasOwnProperty('isgood'));//true
+        //alert(pos1.hasOwnProperty('a'));//false
+        //【'属性或方法' in 实例对象】：判断【实例对象或原型】是否有某属性或方法[二]
+        //alert('a' in pos1);//true  只要实例或原型中一个有，就返回true
+
+        //【__proto__】：对象拥有的属性；用于寻找原型链；
+        //alert(pos1.__proto__);//即obj或Goto.prototype 【object类型的对象】
+        //alert(Goto.__proto__);//function(){}  函数
+        //alert(Goto.__proto__.__proto__);//object Object 【到头了】
+        //alert(pos1.prototype);//undefined  Object类型的对象【默认】没有prototype
+        //alert(pos1.__proto__ == Goto.prototype);//true
+        //alert(pos1.__proto__ == obj);//true
+
+        //【constructor】：获取实例对象的【构造方法】。
+        //如果没有给构造函数Goto定义原型，获得【构造函数】：
+        //alert(pos1.constructor)//function Goto(where){....balabala....}
+        //如果给构造函数Goto的原型重新定义（obj），获得【obj的构造方法】：
+        //alert(pos1.constructor)//function Object() { [native code] }
+        //如果给obj添加constructor:Goto,，就可【强制】让构造方法为【构造函数本身】，不管构造函数有没有定义原型【见最上面】
+
+        //给js内部引用类型的原型【添加方法或属性】(除了Object类型对象)
+        //alert(String.prototype.slice);//function slice() { [native code] } 查看
+        String.prototype.AAA = function(){
+            return  'AAA()是我自行添加的方法';
+        };
+
+        String.prototype.BBB = 'BBB是我自行添加的属性';
+
+        var str = '啊哈哈哈哈哈哈哈';
+        //alert(str.AAA());
+        // alert(str.BBB);
+
+       
+
+    </script>
+</head>
+<body>
+
+</body>
+</html>

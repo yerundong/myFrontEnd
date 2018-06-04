@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8" />
+	<title>Document</title>
+<script src="jquery-1.11.2.min.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+	<style type="text/css">
+		html,body{
+			width: 100%;height: 100%;
+		}
+		*{
+			margin: 0;padding: 0;
+		}
+		.frame1{
+			border: 1px solid #ccc;margin: 20px auto;display: block;
+		}
+	</style>
+	<body>
+		<!--
+			iframe 元素会创建包含另外一个文档的【内联框架】（即行内框架）。
+			iframe是【行内元素】
+			postMessage可用于【父子窗口】安全地传递消息
+			属性：
+			【align】 属性规定 iframe 相对于周围元素的水平和垂直对齐方式。
+				不赞成使用 align 属性,请使用css样式代替。
+				left	向左对齐 iframe。
+				right	向右对齐 iframe。
+				middle	居中对齐 iframe。
+				top	在顶部对齐 iframe。
+				bottom	在底部对齐 iframe。
+			【src】 规定显示在 iframe 中的文档的地址。
+				绝对 URL - 指向其他站点（比如 src="www.example.com/index.html"）
+				相对 URL - 指向站点内的文件（比如 src="index.html"）	
+			【srcdoc】 属性规定要显示在内联框架中的页面的 HTML 内容，并且解析。
+				优先级高于src，使得src无效
+				【HTML5 中的新属性】,ff、ie不支持
+			【frameborder】: 属性规定是否显示 iframe周围的【边框】。	
+				出于实用性方面的原因，不赞成使用 frameborder边框,请使用css样式代替。
+				1或yes	有边框（默认值）。
+				0或no	关闭边框。
+			【height】 属性规定 iframe 的高度。
+				pixels	以像素计的高度值（比如 "100px"）。
+				percent	以包含元素百分比计的高度值（比如 "20%"）。
+			【width】	属性规定 iframe 的宽度。	
+				pixels	以像素计的高度值（比如 "100px"）。
+				percent	以包含元素百分比计的高度值（比如 "20%"）。
+			【marginheight】	pixels	定义 iframe 的【顶部和底部的边距】。
+			【marginwidth】	pixels	定义 iframe 的【左侧和右侧的边距】。
+			【longdesc】	URL	规定一个页面，该页面包含了有关 iframe 的较长描述。
+				主流浏览器几乎都不支持 longdesc 属性，没有必要使用该属性。
+			【name】	frame_name	规定 iframe 的名称。	
+			【sandbox】 该属性对呈现在iframe框架中的内容启用一些【额外的限制条件】。【 HTML5 中的新属性】,IE10+支持
+				通过sandbox属性提升iFrame的【安全性】，可以防止不信任的Web页面执行某些操作。
+				【强烈建议不要同时使用 allow-scripts 和allow-same-origin,这样的话其安全性还不如不用sandbox】？？？
+				不设置该属性，则无限制；添加多个值时，之间用空格隔开
+				""	启用以下所有的限制。
+				allow-same-origin	允许 iframe内容被视为与包含文档有相同的来源。允许父子页面【共享cookie】, 互相操作.
+				allow-top-navigation	允许 iframe 内容从包含文档导航（加载）内容。
+				allow-forms	允许iFrame内表单提交。
+				allow-scripts 允许iFrame内脚本执行。	
+			【scrolling】	属性规定是否在 <iframe> 中显示滚动条。
+				auto	在需要的情况下出现滚动条（默认值）。
+				yes	始终显示滚动条（即使不需要）。
+				no	从不显示滚动条（即使需要）。
+			【seamless】	规定 <iframe> 看上去像是包含文档的一部分，无缝融入文档（无边框或滚动条）。【HTML5 中的新属性】，ff、ie不支持
+				
+		-->
+		<!--https://www.baidu.com/-->
+		<div class="common">common</div>
+		<iframe id="id1" src="iframe_content.html"
+			 <!--srcdoc="<button style='background:#465478'>srcdoc</button>"-->
+			 width="500px" height="300px" 
+			 sandbox="allow-same-origin allow-scripts"
+			 frameborder="no" 
+			 scrolling = "auto" 
+			 seamless 
+			 class="frame1">
+		</iframe>
+		<script type="text/javascript">
+//			function BBB () {
+//				$('.common').css('color','red');
+//			}
+			setTimeout(function () {
+				console.log(document.getElementById("id1").contentWindow.AAA);
+				console.log($(document.getElementById("id1").contentDocument).find('.common').css('background','green'));
+				console.log(window.frames[0].AAA);
+				window.frames[0].AAA();
+			},1000);
+			
+//			$('#id1').find('.common').css('color','red');
+//			console.log($(document)) 
+		</script>
+	</body>
+</html>

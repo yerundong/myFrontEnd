@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script>
+        //栗1：
+        //【工厂模式】 = 封装：避免使用重复性代码，但存在为问题，不能区分对象类型
+        /*function fn1(name,age){
+            //alert(定义实例对象的时候，我被执行了！！！');
+            var obj1 = new Object();//函数里面实例化
+            obj1.name = name;
+            obj1.age = age;
+            obj1.jieshao = function(){
+                return "我的名字叫"+obj1.name +","+"今年"+obj1.age+"岁了";
+            };
+            return obj1;//返回对象的引用
+        }
+        var a = fn1("张三",25);//地址传递 赋值给一个变量
+        var b = fn1("李四",80);
+        alert(a.name + a.age + a.jieshao());
+        alert(b.name + b.age + b.jieshao());*/
+
+        //栗2：
+        //使用【构造函数的模式】创建对象（）
+        /*
+        function Student(name,age){      //【构造函数】首字母必须大写
+            this.name = name;           //不需要建立对象，后台自动建立new Object
+            this.age = age;             //这个this就是指向【对象】stu1，stu2
+            this.jieshao = function(){
+              return "我的名字叫"+this.name +","+"今年"+this.age+"岁了";
+            };                           //后台自动返回该对象，不需要再return回函数！！
+        }
+        var stu1 = new Student("张三",100);//构造函数把【属性和方法】赋给stu1，成为一个【实例对象】；
+        // 构造函数前加[new]变成【object对象类型】才能赋值
+
+        //alert(stu1.name + stu1.age + stu1.jieshao());
+        var stu2 = new Student("李四",200);//【定义实例对象】的时候，会把【构造函数执行】
+
+       //alert(stu2.name + stu2.age + stu2.jieshao());
+        //alert(typeof stu1);//实例对象 object类型
+        //Student('张三',15);//构造函数还是能调用，但是因为this指向的是stu1、stu2，所以this开头的不能执行；
+
+        //特点：
+        //构造函数首字母必须大写，为了和普通函数区分 Student
+        //使用构造函数必须前面加 new 如var stu1 = new Student("张三",100);
+        //如果把构造函数【当成普通函数】调用，如Student("张三",100) 没有意义，因为没有return，
+        */
+
+        //栗3：
+        /*
+        function Fn() {
+            this.fn1= function () {
+                console.log(1);
+            }
+        };
+        Fn.prototype.fn2 = function () {//在fn.__proto__下添加fn2方法
+            console.log(2);
+        };
+        Fn.fn3 = function () {//命名空间，与Fn,fn无关
+            console.log(3);
+            console.log(this);//this指向Fn();
+        };
+        var fn = new Fn();//实例对象，没有prototype，但有__proto__
+        fn.fn4= function () {//给实例对象fn添加方法，和fn1一样
+            console.log(4);
+        };
+        fn.__proto__.fn5= function () {////改fn.__proto__下添加fn5方法，与fn2一样
+            console.log(5);
+        };
+        //以上方法除了Fn.fn3，都可以在fn下调用
+        console.log(fn.__proto__);
+        console.log(fn);
+        */
+
+    </script>
+</head>
+<body>
+
+</body>
+</html>

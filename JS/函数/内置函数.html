@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script>
+        //Math.random/ceil/floor/round/abs常用的/
+
+        //Number() 尝试将任意类型转为数字
+            //alert(Number("2.3"));//2.3
+           // alert(Number("hello"));//NaN
+           // alert(Number(true));//1
+           // alert(Number(false));//0
+           //alert(Number(null));//0  空对象返回0
+               // alert(Number(undefined));//NaN
+
+        //parseInt() 尝试将任意类型转为整形数字
+           //alert(parseInt(2.3));//2
+           // alert(parseInt(2.9));//2  舍弃小数点后的位数
+            // alert(parseInt("hello"));//NaN
+              // alert(parseInt(2.3 + " HELLO"));//2  舍弃非数字类型的值，给数字取整
+
+        //parseFloat() 尝试将任意类型转为浮点（小数）型数字
+         //alert(parseFloat(10abc));//错误写法
+           //alert(parseFloat("hello"));//NaN
+            //alert(parseFloat(10+"hello"));//10
+             //alert(parseFloat(10/3).toFixed(2));//3.33
+                //alert(parseFloat(10.1234567890123456789));//10.1234567890123456
+
+
+        //Math.round()对小数进行四舍五入
+       //alert(Math.round(2.321654));//2
+       // alert(Math.round(2.721654));//3
+        //alert(Math.round(2.3 + " HELLO"));//NaN
+
+
+        //Math.ceil()给小数型数字取上限
+        //alert(Math.ceil(2.321654));//3
+
+        //Math.floor()给小数型数字取下限
+        //alert(Math.floor(2.921654));//2
+
+        //  Math.abs()取绝对值
+        //alert(Math.abs(-2));//2
+
+
+        //Math.pow(a，b)  a^b    平方
+       // alert(Math.pow(2,3));//8
+
+
+        //Math.random()  取随机数
+        //alert(Math.random());//默认0-1不包括1，取随机数
+        //alert(parseInt(Math.random()*10));//0-10 随机数
+        //setInterval(typeof function() {document.write(parseInt(Math.random()*100) + "-");},10);  //0-100打印随机数
+
+
+        //选出最大、最小数
+          //alert(Math.max(1,5,7,12));//12
+          //alert(Math.max(1,5,7,12));//1
+
+        //Math.sqrt();根号
+        //alert(Math.sqrt(4));//2
+
+        //toString()方法可把一个逻辑值转换为【字符串】，并返回结果。【生成】
+        var a = [1,2,4,6];
+        var num = 1321345
+        b = a.toString();
+        //alert(typeof  b);//string
+        c = num.toString(2);//toString(x) 把数字转为x进制   x：2-36之间
+       //alert(c)
+
+
+
+
+    </script>
+</head>
+<body>
+
+</body>
+</html>

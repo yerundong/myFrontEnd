@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+        *{
+            padding: 0;
+            margin: 0;
+        }
+        body{
+            border:2px solid red;
+        }
+        .div1{
+            width: 200px;
+            height:2000px;
+            background: yellowgreen;
+        }
+    </style>
+    <script type="text/javascript" src="jquery-1.11.3.js"></script>
+    <script type="text/javascript">
+        /*
+         可视区高度:$(window).height()
+         滚动条与离顶部的距离:$('body').scrollTop()【gg】或者$(document).scrollTop()【ff,gg】
+         滚动高度:$('body').get(0).scrollHeight
+        */
+        //滚动条与离顶部的距离+可视区高度 >= 滚动高度 时触发
+        $(window).scroll(function () {
+            if($(window).height()+$('body').scrollTop()>=$('body').get(0).scrollHeight){
+                alert(123)
+            }
+        })
+
+    </script>
+</head>
+<body>
+    <div class="div1">
+        
+    </div>
+</body>
+</html>

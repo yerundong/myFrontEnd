@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+//栗1：
+        /*
+        function obj(name){
+            if(name){//判断是否传参
+                this.name=name;
+               return this;
+            }
+        }
+        obj.prototype.name = "name2";//原型下的属性只有new出来的构造函数才能访问
+        var a = obj("name1");
+            console.log(a.name);//name1
+            //alert(window.name);
+        var b = new obj;//实例对象在构造函数里没有找到name属性，就去原型里找
+            console.log(b.name);//name2
+            */
+//栗2：
+		//属性访问表达式优先级高于“=”号 
+        /*
+        var a ={n:1};
+        var b = a;
+        a = a.x = {n:2};
+        console.log(a);
+        console.log(b);
+        */
+    </script>
+</body>
+</html>

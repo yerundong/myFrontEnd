@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script>
+        //栗1：利用【构造函数】实现调用【私有变量与函数】
+        /*
+        function Show(){
+            var name = 'zhangsan';    //私有变量
+            function test(){
+                return '我是局部函数';//私有函数
+            };
+            this.caco = function(){//利用构造函数实现调用局部变量与函数
+                return name+test();//返回私有变量与函数
+            }
+        };
+        //console.log(test());//报错
+        var kaka = new Show();
+        console.log(kaka.caco());
+        */
+
+        //栗2：静态私有变量（即没有var声明的私有变量）
+        /*
+        (function(){
+            var country = '';
+            Person = function(value){//Person是全局的构造函数
+                country = value;
+            };
+            Person.prototype.getCountry = function(){
+                return country;
+            };
+            Person.prototype.setCountry = function(c){
+                country = c;
+            };
+            people = function () {//people是全局的子函数，父函数调用之后，可以直接访问
+                alert('people');
+            }
+        })();//父函数执行之后，才能访问全局的子函数，即Person；
+        var ren = new Person('USA');
+        console.log(ren.getCountry());//usa
+        ren.setCountry('China');
+        console.log(ren.getCountry());//china
+        people();
+        */
+
+
+        //栗3：利用字面量的方式获取局部变量
+        /*
+        var objs = function(){
+            var name = 'lisi';
+            function fn(){
+                return '我感觉好清晰呀';
+            };
+            return {              //返回一个字面量对象，作为媒介，获取name 和 fn();
+                go:function(){
+                    return fn();
+                },
+                come:name
+            }
+        }();
+        console.log(objs.go());
+        console.log(objs.come);
+        */
+    </script>
+</head>
+<body>
+
+</body>
+</html>

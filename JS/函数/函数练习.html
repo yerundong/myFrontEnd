@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script>
+        //	求递归F(x) = F(x-1) + F(x-2);  x>=2
+        //（0，1，1，2，3，5，8，13，21，34，55，89......）
+        //法一
+        /*function f(x){
+         var num1 = 0;
+         var num2 = 1;
+         var sum;
+         document.write(num1+"_");
+         document.write(num2+"_");
+
+         for(var i = 0;i < x - 2;i++){
+         sum = num1 + num2;
+         num1 = num2;
+         num2 = sum;
+         document.write(sum+"_");
+         }
+         }
+         f(30);*/
+
+
+        //法二
+        /*function f(x){
+         var m;
+         if(x == 0){
+         m = 0;
+         }else if (x == 1){
+         m = 1;
+         }else{
+         m = f(x - 1) + f(x - 2);
+         }
+         return m;
+         }
+
+         for(var x = 0;x < 20;x++){
+         document.write(f(x)+"-");
+         }*/
+
+        //法三
+        /*for(var x = 0;x < 20;x++){
+         function f(x){
+         var m;
+         if(x == 0){
+         m = 0;
+         }else if (x == 1){
+         m = 1;
+         }else{
+         m = f(x - 1) + f(x - 2);
+         }
+         return m;
+         }
+         document.write(f(x)+"-");
+         }*/
+
+
+
+        /*function f(x){  //错误
+         var m;
+         for(var x = 0;x < 20;x++) {
+         if(x == 0){
+         m = 0;
+         }else if (x == 1){
+         m = 1;
+         }else{
+         m = f(x - 1) + f(x - 2);
+         }
+         document.write(m+"-");
+         }
+         return x;
+         }
+         f(30);*/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    </script>
+</head>
+<body>
+
+</body>
+</html>

@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        //栗1：
+        for(var i=0,j=0;i<6,j<10;i++,j++){//逗号
+            var s=i+j;
+        }
+        //alert(s);//18
+        for(var i=0,j=0;j<10,i<6;i++,j++){//条件表达式的最后结果要看逗号后一个条件
+            var s=i+j;
+        }
+        //alert(s);//10
+        for(var i=0,j=0;i<6&&j<10;i++,j++){//与
+            var s=i+j;
+        }
+        //alert(s);//10
+        for(var i=0,j=0;j<10||i<6;i++,j++){//或
+            var s=i+j;
+        }
+        //alert(s);//10
+    </script>
+</body>
+</html>

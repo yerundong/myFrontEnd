@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script type="text/javascript">
+        //求1 -1/2 + 1/3 - 1/4...(三种方法)
+        /*var n;               //其一
+        var sum = 0;
+        for(n = 1;n <= 100;n++){
+            sum += (1/n)*Math.pow((-1),(n - 1));
+        }
+        alert(sum);*/
+
+       /* var n;                //其二
+        var sum = 0;
+        for(n = 1;n <= 100;n++){
+          if(n % 2 == 0){
+              sum += -1/n;//sum依次往上累加，
+          }else{
+              sum += 1/n;
+          }
+        }
+        alert(sum);*/
+
+        /*var n;               //其三
+        var m = 1;
+        var sum = 0;
+        for(n = 1;n <= 100;n++){
+            sum += m/n;
+            m = -m;
+        }
+        alert(sum);*/
+
+
+        //求1-100内素数
+
+        var numb;
+        for(numb = 3;numb <= 100;numb++){
+            for(var i = 2;i < numb;i++){
+                if( numb % i === 0){
+                   break;
+                }else{
+            document.write(numb+"-");
+                    break;
+                }
+            }
+        }
+
+
+        //输出100-200之间所有的素数
+        /*        var i = 100;
+         while(i <= 200){
+         var j = 2;
+         // flag 位true的时候表示素数
+         var flag = false;
+         while(j < i){
+         if (i % j == 0) {
+         flag = false;
+         break;
+         }
+         flag = true;
+         j++;
+         }
+         // undefined 在做逻辑判断是也是等同于false
+         if (flag) {
+         document.write(i + "<br />");
+         }
+         i++;
+         }*/
+
+    </script>
+</head>
+<body>
+
+</body>
+</html>

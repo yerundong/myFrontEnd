@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script>
+    	//在即将离开当前页面(刷新或关闭)时执行 beforeunload，弹出框询问 
+    	//这个事件一旦执行就【无法阻止】
+    	/*window.onbeforeunload = function (evt) {
+ 			var ev = evt || window.event;
+//  		preDef(ev);//无法阻止
+//			return false;//无法阻止
+    		return '你确定要离开此页面？'
+    	}*/
+        addEvent(window,'beforeunload',function(evt){
+            var ev = evt || window.event;
+            return false;//无法阻止
+//          preDef(ev);//无法阻止
+            return '你确定要离开此页面？';
+        });
+        //【阻止默认行为兼容方法】：
+        function preDef(evt){
+            var ev = evt||event;
+            if(ev.preventDefault){
+                return ev.preventDefault();
+            }else if(ev.returnValue = false)
+                return ev.returnValue = false;
+        }
+        //添加事件兼容方法
+        function addEvent(obj,evt,fn){
+            if(obj.addEventListener){
+                obj.addEventListener(evt,fn,false);
+            }else if(obj.attachEvent){
+                obj.attachEvent('on'+evt,fn);
+            }
+        }
+    </script>
+</head>
+<body>
+
+</body>
+</html>

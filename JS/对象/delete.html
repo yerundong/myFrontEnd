@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<script type="text/javascript">
+			var obj = {
+				a:1
+			};
+			var obj2 = new Object();
+			obj.b = 2;
+			var arr = [1,2,3];
+			function fn () {
+				var a;
+			}
+			delete obj;// returns false;
+			delete obj.a;// returns true;
+			delete obj.b;// returns true;
+			delete obj2;// returns false;
+			delete arr[1];// returns true;可以删除数组中的元素,该位置变undefined,数组长度不变
+			delete fn;
+			console.log(fn);// returns false;
+			//通过变量或者函数声明的属性不能删除。
+			//通过var或者function声明的属性不能删除
+			//内置的属性不能删除
+		</script>
+	</body>
+</html>

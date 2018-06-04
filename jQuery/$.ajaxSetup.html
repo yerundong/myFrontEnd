@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script src="jquery-1.11.3.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+	<body>
+		<script type="text/javascript">
+			//设置AJAX的全局【默认选项】，之后执行的【所有AJAX请求】，如果对应的选项参数【没有设置】，将使用更改后的【默认设置】。
+			$.ajaxSetup({
+				headers: { // 默认添加请求头
+			        "Author": "CodePlayer" ,
+			        "Powered-By": "CodePlayer"
+			    } ,
+				type:'post',
+				aysnc: false , // 默认同步加载
+				error:function () {
+					alert(1)
+				}
+			});
+			
+			$.ajax({
+				url:'wwwwwwwwwwwww',
+				error:function () {
+					
+				}
+			});
+		</script>
+	</body>
+</html>

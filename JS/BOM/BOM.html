@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script>
+        //IE9以下不支持 gg,ff支持
+       //【window.innerHeight,window.innerWidth】获取窗口大小(不包括工具栏与地址栏等) 会随窗口大小拉动而变化的
+        //alert(innerWidth+"--"+innerHeight);
+       //【window.outerHeight,window.outerWidth】窗口大小+边框高宽度
+       //alert(outerWidth+"--"+outerHeight);
+        //IE,gg,ff.兼容写法
+        var height = document.documentElement.clientHeight;//获取可视区高度
+        var width = document.documentElement.clientWidth;//获取可视区宽度
+        //alert(width+"--"+height);
+        //IE6:非标准模式
+        var height = document.body.clientHeight;//获取可视区高度
+        var width = document.body.clientWidth;//获取可视区宽度
+
+
+
+
+
+
+
+
+
+
+    </script>
+</head>
+<body>
+
+</body>
+</html>

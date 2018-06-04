@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script>
+        //onclick--鼠标左键点击
+        //onmousedown--鼠标摁下（左右键）
+        //onmouseup--鼠标抬起（左右键）
+        //在onmousedown、onmouseup鼠标事件对象中存在一个【button属性】
+        window.onload = function(){
+            document.onmousedown = function(e){
+                var ev = e || event;
+                //alert(ev.button);//w3c标准：左-0，中-1，右-2；IE8及以下标准：左-1，中-4，右-2；
+                //兼容写法：
+                var num = getBtn(e);//调用getBtn，把浏览器传过来的ev传给getBtn(),然后用num接收
+                if(num == 0){
+                    alert('左键');
+                }else if (num == 1){
+                    alert('中键');
+                }else if (num == 2){
+                    alert('右键');
+                }
+            };
+        };
+
+        //【兼容封装：获取鼠标事件对象中的button属性值】
+        function getBtn(e){
+            if(e){
+                return e.button;
+            }
+            else if(window.event){//IE
+                switch (event.button){
+                    case 1:
+                        return 0;
+                    case 4:
+                        return 1;
+                    case  2:
+                        return 2;
+                }
+            }
+        }
+    </script>
+</head>
+<body>
+
+</body>
+</html>

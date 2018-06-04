@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<script type="text/javascript">
+			window.onerror = function(errorMessage, scriptURI, lineNumber,columnNumber,errorObj) { 
+				    return console.log("错误信息：" + errorMessage+ "\r\n" +"出错文件：" +scriptURI+ "\r\n" +"出错行号：" +lineNumber+ "\r\n" +
+				    "出错列号：" + columnNumber+ "\r\n" +"错误详情：" + errorObj),!0
+			} 
+		</script>
+	</body>
+</html>

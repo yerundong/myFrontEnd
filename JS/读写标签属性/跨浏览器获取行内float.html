@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script>
+       window.onload = function(){
+           var oDiv = document.getElementsByTagName('div')[0];
+           //alert(oDiv.style.float);//IE都支持；其他浏览器较低版本不支持
+           //alert(oDiv.style.cssFloat);//非IE浏览器支持，IE8及以下不支持
+           //alert(oDiv.style.styleFloat);//仅IE浏览器支持
+           //跨浏览器获取行内float兼容
+           //alert(oDiv.style.styleFloat || oDiv.style.cssFloat);
+           //设置行内float
+           typeof oDiv.style.cssFloat != 'undefined'? oDiv.style.cssFloat = 'right': oDiv.style.styleFloat = 'right';
+           //alert(oDiv.style.cssText);//访问或设置style中的css代码【兼容】
+           oDiv.style.setProperty('background','blue');//给属性添加相应的值，并加上优先权 【IE8及以下不支持】
+           //oDiv.style.removeProperty('float');//删除属性相应的值【IE8及以下不支持】
+       }
+    </script>
+</head>
+<body>
+    <div style="float: left;width: 100px;height: 100px;background: red;"></div>
+</body>
+</html>

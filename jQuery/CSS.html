@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src = "jquery-1.11.3.js"></script>
+    <style>
+        *{margin: 0;padding: 0}
+        .div1{background:red;}
+        .a{width: 400px;height: 400px;background: blue;margin:50px;position: relative}
+        .b{width: 200px;height: 200px;background: red;position: absolute;left: 50px;top:80px;border: 5px solid black;
+        padding: 10px}
+
+    </style>
+    <script>
+        $(function () {
+            //【css()】访问匹配元素的样式属性。
+            //$('.div1').css('color','yellow');//设置行内属性
+            //alert($('.div1').css('background'));//读内联样式
+            //alert($('.div1').css('color'));//读行内样式
+            //【offset([coordinates])】获取匹配元素在[整个页面]的相对偏移。left/top
+            //alert($('.b').offset().top);//50
+            //【position()】获取匹配元素相对[有定位属性父元素]的[定位]偏移（不包括margin、padding）。left/top
+            //alert($('.b').position().left);//50
+            //【a.scrollTop()】获取a元素相对滚动条顶部的偏移。
+            $(document).click(function () {
+                //alert($(document).scrollTop());//页面
+                //alert($(window).scrollTop());//可视区
+            });
+            //【scrollLeft([val])】获取匹配元素相对滚动条左侧的偏移。
+            //【height()】不包括border、padding
+            //$('.b').height(300);
+            //alert($('.b').height());//200
+            //alert($(document).height());//页面高度
+            //alert($(window).height());//可视区高度
+            //【width()】不包括border、padding
+            //$('.b').width(300);
+            //alert($('.b').width());
+            //alert($(document).width());//页面宽度
+            //alert($(window).width());//可视区宽度
+            //【innerHeight()】不包括border、padding
+            //alert($('.b').innerHeight());//220 不包括border、包括padding
+            //【innerWidth()】不包括border、包括padding
+            //alert($('.b').innerWidth());//220
+            //【outerWidth()】包括border、padding
+            //alert($('.b').outerWidth());//230
+            //【outerHeight()】包括border、padding
+            //alert($('.b').outerHeight());//230
+
+        });
+    </script>
+</head>
+<body style="height:2000px;width: 2000px">
+    <div class="div1" style="color: blue;">111111111111111</div>
+    <p>1</p>
+    <p>1</p>
+    <p>1</p>
+    <p>1</p>
+    <p>1</p>
+    <p>1</p>
+    <p>1</p>
+    <p>1</p>
+    <p>1</p>
+    <p>1</p>
+    <p>1</p>
+    <p>1</p>
+    <p>1</p>
+    <p>1</p>
+    <p>1</p>
+    <p>1</p>
+    <p>1</p>
+    <p>1</p>
+    <p>1</p>
+    <p>1</p>
+    <p>1</p>
+    <p>1</p>
+    <p>1</p>
+    <p>1</p>
+    <p>1</p>
+    <p>1</p>
+    <p>1</p>
+    <p>1</p>
+    <p>1</p>
+    <p>1</p>
+    <p>1</p>
+    <p>1</p>
+    <p>1</p>
+    <p>1</p>
+    <p>1</p>
+    <p>1</p>
+    <p>1</p>
+    <p>1</p>
+    <div class="a">
+        <div class="b"></div>
+    </div>
+<div class="c">88798788</div>
+</body>
+</html>

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src = "jquery-1.11.3.js"></script>
+    <style>
+        .a{background: pink;font-size: 25px}
+        .b{background: deepskyblue}
+    </style>
+    <script>
+        $(function () {
+            //【addClass(class|fn)】添加class名
+            //$('div').eq(0).addClass('a');
+            //【removeClass([class|fn])】从所有匹配的元素中删除全部或者指定的类。
+            //$('div').eq(1).removeClass();
+            //$('div').eq(1).removeClass('a');
+            //【toggleClass(class|fn[,sw])】如果存在（不存在）就删除（添加）一个类。【开关】
+            /*$('div').eq(1).click(function () {
+                $(this).toggleClass();
+            })*/
+//********************【属性--HTML代码/文本/值】*****************************
+            //【html()】用于读写HTML内容的值 包含标签
+            //alert($('div').eq(0).html());//读
+            //$('div').eq(0).html('5555555555555');//写
+            //$('li.li1').html($('span'));//剪贴span插入li.li1覆盖
+            //【text()】用于读写HTML[文本]内容的值  不包含标签 不解析标签
+            //alert($('div').eq(0).text());//读
+            //$('div').eq(0).text('1111111')//写
+            //【val()】[读写]匹配元素的当前值（表单value值）。
+            //alert($('input').val());//kkkkkkkkkkk
+            //$('input').val('4444444444')
+            //$('input').val(['男','女'])//默认为选中
+        })
+    </script>
+</head>
+<body>
+    <div>
+        88888888888888
+        <span>121212oooooo</span>
+    </div>
+    <div class="a b">
+        99999999999999
+    </div>
+    <input type="text" value="kkkkkkkkkkk">
+    <input type="radio" value="男">nan
+    <input type="checkbox" value="女">nv
+
+    <ul>
+        <li class="li1">1111111</li>
+        <li class="li2">22222222</li>
+        <li class="li3">33333333</li>
+        <li class="li4">444444444</li>
+        <li class="li5">555555555</li>
+    </ul>
+</body>
+</html>

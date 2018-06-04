@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script>
+        // 【location】地址，当前加在页面有关的信息，既是window对象的属性，也是document对象的属性
+        //console.log(location);//地址栏中的地址 整个url
+        //console.log(document.location);//地址栏中的地址
+        //console.log(location.href);//地址栏中的地址(默认) 读
+		//window.location.href = "window.open.html";//写(转至同一文件夹下另一文件)
+        //alert(location.protocol);//协议
+		//location.protocol = "https;//写
+        //alert(location.hostname);//主机名
+		//location.hostname='192.168.1.213'
+        //alert(location.port);//端口号
+        //alert(location.pathname);//路径名
+		
+		//location.search = "id=1&name=yrd"//截取？后面的字符串
+        //console.log(location.search);//查询字符串 提交的数据 表单等 
+        //alert(location.hash);//锚点部分（如果存在）
+
+        //三种改变地址栏地址的方式
+        function changeUrl(){
+            //location.href = 'BOM.html';//直接赋值 可后退
+            //location.assign ('BOM.html');//可后退
+            //location.replace ('BOM.html');//无历史记录 不可后退
+            //location.reload();//从新加载当前页面 （可能从缓存中加载）
+            //location.reload(true);//从页面所在的服务器从新加载（不会从缓存中加载）
+        }
+
+
+
+    </script>
+</head>
+<body>
+    <a href="javascript:changeUrl()">点击</a>
+</body>
+</html>

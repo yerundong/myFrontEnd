@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="../jquery-2.2.3.min.js"></script>
+    <script>
+        //被继承的称之为【父类】或【超类】，继承的称之为【子类】；
+        //继承：1原型链继承 2对象冒充继承 3 组合继承（对象冒充+原型链）【最常用】
+        //【一】【原型链继承】
+        //【1】
+        function One(){
+            this.attr1 = 'i';
+        }
+        var one = new One();
+        //【2】
+        function Two(){
+            this.attr2 = 'ii';
+            this.arr=['aa','bb'];
+        }
+        Two.prototype = new One();//Two的原型【继承】One里的属性，于是拥有了One的属性
+        //alert($.type(new One()));//object
+        var two = new Two();
+        //alert(two.attr1);
+        //alert(two.attr2);
+        //【3】
+        function Three(){
+            this.attr3 = 'iii';
+        }
+        Three.prototype = new Two();//Three的原型【继承】Two里的属性,于是拥有了One与Two的属性
+        var three = new Three();
+        two.arr.push('cc');
+        //alert(three.attr1);
+        //alert(three.attr2);
+        //alert(three.attr3);
+        //alert(two.arr);//aa bb cc
+        //alert(three.arr);//aa bb cc;引用类型不存在共享的问题
+
+        //可以把子类看做父类,但不能把父类看做子类
+        //alert(one instanceof One);//true
+        //alert(two instanceof One);//true
+        //alert(three instanceof One);//true
+
+        //【二】【对象冒充】继承（借用构造函数）【略知】
+        //对象冒充不能使用原型，也就不能实现数据共享
+        function P1(age){//构造函数
+            this.name = 'san';//this为P2
+            this.age = age;
+            this.fn = function(){
+                alert(12312312)
+            }
+        }
+        P1.prototype.fun= function(){
+            alert('abcdefg');
+        };
+        function P2(age){//“冒充物”
+            P1.call(this,age);
+        }
+
+        var b =new P2(24);
+        //alert(b.name);
+        //alert(b.age);
+        //b.fn();
+
+        var c = new P2(26);
+        //alert(c.name);
+        //alert(c.age);
+        //c.fn();
+        //alert(c.name == b.name);//true  基本类型的一样
+        // alert(c.fn == b.fn);//false  引用类型的地址指向不同  耗费内存
+
+        //【三】【组合继承】（原型链+对象冒充）
+        function AAA(a){  //参数只能在函数内部用
+            this.arr1 =[1,2,3];//this是aaa对象
+            this.a = a;
+        }
+        AAA.prototype.fn = function(){
+            alert(this.a + this.arr1);
+        };
+        function BBB(a){//  对象冒充
+            AAA.call(this,a);//this是aaa对象
+        }
+        BBB.prototype = new AAA();//原型链
+        var aaa = new BBB(777);
+        //alert(aaa.arr1);
+        //aaa.fn();
+        //【四】原型式继承（原型链继承的另一种写法）
+        function getPer(o){
+            function F(){//构造函数
+                this.arr = ['你好','我好'];
+            };
+            F.prototype = o;
+            return new F();//返回构造函数
+        }
+        var obj1 = {
+            name:'Tom',
+            family:['aa','bb']
+        };
+        var per1 = getPer(obj1);//把obj传给原型，F.prototype = obj，并赋值给实例对象；
+        //alert(per1.family);
+        per1.family.push('cc');
+        per1.arr.push('大家好');
+        var per2 = getPer(obj1);
+        // alert(per2.family);//aa bb cc；他们用的是同一个原型，引用类型存在原型共享的问题
+        // alert(per2.arr);//引用类型在构造函数里则不存在共享问题
+        // alert(per1.arr == per2.arr);//false
+
+        //【五】寄生式继承（原型式+工厂模式）:封装创建原型对象的过程
+        function getPerson(o){
+            function F(){};//构造函数
+            F.prototype = o;
+            return new F();//返回构造函数
+        }
+        function knowPerson(o){
+            var OBJ = getPerson(o);//调用getPerson
+            OBJ.arr = ['你好','我好'];//引用类型不共享
+            return OBJ;
+        };
+        var obj = {
+            name:'Tom',
+            family:['aa','bb']
+        };
+        var person1 = knowPerson(obj);//把obj传给原型，F.prototype = obj，并赋值给实例对象；
+        //alert(person1.family);
+        person1.family.push('cc');
+        person1.arr.push('大家好');
+        var person2 = knowPerson(obj);
+        //alert(person2.arr);
+        alert(person1.arr == person2.arr);//false
+    </script>
+</head>
+<body>
+
+</body>
+</html>

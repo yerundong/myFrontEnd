@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src = "jquery-1.11.3.js"></script>
+    <script>
+        $(function(){
+//********************【事件处理】*****************************
+            //【ready(fn)】当DOM载入就绪可以查询及操纵时绑定一个要执行的函数。
+            //fn:要在DOM就绪时执行的函数
+            //js:window.onload = function(){}
+//          $(window).load(function(){});
+//          $(document).ready(function(){});//可简写，可执行多次，不会覆盖
+//          $(function(){})//ready(fn)【简写版】
+            //【a.on(events,[selector],[data],fn)】在选择元素上绑定一个或多个事件的事件处理函数。
+            //【off(events,[selector],[data],fn)】在选择元素上移除一个或多个事件的事件处理函数。
+            //events:一个或多个用空格分隔的事件类型和可选的[命名空间]
+            //selector:selector是a元素的【子元素】,填，则匹配的是selector；如果没填，则匹配的是a元素
+            /*$('body').on("click",".a",{'a':3},function(){
+                $(this).css('background','yellow')
+            });*/
+             //$('body').off();//解绑【所有】的事件
+             //$('body').off('click');//解绑【特定】的事件驱动
+             //可以给事件添加【命名空间】，达到【筛选解绑】的目的
+            //$('body').off("click");
+            //$('body').off("click",".a");
+            //【one(events,[selector],[data],fn)】为每一个匹配元素的特定事件（像click）绑定一个【一次性】的事件处理函数。
+            /*$('body').one("click",".a",{'a':3},function(){
+               alert();
+            });*/
+            //【bind(events,[selector],[data],fn)】为每个匹配元素的特定事件[绑定]事件处理函数。
+            //可以【同时】【多个事件驱动】绑定【多个函数】
+            /*$('div').bind("click mousemove",function(){
+                $(this).css('width','300px');
+                $(this).css('height','300px');
+            });*/
+            //可以【多组】【特定个事件驱动】绑定【特定函数】
+           /* $('div').bind({
+                mouseenter:function(){$(this).css('width','300px')},
+                mouseout:function(){$(this).css('width','200px')}
+            });*/
+            //【unbind()】解绑。
+            //$('div').unbind();//解绑【所有】的事件
+            //$('div').unbind('mouseout');//解绑【特定】的事件驱动
+            //$('div').unbind('mouseout',function(){...});//解绑【特定事件驱动】下的【特定函数】
+            //可以给事件添加【命名空间】，达到【筛选解绑】的目的
+            /*$('div').bind('click.a', function () {
+                alert('1');
+            });
+            $('div').bind('click.b', function () {
+                alert('2');
+            });
+            $('div').bind('mouseover.b', function () {
+                alert('3');
+            });
+            $('div').unbind('click.b');
+            //$('div').unbind('.b');*/
+            //$('div').unbind('mouseout',function(){$(this).css('width','200px')});//解绑【特定事件驱动】下的【特定函数】
+            //【a.trigger(b,[data])()】在每一个匹配的a元素上触发(模拟)b事件驱动,并且自动触发。
+            // + ':' + v1+ ':' + v2+':'+ v3[2]
+
+            /*$('input.one').bind('click',[789],function (ev) {
+                alert(ev.data);
+            });
+            $('input.two').bind('click', function () {
+                $('input.one').trigger('click',['abc',123,[4,5,6]]);
+            });*/
+
+            //利用trigger()、bind()自定义事件驱动
+           /* $('input.one').bind('haha',[789],function (ev) {//haha是自定义事件
+                alert(ev.type);
+            }).trigger('haha');*/
+            //【triggerHandler(type, [data])】与trigger区别：
+            // * 第一，他不会触发浏览器默认事件，也不会产生事件冒泡。
+            // * 第二，只触发jQuery对象集合中【第一个元素】的事件处理函数，而trigger触发所有。
+            // * 第三，这个方法的返回的是事件处理【函数的返回值】，而不是据有可链性的jQuery对象。
+            // 此外，如果最开始的jQuery对象集合为空，则这个方法返回 undefined 。
+            /*$('input.one').click(function () {
+                alert();
+            }).triggerHandler('click');*/
+
+
+//********************【事件切换】*****************************
+            //【hover()】当鼠标移动到一个匹配的元素上面时，会触发指定的第一个函数。
+            // 当鼠标移出这个元素时，会触发指定的第二个函数。
+            /*$('div.b').hover(function () {
+                $(this).css('width','300px')
+            }, function () {
+                $(this).css('height','300px')
+            });*/
+            //【toggle()】
+//********************【事件】*****************************
+            //【blur(([[data],fn])】当元素失去焦点时触发 blur 事件。
+           /* $('input').blur(function () {
+                $(this).css('background','blue')
+            });*/
+            //【change(([[data],fn])】当元素的值发生改变时，会发生change事件。
+             /*$('input').change(function () {
+             $(this).css('background','blue')
+             });*/
+            //【focus(([[data],fn])】当元素获得焦点时，触发 focus 事件。
+            /*$('input').focus(function () {
+                $(this).css('background','blue')
+            });*/
+            //【focusin(([[data],fn])】当元素获得焦点时，触发 focusin 事件。
+            // focusin事件跟focus事件区别在于，他可以在[父元素上检测子元素]获取焦点的情况。
+           /* $('p').focusin(function () {
+                $('input').css('background','blue')
+            });*/
+            //【focusout(([[data],fn])】当元素失去焦点时触发 focusout 事件。
+            // focusout事件跟blur事件区别在于，他可以在[父元素上检测子元素]失去焦点的情况。
+            /*$('p').focusout(function () {
+                $('input').css('background','blue')
+            });*/
+            //【keypress(([[data],fn])】当键盘或按钮被[按下]时，发生 keypress 事件。
+            // 与 keydown 事件不同，每插入一个字符，就会发生 keypress 事件,可以获取键码
+            /*$('input').keypress(function (ev) {
+                alert(ev.charCode)
+            });*/
+            //【keydown(([[data],fn])】当键盘或按钮被[按下]时，发生 keypress 事件。
+            /*$('input').keydown(function (ev) {
+                alert(ev.keyCode);
+            });*/
+            //【keyup(([[data],fn])】当键盘或按钮被[按下]时，发生 keypress 事件。
+            /*$('input').keyup(function () {
+                alert('1111')
+            });*/
+            //【scroll(([[data],fn])】当用户滚动指定的元素时，会发生 scroll 事件。
+            // scroll 事件适用于所有可滚动的元素和 window 对象（浏览器窗口）。
+            /*$(window).scroll(function () {
+                alert('1111')
+            });*/
+            //【select(([[data],fn])】当文本域中的文本被选择时，会发生select 事件。
+            /*$('input').select(function () {
+                alert('1111')
+            });*/
+            //【submit(([[data],fn])】当[提交]表单时，会发生submit事件。该事件只适用于[表单元素]。
+            /*$('form').submit(function () {
+                alert('1111')
+            });*/
+            //【unload(([[data],fn])】在当用户离开页面时，会发生 unload 事件。
+            //$(window).unload( function () { alert("Bye now!"); } );??????????
+            //【mouseout与mouseleave区别】
+            //【mouseout】：进出子元素（c）也会触发
+           /* $('.b').mouseout(function () {
+                alert();
+            });*/
+            //【mouseleave】：进出子元素（c）不会触发
+            /*$('.b').mouseleave(function () {
+                alert();
+            });*/
+
+
+
+
+
+
+
+
+        });
+    </script>
+</head>
+<body>
+    <div class="a" style="width: 200px;height: 200px;background: blueviolet;"></div>
+    <div class="b" style="width: 200px;height: 200px;background: red;">
+        <div class="c" style="width: 100px;height: 100px;background: yellow;"></div>
+    </div>
+    <p><input type="text">2222222222222222222</p>
+    <form>
+        <input class="one" type="submit" value="点呀"/>
+        <input class="two" type="submit" value="模拟键"/>
+    </form>
+</body>
+</html>

@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script>
+    addEvent(window,'load',function(){
+        var oInpu = document.getElementById('sss');
+        var oDiv = document.getElementById('aaa');
+        //【ev.type】:获取事件的类型，得知具体是什么事件触发的。比如：
+        oDiv.onclick = function(evt){
+            var ev =evt || event;
+            //alert(ev.type)//click  点击事件触发的
+        };
+
+        //【target】：获取事件指向对象的属性【W3C】
+        addEvent(oInpu,'click',function(evt){
+            var ev =evt || event;
+            //alert(ev.target);//object.HTMLinputElement
+        });
+        //【srcElement】：获取事件指向对象的属性【IE8及以下】
+        //【兼容封装】：跨浏览器获取事件指向的DOM对象
+        function getTarget(evt){
+            var ev =evt || event;
+            if(ev.srcElement){
+                return ev.srcElement;
+            }else if(ev.target)
+            return ev.target;
+        }
+        //应用：
+        addEvent(oInpu,'click',function(evt){
+            var ev =evt || event;
+            //alert(etTarget(evt));
+        });
+
+
+        //【relatedTarget】：在mouseover事件中:从哪移进;mouseout\mouseleave事件中:移向哪。【W3C】
+        addEvent(oDiv,'mouseover',function(evt){
+            var ev =evt || event;
+            //alert(ev.relatedTarget);
+        });
+        //【fromElement/toElement】:在mouseover事件中:从哪移进;mouseout\mouseleave事件中:移向哪。【IE8及以下】
+
+        //【兼容封装】：跨浏览器获取移入移除DOM对象
+        function getFTTarget(evt){
+            var ev =evt || event;
+            if(ev.srcElement){
+               if(ev.type == 'mouseover'){
+                    return ev.fromElement;
+                }else(ev.type == 'mouseout')
+                    return ev.toElement;
+            }else if(ev.relatedTarget)
+                return ev.relatedTarget;
+        }
+        //应用：
+        addEvent(oDiv,'mousemove',function(evt){
+	        var ev =evt || event;
+	        alert(getFTTarget(ev));
+        });
+    });
+    //1跨浏览器事件添加：
+    function addEvent(obj,evt,fn){
+        if(obj.addEventListener){
+            obj.addEventListener(evt,fn,false);
+        }else if(obj.attachEvent){
+            obj.attachEvent('on'+evt,fn);
+        }
+    }
+    //2跨浏览器事件删除：
+    function removeEvent(obj,evt,fn){
+        if(obj.removeEventListener){
+            obj.removeEventListener(evt,fn,false);
+        }else if(obj.detachEvent){
+            obj.detachEvent('on'+evt,fn);
+        }
+    }
+    //3跨浏览器 获取事件目标对象：
+    function getTarget(evt){
+        if(evt.target){
+            return evt.target;
+        }else if(window.event.srcElement){
+            return window.event.srcElement;
+        }
+    }
+
+    </script>
+    </head>
+    <body>
+    <input type="button" id="sss">
+    <div id="aaa" style="width: 200px;height:200px;background: orangered;"></div>
+    </body>
+    </html>

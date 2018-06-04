@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script src="../jquery-2.2.3.min.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+	<body>
+		<button id="btn">click</button>
+		<button id="btn2">绑定</button>
+		<button id="btn3">解绑</button>
+		<script type="text/javascript">
+			let oBtn = document.getElementById("btn");
+			let oBtn2 = document.getElementById("btn2");
+			let oBtn3 = document.getElementById("btn3");
+			
+			let num = 0;
+			function cons() {
+				console.log('cons')
+			}
+			function puch() {
+				console.log('puch')
+			}
+			
+			function echo(num) {
+				console.log(num)
+			}
+			
+			function confirm(num) {
+				oBtn.onclick = ()=>{
+					console.log(num)
+				}
+			}
+			
+//@==DOM2级事件绑定与解绑
+//			oBtn2.addEventListener('click',function () {
+//				num++;
+//
+//				oBtn.addEventListener('click',cons,false);//不会绑定多次，可以解绑，无法传值，不会覆盖前面事件
+//				oBtn.addEventListener('click',puch,false);//不会绑定多次，可以解绑，无法传值，不会覆盖前面事件
+//				
+//				if(num < 2){//限制只绑定一次
+//					oBtn.addEventListener('click',()=>{//会绑定多次，无法解绑，但可以传值，不会覆盖其他事件
+//						echo(num);
+//					},false);
+//				}
+//
+//				console.log(`已绑定${num}次`)
+//			},false);
+//			
+//			oBtn3.addEventListener('click',function () {
+//				oBtn.removeEventListener('click',cons,false);//只会解除cons，不影响puch事件，即可以单独解绑
+//				
+//				console.log(`已解绑`)
+//				
+//			},false);
+			
+//@==DOM0级事件绑定与解绑
+//			oBtn2.onclick = ()=>{
+//				num++;
+//				
+//				oBtn.onclick = cons;//不会绑定多次，可以解绑，无法传值，会覆盖前面事件
+//				oBtn.onclick = puch;//不会绑定多次，可以解绑，无法传值，会覆盖cons事件
+//				oBtn.onclick = ()=>{//不会绑定多次，可以解绑，可以传值，会覆盖前面事件
+//					echo(num);
+//				}
+//				confirm(num);//不会绑定多次，可以解绑，可以传值，会覆盖前面事件
+//				
+//				console.log(`已绑定${num}次`)
+//			}
+//			
+//			oBtn3.onclick = ()=>{
+//				oBtn.onclick = null//解绑所有事件，不可以单独解绑
+//				console.log(`已解绑`)
+//			}
+	
+//@==jq
+//			$('#btn2').on('click',function () {
+//				num++;
+//				$('#btn').on('click',cons);//会绑定多次，无法解绑，无法传值，不会覆盖其他事件
+//				$('#btn').on('click',puch);//会绑定多次，无法解绑，无法传值，不会覆盖其他事件
+//				$('#btn').on('click',()=>{//会绑定多次，无法解绑，可以传值，不会覆盖其他事件
+//					echo(num);
+//				});
+//				console.log(`已绑定${num}次`)
+//			});
+//			
+//			$('#btn3').on('click',function () {
+//				$('#btn').off('click',cons);//只会解除cons，不影响puch事件，即可以单独解绑
+//				console.log(`已解绑`)
+//			})
+		</script>
+	</body>
+</html>

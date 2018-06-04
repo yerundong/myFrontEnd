@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        .div1{width:500px;height: 500px;background: red;}
+        .div2{width:350px;height: 350px;background: blue;}
+        .div3{width:250px;height: 250px;background: greenyellow;}
+    </style>
+    <script src="../jquery-2.2.3.min.js" type="text/javascript" charset="utf-8"></script>
+    <script>
+        //事件流：页面接收事件顺序。
+        //模式：冒泡和捕获
+        //冒泡：由里到外逐个触发；【现在主流:默认所有浏览器都使用事件冒泡】
+        //捕获：由外到里逐个触发；【早期网景默认使用】
+        //阻止冒泡兼容：
+                function stopBubble(ev) {  //阻止冒泡
+                    //【方法一】
+                    //ev.stopPropagation?ev.stopPropagation():ev.cancelBubble = true;
+                    //【方法二】
+                    if (ev.stopPropagation) {
+                        ev.stopPropagation(); //【标准浏览器】下面阻止冒泡
+                    } else {
+                        ev.cancelBubble = true; //【iE8及以下】，event对象
+                    }
+                }
+        window.onload = function(){
+//在原生js中，阻止冒泡
+//return false在原生js只能阻止默认行为，但却不能阻止冒泡
+            var oDiv1 = document.getElementsByTagName('div')[0];
+            var oDiv2 = document.getElementsByTagName('div')[1];
+            var oDiv3 = document.getElementsByTagName('div')[2];
+            oDiv3.onmousedown =function(){//只有当div1，div2，div3【事件一样时】（比如都是onclick）,才能阻止冒泡；
+                oDiv3.style.background = 'yellow';
+                oDiv3.onmouseup = oDiv3.onclick =function(evt){//将div2，div1的onmouseup，onclick阻止！！1
+                    var ev = evt || event;
+                    //stopBubble(ev);
+                }
+            };
+            oDiv2. onmouseup = function(){
+                oDiv2.style.background = 'yellow';
+                oDiv2. onclick = function(evt){//将div1的onclick阻止！！
+                    var ev = evt || event;
+                    //stopBubble(ev);
+                };
+            };
+            oDiv1.onclick = function(){
+                oDiv1.style.background = 'yellow';
+            };
+            
+//JQ中阻止事件冒泡          
+//return false能阻止冒泡
+            /*$('.div1').click(function (e) {
+            	$(this).css({
+            		'background':'yellow'
+            	});
+            })
+            $('.div2').click(function (e) {
+            	$(this).css({
+            		'background':'yellow'
+            	});
+//          	return false;//方法1
+				e.stopPropagation();//方法2
+            })
+            $('.div3').click(function (e) {
+            	$(this).css({
+            		'background':'yellow'
+            	});
+//          	return false;
+				e.stopPropagation();
+            })*/
+        }
+    </script>
+</head>
+<body>
+    <div class="div1">div1
+        <div class="div2">div2
+            <div class="div3">
+                div3
+            </div>
+        </div>
+    </div>
+</body>
+</html>

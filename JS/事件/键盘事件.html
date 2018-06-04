@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script>
+        //【onkeydown】键盘摁下会一直触发
+        document.onkeydown = function(){
+           //document.documentElement.innerHTML += 1;
+        };
+        //【onkeydup】键盘抬起触发一次
+        document.onkeyup = function(){
+            //document.documentElement.innerHTML += 1;
+        };
+        //【onkeypress】键盘摁下会一直触发,与onkeydown区别：除一些功能键：ctrl shift,win,alt,capslock,tab,ESC,delete,F1-F12,...
+        document.onkeypress = function(){
+            //document.documentElement.innerHTML += 1;
+        };
+        //【keyCode键码】：在发生onkeydown，onkeyup时，event对象会有一个keyCode属性，对应对应键盘上的特定键，【不区分大小写】；
+        document.onkeydown = function(e){
+        	var ev = e || event;
+        	//alert(ev.keyCode);
+        };
+        //在onkeypress中，keyCode属性【区分大小写，且兼容性很差】，仅IE，gg支持
+        document.onkeypress = function(e){
+            var ev = e || event;
+            //alert(ev.keyCode);
+        };
+        //【charCode键码】：适用于onkeypress，代表字符编码，【区分大小写】，仅ff，gg,safari,IE8以上支持
+        /*document.onkeypress = function(e){
+            var ev = e || event;
+            alert(ev.charCode);
+        };*/
+        //特定键触发：ctrlKey，shiftKey，altKey,metaKey-win键或Cmd键(IE不支持)，keyCode == --其他
+        //用来修改事件行为，所以属于event的属性
+        onkeydown = function(e){
+            var ev = e || event;
+            if(ev.ctrlKey){
+                //alert('我是ctrl键触发的');
+            }
+            if(ev.altKey){
+                //alert('我是alt键触发的');
+            }
+            if(ev.shiftKey){
+                //alert('我是shift键触发的');
+            }
+            if(ev.metaKey){
+                //alert('我是meta键触发的');//(IE不支持)
+            }
+            if(ev.keyCode == 65){
+                //alert('我是a键触发的');
+            }
+        };
+        //组合键触发
+        onmousedown = function(ev){
+            onkeydown = function(ev){
+            	var e = ev||event;
+                if(e.ctrlKey){
+                    alert('当鼠标右键点击同时按下Ctrl键时触发');
+                }
+                onkeydown = null;
+            };
+            onmouseup= function(ev){
+                onkeydown = null;
+            }
+        }
+    </script>
+</head>
+<body>
+</body>
+</html>

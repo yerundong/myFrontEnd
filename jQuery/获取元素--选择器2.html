@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src = "jquery-1.11.3.js"></script>
+    <script>
+        $(function(){
+//********************【伪类选择器--基本】*****************************
+            //【:first】---$('a:first')【获取第一个a元素】
+            //$('li:first').css('background','grey');
+            //【:last】---$('a:last')【获取最后一个a元素】
+            //$('b:last').css('text-decoration','line-through');
+            //$('ul:last li:first').css('background','pink');//最后一个ul的第一个li
+            //【:eq(index)】---$('a:eq(index)')【获取索引对应的元素】[索引从0开始]【但是index不能传值，.eq(index)可以】
+            //$('li:eq(2)').css('background','grey');
+            //$('li:eq(-2)').css('background','grey');
+            //【:not(selector)】---$('a:not(selector)')去除所有与给定选择器匹配的a元素
+            //$('div:not(#b)').css('background','yellow');
+            //$(':not([id])').css('background','yellow');
+            //【:even】---$('a:even')【匹配所有索引值为【偶数】的元素，从 0 开始计数】
+            //$('li:even').css('background','yellow');
+            //【:odd】---$('a:odd')【匹配所有索引值为【奇数】的元素，从 1 开始计数】
+            //$('li:odd').css('background','pink');
+            //【:gt(index)】---$('a:gt(index)')【匹配所有[大于]给定索引值的元素】
+            //$('li:gt(0)').css('background','pink');
+            //【:lt(index)】---$('a:lt(index)')【匹配所有[小于]给定索引值的元素】
+            //$('li:lt(4)').css('background','pink');
+            //【:header】---$(':header')【匹配如 h1, h2, h3之类的标题元素】
+            //$(':header').css('background','pink');
+            //$('h2:header:first').css('background','pink');
+            //【:animated】---$(':animated')【匹配所有正在执行动画效果的元素】?????????????
+            //$(':animated').css('background','pink');
+            //【:focus】---$(':focus')【匹配当前获取焦点的元素】
+            /*$('input').get(1).focus();//focus是原生方法；不能链接。
+             $(':focus').css('background','pink');*/
+//********************【伪类选择器--内容】*****************************
+            //【a:contains('text')】匹配包含text文本的a元素
+            //$('div:contains("ha")').css('background','blue');
+           //$(':contains("ha")').css('background','blue');//:没前缀默认为全局
+            //【a:empty】匹配所有[不包含子元素或者文本]的空a元素
+            //$('div:empty').css('background','blue');
+            //【a:has(b)】匹配含有b选择器所匹配的元素的a元素【由子寻父,a为父b为子】
+            //$('div:has(.c)').css('background','blue');
+            //【a:parent】匹配含有[子元素]或者[文本]的a元素；【当爸爸的a】
+            //$('div:parent').css('background','pink');
+//********************【伪类选择器--可见性】*****************************
+            //【a:hidden】匹配所有[不可见]元素，或者type为hidden的a元素
+            //alert($('div:hidden').html());
+            //【a:visible】匹配所有[可见]a元素【集合；但只对第一个操作】
+            //alert($('div:visible').length);//5
+//********************【伪类选择器--子元素】*****************************
+            //【a b:nth-child()】每个相匹配a元素下的b元素的索引值，从1开始，也可以是字符串even 或 odd，或一个方程式
+            //区别:eq(index)只匹配[一个元素]，而这个将为[每一个父元素]匹配子元素。
+            //alert($('div:nth-child(1)').html());//xixixi
+            //$('ul li:nth-child(even)').css('background','pink');//偶行
+            //$('li:nth-child(even)').css('background','pink');//偶行 ul可省略
+            //$('.ul1 li:nth-child(even)').css('background','pink');//偶行
+            //$('div:nth-child(odd)').css('background','pink');//奇行
+            //$('div:nth-child(3n)').css('background','pink');//
+            //$('div:nth-child(4n)').css('background','pink');
+            //【a b:first-child】此选择符将为每个a元素下匹配第一个子b元素
+            //$('ul li:first-child').css('background','pink');
+            //$('li:first-child').css('background','pink');// ul可省略
+            //$('.ul2 li:first-child').css('background','pink');
+            //【a b:last-child】此选择符将为每个a元素下匹配最后一个子b元素
+            //$('ul li:last-child').css('background','pink');
+            //$('li:last-child').css('background','pink');// ul可省略
+            //$('.ul2 li:last-child').css('background','pink');
+            //【a b:only-child】如果某个元素是父元素中[唯一的子元素]，那将会被匹配；
+            // 果父元素中[含有其他元素]，那将不会被匹配。
+            //$('div span:last-child').css('background','pink');
+//********************【伪类选择器--表单】*****************************
+            //【:input】匹配所有 input, textarea, select 和 button 元素
+            //$(':input').css('background','pink');//匹配所有input, textarea, select 和 button 元素
+            //$('div :input').css('background','pink');//匹配所有在【div下】的input, textarea, select 和 button 元素
+            //【:text】匹配所有的[单行文本框]
+            //以下一样的
+//            $(':text.asd').css('background','pink');
+//            $('.asd:text').css('background','pink');
+//            $(':text[disabled]').css('background','pink');
+//            $(':text:disabled').css('background','pink');
+            //【:password】匹配所有密码框
+            //$(':password').css('background','pink');
+            //【:radio】匹配所有单选按钮
+            //【:checkbox】匹配所有复选按钮
+            //【:submit】匹配所有提交按钮
+            //【:image】匹配所有图像域
+            //$(':image').css('border','5px solid lightpink');
+            //【:reset】匹配所有重置按钮
+            //【:button】匹配所有按钮
+            //【:file】匹配所有文件域
+            //【:hidden】匹配所有不可见元素，或者type为hidden的元素
+            //$(':hidden').css('border','5px solid lightpink');
+//********************【伪类选择器--表单对象属性】*****************************
+            //【a:enabled】匹配所有[可用]的a元素
+            //$('input:enabled').css('background','lightpink');
+            //【a:disabled】匹配所有[可用]的a元素
+            //$('input:disabled').css('background','lightpink');
+            //【input:checked】查找所有选中的复选框 [checked只能是input下的属性]
+            //$('input:checked').css('outline','3px solid lightpink');
+            //【option:select】查找所有选中的复选框 [checked只能是input下的属性]
+            //$('option:selected').css('color','lightpink');
+        });
+    </script>
+</head>
+<body>
+    <div>xixixi</div>
+    <div id="b">hahaha</div>
+    <div style="width: 100px;height: 10px;border: 1px solid red" id="c"></div><!--空-->
+    <div style="width: 100px;height: 10px;border: 1px solid red"><p></p></div><!--尚有空子元素，不为空-->
+    <div abc = '123'><span class="c">55555</span></div>
+    <div style="display: none;">8888888</div>
+    <ul class="ul1">
+        <li>0</li>
+        <li>1</li>
+        <li>2</li>
+        <li>3</li>
+        <li>4</li>
+    </ul>
+    <ul class="ul2">
+        <h3>你好呀</h3>
+        <h2>你好呀</h2>
+        <h2>你好呀</h2>
+        <li>0</li>
+        <li>1</li>
+        <li>2</li>
+        <li>3</li>
+        <li>4</li>
+    </ul>
+    <div>
+        <input type="text" disabled="disabled" class="asd">
+        <textarea name="" id="" cols="30" rows="10">66666666666666</textarea>
+    </div>
+    <input type="password">
+    <input type="checkbox" checked>
+    <input type="image" src="1.jpg">
+    <input type="hidden" value="我是隐藏的">
+    <select>
+        <option>11</option>
+        <option selected>22</option>
+    </select>
+</body>
+</html>

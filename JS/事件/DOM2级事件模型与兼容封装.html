@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script>
+        //事件绑定分为两种：一种是传统事件绑定（内联模型，脚本模型）；另一种是现代事件绑定（DOM2级模型）；现代事件
+        //绑定提供更强大更方便的事件模型功能。
+        //w3c事件处理函数：addEvenListener('load',function(){},true/false),removeEvenListener('load',function(){},true/false);
+        // 参数：事件名，函数，冒泡或捕获的布尔值（true代表捕获，false代表冒泡）【不支持ie8及以下版本】
+        window.addEventListener('load',function(){
+            //alert('hello');
+        },false);
+        window.addEventListener('load',function(){
+            //alert('world');
+        },false)//解决了覆盖问题
+
+        window.addEventListener('load',fn,false);
+        window.addEventListener('load',fn,false);//解决了屏蔽问题：调用两次只执行一次函数；
+        function fn(){
+            //alert('helloya');
+        }
+        //IE事件处理函数：attachEvent(),detachEvent();【仅支持IE8及以下版本】
+
+        //【兼容W3C与IE标准封装】：
+        //1跨浏览器事件添加：
+        function addEvent(obj,evt,fn){
+            if(obj.addEventListener){
+                obj.addEventListener(evt,fn,false);
+            }else if(obj.attachEvent){
+                obj.attachEvent('on'+evt,fn);
+            }
+        }
+        //2跨浏览器事件删除：
+        function removeEvent(obj,evt,fn){
+            if(obj.removeEventListener){
+                obj.removeEventListener(evt,fn,false);
+            }else if(obj.detachEvent){
+                obj.detachEvent('on'+evt,fn);
+            }
+        }
+    </script>
+</head>
+<body>
+    <input type="button" id="sss">
+    <div id="aaa" style="width: 200px;height:200px;background: orangered;"></div>
+</body>
+</html>

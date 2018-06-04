@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script type="text/javascript">
+
+      /* var i = 0;
+        while(i < 7 && i != 4){   //i从0-3循环四次，当i=4时，false，停止循环，5与6不再判断
+            document.write("7");
+            i++;
+        }*/
+
+        //同理：for循环也如此
+      /*  for(var i = 0;i < 7 && i != 4;i++){
+            document.write("7");
+        }*/
+
+
+
+
+
+        //1加到100
+    /* var i = 1;
+        var sum = 0;
+        while (i<=100){
+            sum +=i;
+            i++;
+            break;//没有循环，直接到循环外的alert
+        }
+        alert(sum);*/
+
+        /*var i = 0;
+        var sum = 0;
+
+        while (i<=100){
+            sum +=i;
+            i++;
+            continue;//到while重新开始。这里没有while也一样
+        }
+        alert(sum);*/
+
+
+
+       //100内7的倍数
+
+     /*   var i = 1;
+        while (i<=100){
+            if (i % 7 == 0){
+            document.write(i+"&nbsp;");
+
+            }                                       //while里套if
+        i++
+        }
+*/
+
+//        var i = 1;
+//        while (i<=100 && i % 7 == 0){                    //为什么？？？不行
+//            document.write(i+"&nbsp;");
+//
+//            i++;
+//        }
+
+
+//
+//        //打印小星星
+//       var i = 0;
+//
+//        /*1*/ while(i <= 4){
+//            var j = 0;//第二个while，只能从这开始定义。
+//           /*2*/ while (j < 10){                    //while嵌套,均在{}中嵌套
+//                document.write("*");//轮一次循环，打一次*，0-9共轮10次，每行10*
+//                j++//while1全部循环完才开始执行while2的执行语句document.write("1<br/>");
+//            }
+//            document.write("1<br/>");            //i增1换1行，共4行
+//            i++;
+//        }
+
+
+
+//             var i = 1;
+//
+//        while (i <= 40){
+//            document.write("*");   //i=1打一个*...i=10打10*
+//
+//            if(i % 10 == 0){       //嵌套if。这时候10%10==0，隔行。以此类推直到i=40执行完结束
+//                document.write("1<br/>");
+//            }
+//            i++;
+//
+//        }
+
+
+        //打印正三角
+//        var i = 0;//行
+//        /*1*/ while (i < 5){//0-4，5行
+//
+//      /*     *
+//             **
+//             ***
+//             ****
+//             *****  */
+//                var j = 0;//竖
+//              /*2*/  while(j <= i){//当j<=不满足时，跳出while2循环，执行document.write("<br/>");
+////这时while2循环已终止，新一轮循环依旧从j=0开始，与上轮无关联。       正三角：行变量<竖变量
+//                document.write("*");
+//                j++;
+//         }
+//         document.write("<br/>");
+//         i++;//而while1循环从未中断，依次累加。
+//         }
+
+
+        //打印反三角
+   /*     var i = 0;
+
+        while(i < 5){            // 0-4,5行       1个母while嵌套2个子while，两个子while
+            //互不干扰
+
+            var j = 0;//竖
+            while(j <5-i){   //倒三角：竖变量<行数-行变量
+                document.write("&ensp;");//打印空格倒三角
+                j++;
+            }
+
+            while(j <=5){
+                document.write("&ensp;*");//打印*三角
+                j++;
+            }
+
+            document.write("<br/>");
+            i++;
+        }*/
+
+
+        //99乘法表
+       /* var i = 1;
+        while (i <= 9){
+            var j = 1;
+            while (j <= i){//先写个正三角
+                document.write(i+"*"+j+"="+i*j+"&nbsp;"+"&nbsp;")
+                j++;
+            }
+            document.write("<br/>")
+            i++;
+        }*/
+
+
+
+
+
+
+
+
+
+    </script>
+</head>
+<body>
+
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

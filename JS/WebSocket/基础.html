@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<script type="text/javascript">
+			//创建 WebSocket对象:new WebSocket(url,[protocol])
+			//url： 指定连接的 URL(ws://或wss://)  protocol：指定了可接受的子协议(可选)
+			if (!window.WebSocket) {
+	            console.log('不支持')
+	        }  
+
+			var mySocket = new WebSocket('ws://localhost:8082');
+			
+			//与服务端建立连接成功时触发
+			mySocket.onopen = function(){
+                // Web Socket 已连接上，使用 send() 方法发送数据
+              	mySocket.send("发送数据");
+              	alert("数据发送中...");
+           	};
+            
+            //接收服务端返回的数据成功时触发
+           	mySocket.onmessage = function (evt) { 
+              	var received_msg = evt.data;
+              	alert("数据已接收...");
+           	};
+           	
+           	//断开连接时触发
+           	mySocket.onclose = function(){ 
+              	// 关闭 websocket
+              	alert("连接已关闭..."); 
+           	};
+           	
+           	setTimeout(function () {
+//         		mySocket.send("发送数据");
+//         		mySocket.close()//主动断开连接
+           	},3000);
+           	
+           	//http://www.runoob.com/html/html5-websocket.html
+           	//
+		</script>
+	</body>
+</html>

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+			<meta http-equiv="Cache-Control" content="Private" />
+			<meta http-equiv="Cache-Control" content="no-cache" />
+			<meta http-equiv="Cache-Control" content="must-revalidate" />
+			<script src="../jquery-1.11.2.min.js" type="text/javascript" charset="utf-8"></script>
+		<title></title>
+	</head>
+	<body>
+		<strong>Http缓存</strong>
+		<strong>indexDB</strong>
+		<strong>Cookie</strong>
+		<strong>localstorage</strong>
+		<strong>sessionstorage</strong>
+		<strong>application cache</strong>HTML5
+		<strong>cacheStorage</strong>
+		<img src= 'http://pic1.win4000.com/wallpaper/4/590fcc337f886.jpg'/>
+		<img src= 'http://pic1.win4000.com/wallpaper/4/590fcc337f886.jpg'/>
+		<img src= 'http://pic1.win4000.com/wallpaper/4/590fcc337f886.jpg'/>
+		<img src= 'http://pic1.win4000.com/wallpaper/4/590fcc337f886.jpg'/>
+		<img src= 'http://pic1.win4000.com/wallpaper/4/590fcc337f886.jpg'/>
+		<img src= 'http://pic1.win4000.com/wallpaper/4/590fcc337f886.jpg'/>
+		<script type="text/javascript">
+			// 每次地址都不一样，都从服务器中请求  
+			var src = 'http://pic1.win4000.com/wallpaper/4/590fcc337f886.jpg';
+			 $('img').attr('src',src+'?'+new Date().getTime());
+			console.log(src)
+		</script>
+	</body>
+</html>
