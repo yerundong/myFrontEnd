@@ -1,0 +1,235 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8" />
+	<title>Document</title>
+	<link rel="stylesheet" type="text/css" href="lib/webuploader.css">
+	<script src="jquery-1.11.2.min.js"></script>
+	<script type="text/javascript" src="lib/webuploader.js"></script>
+	<style type="text/css">
+		#ctlBtn{
+			margin: 10px 0 0 10px;
+		}
+		#fileList>div{
+			float: left;margin-right: 10px;
+		}
+		#dndArea{
+			width: 550px;height: 280px;border: 2px dashed #ccc;
+		}
+		.info{
+			display: none;
+		}
+		.file-item{
+			height: 140px;position: relative;
+		}
+		.state{
+			line-height: 0;text-align: center;font-size: 12px;
+		}
+		/*开始上传按钮*/
+		#filePicker2{
+			position: relative;display: inline-block;cursor: pointer;background: #00b7ee;padding: 10px 15px;
+    		color: #fff;text-align: center;border-radius: 3px;overflow: hidden;
+		}
+		#filePicker2:hover{
+			    background: #00a2d4;
+		}
+		.file-panel{
+			width: 100%;height: 30px;display:none;overflow: hidden;background: rgba(0,0,0,0.5);position: absolute;left: 0;top: 0;
+		}
+		.file-panel span{
+			text-indent:-9999px;width: 24px;float: left;height: 24px;margin:3px 4px;
+		}
+		.file-panel span:first-child{
+			background: url(img/icons.png) no-repeat 4px -20px;
+		}
+		.file-panel span:first-child:hover{
+			background-position: 4px 4px;
+		}
+		.file-panel span.rotateRight{
+			background: url(img/icons.png) no-repeat -20px -20px;
+		}
+		.file-panel span.rotateRight:hover{
+			background-position: -20px 4px;
+		}
+		.file-panel span:last-child{
+			background: url(img/icons.png) no-repeat -44px -20px;
+		}
+		.file-panel span:last-child:hover{
+			background-position: -44px 4px;
+		}
+		
+	</style>
+</head>
+<body>
+	<div id="uploader">
+	    <!--用来存放item-->
+	    <div id="filePicker"></div><!--点击选择图片按钮-->
+	    <div class="filePicker2_wap" style="display: none;"><div id="filePicker2">开始上传</div></div><!--开始上传图片按钮-->
+	    <button id="getStats_btn" style="height: 35px;margin:10px 0;">获取文件统计信息</button>
+	    <div id="dndArea">
+	    	<div id="fileList" class="uploader-list"></div>
+	    </div>
+	    
+	    
+	</div>
+	
+	<script type="text/javascript">
+	//一、【实例化 uploader.option】
+		var uploader = WebUploader.create({ 
+				dnd: '#dndArea',// [默认值：undefined];指定Drag And Drop拖拽的容器，如果不指定，则不启动
+				disableGlobalDnd: true,//[可选] [默认值：false] 是否禁掉整个页面的拖拽功能，如果不禁用，图片拖进来的
+				paste: document.body,//[默认值：undefined] //指定监听paste事件的容器，如果不指定，不启用此功能。此功能为通过粘贴来添加截屏的图片。建议设置为document.body.
+				// swf文件路径
+			    swf: 'lib/Uploader.swf',
+			    // 文件接收服务端。
+			    server: 'http://datainfo.duapp.com/shopdata/getGoods.php',
+			    // 选择文件的按钮。可选。内部根据当前运行是创建，可能是input元素，也可能是flash.
+			    pick: {
+			    	id: '#filePicker',
+			    	label: '添加图片',
+			    	multiple: true//默认true，是否开起同时选择多个文件能力
+			    	//innerHTML:'点击tm图片'//指定按钮文字。不指定时优先从指定的容器中看是否自带文字。
+			    },
+			    // 选完文件后，是否【自动上传】。
+	    		auto: false, //[默认值：false],设置为 true后，不需要手动调用上传，有文件选择即开始上传。
+			    // 不压缩image, 默认如果是jpeg，文件上传前会压缩一把再上传！
+			    resize: false,
+				accept: { 
+					title: 'Images', 
+					extensions: 'gif,jpg,jpeg,bmp,png', //允许的文件【后缀】，不带点，多个用逗号分割。
+					mimeTypes: 'image/*'
+				},
+				//runtimeOrder:  ,[默认值：html5,flash] 指定运行时启动顺序。默认会想尝试 html5 是否支持，如果支持则使用 html5, 否则则使用 flash.可以将此值设置成 flash，来强制使用 flash 运行时。
+				chunked: true,// [默认值：false] 是否要分片处理[大文件上传]。
+				//chunkSize:  ,//[可选] [默认值：5242880] 如果要分片，分多大一片？ 默认大小为5M.
+				//chunkRetry: , //[可选] [默认值：2] 如果某个分片由于网络问题出错，允许自动重传多少次
+			});
+		
+//二、【事件处理模块】
+//【beforeFileQueued】当有文件被添加进队列以后触发
+		uploader.on('beforeFileQueued', function(file) {
+			//alert();
+		})
+//【fileQueued】当有文件被添加进队列以后触发
+		uploader.on('fileQueued', function(file) {
+			var $list = $("#fileList"),
+				$li = $(
+					'<div id="' + file.id + '" class="file-item thumbnail">' +
+					'<img>' +
+					'<div class="info">' + file.name + '</div>' +
+					'</div>'
+				),
+				$btns = $('<div class="file-panel">' +
+			                '<span class="cancel">删除</span>' +
+			                '<span class="rotateRight">向右旋转</span>' +
+			                '<span class="rotateLeft">向左旋转</span></div>').appendTo( $li ),
+				$img = $li.find('img');
+			
+			$('#fileList').append($li);
+			//【uploader.makeThumb()】创建缩略图  如果为非图片文件，可以不用调用此方法。
+			uploader.makeThumb(file, function(error, src) {
+				if(error) {
+					$img.replaceWith('<span style="color:red;">无法预览</span>');
+					return;
+				}
+				//console.log(src)
+				//console.log(file)
+				$img.attr({
+					'src': src,
+					'title':file.name
+				});
+			}, 100, 100); //缩略图尺寸 
+			$( '#'+file.id ).append('<p class="state">等待上传</p>');
+			uploader.addButton({
+				id: '#filePicker',
+				innerHTML: '继续添加'
+			});
+			//显示开始上传按钮
+			$('.filePicker2_wap').show();
+			//点击上传
+//【uploader.upload(''|file.ID)开始上传】,传入ID可指定开始某一个文件，不传指定所有			
+			$('#filePicker2').click(function() {
+				/*if($(this).hasClass('disabled')) {
+					return false;
+				}*/
+				uploader.upload();
+				//上传按钮状态变化？？？？？file.status变化
+				/*if(uploader.state === 'ready') {
+					//alert('ready>')
+					$(this).css('background','#ccc').text('暂停上传')
+					uploader.upload();
+				} else if(uploader.state === 'paused') {
+					alert('paused>')
+					$(this).css('background','#ccc').text('暂停上传')
+					uploader.upload();
+				} else if(uploader.state === 'uploading') {
+					alert('uploading>')
+					$(this).css('background','#00b7ee').text('继续上传')
+					uploader.stop();
+				}*/
+			});
+			//旋转 删除操作hover 
+			$('#'+file.id).hover(function () {
+				$(this).find('.file-panel').stop().slideDown(500)
+			},function () {
+				$(this).find('.file-panel').stop().slideUp(500)
+			})
+		});
+		//【uploadProgress】当有文件上传过程中触发
+        uploader.on('uploadProgress', function( file, percentage ) {//percentage 进度 0-1
+			// 文件上传过程中创建【进度条】实时显示。
+		    var $li = $( '#'+file.id ),
+		        $percent = $li.find('.progress .progress-bar');
+		    // 避免重复创建
+		    if ( !$percent.length ) {
+		        $percent = $('<div class="progress progress-striped active">' +
+		          '<div class="progress-bar" role="progressbar" style="width: 0%;height:7px;background:green;border-radius:2px;">' +
+		          '</div></div>').appendTo( $li ).find('.progress-bar');
+		    }
+		    $li.find('p.state').text('上传中').css('color','red');;
+		    $percent.css( 'width', percentage * 100 + '%' );
+		    //$('.webuploader-pick').css('background','#ccc');
+		    /*$('#filePicker2').css('background','#ccc').text('暂停上传').click(function () {
+		    	uploader.stop();
+		    	$('#filePicker2').css('background','#ccc').text('继续上传')
+		    });*/
+		});
+//【uploadSuccess】当有文件成功后触发
+		uploader.on( 'uploadSuccess', function( file ) {
+		    $( '#'+file.id ).find('p.state').text('上传成                                                                      功').css('color','green');;
+		    //【uploader.addButton()】【添加或编辑】文件选择按钮，如果一个按钮不够，当文件上传成功后执行		    
+		});
+//【uploadError】当有上传失败后触发		
+		uploader.on( 'uploadError', function( file ) {
+		    $( '#'+file.id ).find('p.state').text('上传出错').css('color','red');
+		});
+//【uploadComplete】当有上传完成后（成功或者失败）触发		
+		uploader.on( 'uploadComplete', function( file ) {
+			// 完成上传完了，删除进度条。
+		    //$( '#'+file.id ).find('.progress').fadeOut();
+		});
+		
+//【uploader.option()】获取或者设置Uploader配置项。
+		//option( key ) ⇒ *   option( key, val ) ⇒ self
+		//uploader.option('server','.....');
+		
+//【uploader.getStats()】获取文件统计信息
+		/*获取文件统计信息。返回一个包含一下信息的对象:
+		successNum 上传成功的文件数
+		progressNum 上传中的文件数
+		cancelNum 被删除的文件数
+		invalidNum 无效的文件数
+		uploadFailNum 上传失败的文件数
+		queueNum 还在队列中的文件数
+		interruptNum 被暂停的文件数*/
+		$('#getStats_btn').click(function () {
+			console.log(uploader.getStats())
+		});
+//【uploader.destroy()】销毁 webuploader 实例	
+//【uploader.addButton()】添加文件选择按钮，如果一个按钮不够，需要调用此方法来添加。参数跟options.pick一致。
+
+		       
+		
+	</script>
+</body>
+</html>
