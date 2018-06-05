@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <script src="lib/react.min.js"></script>
+    <!-- react是核心库 必须引入 -->
+    <script src="lib/react-dom.min.js"></script>
+    <!-- react-dom是虚拟dom渲染页面的文件 也必须引入 -->
+    <script src="lib/browser.min.js"></script>
+    <!-- browser作用是 react的语法并不是js语法 而是react独有jsx语法  所以浏览器不识别
+    需要通过browser文件对jsx语法解析为js 然后浏览器就能正确解析js文件 -->
+</head>
+<body>
+<body>
+    <div id="container"></div>
+
+    <script type="text/babel">//babel规定jsx的语法格式
+        //组件的生命周期：
+        //【1】mounting(装载:getDefaultProps->getInitialState->componentWillMount->render->componentDidMount)
+        //【2】updating（更新：componentWillReceiveProps->shouldComponentUpdate(判断是否需要更新)->render->componentUpdate）
+        //【3】unmounting（卸载:componentWillUnmount）
+
+        //【第一步】React.createClass方法用于定义一个【组件类】，以大写字母开头（否则无法渲染），
+        // 组件类只能包含【一个顶层标签】，即最外层不能有并列的兄弟
+        // class 属性需要写成 className ，for 属性需要写成 htmlFor ，这是因为 class 和 for
+        var Header = React.createClass({
+            getInitialState: function () {//初始化状态
+                //alert('init');
+                return {
+                    color:'red',
+                    fontSize:'40px'
+                }
+            },
+            componentDidMount: function () {//已装载状态
+                window.setTimeout(function () {
+                this.setState ({//updating
+                    color:'blue'
+                });
+            }.bind(this),1000)//bind(this)?????
+            },
+            style1 : {//在组件里可以设置的它的属性和方法
+                color:'yellow',
+                fontSize:'40px'
+            },
+            render: function() {//render内部可以写jsx语法的代码,jsx注释：{/* */}
+                var oStyle;
+                if(Math.random()>0.5){
+                    oStyle=this.state;
+                }else{
+                    oStyle=this.style1;
+                };
+                return <div id="header" style={oStyle}><span id="txt" onClick={this.fn1}>123</span></div>;//this.state获取初始化状态里的【返回值】
+                //style={{color:this.state.color,fontSize:this.state.fontSize}},也可以这么写;外层{}为表达式格式，内层
+                //{}为json格式
+            }
+        });
+       //console.log(Header);//function类型
+       //console.log(Header.prototype);
+    Header.prototype.fn1= function () {//原型下添加方法
+      alert(1);
+    };
+    //【第二步】ReactDOM.render()是React的最基本方法，用于将模板【转为HTML语言】，并渲染到页面中。
+        ReactDOM.render(//将已定义的react组件【解析】并插入DOM，render(Components，插入节点);
+            <Header />,//将插入的组件
+            document.getElementById('container'),
+                function () {
+                    console.log('渲染完成');
+                }
+        );
+    </script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+

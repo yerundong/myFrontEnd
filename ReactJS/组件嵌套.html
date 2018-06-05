@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="lib/react.min.js"></script>
+    <script src="lib/react-dom.min.js"></script>
+    <script src="lib/browser.min.js"></script>
+</head>
+<body>
+    <div id="container"></div>
+    <script type="text/babel">
+        var Dad=React.createClass({
+            render: function () {
+                var arr = [];
+                for(var i=0;i<5;i++){
+                    arr.push(<Son2/>);
+                };
+                return <div>我是父<Son/>{arr}</div>//组件嵌套
+            }
+        });
+        var Son=React.createClass({
+            render: function () {
+                return <div>我是大儿子</div>
+            }
+        });
+        var Son2=React.createClass({
+            render: function () {
+                return <div>我是小儿子</div>
+            }
+        });
+        ReactDOM.render(<Dad/>,
+                document.getElementById('container'),
+                function () {
+            console.log('渲染完成');
+        });
+    </script>
+</body>
+</html>

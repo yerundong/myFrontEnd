@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>内存泄漏</title>
+</head>
+
+<body>
+    <div id="div">123123</div>
+    <!-- <button onclick="add()">add</button> -->
+    <script>
+        // 全局变量引起的内存泄漏
+        // a其实是一个全局变量，当fn执行完，a不能被销毁，造成内存泄漏
+        function fn() {
+            aaa = 3;
+        }
+        // setInterval(function(){
+        //     fn();
+        // }, 50);
+
+        ~function () {
+           var obj = document.querySelector("#div"); 
+           obj.onclick = function () {
+            //...
+           }
+        }()
+    </script>
+</body>
+
+</html>

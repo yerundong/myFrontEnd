@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <button onclick="add()">add</button>
+    <script>
+        function fn() {
+            let a = 0, b = 0, c = 0, d = 0, e = 0, f = 0, g = 0, arr = [];
+            function fn_() {
+                a++;
+                b++;
+                c++;
+                d++;
+                e++;
+                arr.push(1);
+                return arr
+            }
+            return fn_
+        }
+        function add() {
+            fn()
+        }
+        let a = fn()
+        let b = a()
+
+
+
+        var element = document.getElementById("some_element");
+
+        var myObject = new Object();
+
+        myObject.e = element;
+
+        element.o = myObject;
+
+
+
+        window.onload = function outerFunction() {
+            
+        };
+
+        var obj = document.getElementById("element");
+        obj.onclick = function innerFunction() {
+            
+        }
+    </script>
+</body>
+
+</html>

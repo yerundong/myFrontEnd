@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="lib/react.min.js"></script>
+    <script src="lib/react-dom.min.js"></script>
+    <script src="lib/browser.min.js"></script>
+</head>
+<body>
+<div id="container"></div>
+<script type="text/babel">
+    /*state 和 props 主要的【区别】在于 props 是【不可变】的，而 state 可以根据与【用户交互】来改变。
+    这就是为什么有些容器组件需要定义state来【更新和修改数据】。而【子组件】只能通过props来传递数据。
+     props是获取<component/>里的属性的，如然后去设置<element></element>
+    */
+    var Father = React.createClass({
+        getInitialState: function () {
+            return {
+                name:"jerry",
+                class:"son"
+            }
+        },
+        getDefaultProps: function() {//通过【getDefaultProps()】方法为 props 设置【默认值】
+            return {
+                sex: 'man'
+            };
+        },
+        render: function () {
+            return(
+                    <div>
+                    {this.props.sex}
+                        <Son name={this.state.name} class={this.state.class} />  {/*这里的name是props下的*/}
+                    </div>
+            )
+        }
+    });
+    var Son = React.createClass({
+        render: function () {
+            return(
+                    <span className={this.props.class}>{this.props.name}</span>//这里的props是通过<Son name={this.state.name}设置的
+            )
+        }
+    });
+    ReactDOM.render(
+            <Father sex="bigMan" />,
+            document.getElementById('container')
+    );
+</script>
+
+</body>
+</html>

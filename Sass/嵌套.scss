@@ -1,0 +1,49 @@
+//选择器嵌套：[避免选择器嵌套,不超过4层]
+ul{
+  width: 200px;
+  li{
+    color:red;
+    a{
+      background: pink;
+    }
+  }
+}
+//属性嵌套:
+//CSS 有一些属性[前缀相同]，只是[后缀不一样]，比如：border-top/border-right，与这个类似的还有margin、padding、font等
+div{
+  line-height: 25px;
+  border:{
+    left:1px solid black;
+    right:3px solid red;
+  }
+}
+//伪类嵌套：
+.clearfix{
+  &:before,
+  &:after {
+    content:"";
+    display: table;
+  }
+  &:after {
+    clear:both;
+    overflow: hidden;
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

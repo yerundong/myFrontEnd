@@ -1,0 +1,20 @@
+ul {
+  width: 200px; }
+  ul li {
+    color: red; }
+    ul li a {
+      background: pink; }
+
+div {
+  line-height: 25px;
+  border-left: 1px solid black;
+  border-right: 3px solid red; }
+
+.clearfix:before, .clearfix:after {
+  content: "";
+  display: table; }
+.clearfix:after {
+  clear: both;
+  overflow: hidden; }
+
+/*# sourceMappingURL=%C7%B6%CC%D7.css.map */

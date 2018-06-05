@@ -1,0 +1,30 @@
+@charset "UTF-8";
+body {
+  width: 28px;
+}
+
+div {
+  width: 10px;
+}
+
+span {
+  width: 1px;
+}
+
+b {
+  width: 1px;
+}
+
+/*
+$:声明变量符；
+$width:变量名
+23px:变量值
+!default:默认值
+调用优先级：局部变量>全局变量>默认变量
+创建变量的必要性：
+    1该值至少重复出现了两次；
+    2该值至少可能会被更新一次；
+    3该值所有的表现都与变量有关（非巧合）。
+*/
+
+/*# sourceMappingURL=%B1%E4%C1%BF%C3%FC%C3%FB.css.map */

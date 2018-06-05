@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="lib/react.min.js"></script>
+    <script src="lib/react-dom.min.js"></script>
+    <script src="lib/browser.min.js"></script>
+</head>
+<body>
+<div id="container"></div>
+<script type="text/babel">
+    //React 把组件看成是一个【状态机】，只需更新组件的 state，就能【重新渲染】用户界面（不要操作 DOM）。
+//组件的生命周期：
+//【1】mounting(装载:getDefaultProps->getInitialState->componentWillMount->render->componentDidMount)
+//【2】updating（更新：componentWillReceiveProps->shouldComponentUpdate(判断是否需要更新)->render->componentUpdate）
+//【3】unmounting（卸载:componentWillUnmount）
+var Header = React.createClass({
+    getDefaultProps:function(){
+//        只在组件创建时调用一次并缓存返回的对象（即在【React.createClass之后】就会调用）,
+//        因为这个方法在实例初始化之前调用，所以在这个方法里面不能依赖this获取到这个【组件的实例】
+        //alert('props');
+        //console.log(this);//function(e,n,r){}
+
+    },
+    getInitialState: function () {//组件初始化状态，初始化【this.state】的值
+        //alert('init');
+        //console.log(this);//t{}
+        return {liked:false}
+    },
+    clickChange: function (event) {
+        //console.log(this);//t{}
+        this.setState({
+            liked:!this.state.liked
+        });
+    },
+    componentWillMount: function () {//组件预装载状态
+        //console.log(this);//t{}
+        //alert('will');
+    },
+    componentDidMount: function () {//组件已装载状态
+        //alert('did');
+        //console.log(this);//t{}
+        this.setState ({//updating
+            color:'blue'
+        });
+
+    },
+    render: function() {
+        //console.log(this);//t{}
+        return <div id="header" style={this.state} onClick={this.clickChange}>{this.state.liked?"喜欢":"不喜欢"}</div>;
+    }
+});
+
+    ReactDOM.render(
+    <Header />,
+            document.getElementById('container')
+    );
+
+</script>
+</body>
+</html>

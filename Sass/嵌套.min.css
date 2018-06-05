@@ -1,0 +1,6 @@
+ul{width:200px}
+ul li{color:red}
+ul li a{background:pink}
+div{line-height:25px;border-left:1px solid #000;border-right:3px solid red}
+.clearfix:after,.clearfix:before{content:"";display:table}
+.clearfix:after{clear:both;overflow:hidden}

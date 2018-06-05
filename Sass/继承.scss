@@ -1,0 +1,28 @@
+//继承[其他的标签]的属性
+a{
+  color:red;
+  width: 50px;
+}
+b{
+  color: blue;//会覆盖red颜色
+  @extend a;
+}
+i{
+  @extend a;//会与b合并
+}
+//@extend继承符
+//继承的属性权值很小，会被覆盖
+
+
+
+
+@mixin aaa{
+  color:red;
+  width: 50px;
+}
+em{
+  @include aaa;
+}
+p{
+   @include aaa;
+ }

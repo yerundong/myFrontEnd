@@ -1,0 +1,61 @@
+//混合宏：当你的样式需要【重复】使用【大段的样式】时，使用变量就无法达到我们目了。
+//这个时候 Sass 中的【混合宏】就会变得非常有意义。
+//声明混合宏:@mixin是混合的宏【声明符】，@include是【调用符】，text1是变量名
+//【不带参数的混合宏】
+@mixin text1{
+  font:{
+  color: red;
+  style: italic;
+}
+  line-height: 35px;
+}
+div{
+  @include text1;
+}
+//【带参数的混合宏】
+@mixin text2($color:red,$h:16px){//:默认值可设可不设,设了可用可不用
+  color: $color;
+  font-height:$h;
+}
+span{
+  @include text2(blue,35px);
+}
+//【复杂混合宏】?????????????
+@mixin box-shadow($shadow...) {
+  @if length($shadow) >= 1 {
+    @include prefixer(box-shadow, $shadow);
+  } @else{
+    $shadow:0 0 4px rgba(0,0,0,.3);
+    @include prefixer(box-shadow, $shadow);
+  }
+}
+/*
+Sass 在调用相同的混合宏时，并不能智能的将[相同的样式代码块]合并在一起。
+a{
+ color: $color;
+  font-height:$h;
+}
+b{
+color: $color;
+  font-height:$h;
+}
+不会编译成a,b{
+color: $color;
+  font-height:$h;
+}
+以致造成代码冗长，这是混合宏最大的失败。
+*/
+
+
+
+
+
+
+
+
+
+
+
+
+
+

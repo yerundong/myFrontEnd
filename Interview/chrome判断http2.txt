@@ -1,0 +1,3 @@
+htpp2: window.chrome.loadTimes().wasFetchedViaSpdy
+
+ÊÂ¼þ°ó¶¨: getEventListeners(DOM)
