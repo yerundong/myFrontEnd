@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <link rel="stylesheet" href="css/swiper-3.3.1.min.css">
+    <script src="js/swiper-3.3.1.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="js/jquery-2.2.3.min.js"></script>
+    <style>
+        #mySwiper{
+            width: 600px;overflow: hidden;position: relative;border: 1px solid black;
+            margin: 0 auto;
+
+        }
+        .parallax{
+            position: absolute;
+            left: -160px;/*以免露白*/
+            height:150%;
+            width:246%;
+            background-image:url(img/1.jpg);
+            background-size: cover;
+            background-position:center center;
+        }
+        .swiper-slide:nth-child(1){
+            text-align: center;font-size: 50px;line-height: 400px;color:red;background: rgba(255,0,0,0.2);
+        }
+        .swiper-slide:nth-child(2){
+            text-align: center;font-size: 50px;line-height: 400px;color:blue;background: rgba(0,255,0,0.2);
+            height: 150%;
+        }
+        .swiper-slide:nth-child(3){
+            text-align: center;font-size: 50px;line-height: 400px;color:yellow;background: rgba(0,0,255,0.2);
+        }
+    </style>
+</head>
+<body>
+    <div id="mySwiper"><!--container-->
+        <div class="parallax" data-swiper-parallax=-400 data-swiper-parallax-duration=1000>
+            <!--视差效果：置一个空div，给他背景， data-swiper-parallax【必须】设在行内-->
+        </div>
+        <div class="swiper-wrapper"><!--wrapper(真正滑动的是wrapper)-->
+            <div class="swiper-slide" data-hash="slide1" ><!--slide-->
+                slider1
+               <!--<div id="mySwiper2">
+                   <div class="swiper-wrapper">
+                       <div class="swiper-slide"> slider1.1</div>
+                       <div class="swiper-slide"> slider1.2</div>
+                       <div class="swiper-slide"> slider1.3</div>
+                   </div>
+               </div>-->
+            </div>
+            <div class="swiper-slide" data-hash="slide2">slider2</div>
+            <div class="swiper-slide" data-hash="slide3">slider3</div>
+        </div>
+    </div>
+    <script>
+        var mySwiper = new Swiper('#mySwiper', {//初始化一个Swiper，返回初始化后的Swiper实例。
+            //autoplay:1000,//【autoplay:time】可选选项，自动滑动
+            //initialSlide :2,//【initialSlide:num】设定初始化时slide的索引【默认的索引】,如果超出slide个数，则为最大数
+            //direction:'vertical', //【direction:horizontal水平(默认)/vertical垂直】
+            //speed:3000,//【speed:time】贴合两框壁的滑动速度，即slider[自动]滑动[开始]到[结束]的时间;【默认300】
+            //autoplayDisableOnInteraction:false,//【autoplayDisableOnInteraction:true/false】
+            // 用户操作swiper之后，是否禁止【autoplay】；【默认为true】：停止。false:用户操作swiper之后【重新启动autoplay】
+            autoplayStopOnLast:false,//【autoplayStopOnLast:true/false】【默认为true】:当切换到最后一个slide时停止autoplay
+            // （loop模式下无效）,false:自动【回到第一张】，重新autoplay
+            grabCursor:true,//【grabCursor:true/false】【默认为false】,true:悬浮时手掌形状，拖动时指抓手形状
+            parallax : true,//【parallax:true/false】【默认为false】视差效果
+            /*
+             【data-swiper-parallax=num(px)/percent】每次移动的距离
+             【data-swiper-parallax-x/y=num(px)/percent】单独设定其移动方向移动距离。
+             【data-swiper-parallax-duration=time】设定动画持续时间（可选），单位毫秒，【默认值】是Swiper的speed。
+            */
+            //hashnav:true,//【hashnav：true/false】散列导航（有点像锚链接）将此参数设置为true。
+            // 此外在每个slide处增加data-hash属性。当你的swiper切换时你的页面【url】就会加上这个属性的值
+            setWrapperSize:true,//【setWrapperSize:false/true】true:【Wrapper的宽高】等于slides相加的宽高，
+            //使Wrapper不会塌陷；【Wrapper的宽高默认为container或slide的宽高，谁的值大随谁】
+            //virtualTranslate:true,//【virtualTranslate:true/false】true:slides不能在Wrapper上再移动，
+            //其他的都像平时一样运行；【自定义slide切换效果】时可以用。启用这个时onSlideChange和onTransition事件【失效】。
+            height:400,//【width、height:num】slides的高宽，默认与container同;【可以用来市自适应消失，事件出现/消失】
+            roundLengths:true,//【roundLengths：true/false】true:将slide的宽和高取整(四舍五入)以防止某些分辨率的
+            // 屏幕上文字或边界(border)模糊。ect:slide宽为76%时，则计算出来结果为1094.4，开启后宽度取整数1094。
+            autoHeight:true,//【autoHeight：true/false】true时，wrapper和container会随着【当前slide】的高度而发生变化。
+            //slide的高度将【不随container同】，必须单独设置
+        });
+        //【container嵌套】
+        var mySwiper2 = new Swiper('#mySwiper2', {
+            nested:true,//【nested：true/false】同方向的swiper嵌套，子swiper的nested设置为true。
+            //由于需要在slideChangeEnd时判断作用块，因此快速滑动时这个选项无效
+        })
+</script>
+</body>
+</html>

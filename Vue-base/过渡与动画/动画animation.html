@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script src="../common/vue.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+	<style type="text/css">
+		*{
+			font-size: 50px;
+			font-weight: 600;
+			text-align: center;
+			line-height: 66px;
+		}
+		/*enter*/
+		.fade-enter-active{/*显现动画的过渡状态(transition/transform/animation)*/
+		  	animation: fadeText 1s;
+		}
+		/*leave*/
+		.fade-leave-active {/*隐藏动画的过渡状态(transition/transform/animation)*/
+		  	animation: fadeText 1s reverse;
+		}
+		@keyframes fadeText{
+			0%{
+				font-size: 0;
+				opacity: 0;
+			}
+			50%{
+				font-size: 100px;
+				opacity: 1;
+			}
+			to{
+				font-size: 50px;
+				opacity: 1;
+			}
+		}
+	</style>
+	<body>
+		<div id="app1">
+			<button @click="show = !show">change</button>
+			<transition name="fade">
+		    	<p v-show="show">hello</p>-
+		  	</transition>
+		</div>
+		<script type="text/javascript">
+			var vm1 = new Vue({
+				el:'#app1',
+				data:{
+					show:true
+				}, 
+				methods:{
+					
+				},
+				created(){
+//					this.sh()
+				}
+			});
+		</script>
+	</body>
+</html>

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script src="../common/vue.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+		<div id="app1">
+			<parent-c ref = "pap"></parent-c>
+		</div>
+	<body>
+		<script type="text/javascript">
+			/*
+				【ref】
+				使用 ref为子组件指定一个索引ID，可在 JavaScript中直接访问子组件（实例）。
+				$refs 只在组件渲染完成后才填充，并且它是非响应式的
+			 	它仅仅作为一个直接访问子组件的应急方案——应当避免在模板或计算属性中使用$refs。
+			*/
+			const Child = {
+				template:'<div>子组件</div>'
+			}
+			const Parent = {
+				template:'<div>父组件<child-c ref = "boy"></child-c></div>',
+				components:{
+					'child-c':Child
+				},
+				created:function () {
+					document.onclick = () => {
+						console.log(this.$refs.boy);
+					}
+				}
+			}
+			var vm1 = new Vue({
+				el:'#app1',
+				data:{
+					
+				},
+				components:{
+					'parent-c':Parent
+				}
+			})
+//			console.log(vm1.$refs.pap);
+//			console.log(vm1.$refs.pap.$refs.boy);
+			
+		</script>
+	</body>
+</html>

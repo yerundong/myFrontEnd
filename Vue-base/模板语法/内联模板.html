@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script src="../common/vue.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+		<div id="app1">
+			<!--
+				如果子组件有inline-template特性，那么将【解析它的内联模板】，
+				而不是子组件定义时的template的模板(区别与插槽分发)，这让模板更灵活
+				但同时会让模板的作用域难以理解，不建议使用。建议：
+				1、使用组件定义时的template的模板
+				2、.vue文件中可以使用<template scope="scope"></template>
+			-->
+			<compt1 inline-template>
+				<div>
+					我是内联模板
+				</div>
+			</compt1>
+			<compt2>
+				<div>
+					我是内联模板
+				</div>
+			</compt2>
+		</div>
+	<body>
+		<script type="text/javascript">
+			var comp1 = {
+				template:"<div>组件1</div>"
+			}
+			var comp2 = {
+				template:"<div>组件2</div>"
+			}
+			
+			var vm1 = new Vue({
+				el:'#app1',
+				data:{
+					
+				},
+				components:{
+					compt1:comp1,
+					compt2:comp2,
+				}
+			})
+		</script>
+	</body>
+</html>

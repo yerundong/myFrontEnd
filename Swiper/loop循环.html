@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="css/swiper-3.3.1.min.css">
+    <script src="js/swiper-3.3.1.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="js/jquery-2.2.3.min.js"></script>
+    <style>
+        #Swiper{
+            width: 700px;height: 600px;border: 1px solid salmon;margin: 0 auto; overflow: hidden;position: relative;
+        }
+        .swiper-wrapper{/**/
+            font-size: 50px;text-align: center;line-height: 500px;
+        }
+        .swiper-slide{
+            /*height:200px;*/
+        }
+        .swiper-slide:nth-of-type(1){
+            background: rgba(255,0,0,.2);
+        }
+        .swiper-slide:nth-of-type(2){
+            background: rgba(255,255,0,.2);
+        }
+        .swiper-slide:nth-of-type(3){
+            background: rgba(255,0,255,.2);
+        }
+        .swiper-slide:nth-of-type(4){
+            background: rgba(0,255,0,.2);
+        }
+        .swiper-slide:nth-of-type(5){
+            background: rgba(255,0,0,.2);
+        }
+        .swiper-slide:nth-of-type(6){
+            background: rgba(255,255,0,.2);
+        }
+        .swiper-slide:nth-of-type(7){
+            background: rgba(255,0,255,.2);
+        }
+        .swiper-slide:nth-of-type(8){
+            background: rgba(0,255,0,.2);
+        }
+        .swiper-slide:nth-of-type(9){
+            background: rgba(0,255,255,.2);
+        }
+    </style>
+</head>
+<body>
+<div id="Swiper">
+    <div class="swiper-wrapper">
+        <div class="swiper-slide">1</div>
+        <div class="swiper-slide">2</div>
+        <div class="swiper-slide">3</div>
+        <div class="swiper-slide">4</div>
+        <div class="swiper-slide">5</div>
+        <div class="swiper-slide">6</div>
+    </div>
+    <div class="swiper-pagination"></div>
+    <div class="swiper-scrollbar"></div>
+
+</div>
+<script>
+        var mySwiper = new Swiper('#Swiper', {
+            //autoplay:true,
+            //freeMode:true,
+            loop:true,//【loop:true/false(默认)】
+            loopAdditionalSlides :1,//【loopAdditionalSlides:num 0默认】loop模式下会在slides前后复制若干个slide,，???????
+            // 前后复制的个数不会大于原总个数。
+            //默认为0，前后各复制1个。0,1,2 --> 2,0,1,2,0
+            //例：取值为1，0,1,2 --> 1,2,0,1,2,0,1
+            //例：取值为2或以上，0,1,2 --> 0,1,2,0,1,2,0,1,2
+            //slidesPerView : 'auto',
+            //loopedSlides :6,???????????????
+        });
+</script>
+</body>
+</html>

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="css/swiper-3.3.1.min.css">
+    <script src="js/swiper-3.3.1.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="js/jquery-2.2.3.min.js"></script>
+    <style>
+        #Swiper{
+            width: 700px;height: 500px;border: 1px solid salmon;margin: 0 auto; overflow: hidden;
+        }
+        #Swiper .swiper-wrapper{/**/
+
+        }
+        .swiper-slide:nth-of-type(1){
+            background: rgba(255,0,0,.2);
+        }
+        .swiper-slide:nth-of-type(2){
+            background: rgba(255,255,0,.2);
+        }
+        .swiper-slide:nth-of-type(3){
+            background: rgba(255,0,255,.2);
+        }
+        .swiper-slide:nth-of-type(4){
+            background: rgba(0,255,0,.2);
+        }
+    </style>
+</head>
+<body>
+    <div id="Swiper">
+        <div class="swiper-wrapper">
+            <div class="swiper-slide">1</div>
+            <div class="swiper-slide">2</div>
+            <div class="swiper-slide">3</div>
+            <div class="swiper-slide">4</div>
+        </div>
+    </div>
+    <script>
+        var mySwiper = new Swiper('#Swiper', {
+            watchSlidesProgress:true,//【watchSlidesProgress】开启这个参数来计算每个【slide】的progress(进度)，
+            // Swiper的progress无需设置即开启。 【mySwiper.progress】：0~1(每块均分)，
+            // 【mySwiper.slides[i].progress】：mySwiper.slides[i]的progress为0，前后+-1;默认i=1；
+            watchSlidesVisibility:true,//【watchSlidesVisibility】开启watchSlidesVisibility选项前需要【先开启】watchSlidesProgress，如果开启了watchSlidesVisibility，
+            // 则会在每个可见slide增加一个classname，默认为'swiper-slide-visible'。
+            //
+        });
+
+        document.onclick= function () {
+            console.log(mySwiper.progress+","+ mySwiper.slides[1].progress);
+        };
+    </script>
+</body>
+</html>

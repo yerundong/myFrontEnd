@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script src="../common/vue.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+		<div id="app1">
+			<!--
+				【is特性】
+				<ul>，<ol>，<table>，<select>限制了能被它包裹的元素,若里面包含自定义标签将出错，此时可用is特性代替
+				注意：template请使用【字符串模板】，否则某些浏览器会报错
+			-->
+			<table>
+				<!--<ns-tr></ns-tr>不适用，报错-->
+				<tr is="ns-tr"></tr>
+			</table>
+			
+			<!--
+				【动态组件】
+				当需要多个组件挂载在同一个挂载点，并且【动态的配置】渲染的组件时，就可以用到组件的is特性:
+				把<component>作为挂载点，动态地绑定到它的 is特性
+				【keep-alive】
+				如果在component外套一层<keep-alive>，则可以把切换出去的组件【保留在内存】中，
+				以【保留它的状态或避免重新渲染】
+			-->
+			<keep-alive>
+				<component :is = "goCompt"></component><!--vm.goCompt变化时改变-->
+			</keep-alive>
+			
+			<input type="button" value="显示头部" @click="showH" />
+			<input type="button" value="显示底部" @click="showF" />
+		</div>
+		<!--templates-->
+		<template id="header">
+			<header class="header">
+				{{msg}}
+			</header>
+		</template>
+		
+		<template id="footer">
+			<footer class="footer">
+				{{msg}}
+			</footer>
+		</template>
+	<body>
+		<script type="text/javascript">
+			var trc = {
+				data:function () {
+					return {
+						msg:'我是tr'
+					}
+				},
+				template:'\
+					<tr class="trc">\
+						<td>{{msg}}</td>\
+					</tr>\
+				'
+			}
+			var header = {
+				data:function () {
+					return {
+						msg:'我是头部'
+					}
+				},
+				template:'#header'
+			}
+			var footer = {
+				data:function () {
+					return {
+						msg:'我是底部'
+					}
+				},
+				template:'#footer'
+			}
+			var vm1 = new Vue({
+				el:'#app1',
+				data:{
+					goCompt:'ns-header'
+				},
+				components:{
+					'ns-tr':trc,
+					'ns-header':header,
+					'ns-footer':footer,
+				},
+				methods:{
+					showH:function () {
+						this.$data.goCompt = 'ns-header'
+					},
+					showF:function () {
+						this.$data.goCompt = 'ns-footer'
+					}
+				}
+			});
+		</script>
+		<style type="text/css">
+			template{
+				display: none;
+			}
+		</style>
+	</body>
+</html>

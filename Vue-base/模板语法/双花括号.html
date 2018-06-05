@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script src="../common/vue.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+	<body>
+		<div id="app">
+			<div id="text">
+				我从{{where}}来，带来{{what}}
+				<br />
+				种在{{flag?yard:''}}中,希望花开早
+				<br />
+				一日看{{1+2*1===3?'三':''}}回，{{str.split('').reverse().join('')}}
+			</div>
+		</div>
+		<script type="text/javascript">
+			//#【双大括号{{}}】
+			//最常见的形式就是使用 “Mustache” 语法（双大括号）的进行文本插值和标签内书写js语法
+			//只能解析为纯文本，无法解析 HTML
+			//js限制只能是单个表达式，包括运算、三目、函数调用，而变量定义、循环、判断等语句则不允许
+			//无法访问用户自定义的全局变量
+			var myApp1 = new Vue({
+				el:'#text',
+				data : {
+					where : '山中',
+					what : '兰花草',
+					yard:'小园',
+					flag:true,
+					str:'过时花得看'
+				}
+			})
+			
+		</script>
+	</body>
+</html>

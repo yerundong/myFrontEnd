@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script src="../common/vue.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+
+	<body>
+		<div id="app1">
+			<input type="text" v-model="msg1" placeholder="请输入字母" />
+			<p>{{msg1 | capitalize}}</p>
+			
+			<input type="text" v-model="msg2" placeholder="请输入字母" />
+			<p>{{msg2 | toUpperCase}}</p>
+			<!--链式写法-->
+			<p>{{msg2 | toUpperCase | toLine}}</p>
+			
+			<input type="text" v-model="msg3" placeholder="请输入金钱" />
+			<p>{{msg3 | toMoney}}</p>
+			
+			<input type="text" v-model="msg4" placeholder="请输入数字"/>
+			<!--传多个参数,msg4默认为第一个参数-->
+			<p>{{msg4 | toSum(msg3)}}</p>
+			
+					</div>
+					
+		<script type="text/javascript">
+			//全局筛选器(实例化前注册)
+			Vue.filter('toMoney',(value)=>{
+				value = Number(value) || "请输入数字";
+				return '￥'+value
+			});
+			
+			var vm = new Vue({
+				el: '#app1',
+				data: {
+					msg1: '',
+					msg2: '',
+					msg3:'',
+					msg4:'',
+				},
+				//过滤器，符号：‘|’
+				filters: {
+					//首字母大写
+					capitalize(value) {
+						if(!value) return ''
+						value = value.toString()
+						return value.charAt(0).toUpperCase() + value.slice(1)
+					},
+					//大写化
+					toUpperCase(value){
+						if(!value) return ''
+						value = value.toString()
+						return value.toUpperCase()
+					},
+					toSum(value1,value2){
+						if(!value1 || !value2 || isNaN(value1) || isNaN(value2)) return '请输入数字';
+						let value = Number(value1) + Number(value2);
+						return value
+					},
+					toLine(value){
+						if(!value) return '';
+						value = value.toString().split('');
+						value_ = value.map((val,ind,value)=>{
+							if(ind !== value.length-1){
+								return val+'-'
+							}else{
+								return val
+							}
+						});
+						value_ = value_.join('')
+						return value_
+					}
+				}
+			});
+		</script>
+	</body>
+
+</html>

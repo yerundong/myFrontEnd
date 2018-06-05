@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script src="../common/vue.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../common/vue-router.js"></script>
+	</head>
+	<style type="text/css">
+		body,html,#app1{
+			width: 100%;
+			height: 100%;
+			padding: 0;
+			margin: 0;
+		}
+		.foo{
+			width: 300px;
+			height: 100%;
+			background: red;
+			float: left;
+		}
+		.bar{
+			float: left;
+			width: 300px;
+			height: 80%;
+			background: blue;
+			float: left;
+		}
+		.baz{
+			float: left;
+			width: 300px;
+			height: 60%;
+			background: green;
+			float: left;
+		}
+	</style>
+	<body>
+		<!--
+			如果需要【一个路径同时展示多个组件】的话，除了进行组件嵌套的方式，【命名视图】也可以达到效果
+			
+		-->
+		<div id="app1">
+			<router-link to="/a" tag="button">a</router-link>
+      		<router-link to="/b" tag="button">b</router-link>
+      		<br />
+      		<!--
+      			这里有三个路由展示出口，说明最多可以展示三个组件。
+      			利用name属性对应components下的属性名进行绑定组件，无name属性的为默认name属性值default
+      		-->
+      		<router-view></router-view>
+		  	<router-view name="a"></router-view>
+		  	<router-view name="b"></router-view>
+		</div>
+		<script type="text/javascript">
+			const Foo = { template: '<div class="foo">foo</div>' }
+			const Bar = { template: '<div class="bar">bar</div>' }
+			const Baz = { template: '<div class="baz">baz</div>' }
+			const router = new VueRouter({
+			  routes: [
+			    { 
+			    	path: '/a',
+			      	components: {//普通路由为component，命名视图时为components，并且为对象格式
+				        default: Foo,//默认输出口绑定
+				        a: Bar,
+				        b: Baz
+				    }
+			    },
+			    {
+			      	path: '/b',
+			      	components: {
+			        	default: Baz,
+			        	b: Foo
+			      	}
+			    }
+			  ]
+			});
+			var vm1 = new Vue({
+				el:'#app1',
+				router,
+				data:{
+					
+				}
+			});
+		</script>
+	</body>
+</html>

@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script src="../../common/vue.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+		<div id="app1">
+				我是根实例:{{num}}
+			<parent-compt :num.sync = "num"></parent-compt>
+			<br />
+			<button @click="counter">清算</button>
+		</div>
+	<body>
+		<script type="text/javascript">
+			/*
+			【$emit(defEventName,para1?,para2?...)】触发事件
+				defEventName是自定义事件名，para是附加的参数，都会传给监听器回调。
+				$emit提供的自定义事件绑定在【该组件的根元素(自定义标签)】里
+				
+				子到父的通讯方式有多种：
+					1、在子组件里使用$emit触发自定义事件，在子组件的根标签里v-on监听该事件，回调父组件里的方法(如下例)，【并且此法只能用于子到父通讯】
+					 1_1 、 若属性添加.sync修饰符，使用('update:abc'),可以省略值v-on,但只能赋值，不能更多操作，详见.sync章
+					2、创建事件中转站(eventHub),利用$on来监听,详见事件中转站章
+					3、props数据类型为引用类型，可以视为双向绑定的（有限制性）
+					4、通过ref或节点获取父组件实例，直接触发父组件里的方法进行修改(不推荐)
+				
+				props是【单向绑定】的(父->子)，直接在子组件里改变props会报错（除非为引用类型），
+				如果需要实现props双向绑定，有以下方法：
+				【1、替代法】：先把props先复制给data里的一个数据a，对a进行修改，再用$emit传给父元素,
+					赋值给父元素里data,进而又影响到props
+				【2】props+.sync + $emit('update:num')	
+			*/
+			
+			/*子组件*/
+			var child = {
+				props:['num'],
+				data:function(){
+					return {
+						getNum:0//用来接受props
+					}
+				},
+				template:'<div>我是子组件{{num}}<button @click="cCli">num++</button></div>',
+				methods:{
+					cCli:function () {
+						this.getNum = this.num;//接受props
+						this.getNum ++;
+						this.$emit('defevent',this.getNum);
+					}
+				}
+			}
+			/*父组件*/
+			var parent = {
+				props:['num'],
+				data:function(){
+					return {
+						getNum:0//用来接受props
+					}
+				},
+				/*子组件的根标签里v-on监听自定义事件，回调父组件里的方法*/
+				template:'<div>我是父组件{{num}}<child-compt @defevent = "got" :num="num"></child-compt></div>',
+				components:{
+					'child-compt':child
+				},
+				methods:{
+					got:function (val) {
+						this.getNum = val;//改变父的getNum，再往上传
+						//
+						this.$emit('update:num', this.getNum)
+					}
+				},
+				mounted:function () {
+					
+				}
+			}
+			Vue.component('parent-compt',Vue.extend(parent));
+			var vm1 = new Vue({
+				el:'#app1',
+				data:{
+					num:0
+				},
+				methods:{
+					call:function (v1,v2) {
+						console.log('我是Vue实例的函数，获取'+v2);
+					},
+					counter:function () {//清算
+						console.log('vue实例的num：'+this.$data.num);
+						console.log('父的num：'+this.$children[0].num);
+						console.log('子的props.num：'+this.$children[0].$children[0].$props.num);
+					}
+				},
+				created:function () {
+					this.$on('defevent',function (msg) {
+//						this.$data.num = msg
+					});
+				}
+			});
+//			console.log(vm1.a)
+		</script>
+		<style type="text/css">
+		</style>
+	</body>
+</html>

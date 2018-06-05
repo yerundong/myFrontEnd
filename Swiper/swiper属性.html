@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="css/swiper-3.3.1.min.css">
+    <script src="js/swiper-3.3.1.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="js/jquery-2.2.3.min.js"></script>
+    <style>
+        #Swiper{
+            width: 700px;height: 600px;border: 1px solid salmon;margin: 0 auto; overflow: hidden;position: relative;
+        }
+        .swiper-wrapper{
+            font-size: 50px;text-align: center;line-height: 500px;
+        }
+        /*.my-wrapper{
+            font-size: 50px;text-align: center;line-height: 500px;display: flex;
+        }*/
+        .swiper-slide{
+            /*height:200px;*/
+        }
+        .swiper-slide:nth-of-type(1){
+            background: rgba(255,0,0,.2);
+        }
+        .swiper-slide:nth-of-type(2){
+            background: rgba(255,255,0,.2);
+        }
+        .swiper-slide:nth-of-type(3){
+            background: rgba(255,0,255,.2);
+        }
+        .swiper-slide:nth-of-type(4){
+            background: rgba(0,255,0,.2);
+        }
+        .swiper-slide:nth-of-type(5){
+            background: rgba(255,0,0,.2);
+        }
+        .swiper-slide:nth-of-type(6){
+            background: rgba(255,255,0,.2);
+        }
+        .swiper-slide:nth-of-type(7){
+            background: rgba(255,0,255,.2);
+        }
+        .swiper-slide:nth-of-type(8){
+            background: rgba(0,255,0,.2);
+        }
+        .swiper-slide:nth-of-type(9){
+            background: rgba(0,255,255,.2);
+        }
+        #btn{
+            width: 200px;height: 50px;background: mediumvioletred;text-align: center;line-height: 50px;
+            margin: 0 auto;cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+<div id="Swiper">
+    <div class="swiper-wrapper">
+        <div class="swiper-slide">1</div>
+        <div class="swiper-slide">2</div>
+        <div class="swiper-slide">3</div>
+        <div class="swiper-slide">4</div>
+        <div class="swiper-slide">5</div>
+        <div class="swiper-slide">6</div>
+    </div>
+    <div class="swiper-pagination"></div>
+    <div class="swiper-scrollbar"></div>
+</div>
+<div id="btn">获取属性</div>
+<script>
+        var mySwiper = new Swiper('#Swiper', {
+            //width: 400,
+            //autoplay : 1000,
+            pagination : '.swiper-pagination',
+            watchSlidesProgress:true,
+            //initialSlide :2,
+
+        });
+        var oBtn = document.getElementById('btn');
+    oBtn.onclick= function () {
+        //alert(mySwiper.activeIndex);//返回【当前活动块的索引】。【loop模式】下注意该值会被加上复制的slide数。
+        //alert(mySwiper.previousIndex);//返回【上一个【切换前】的活动块的索引】
+        //alert(mySwiper.width);//获取slide的宽度。
+        //alert(mySwiper.height);//获取slide的高度。
+        //mySwiper.params.autoplay = 200;
+        //mySwiper.params.width = 700;//重要参数，获取Swiper对象初始化参数，或者重写该参数，
+        // 如： mySwiper.params.speed = 200。【不是所有参数都可以重写】
+        //mySwiper.container.css({opacity: 0.1});//设置container样式或属性，jq对象
+        //mySwiper.wrapper.css('display','none');//设置wrapper样式或属性，jq对象
+        //mySwiper.slides.eq(1).css('display','none');//设置slides样式或属性，jq对象
+        /*mySwiper.bullets[1].style.width='25px';
+        //mySwiper.bullets[1].style.height='25px';*/ //获取Swiper的分页器的小点bullets对象,js对象
+        //alert(mySwiper.translate);//获取wrapper的位移。
+        //alert(mySwiper.progress);//获取Swiper的progress值。
+        //alert(mySwiper.slides[1].progress);//获取slides的progres值【watchSlidesProgress:true】
+        //alert(mySwiper.isBeginning);//当前页是第一张(最左/上)，则为true，否则为false
+        //alert(mySwiper.isEnd);//当前页是第一张(最右/下)，则为true，否则为false
+        //alert(mySwiper.autoplaying);//若自动播放，则为true，否则为false
+        //alert(mySwiper.animating);//若正在过渡，则为true，否则为false
+        //alert(mySwiper.clickedIndex);//返回最后点击Slide的索引
+        //alert(mySwiper.clickedIndex);//返回最后点击Slide的索引
+        //mySwiper.clickedSlide.style.height='400px';//正点击的Slide。
+//        mySwiper.prevButton[0];//获取后退按钮。
+//        mySwiper.nextButton[0];//获取前进按钮。
+    }
+
+
+</script>
+</body>
+</html>

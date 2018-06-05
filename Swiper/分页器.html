@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="css/swiper-3.3.1.min.css">
+    <script src="js/swiper-3.3.1.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="js/jquery-2.2.3.min.js"></script>
+    <style>
+        #Swiper{
+            width: 700px;height: 600px;border: 1px solid salmon;margin: 0 auto; overflow: hidden;position: relative;
+        }
+        .swiper-wrapper{/**/
+            font-size: 50px;text-align: center;line-height: 500px;
+        }
+        .swiper-slide{
+            /*height:200px;*/
+        }
+        .swiper-slide:nth-of-type(1){
+            background: rgba(255,0,0,.2);
+        }
+        .swiper-slide:nth-of-type(2){
+            background: rgba(255,255,0,.2);
+        }
+        .swiper-slide:nth-of-type(3){
+            background: rgba(255,0,255,.2);
+        }
+        .swiper-slide:nth-of-type(4){
+            background: rgba(0,255,0,.2);
+        }
+        .swiper-slide:nth-of-type(5){
+            background: rgba(255,0,0,.2);
+        }
+        .swiper-slide:nth-of-type(6){
+            background: rgba(255,255,0,.2);
+        }
+        .swiper-slide:nth-of-type(7){
+            background: rgba(255,0,255,.2);
+        }
+        .swiper-slide:nth-of-type(8){
+            background: rgba(0,255,0,.2);
+        }
+        .swiper-slide:nth-of-type(9){
+            background: rgba(0,255,255,.2);
+        }
+
+        /*修改bullets分页器样式*/
+        /*#Swiper .swiper-pagination{
+            width: auto;margin-left:18px;!*让分页器宽度为auto*!
+        }
+        #Swiper .swiper-pagination li{
+            width: 100px;height: 45px;border-radius: 15px;color: #fff;text-align: center;line-height: 45px;
+            -webkit-user-select:none;!*让分页器里的数字不可选择*!
+        }*/
+    </style>
+</head>
+<body>
+<div id="Swiper">
+    <div class="swiper-wrapper">
+        <div class="swiper-slide">1</div>
+        <div class="swiper-slide">2</div>
+        <div class="swiper-slide">3</div>
+        <div class="swiper-slide">4</div>
+        <div class="swiper-slide">5</div>
+        <div class="swiper-slide">6</div>
+    </div>
+    <div class="swiper-pagination"></div>
+</div>
+<div class="swiper-pagination"></div>
+<script>
+    var mySwiper = new Swiper('#Swiper', {
+        //slidesPerView : 4,
+        noSwiping : false,
+        pagination : '.swiper-pagination',//【pagination:null(默认)/.swiper-pagination】,在container里添加一个空标签，
+        //给类名.swiper-pagination，给container【定位属性】，根据container定位，定在container底部默认位置
+        //【分页器标签也可以放在container外部，用uniqueNavElements来控制】：
+        uniqueNavElements :false,//【uniqueNavElements:false/true(默认)】true:外部分页器不可用，消失；false:外部分页器可用
+        //paginationHide:true,//【paginationHide:false(默认)/true】true:【点击】Swiper会【隐藏/显示分页器】。
+        //【paginationType】分页器样式类型：可根据类名修改样式
+//paginationType:'bullets',// 圆点式（默认）/*********************以下是修改bullets样式***********************/
+           /*paginationClickable:true,//【paginationClickable:false(默认)/true】true:【点击bullets分页器】的圆点可进行Swiper切换。
+            paginationElement:'li',//【paginationElement:span(默认)/标签】自定义bullets分页器的【标签类型】
+            //【paginationBulletRender:null(默认)/function(index, className)】这个参数允许完全自定义分页器的bullets指示点
+            paginationBulletRender: function (index, className) {
+                switch (index) {
+                    case 0: name='xixi';break;
+                    case 1: name='haha';break;
+                    case 2: name='hehe';break;
+                    case 3: name='hehe';break;
+                    case 4: name='ssss';break;
+                    case 5: name='llll';break;
+                    default: name='';
+                }
+                //return的标签可修改原有的bullets指示点【标签和标签里的内容】
+                return '<li class="' + className + '">' + name + '</li>';
+            },*/
+
+//paginationType:'fraction',//【分式】/***********************以下是修改fraction样式***************************/
+        /*paginationFractionRender: function (swiper, currentClassName, totalClassName) {
+            return '<span class="' + currentClassName + '"></span>' +
+                    ' in ' +
+                    '<span class="' + totalClassName + '"></span>';
+        },*/
+
+//paginationType:'progress',//【进度条式】/***********************以下是修改progress样式**********************/
+        /*paginationProgressRender: function (swiper, progressbarClass) {
+            return '<span class="' + progressbarClass + '"></span>';
+        }*/
+
+//paginationType:'custom',//【自定义式】/***********************以下是修改custom样式***************************/
+        /*paginationCustomRender: function (swiper, current, total) {
+            return current + ' of ' + total;
+        }*/
+
+   });
+
+    //给bullets分页器加上不可滑动的类名，否则点击时产生滑动，使得【Swiper切换不准确】
+    $('.swiper-pagination').addClass('swiper-no-swiping');
+
+</script>
+</body>
+</html>

@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script src="common/vue.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+	<body>
+		<!--【View层】-->
+		<div id="app">
+			我是<span id="qq">{{name}}</span>，我来自{{from}}，我喜欢{{hobby}}！！
+		</div>
+		<script type="text/javascript">
+			//【Model层】
+			var dataBind = {
+					name:'李四',
+					from:'上海',
+					hobby:'打篮球'
+			};
+			//【ViewModel层】,
+			//创建一个vue实例，连接 View与Model
+			var VueApp = new Vue({
+				//el属性指向View，表示该Vue实例将挂载到id="app"这个元素
+				el:'#app',
+				//data属性指向Model，表示我们的Model是dataBind对象。
+				data:dataBind,
+				//实例被创建之后执行代码
+				created:function () {
+					//this指向实例本身
+//					console.log('this指向实例本身');
+				}
+			});
+			console.log(VueApp);
+			
+			//#【实例】
+			//实例VueApp引用了data对象,拥有data下的属性
+//			console.log(VueApp.hobby);//打篮球
+			//Vue实例暴露了一些有用的实例属性与方法。它们都有前缀 $，以便与用户定义的属性区分开来
+			//如：
+//			console.log(VueApp.$data);//$data === data
+			VueApp.$watch('name',function (newValue, oldValue) {
+				//这个回调将在 'name'发生改变后调用
+//				alert(oldValue + '->' + newValue);
+			})
+			
+			//#【响应式数据】
+			//设置VueApp(VM)属性，同时也会影响dataBind(M)属性和页面展示(V)
+			//设置dataBind(M)属性，同时也会影响VueApp(VM)属性和页面展示(V)
+			VueApp.hobby = '打网球';
+			dataBind.from = '北京';
+//			console.log(VueApp.from);//北京
+
+			//#【生命周期】
+			//每个 Vue 实例在被创建之前都要经过一系列的初始化过程。
+			//例如需要设置数据监听、编译模板、挂载实例到 DOM、在数据变化时更新 DOM等
+			//在这个过程中会运行一些叫做【生命周期钩子】的函数，如created，mounted、updated、destroyed
+			//给予用户机会在一些特定的场景下添加他们自己的代码
+			
+			
+		</script>
+	</body>
+</html>

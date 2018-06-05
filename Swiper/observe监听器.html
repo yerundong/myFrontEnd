@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="css/swiper-3.3.1.min.css">
+    <script src="js/swiper-3.3.1.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="js/jquery-2.2.3.min.js"></script>
+    <style>
+        #Swiper{
+            width: 700px;height: 600px;border: 1px solid salmon;margin: 0 auto; overflow: hidden;position: relative;
+        }
+        .swiper-wrapper{/**/
+            font-size: 50px;text-align: center;line-height: 500px;
+        }
+        .swiper-slide{
+            /*height:200px;*/
+        }
+        .swiper-slide:nth-of-type(1){
+            background: rgba(255,0,0,.2);
+        }
+        .swiper-slide:nth-of-type(2){
+            background: rgba(255,255,0,.2);
+        }
+        .swiper-slide:nth-of-type(3){
+            background: rgba(255,0,255,.2);
+        }
+        .swiper-slide:nth-of-type(4){
+            background: rgba(0,255,0,.2);
+        }
+        .swiper-slide:nth-of-type(5){
+            background: rgba(255,0,0,.2);
+        }
+        .swiper-slide:nth-of-type(6){
+            background: rgba(255,255,0,.2);
+        }
+        .swiper-slide:nth-of-type(7){
+            background: rgba(255,0,255,.2);
+        }
+        .swiper-slide:nth-of-type(8){
+            background: rgba(0,255,0,.2);
+        }
+        .swiper-slide:nth-of-type(9){
+            background: rgba(0,255,255,.2);
+        }
+    </style>
+</head>
+<body>
+<div id="Swiper">
+    <div class="swiper-wrapper">
+        <div class="swiper-slide slide1">1</div>
+        <div class="swiper-slide">2</div>
+        <div class="swiper-slide">3</div>
+        <div class="swiper-slide">4</div>
+        <div class="swiper-slide">5</div>
+        <div class="swiper-slide">6</div>
+    </div>
+    <div class="swiper-pagination"></div>
+</div>
+<input type="submit" value="delede" style="background: red;width: 100px;height: 50px;">
+<script>
+    var mySwiper = new Swiper('#Swiper', {
+        pagination : '.swiper-pagination',
+        observer:true,//【observer:true/false(默认)】true:当改变swiper的样式（例如【隐藏/显示】）或者【修改】swiper的子元素时，
+        // 自动【初始化】swiper。默认false，不开启，可以使用update()方法【更新】。
+        observeParents:true,//【observeParents:true/false(默认)】将observe应用于Swiper的【父元素】。
+        // 当Swiper的【父元素变化】时，例如window.resize，Swiper更新。
+    });
+    /*$('input').click(function(){
+        $(".swiper-wrapper .slide1").remove();
+    });*/
+
+    $('input').click(function(){
+        $("#Swiper").css({
+            width:400
+        });
+    })
+
+
+
+
+
+
+
+
+</script>
+</body>
+</html>

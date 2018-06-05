@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script src="../common/vue.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+	<body>
+		<div id="app">
+			<input v-model="bird"/>
+			<input v-model="bird"/>
+			<p>{{bird2}}</p>
+		</div>
+		<script type="text/javascript">
+			//【观察者】watch
+			//虽然计算属性里的getter函数也能监听M层,但只能写一个get方法，只能进行简单操作
+			//通过 watch选项提供一个更通用的方法，来响应数据(M)的变化
+			//适用于执行异步操作或开销较大的操作
+			var vm = new Vue({
+				el:'#app',
+				data:{
+					bird:'宠物鸟',
+					bird2:''
+				},
+				watch:{
+					//监听data里的bird(M)属性,bird发生改变，就执行bird()
+					//并传入新值newValue
+					//不监听V和VM层属性
+					bird:function (newValue) {
+						this.readBird(newValue)
+					}
+				},
+				methods:{
+					readBird:function (value) {
+//						alert(value);
+						this.$data.bird2 = value;
+					}
+				}
+			})
+			document.onclick = function () {
+//				vm.bird = '鸟';//不触发
+//				vm.$data.bird = '火凤鸟';//触发
+			}
+			
+		</script>
+	</body>
+</html>

@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script src="../../common/vue.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+		<div id="app1">
+			<p v-for="value in items">我是{{value}}</p>
+			<input type="" name="" id="inp" :value="items.name1" />
+			<input type="button" name="btn" id="btn" value="确定" />
+		</div>
+	<body>
+		<script type="text/javascript">
+			var vm1 = new Vue({
+				el:'#app1',
+				data:{
+					items:{
+						name1:'张三',					
+						name2:'李四',					
+						name3:'王五',					
+					}
+				}
+			});
+			/*
+				不管是新增VM还是M的数据，都不会是响应式的，而修改是响应式的 
+			*/
+			var obtn = document.getElementById("btn");
+			var oinp = document.getElementById("inp");
+			var num = 3;
+			obtn.onclick = function () {
+				num++;
+				var v = oinp.value;
+				//【非响应式】
+				//直接修改，不会触发重新渲染
+//				vm1.items['name'+num] = v;
+				
+				//【响应式】
+				//直接替换整个根级数据虽可以触发渲染，但无法动态添加
+//				vm1.items = {name1:'张uu'};
+
+				//使用vue方法，动态添加对象元素，触发渲染
+//				Vue.set(vm1.items,'name'+num,v);
+				//或
+//				vm1.$set(vm1.items,'name'+num,v);
+					
+				//【Object.assign()、_.extend()】？？？？？？？？
+				//根级数据添加一个新的对象
+				//非响应式
+//				vm1.pigs = {age: 12}
+				
+				//响应式
+//				vm1.pigs = Object.assign({}, vm1.pigs, {
+//					age: 12
+//				});
+
+				console.log(vm1.pigs);
+				console.log(vm1.$data.pigs);
+			}
+			
+		</script>
+	</body>
+</html>

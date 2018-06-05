@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script src="../common/vue.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+		<div id="app1">
+			这里的一切书写将无效的
+		</div>
+	<body>
+		<script type="text/javascript">
+			/*
+				vue实例实质是根组件实例，其下的template模版将替换其挂载的标签(#app1),包括dom片段、子组件
+				若vue实例下没有template模版，则dom片段、子组件有效
+				template模版里可以插入已注册的子组件
+				
+				template模版里依然可以嵌套template标签，而且不会被编译成任何标签，
+				在插槽等地方可以用到
+			*/
+			//子组件
+			let cmt = {
+				data(){
+					return{
+						res:555
+					}
+				},
+				template:`<a href="#">{{res}}</a>`
+			}
+			var vm1 = new Vue({
+				el:'#app1',
+				data:{
+					msg:123
+				},
+				template:`
+					<div class="wrap">
+						<p>msg:{{msg}}</p>	
+						<sont></sont>
+						<template>我是template标签</template>
+					</div> 
+				`,
+				components:{
+					sont:cmt
+				}
+			})
+		</script>
+	</body>
+</html>

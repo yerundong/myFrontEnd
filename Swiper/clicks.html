@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="css/swiper-3.3.1.min.css">
+    <script src="js/swiper-3.3.1.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="js/jquery-2.2.3.min.js"></script>
+    <style>
+        #Swiper{
+            width: 500px;height: 500px;border: 1px solid salmon;margin: 0 auto; overflow: hidden;
+        }
+        #Swiper .swiper-wrapper{   /***********/
+            font-size: 50px;text-align: center;line-height: 500px;
+        }
+        .swiper-slide{
+
+        }
+        .swiper-slide:nth-of-type(1){
+            background: rgba(255,0,0,1);
+        }
+        .swiper-slide:nth-of-type(2){
+            background: rgba(255,255,0,1);
+        }
+        .swiper-slide:nth-of-type(3){
+            background: rgba(255,0,255,1);
+        }
+        .swiper-slide:nth-of-type(4){
+            background: rgba(0,255,0,1);
+        }
+        .swiper-slide:nth-of-type(5){
+            background: rgba(255,0,0,1);
+        }
+        .swiper-slide:nth-of-type(6){
+            background: rgba(255,255,0,1);
+        }
+        .swiper-slide:nth-of-type(7){
+            background: rgba(255,0,255,1);
+        }
+        .swiper-slide:nth-of-type(8){
+            background: rgba(0,255,0,1);
+        }
+        .swiper-slide:nth-of-type(9){
+            background: rgba(0,255,255,1);
+        }
+    </style>
+</head>
+<body>
+<div id="Swiper">
+    <div class="swiper-wrapper">
+        <div class="swiper-slide"><a href="##">1111111111</a></div>
+        <div class="swiper-slide"><a href="##">2222222222222</a></div>
+        <div class="swiper-slide"><a href="##">333333333333</a></div>
+        <div class="swiper-slide"><a href="##">444444444444</a></div>
+        <div class="swiper-slide"><a href="##">555555555555</a></div>
+        <div class="swiper-slide"><a href="##">6666666666666</a></div>
+        <div class="swiper-slide"><a href="##">77777777777777</a></div>
+        <div class="swiper-slide"><a href="##">888888888888888</a></div>
+        <div class="swiper-slide"><a href="##">999999999999999</a></div>
+    </div>
+</div>
+<script>
+    var mySwiper = new Swiper('#Swiper', {
+        slidesPerView : 2,
+        freeMode : true,
+        centeredSlides : true,//默认位置为中
+        preventClicks:false,//【preventClicks:true(默认)/false】true:当swiping时【阻止意外的链接点击】，false相反
+        preventLinksPropagation : true,//【preventLinksPropagation:true(默认)/false】阻止click冒泡。拖动Swiper时阻止click事件。
+        slideToClickedSlide:true,//【slideToClickedSlide:true/false(默认)】，true:点击哪个slide，他就移到默认位置
+        speed:3000,
+    });
+    document.onclick= function () {
+        alert("冒泡");
+
+    }
+</script>
+</body>
+</html>

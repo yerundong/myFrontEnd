@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script src="../common/vue.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../common/vue-router.js"></script>
+	</head>
+	<style type="text/css">
+		.head{
+			width: 300px;
+			height: 300px;
+			background: red;
+		}
+		.body{
+			width: 300px;
+			height: 300px;
+			background: green;
+		}
+		.foot{
+			width: 300px;
+			height: 300px;
+			background: blue;
+		}
+	</style>
+	<body>
+		<div id="app1">
+			<router-link :to="toParams1" tag="button" @click.native="fn">head</router-link>
+      		<router-link :to="toParams2" tag="button" @click.native="fn">body</router-link>
+      		<router-link :to="toParams3" tag="button">foot</router-link>
+      		<br />
+      		<router-view></router-view>
+		</div>
+		<script type="text/javascript">
+			/*
+			 * props设置为true(默认为false,不接收)，组件内将可用props接收params参数的，就不必去 $route.params里获取，达到【解耦】的目的
+			 * 对于包含命名视图的路由，你必须分别为每个命名视图添加props选项
+			 * 有三种写法：布尔模式、对象模式、函数模式
+			 * */
+			const head = { 
+				//布尔模式
+				//接受params参数
+				props:['pid'],
+				template: '<div class="head">head+pid:{{pid}}</div>' 
+			}
+			const body = { 
+				//对象模式：直接接收appProp，不再接收params参数
+				//接受params
+				props:['appProp','pid'],
+				template: '<div class="body">body+pid:{{appProp}}、{{pid}}</div>' 
+			}
+			const foot = { 
+				//函数模式：直接接收appProp，不再接收params参数
+				//函数模式可以直接获取route实例，params、query都能进行加工传入props
+				props:['appProp1','appProp2'],
+				template: '<div class="foot">foot+pid:{{appProp1}}+{{appProp2}}</div>' 
+			}
+			const router = new VueRouter({
+			  routes: [
+			    { 
+			    	path: '/head',
+			    	name:'head',
+			      	component: head,
+			      	props:true
+			    },
+			    { 
+			    	path: '/body',
+			      	name: 'body',
+			      	component: body,
+			      	props:{
+			      		appProp:'sd'
+			      	}
+			    },
+			    { 
+			    	path: '/foot',
+			      	name: 'foot',
+			      	component: foot,
+			      	//route参数是路由实例
+			      	props:(route)=>({
+			      		appProp1: route.params.pid,
+			      		appProp2: route.query.pid,
+			      	})
+			    }
+			  ]
+			});
+			var vm1 = new Vue({
+				el:'#app1',
+				router,
+				data:{
+					toParams1:{
+						path: '/head',
+				      	name: 'head',
+				      	params:{
+				      		pid:'head'
+				      	}
+					},
+					toParams2:{
+						path: '/body',
+				      	name: 'body',
+				      	params:{
+				      		pid:'body'
+				      	}
+					},
+					toParams3:{
+						path: '/foot',
+				      	name: 'foot',
+				      	params:{
+				      		pid:'foot1'
+				      	},
+				      	query:{
+				      		pid:'foot2'
+				      	}
+					},
+				},
+				methods:{
+					fn:function(){
+						console.log(this.$route)
+					}
+				},
+			});
+		</script>
+	</body>
+</html>

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script src="../../common/vue.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+	<body>
+		<div id="app1">
+			<def-input v-model = "msg" @input = "chnge"></def-input>
+			
+		</div>
+		<script type="text/javascript">
+			var inputCompt = {
+				template : '\
+					<span>\
+						<input type="text" \
+						:value="value"\
+						@blur="numberBlur($event.target.value)"\
+						@focus="numberFocus($event.target.value)"\
+						/>\
+						{{value}}\
+					</span>\
+				',
+				props:['value'],
+				methods:{
+					numberBlur:function (v) {
+						v = (v*1).toFixed(2);
+						this.$emit('input',v)
+					},
+					numberFocus:function (v) {
+						v = (v*1).toFixed(0);
+						this.$emit('input',v)
+					}
+				}
+			}
+			Vue.component('def-input',inputCompt)
+			var vm1 = new Vue({
+				el:'#app1',
+				data:{
+					msg : 1
+				},
+				methods:{
+					chnge:function (v) {
+						this.msg = v
+					}
+				}
+			});
+		</script>
+	</body>
+</html>

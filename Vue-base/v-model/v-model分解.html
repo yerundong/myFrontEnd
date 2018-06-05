@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script src="../common/vue.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+		<div id="app1">
+			<input type="text" v-model="msg" />
+			<br />
+			<!--
+				v-model其实是以下语法的魔法糖
+				所以v-model可以添加为【组件根元素的属性】，利用props把value传入组件内
+			-->
+			<input type="text" 
+				:value="msg" 
+				@input="msg=$event.target.value"
+			/>
+			{{msg}}
+		</div>
+	<body>
+		<script type="text/javascript">
+			var vm1 = new Vue({
+				el:'#app1',
+				data:{
+					msg:1
+				}
+			})
+		</script>
+	</body>
+</html>

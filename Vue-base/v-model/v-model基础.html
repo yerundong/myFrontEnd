@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script src="../common/vue.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+		<div id="app1">
+			<!--
+				【v-model】:在表单控件元素上创建双向数据绑定,V、M、VM任何一者改变，都使其他两者改变
+				v-model只能用于表单元素上：input\textarea\select标签
+				v-model会忽略该表输入单元素的 value、checked、selected的属性
+				多选框和多选下拉列表的vm数据可用数组格式，其他不可用
+				v-model不可直接对props的进行双向绑定的，因为子组件的prop不可直接改变
+			-->
+			<!--
+				【输入框】
+				1、渲染时：vm的数据通过model渲染到输入框内(v)
+				2、操作时：输入框内容(v)反映到vm、m
+			-->
+			<input type="text" v-model="name" />
+			<div class="xianshi">
+				{{name}}
+			</div>
+			<!--
+				【复选框】
+				无value属性：
+					1、渲染时：model参数为假，不选，为真，选中
+					2、操作时：vm数据不是数组格式，返回布尔值替换vm数组数据；
+					vm数据为数组格式，添加或删去'null'到vm数组数据
+				有value属性：
+					1、渲染时：vm数据不是数组格式，根据vm的布尔值进行勾选；
+					vm数据为数组格式，value值与数组元素相同的勾选，不同的不选。
+					2、操作时：vm数据不是数组格式，返回布尔值到vm数组数据；
+					vm数据为数组格式，返回value值添加到vm数组数据。	
+			-->
+			<input type="checkbox" value="李奶奶" id="chbox1" v-model="chbox"/>
+			<label for="chbox1">李奶奶</label>
+			<div class="xianshi">
+				{{chbox}}
+			</div>
+			<!--
+				【单选框】
+				无value属性：
+					1、渲染时：model参数为假，不选，为真,选中；
+					2、操作时：没有值返回
+				有value属性：	
+					1、渲染时：value值与model参数相同的选中，不同，不选
+					2、操作时：返回value值替换vm数据
+				*如果有name值相同，且都符合选中条件，只选中最后一个	
+			-->
+			
+			<input type="radio" id="radio1" value="aaa" v-model="rad"/>
+			<label for="radio1">噢</label>
+			<input type="radio" id="radio2" value="hhh" v-model="rad"/>
+			<label for="radio2">嘿</label>
+			<div class="xianshi">
+				{{rad}}
+			</div>
+			<!--
+				【下拉列表】
+				无value属性：
+					1、渲染时：option内容与model参数一样，选中，不同，不选
+					2、操作时：返回option内容替换vm数据
+				有value属性：	
+					1、渲染时：value值与model参数相同的选中，不同，不选
+					2、操作时：返回value值替换vm数据	
+				*注意：单选框有多个都满足选中条件，则其中第一个选中
+			-->
+			<select v-model="sel">
+				<option value="1">ffff</option>
+				<option value="2">gggg</option>
+				<option value="3">hhhh</option>
+			</select>
+			<div class="xianshi">
+				{{sel}}
+			</div>
+			<input type="button" name="" id="" value="console" v-on:click="cons"/>
+		</div>
+	<body>
+		<script type="text/javascript">
+			var vm1 = new Vue({
+				el:'#app1',
+				data:{
+					name:'张三',
+					chbox:'取e',
+					rad:'aaa',
+					sel:'1',
+				},
+				methods:{
+					cons:function () {
+//						console.log(this.name);
+//						console.log(this.$data.name);
+//						
+//						console.log(this.chbox);
+//						console.log(this.$data.chbox);
+//						
+//						console.log(this.sel);
+//						console.log(this.$data.sel);
+					}
+				}
+			})
+		</script>
+		<style type="text/css">
+			.xianshi{
+				width:171px;
+				height: 68px;
+				border: 1px solid #ccc;
+				margin: 10px 0;
+			}
+		</style>
+	</body>
+</html>

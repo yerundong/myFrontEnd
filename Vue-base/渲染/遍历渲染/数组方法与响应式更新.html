@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script src="../../common/vue.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+		<div id="app1">
+			<span v-for="pitem in items">
+				我是{{pitem.name}}。
+			</span>
+		</div>
+	<body>
+		<script type="text/javascript">
+			var vm1 = new Vue({
+				el:'#app1',
+				data:{
+					items:[
+						{name:'张三'}
+					]
+				}
+			});
+			document.onclick = function () {
+			//【非响应式】
+			//直接修改，不会触发重新渲染
+//			vm1.items[1] = {name:'李四'};
+			
+			//【响应式】
+			//直接替换整个【根级数据】虽可以触发渲染，但无法动态添加
+//			vm1.items = [{name:'李四'},{name:'王五'}];
+			
+			//Vue提供一组观察数组的【变异方法】，动态删减数组元素，触发重新渲染。
+			//这些方法用法与原生基本一致，如下：
+//				vm1.$data.items.push({name:'李四'},{name:'王五'});//向数组末尾添加元素
+//				vm1.$data.items.pop();//删除数组末尾一个元素
+//				vm1.$data.items.shift();//删除数组开头一个元素
+//				vm1.$data.items.unshift({name:'李四'},{name:'王五'});//向数组开头添加元素
+//				vm1.$data.items.splice(0,1,{name:'王五'});//0代表开始，1代表删除1个,"{name:'王五'}"代表插入替换的
+//				vm1.$data.items.sort();//按【ASCII表】升序排列数组元素
+//				vm1.$data.items.reverse();//将元素顺序颠倒，并返回
+
+//			    *filter(), concat() 和 slice()不会改变原始数组，但总是返回一个新数组，当使用非变异方法时，可以用新数组替换旧数组触发重新渲染
+
+				console.log(vm1.$data.items);
+			}
+		</script>
+	</body>
+</html>

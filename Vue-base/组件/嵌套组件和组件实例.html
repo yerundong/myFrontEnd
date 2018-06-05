@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script src="../common/vue.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+		<div id="app1">
+			<parent-component></parent-component>
+			<br />
+			局部组件嵌套↓
+			<br />
+			<br />
+			<father></father>
+		</div>
+	<body>
+		<script type="text/javascript">
+			/*
+			 *【组件】
+			 	子组件的选项拓展必须定义在【父组件之前】，否则不可被引用
+				子组件只被父组件引用不需要单独注册，只需要注册父组件即可
+				子组件只能在【父组件的template中使用】，且子组件只能被父组件【包含】，不能并列
+				指允许父组件引用子组件，【不可跨代引用】
+			*/
+			//【全局嵌套组件】
+			var child = Vue.extend({
+			    template: '<div>我是全局子组件</div>'
+			});
+			var parent = Vue.extend({
+			    template: '<div>我是全局父组件<child-component></child-component></div>',
+			    components: {
+			        'child-component': child
+			    }
+			});
+			//注册父组件
+			Vue.component("parent-component", parent);
+			//【局部嵌套组件】	 
+			//【组件实例对象】	 
+			//this指向该在组件实例
+			//this.$parent获取父组件实例对象
+			//this.$children获取所有子组件实例对象，为数组格式
+			//this.$root获取Vue根实例对象
+			
+			//实例化
+			var vm = new Vue({
+				el:'#app1',
+				data:{
+					msg:'我是Vue根实例的data'
+				},
+				components:{
+					'father':{
+						data:function () {
+							return {
+								msg:'我是A组件实例的data'
+							}
+						},
+						methods:{
+							cons:function (v) {
+								console.log(this)
+							}
+						},
+						template:'<div>我是A，{{msg}}<button @click.stop="cons">输出组件实例</button><son></son></div>',
+						components:{
+							'son':{
+								data:function () {
+									return {
+										msg:'我是B组件实例的data'
+									}
+								},
+								methods:{
+									cons:function (v) {
+//										console.log(this.$children[0]);//获取儿子组件实例数组集合，包括C组件实例
+//										console.log(this.$root);//获取根实例
+//										console.log(this.$root);//获取获得最上层的实例，即Vue根实例
+									}
+								},
+								template:'<div>我是B，{{msg}}<button @click.stop="cons">输出组件实例</button><grandson></grandson></div>',
+								components:{
+									'grandson':{
+										data:function () {
+											return {
+												msg:'我是C组件实例的data'
+											}
+										},
+										methods:{
+											cons:function (v) {
+												console.log(this);//获取C组件实例
+//												console.log(this.$parent);//获取父组件实例，即B组件实例
+//												console.log(this.$parent.$parent.msg);//获取父组件的父组件实例，即A组件实例
+//												console.log(this.$parent.$parent.$parent.msg);//可一直向上获取，直到Vue根实例，到顶了
+//												console.log(this.$root);//获取Vue根实例
+											}
+										},
+										template:'<div>我是C，{{msg}}<button @click.stop="cons">输出组件实例</button></div>'
+									}
+								}
+							}
+						}
+					}
+				}
+			});
+//			console.log(vm);
+		</script>
+	</body>
+</html>

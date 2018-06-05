@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script src="../common/vue.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../common/vue-router.js"></script>
+	</head>
+		<div id="app1">
+			<router-link to="/user/a/na" @click.native="ca">go A</router-link>
+			<router-link :to="{path:'/user/b/nb'}" @click.native="cb">go B</router-link>
+			<router-view></router-view>
+		</div>
+	<body>
+		<script type="text/javascript">
+			/*
+				如果需要把某种模式匹配到的所有路由，【全都映射到同个组件 】
+			 	利用动态路径参数可以达到这个效果
+			 	例如，我们有一个 User组件，对于所有ID各不相同的用户，都要使用这个组件来渲染。
+			 	动态路由的路径的可变参数(:后的参数)称为【动态参数】，将被自动组装到this.$route.params对象里，
+			 	而【全匹配参数】将无效,如上例👆中的pid:123被丢弃了
+			 	而且动态参数由于是放在地址里的，所以【直接输入地址，可以获取到】，而【全匹配参数】获取不到
+			 	
+			 	动态路由【只能用path导航】，而【命名路由利用name属性无法实现动态路由】
+			*/
+			const T1 = {
+				template:'<div>{{this.$route.params.id}}</div>',
+				created:function(){
+					console.log(this.$route)
+				},
+				watch: {
+				    $route(to, from) {
+				      // 对路由变化作出响应...
+				      console.log(to);
+				      console.log(from);
+					}
+  				}
+			}
+			//动态路径参数 以冒号开头，:后的参数是可变的，显示不同
+			//若此路由未传params，则
+			const myRoutes = [
+				{
+					path:'/user/:id/:name',
+					component:T1,
+					params:{
+						pid:'abc'
+					}
+				}
+			]
+			
+			const myRouter = new VueRouter({
+				routes:myRoutes
+			});
+			
+			const vm1 = new Vue({
+				el:'#app1',
+				router:myRouter,
+				methods:{
+					ca(){
+						//此处this指向所绑定的组件，若是箭头函数或对象属性简写的方法则指向vue实例
+//						console.log(this.$route)
+					},
+					cb:function(){
+//						console.log(this.$route)
+					},
+				},
+				created:function () {
+				}
+			})
+		</script>
+	</body>
+</html>

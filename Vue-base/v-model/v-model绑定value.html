@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script src="../common/vue.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+		<div id="app1">
+			<!--
+				【复选框】
+				选中时为true-value属性的值，
+				位选中为false-value的值
+				true/false-value是固定写法
+				没写的返回布尔值
+			-->
+			<input
+			  type="checkbox"
+			  v-model="toggle"
+			  v-bind:true-value="a"
+			  v-bind:false-value="b"
+			/>
+			<div>
+				{{toggle}}
+			</div>
+			<!--
+				checkbox数组
+				选中的塞到数组里
+			-->
+			<input
+			  type="checkbox"
+			  v-model="boxes"
+			  value="box1"
+			/>
+			<input
+			  type="checkbox"
+			  v-model="boxes"
+			  value="box2"
+			/>
+			<input
+			  type="checkbox"
+			  v-model="boxes"
+			  value="box3"
+			/>
+			<div>
+				{{boxes}}
+			</div>
+			<!--
+				【单选框】
+				选中时toggle为value值
+			-->
+			<input
+			  type="radio"
+			  v-model="toggle"
+			  v-bind:value="a"
+			/>
+			<div>
+				{{toggle}}
+			</div
+			<!--
+				【下拉框】
+				选中时toggle为value值
+			-->
+			<select v-model="toggle" @change="onSelect">
+				<option :value="a">1</option>
+				<option :value="b">2</option>
+			</select>
+			<div>
+				{{toggle}}
+			</div>
+			修饰符↓↓<br />
+			<!--
+			【修饰符】
+				.lazy  输入框由v响应到vm层，从oninput触发变成onchange触发方式
+				.number 当输入数字时，自动转为 Number类型的响应到vm，输入其他原值返回
+				.trim 自动过滤输入内容的首尾空格
+			-->
+			<textarea type="text" name="" id="" v-model.lazy="a"></textarea>
+			<input type="text" name="" id="" v-model.numbar="a" />
+			<input type="text" name="" id="" v-model.trim="a" />
+			<div>
+				{{a}}
+			</div>
+		</div>
+	<body>
+		<script type="text/javascript">
+			var vm1 = new Vue({
+				el:'#app1',
+				data:{
+					toggle:'1111',
+					a:'aaaaa',
+					b:'bbbbb',
+					boxes:[],
+				},
+				methods:{
+					onSelect(){
+//						alert()
+					}
+				}
+			})
+		</script>
+		<style type="text/css">
+			.cla1{
+				color: red;
+			}
+			.cla2{
+				color: blue;
+			}
+		</style>
+	</body>
+</html>

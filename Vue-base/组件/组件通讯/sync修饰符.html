@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script src="../../common/vue.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+		<div id="app1">
+			<parentc></parentc>
+		</div>
+	<body>
+		<script type="text/javascript">
+			/*
+				通过sync修饰符与$emit可以让子组件的数据绑定父组件的数据，
+			 	其实是$emit+自定义事件与父组件通讯的简写，自定义事件是update
+			 	同样的，也只限于子->父类型的通讯
+			 	props+.sync + $emit('update:num')可达到props双向绑定目的
+			 	
+			 	【不可修饰v-model】，因为它是语法糖，可通过$emit触发input或定制的事件达到相同的效果
+			*/
+			var child = {
+				data:function () {
+					return{
+						num : 1
+					}
+				},
+				template:'<div>子组件num:{{num}}<button @click="add">add</button></div>',
+				methods:{
+					add:function () {
+						this.num++;
+						this.$emit('update:boppy',this.num)
+					}
+				}
+			}
+			var parent = {
+				data:function () {
+					return{
+						msg : 1
+					}
+				},
+				template:'<div>父组件msg:{{msg}}<childc :boppy.sync = "msg"></childc></div>',
+				components:{
+					childc:child
+				}
+			}
+			Vue.component('parentc',parent)
+			
+			var vm1 = new Vue({
+				el:'#app1',
+				data:{
+					
+				}
+			})
+		</script>
+	</body>
+</html>

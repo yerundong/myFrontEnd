@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script src="../../common/vue.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+		<div id="app1">
+			<older>{{msg}}</older>
+			<younger></younger>
+		</div>
+	<body>
+		<!--
+			通过创建一个空实例--eventHub，相当于事件中转站，利用$emit和$on来传递事件和接收事件
+			此法可以用于任何类型的组件关系（父子、祖孙、兄弟等等关系）。
+		-->
+		<script type="text/javascript">
+			let Hub = new Vue();
+			var older = {
+				data:function(){
+					return {
+						msg:123
+					}
+				},
+				template:'<div @click="cl">点击兄<soner></soner></div>',
+				methods:{
+					cl:function () {
+						Hub.$emit('defclick',this.msg); //Hub触发事件
+					}
+				},
+				components:{
+					soner : {
+						data:function(){
+							return {
+								msg:456
+							}
+						},
+						template:'<div>子</div>',
+						created:function () {
+							Hub.$on('defclick',function (msg) {
+								alert('子')
+							}); //Hub监听事件
+						}
+					}
+				}
+			}
+			var younger = {
+				data:function(){
+					return {
+						msg:456
+					}
+				},
+				template:'<div>弟<smaller></smaller></div>',
+				created:function () {
+					Hub.$on('defclick',function (msg) {
+						alert('弟')
+					}); //Hub监听事件
+				},
+				components:{
+					smaller : {
+						data:function(){
+							return {
+								msg:456
+							}
+						},
+						template:'<div>子</div>',
+						created:function () {
+							Hub.$on('defclick',function (msg) {
+								alert('侄')
+							}); //Hub监听事件
+						}
+					}
+				}
+			}
+			
+			
+			
+			var vm1 = new Vue({
+				el:'#app1',
+				data:{
+					msg:1
+				},
+				components:{
+					older:older,
+					younger:younger,
+				},
+				created:function () {
+				}
+			})
+		</script>
+	</body>
+</html>

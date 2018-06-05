@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script src="../common/vue.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../common/vue-router.js"></script>
+	</head>
+	<style type="text/css">
+		.head{
+			width: 300px;
+			height: 300px;
+			background: red;
+		}
+		.body{
+			width: 300px;
+			height: 300px;
+			background: green;
+		}
+		.foot{
+			width: 300px;
+			height: 300px;
+			background: blue;
+		}
+	</style>
+	<body>
+		<div id="app1">
+			<router-link to="/head" tag="button" @click.native="fn">head</router-link>
+      		<router-link to="/body" tag="button" @click.native="fn">body</router-link>
+      		<router-link to="/foot" tag="button">foot</router-link>
+      		<br />
+      		<router-view></router-view>
+		</div>
+		<script type="text/javascript">
+			/*
+			 * mode:hash（默认） history 
+			 * 默认 hash模式 使用 URL的 hash，模拟一个完整的 URL，于是当 URL 改变时，页面不会重新加载
+			 * H5 history模式：如果不想看到带#的hash，可使用history模式，利用原生history.pushState完成跳转而无须重新加载页面
+			 * abstract模式:支持所有 JavaScript运行环境，如 Node.js服务器端。如果发现没有浏览器的 API，路由会自动强制进入这个模式。
+			 * */
+			const head = { 
+				template: '<div class="head">head</div>' 
+			}
+			const body = { 
+				template: '<div class="body">body</div>' 
+			}
+			const foot = { 
+				template: '<div class="foot">foot</div>' 
+			}
+			const router = new VueRouter({
+				mode: 'abstract',
+			  	routes: [
+			    	{ 
+				    	path: '/head',
+				    	name:'head',
+				      	component: head,
+				    },
+				    { 
+				    	path: '/body',
+				      	name: 'body',
+				      	component: body,
+				    },
+				    { 
+				    	path: '/foot',
+				      	name: 'foot',
+				      	component: foot,
+				    }
+				]
+			});
+			var vm1 = new Vue({
+				el:'#app1',
+				router,
+				data:{
+//					toParams1:{
+//						path: '/head',
+//				      	name: 'head',
+//				      	params:{
+//				      		pid:'head'
+//				      	}
+//					},
+//					toParams2:{
+//						path: '/body',
+//				      	name: 'body',
+//				      	params:{
+//				      		pid:'body'
+//				      	}
+//					},
+//					toParams3:{
+//						path: '/foot',
+//				      	name: 'foot',
+//				      	params:{
+//				      		pid:'foot1'
+//				      	},
+//				      	query:{
+//				      		pid:'foot2'
+//				      	}
+//					},
+				},
+				methods:{
+					fn:function(){
+						console.log(this.$route)
+					}
+				},
+			});
+		</script>
+	</body>
+</html>

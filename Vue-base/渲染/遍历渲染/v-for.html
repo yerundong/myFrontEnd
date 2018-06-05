@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<script src="../../common/vue.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+	<body>
+		<ul id="app1">
+			<!--
+				【v-for】
+				用 v-for指令根据一组数组的选项列表进行遍历渲染
+				在同一元素上，v-for的执行优先级高于v-if
+			-->
+			<!--
+				【数组格式数据】
+				语法1：preItem in|of items
+				items是data(M)里的数据源，preItem指数组数据的当前元素
+			-->
+			<li v-for="preItem in items1">
+				我是{{preItem.name}}，我爱{{preItem.sport}}。
+			</li>
+			<!--
+				语法2：(preItem,index) in|of items
+				index指数组数据当前的索引
+				
+				*因为vue的就地复用策略，我们如果需要重新渲染，可以给每个标签添加唯一的key属性,
+				可以配合v-for里的index或preItem.id,因为它们都是唯一的
+			-->
+			<p v-for="(preItem,index) of items1" :key = "preItem.id">
+				{{preItem.name}}，{{preItem.sport}}，我的序号是{{index}}
+			</p>
+			
+			<!--
+				【对象格式数据】
+				语法1：value in|of itemObj
+				itemObj是data(M)里的数据源，value指对象数据当前的值
+			-->
+			<li v-for="value in itemObj">
+				我是{{value}}。
+			</li>
+			<!--
+				语法2：(value,key) in|of itemObj
+				key指当前属性键名
+				语法3：(value,key,index) in|of itemObj
+				index指当前属性索引
+				
+				*因为vue的就地复用策略，我们如果需要重新渲染，可以给每个标签添加唯一的key属性,
+				可以配合v-for里的key或index因为它们都是唯一的
+			-->
+			<div v-for="(value,key) in itemObj" v-bind:key="key">
+				我是{{value}}，键名：{{key}}。
+			</div>
+			<p v-for="(value,key,ind) in itemObj" v-bind:key="ind">
+				我是{{value}}，键名：{{key}}，序号：{{ind}}。
+			</p>
+			
+			
+		</ul>
+		<script type="text/javascript">
+			var vm1 = new Vue({
+				el:'#app1',
+				data:{
+					items1 : [
+						{
+							name:'张三',
+							sport:'打篮球',
+							id:'a'
+						},
+						{
+							name:'李四',
+							sport:'游泳',
+							id:'b'
+						},
+						{
+							name:'王五',
+							sport:'跑步',
+							id:'c'
+						}
+					],
+					itemObj : {
+						n1:'陈六',
+						n2:'刘七',
+						n3:'王八'
+					}
+				}
+			})
+		</script>
+	</body>
+</html>

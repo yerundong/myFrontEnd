@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script src="../common/vue.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+		<div id="app1">
+			<mycompt>
+			<!--插入内容的区域Area-->
+				<p slot="slot1"><!--p1-->
+					{{res}}
+				</p>
+				<p>我是p2</p><!--p2-->
+				<p  slot="nnnnn">我是p3</p><!--p3-->
+				我是文字1<!--text1-->
+				<template slot = "slot2">我是文字2</template><!--text2-->
+				<template slot-scope = "props" slot = "slot5">
+					<p>{{props.txt1}}、{{props.txt2}}、{{res}}</p>
+				</template>
+				
+				<template slot-scope = "{txt3}" slot = "slot7"><!--text3-->
+					<p>{{txt3}}</p>
+				</template>
+				
+				<li slot="slot8" slot-scope = "{text8}">{{text8}}</li>
+				
+			<!--插入内容的区域Area-->
+			</mycompt>
+		</div>
+	<body>
+		<script type="text/javascript">
+			/*
+				【slot】：
+				【父组件在调用子组件时需要将文字、dom或自身的data插入子组件模版的具体位置】时，可使用slot
+				需要插入的内容应该被放在【父组件模板中的子组件】(Area区域)中；
+				
+				【具名插槽】
+				通过根元素里需要插入的标签(如p1)的slot属性去匹配【子组件模版的<slot></slot>标签】的 name值，
+				<slot>标签的位置则是插入的具体位置(如p1通过插槽将vue实例res数据用p标签包裹插入了子组件的模版里)，
+				
+				【slot标签里内容】
+				slot标签匹配成功时，其只是【标记插入位置的作用】，其内部书写均无效，
+				当slot标签没有任何匹配时，则其内容将被渲染(相当于默认的渲染内容)
+				
+				【文字插槽】
+				若【只插入文字】，可使用<template slot = "xxx">标签插入(如text2)
+				
+				【作用域插槽】
+				作用域插槽是一种特殊类型的插槽，通过作用域插槽，父组件可以【获取到子组件的数据】，而进行渲染，又可以使用父组件的数据
+				进行渲染，十分灵活。
+				【任意标签都可以为作用域插槽】，但template标签具有不编译成任何标签的优势(text8就利用li标签)。
+				通过slot-scope = "props"(值可自定义)获取【多个属性值】，props里包含了匹配到的slot标签所有的属性(如slot5的txt1、txt2属性)
+				若值接受【单个属性值】，可利用es6的对象解构取属性，如slot-scope = "{prop}"，(例如text3),
+				但取到的属性值只能在内部使用，该标签【外部或该标签属性里不能使用】,如<li slot-scope = "{pp}" :tt="pp">就不允许
+				
+				【默认插槽】
+				没有使用slot插槽(如p2、text1)或没有匹配成功插槽(如p3)的文字和dom将被丢弃,
+				如果有【默认插槽】(没有name属性的slot标签，如slot3、slot4)，则会被插入默认插槽内，【且每个默认插槽都会被插入】
+				不推荐存在多个的默认插槽（如slot3、slot4），可能会渲染错误【会有警告】，
+				
+				
+				Scoped Slots允许在 Slots中绑定当前组件的数据，然后经由父组件绑定到其孙子组件（即自身的子组件）
+				的 Props中传递给子组件，或绑定到DOM片段。 
+			*/
+			let cmt = {
+				data(){
+					return {
+						msg:'我是子组件信息',
+						items:['txt4-1','txt4-2','txt4-3']
+					}
+				},
+				template:`<div class="slot1">
+					<p>我是子组件文字1</p>slot6具名插槽
+					<slot name="slot1"></slot>  <!--注释:slot1具名插槽-->
+					<slot name="slot2"></slot>  <!--注释:slot2具名插槽-->
+					<slot name="slot5" txt1="txt1" :txt2="msg"></slot>  <!--注释:slot5作用域、具名插槽-->
+					<slot name="slot7" txt3="我是txt3"></slot>  <!--注释:slot7作用域、具名插槽-->
+					<slot 
+						name="slot8"
+						txt4="我是txt4"
+						v-for="item in items"
+						:text8="item"
+						>
+					</slot>  <!--注释:slot8作用域、具名插槽-->
+					<p>我是子组件文字2</p>
+					<slot></slot>  <!--注释:slot3默认插槽-->
+					<slot></slot>  <!--注释:slot4默认插槽-->
+					<slot name="slot6"><p>我是默认渲染内容</p></slot>  <!--注释:slot6具名插槽-->
+				</div>`
+			};
+			
+			var vm1 = new Vue({
+				el:'#app1',
+				data:{
+					res:'我是父组件信息',
+				},
+				components:{
+					'mycompt':cmt
+				}
+			})
+		</script>
+	</body>
+</html>

@@ -1,0 +1,24 @@
+
+《Vue-cli Command》
+
+# 全局安装vue-cli：cnpm install --global vue-cli
+
+# 创建一个基于webpack模板的新项目：vue init webpack projectName
+
+# 进入项目文件目录：cd projectName
+
+# 安装依赖，走你：cnpm install
+
+# 运行：cnpm run dev/cnpm run start/cnpm start
+
+# 编译：cnpm run build
+
+
+以下是编译完运行时遇到的坑：
+
+1、报错net::ERR_FILE_NOT_FOUND
+把config里的index.js,打开修改assetsPublicPath 为“./”
+
+2、若router使用了mode: "history"，编译完运行空白，但无报错
+需要修改router中的index.js，在每个path中加上你项目名称就行了，这样就能够成功，如'/'变成'/vue-project'
+

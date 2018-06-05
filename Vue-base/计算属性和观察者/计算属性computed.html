@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script src="../common/vue.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+	<body>
+		<div id="comp">
+			msg:{{msg}}
+			<br />
+			msg1:{{msg1}}
+			<br />
+			msg2:{{msg2}}
+			<br />
+			computed时间：{{time1}}
+			<br />
+			methosds时间：{{time2()}}
+			<br />
+			<input type="button" @click="msg++" value="msg++" />
+			<input type="button" @click="msg1++" value="msg1++" />
+			<input type="button" @click="msg2++" value="msg2++" />
+			<br />
+			obj:{{obj}}
+			<br />
+			$obj:{{$obj}}
+			<br />
+			<input type="button" @click="obj.a++" value="obj.a++" />
+		</div>
+		<script type="text/javascript">
+			//#【计算属性】computed
+			//模板应该简单和清晰，在模板中放入太多的逻辑会让模板过重且难以维护
+			//对于任何复杂逻辑，应当放在计算属性里
+			//计算属性的结果会【被缓存】，是基于它们的依赖进行缓存的，
+			//只有【相关依赖的响应式属性】发生改变时才会重新计算
+			//注意，如果实例范畴之外的依赖 (比如非响应式的 not reactive) 是不会触发计算属性更新的。
+			//计算属性里的get函数监听M层，set函数监听VM层
+			var app1 = new Vue({
+				el:'#comp',
+				data: {
+					msg : 1,
+					obj:{
+						a:1,
+						b:2,
+					}
+				},
+				//计算后的属性msg1,msg2将被作为app1(VM)的属性,供V层使用
+				computed : {
+					//msg1(VM)是msg(M)计算后的值,msg(M)改变会影响msg1(VM)
+					//getter函数，通常只能读，不能写
+					//并且不允许手动利用js对msg1(VM)改变，除非利用vue的方法进行改变，例如push
+					//利用vue的方法对VM层进行改动，依然能
+					//只含getter函数，并允许缩写
+					msg1() {
+						return this.msg + 1
+					},
+					//msg2(VM)是msg(M)计算后的值
+					//msg(M)改变会触发计算msg2(VM)--getter
+					//msg2(VM)改变反过来可以触发重新设置msg(M),继而触发计算msg2（最终值）--setter->getter
+					//能读,能写
+					//set其实是通过改变msg触发get，重新计算
+					//含getter函数，setter函数
+					msg2:{
+						get() {
+							//监听msg(M)值，改变时触发以下行为
+							return this.msg + 1
+						},
+						set(newValue) {
+							//newValue是msg2新值
+							//监听msg2(VM)值，改变时触发以下行为
+							this.msg = newValue - 1;
+						}
+					},
+					//【computed与methods比较】
+					//Date.now()不是响应式依赖(不在M里),当重新渲染时不重新计算(缓存)
+					//与methods对比，性能高
+					time1() {
+						return Date.now();
+					},
+					//Object格式的数据依然监听得到其内部属性值得变化
+					$obj(){
+						return this.obj
+					}
+				},
+				//methods不是计算属性，但也能做到计算的效果，但区别是属性每次都更新
+				//每当触发重新渲染时，method调用方式将总是再次执行函数，使time2更新
+				//根据是否需要缓存选择使用computed还是methods
+				methods : {
+					time2() {
+						return Date.now()
+					}
+				}
+			})
+		</script>
+	</body>
+</html>

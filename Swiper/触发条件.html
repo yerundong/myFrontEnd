@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="css/swiper-3.3.1.min.css">
+    <script src="js/swiper-3.3.1.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="js/jquery-2.2.3.min.js"></script>
+    <style>
+        #Swiper{
+            width: 700px;height: 600px;border: 1px solid salmon;margin: 0 auto; overflow: hidden;
+        }
+        .swiper-wrapper{/**/
+            font-size: 50px;text-align: center;line-height: 500px;
+        }
+        .swiper-slide{
+            /*height:200px;*/
+        }
+        .swiper-slide:nth-of-type(1){
+            background: rgba(255,0,0,.2);
+        }
+        .swiper-slide:nth-of-type(2){
+            background: rgba(255,255,0,.2);
+        }
+        .swiper-slide:nth-of-type(3){
+            background: rgba(255,0,255,.2);
+        }
+        .swiper-slide:nth-of-type(4){
+            background: rgba(0,255,0,.2);
+        }
+        .swiper-slide:nth-of-type(5){
+            background: rgba(255,0,0,.2);
+        }
+        .swiper-slide:nth-of-type(6){
+            background: rgba(255,255,0,.2);
+        }
+        .swiper-slide:nth-of-type(7){
+            background: rgba(255,0,255,.2);
+        }
+        .swiper-slide:nth-of-type(8){
+            background: rgba(0,255,0,.2);
+        }
+        .swiper-slide:nth-of-type(9){
+            background: rgba(0,255,255,.2);
+        }
+    </style>
+</head>
+<body>
+<div id="Swiper">
+    <div class="swiper-wrapper">
+        <div class="swiper-slide">1</div>
+        <div class="swiper-slide">2</div>
+        <div class="swiper-slide">3</div>
+        <div class="swiper-slide">4</div>
+        <div class="swiper-slide">5</div>
+        <div class="swiper-slide">6</div>
+        <div class="swiper-slide">7</div>
+        <div class="swiper-slide">8</div>
+        <div class="swiper-slide">9</div>
+    </div>
+</div>
+<script>
+    var mySwiper = new Swiper('#Swiper', {
+        //slidesPerView : 3,
+        //touchRatio:3,//【simulateTouch：num 1(默认)】鼠标滑动距离与slide滑动距离的比率。num越大，滑的越剧烈
+        //simulateTouch:false,//【simulateTouch：true(默认)/false】false:Swiper不接受鼠标【点击、拖动】操作swiper。
+        //无法点击、拖动【进度条】，但可以点击进退按钮、点击链接
+        //onlyExternal:true,//【onlyExternal：true/false(默认)】true:slide无法【拖动】操作swiper
+        //可以点击、拖动【进度条】、点击进退按钮、点击链接
+        // 只能使用扩展API函数例如slideNext() 或slidePrev()或slideTo()等改变slides滑动。
+        //followFinger : false,//【followFinger：true(默认)/false】false:拖动slide时它不会动，当你释放时slide才会切换。
+        //shortSwipes : false,//【shortSwipes：true(默认)/false】false:拖动距离【没有超过slide宽的一半】无法触发Swiper。
+        //longSwipesRatio : 1,//【longSwipesRatio：num 0-1】拖动距离到达num*slide宽的时候才会触发Swiper。
+        //threshold : 200,//【longSwipesRatio：numPx/false(默认)】拖动的临界值（单位为px），触摸距离小于该值滑块不会被【拖动】
+        //touchAngle : 90,//【touchAngle：num 45(默认)】允许触发拖动的【角度值】。
+        //longSwipes : false,//【longSwipes：true(默认)/false】进行【长时间长距离的拖动】无法触发Swiper。
+        //longSwipesMs : 100,//【longSwipesMs：num Px】【在longSwipes:false下】定义longSwipes的时间（单位ms），超过则属于longSwipes。
+        //touchMoveStopPropagation:false,//【touchMoveStopPropagation：true(默认)/false】true:阻止touchmove冒泡事件。
+        //resistance : false,//【resistance：true(默认)/false】开关拖离边缘【抵抗力】的属性，false:无抵抗力，也就无抵抗力大小
+        //resistanceRatio : 0.3,//【resistanceRatio：num 0.85默认】【resistance:true下】拖离边缘【抵抗力】的大小，0时完全无法拖离边缘
+        //iOSEdgeSwipeDetection : true,//【resistanceRatio：true/false(默认)】设置为true开启IOS的UIWebView环境下的边缘探测。
+        // 如果拖动是从【屏幕边缘开始】则不触发swiper。
+        //iOSEdgeSwipeThreshold : 50,//【iOSEdgeSwipeThreshold：num 20(默认)】IOS的UIWebView环境下的边缘探测距离。
+        // 如果拖动小于【边缘探测距离】则不触发swiper
+
+
+
+
+
+
+
+
+
+    });
+    var oA = document.getElementById('noClick');
+    document.onclick= function () {
+        //alert("冒泡");
+    };
+
+</script>
+</body>
+</html>

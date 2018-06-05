@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script src="../common/vue.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../common/vue-router.js"></script>
+	</head>
+	<style type="text/css">
+		.comA{
+			width: 100%;
+			height: 600px;
+			background: aquamarine;
+		}
+		.comB{
+			width: 100%;
+			height: 600px;
+			background: thistle;
+		}
+	</style>
+	<body>
+		<div id="app1">
+			<button @click="goa()">
+				go A
+			</button>
+			<button @click="gob()">
+				go B
+			</button>
+			<button @click="gon()">
+				go n
+			</button>
+			<router-view></router-view>
+		</div>
+		<script type="text/javascript">
+			const comptA = {
+				template:`
+					<div class="comA">
+						A
+					</div>
+				`
+			};
+			const comptB = {
+				template:`
+					<div class="comB">
+						B
+					</div>
+				`
+			};
+			const router = new VueRouter({
+				routes:[
+					{
+					path:'/a',
+					component:comptA,
+				},
+				{
+					path:'/b',
+					component:comptB,
+				}
+				]
+			});
+			var vm1 = new Vue({
+				el:'#app1',
+				router,
+				data:{
+					
+				},
+				methods:{
+					goa(){
+						//router.push(location,onComplete?,onAbort?)
+						//点击 <router-link :to="..."> 等同于调用 router.push(),效果一样，会生成历史记录，相当于history.pushState()
+						//onComplete:路由导航成功完成后的回调函数
+						//onAbort:当导航到【相同】的路由、或在当前导航完成之前导航到【另一个不同的路由】的回调函数
+						//router.push('/a');
+						router.push({path:'/a'},function() {
+//							alert(1)
+						},function () {
+//							alert(2)
+						});
+					},
+					gob(){
+						//点击<router-link :to="..." replace>等同于调用 router.replace(),相当于history.replaceState()
+						//跟唯一的不同就是，它不会向 history添加新记录，而是替换掉当前的history记录。
+						router.replace('/b');
+					},
+					gon(){
+//						router.go(1);//在浏览器记录中前进一步，等同于 history.forward()
+//						router.go(-1);//在浏览器记录中后退一步，等同于 history.back()
+//						router.go(10);//在浏览器记录中前进10步，等同于 history.go(10),若无此记录，则无效
+					}
+				}
+			})
+		</script>
+	</body>
+</html>

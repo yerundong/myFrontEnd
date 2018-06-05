@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+	<script src="../common/vue.js" type="text/javascript"></script>
+	<script src="../common/vue-router.js"></script>
+</head>
+<div id="app1">
+	<p>
+		<!-- 
+			[<router-link>]
+			导航组件，指定路由目标地址和传入的相关数据
+			有以下属性：
+			to
+
+					使用<router-link to="urlName"></router-link>.
+					to后面是路由地址，【带'/'表示：清除'#/'后的参数往下接，不带表示：不清除直接往下接】
+					默认渲染成一个<a href="#urlName">标签，可通过【tag属性】自定义标签
+					router-link导航会在history中创建一个新的访问记录，不能跨域，且不造成页面刷新，router-link相当于history.pushState()	
+				-->
+
+		<!--简单写法，只写path，不传入任何参数-->
+		<button>
+			<router-link to='/head' @click.native="fn">go to head</router-link>
+		</button>
+
+		<!--信息对象参数toObj，可以传入更多的信息-->
+		<router-link :to="toObj" tag="button" @click.native="fn">go to section</router-link>
+
+		<button>
+			<router-link to='/foot' @click.native="fn">go to foot</router-link>
+		</button>
+	</p>
+	<!-- 
+		【路由出口】】
+		路由匹配到的组件将渲染在这里 
+	-->
+	<router-view></router-view>
+</div>
+
+<body>
+	<script type="text/javascript">
+		// 如果使用模块化机制编程，導入Vue和VueRouter，要调用 Vue.use(VueRouter)
+		/*
+		1.【定义（路由）组件】。
+			可以从其他文件 import进来。
+			一般使用常量保存，首字母大写
+		*/
+		const Head = {
+			template: '<div>Head</div>',
+			created: function () {
+				console.log(this.$route)
+			}
+		};
+		const Section = {
+			template: '<div>Section</div>',
+			created: function () {
+				console.log(this.$route)
+				console.log(this.$router)
+			}
+		};
+		const Foot = {
+			template: '<div>Foot</div>',
+			created: function () {
+				console.log(this.$route)
+			}
+		};
+
+		/*
+		 	2.【配置路由集】
+				每个路由映射一个组件。
+				path:地址片段
+				component：映射的组件
+				格式为[{...},{...}]的json
+			*/
+		const routerInfo = [{
+				path: '/head',
+				name: 'head',
+				component: Head,
+			},
+			{
+				path: '/section',
+				name: 'section',
+				component: Section
+			},
+			{
+				path: '/foot',
+				name: 'foot',
+				component: Foot
+			}
+		];
+		/*
+		3.【创建路由实例，并配置参数】 
+		*/
+		const router = new VueRouter({
+			routes: routerInfo
+		});
+
+		/*
+		4.【注入路由实例】
+			
+		*/
+		const app = new Vue({
+			router: router,
+			data: {
+				/*
+			  		 	$router--路由实例，$route--路由信息对象
+			  		 	路由信息对象可在组件内，即 this.$route获取
+						   
+						// [toObj对象]：   
+			  		 	path：字符串，当前路由的路径，总是解析为绝对路径，如 "/foo/bar"。
+			  		 	params：对象，参数，包含了【动态片段】和【全匹配片段】，如果没有路由参数，就是一个空对象。
+			  		 		传params，点击跳转才能传入params，【直接输入地址则没有进行传入全匹配片段，会传入动态片段】(详见动态路由章)
+			  		 		【必须设置name，才能传入params】
+			  		 		【重复导航同一个路由地址不会起任何效用，也不会重新传入参数】
+			  		 	query：对象，表示URL查询参数。例如，对于路径 /foo?user=1，则有 $route.query.user==1，如果没有查询参数，则是个空对象。
+			  		 	name：字符串，当前路由的名称，也可以用name来导航，且【优先级高于path】，前提是该路由有设置name。
+						hash：字符串，当前路由的 hash值(带 #)，如果没有hash值，则为空字符串。
+						fullPath:字符串,完成解析后的 URL,包含查询参数和hash的完整路径。
+						matched:数组，包含当前路由的【所有嵌套路径片段的 路由记录】。
+							路由记录就是routes配置数组中的对象副本（还有在 children数组）。
+						
+					*/
+				toObj: {
+					path: '/section',
+					name: 'section',
+					hash:'this-is-section-hash',
+					params: {
+						paramsId: 'abc'
+					},
+					query: {
+						queryId: 123
+					}
+				},
+			},
+			methods: {
+				fn() {
+					// 此处this指向所绑定的组件，若是箭头函数或对象属性简写的方法则指向vue实例
+					// console.log(this.$route)
+				}
+			},
+			watch: {
+				// 监听路由变化
+				$route(to, from) {
+					// to:去哪里
+					// from:从哪来
+					// console.log(to);
+					// console.log(from);
+				}
+			},
+			beforeRouteUpdate(to, from, next) {
+				console.log(to);
+				console.log(from);
+			}
+		}).$mount('#app1');
+	</script>
+</body>
+
+</html>

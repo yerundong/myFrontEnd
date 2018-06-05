@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script src="../common/vue.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+	<body>
+		<div id="app">
+			<div v-html="!flag ? myHtm2 : myHtm3"></div>
+			<div :class="{cla1:flag,cla2:!flag}">{{myHtm2}}</div>
+		</div>
+		<script type="text/javascript">
+			//指令（Directives）是带有 v- 前缀的特殊属性。
+			//指令属性的值预期是单个 JavaScript表达式（v-for是例外情况）。
+			//指令的职责：当表达式的值改变时，将其产生的连带影响，响应式地作用于 DOM。
+			
+			//#【指令的值】
+			//指令的值可以是切确的值、变量、单个js表达式
+			//单个js表达式，包括运算、三目、函数调用，而变量定义、循环、判断等复杂语句则不允许
+			
+			new Vue({
+				el:'#app',
+				data : {
+					flag : true,
+					myHtm2 : '<span>寒塘渡鹤影，冷月葬花魂<span/>',
+					myHtm3 : '<span class = \'aque\'>故人西辞黄鹤楼，烟花三月下扬州<span/>',
+					cla1:'a',
+					cla2:'b',
+				}
+			})
+			
+		</script>
+	</body>
+</html>

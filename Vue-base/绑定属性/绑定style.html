@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script src="../common/vue.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+	<body>
+		<!--
+			【:style】
+			当:style使用需要特定前缀的 CSS属性时，如 transform，Vue.js 会自动侦测并添加相应的前缀。
+			如-webkit-、-moz-、-o-、-ms- 
+			除了直接绑定法，其他CSS属性名都要用【驼峰式】
+		-->
+		<!--
+			【直接绑定法】
+		-->
+		<div id="app0" :style="styleObjs">
+			直接绑定法
+		</div>
+		
+		<!--
+			【对象模板法(使用v-bind对象语法)】
+		-->
+		<div id="app1" :style="{background:bgclo,fontSize:fts,lineHeight:lht+'px'}">
+			人生交分耻苟合,贵以道义久可安。
+		</div>
+		
+		<!--
+			【对象法】
+			直接绑定到一个样式对象通常更好，让模板更清晰,
+			对象语法常常结合返回对象的【计算属性】使用。
+		-->
+		<div id="app2" :style="styleObjs">
+			人生交分耻苟合,贵以道义久可安。
+		</div>
+		
+		<!--
+			【数组法】
+			数组法可以将多个样式对象应用到一个元素上
+		-->
+		<div id="app3" :style="[styleObjs1,styleObjs2]">
+			人生交分耻苟合,贵以道义久可安。
+		</div>
+		
+		<!--
+			【多重值】
+			从前往后，渲染数组中【最后一个被浏览器支持的值】。
+			在这个例子中，如果浏览器支持不带浏览器前缀的 flexbox，那么渲染结果会是 display: flex。
+		-->
+		<div id="app4" :style="styleObjs">
+			满招损，谦受益。
+		</div>
+		
+		<!--
+			【组件法】
+			【组件根元素】的style值会被添加到【模板的根元素】上
+		-->
+		<div id="app5">
+			<compt style="color:red"></compt>
+		</div>
+		<script type="text/javascript">
+			var vm0 = new Vue({
+				el:'#app0',
+				data:{
+					styleObjs:'color:red;font-size:25px'
+				}
+			});
+			var vm1 = new Vue({
+				el:'#app1',
+				data:{
+					bgclo:"cyan",
+					fts:'20px',
+					lht:35
+				}
+			});
+			var vm2 = new Vue({
+				el:'#app2',
+				data:{
+					styleObjs:{
+						color:'#ccc',
+						fontSize:'20px',
+						background:'yellow'
+					}
+				}
+			});
+			var vm3 = new Vue({
+				el:'#app3',
+				data:{
+					styleObjs1:{
+						color:'#ccc',
+						fontSize:'20px'
+					},
+					styleObjs2:{
+						background:'cyan'
+					}
+				}
+			});
+			var vm4 = new Vue({
+				el:'#app4',
+				data:{
+					styleObjs:{
+						color:'#ccc',
+						fontSize:'20px',
+						background:'red',
+						display:['-webkit-box', '-moz-flexbox','flex']
+					}
+				}
+			});
+			
+			var vm5 = new Vue({
+				el:'#app5',
+				data:{
+				},
+				components:{
+					compt:{
+						template:'<p style="font-size: 20px;"><span style="background: yellow;">你真的菜</span></p>'
+					}
+				}
+			})
+			
+			console.log(vm3.$data.arr)
+		</script>
+		<style type="text/css">
+			.app{
+				line-height: 35px;
+			}
+			.bg1{
+				background: cyan;
+			}
+			.bg2{
+				background: red;
+			}
+			.bg3{
+				background: green;
+			}
+		</style>
+	</body>
+</html>

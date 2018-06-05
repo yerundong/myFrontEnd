@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script src="../common/vue.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+	<!--
+		【v-once】
+		执行一次性地渲染，首次渲染之后，随后的重新渲染，【该节点及其所有的子节点(不包括子组件)】将被视为静态内容并跳过
+		即v不再受vm、m的改变的响应。
+		当内容为静态内容时，可以减少渲染量，优化性能。
+		
+		直接加载组件根元素里是无效的，需要加在模板标签里
+	-->
+		<div id="app1" v-once>
+			<div>{{msg}}</div>
+			<compt v-once></compt><!--此处v-once无效-->
+			<button @click="cli1">改变值</button>
+		</div>
+	<body>
+		<script type="text/javascript">
+			var vm1 = new Vue({
+				el:'#app1',
+				data:{
+					msg:1
+				},
+				methods:{
+					cli1:function(){
+						this.msg++;
+						console.log(this.$data.msg);
+					}
+				},
+				components:{
+					compt:{
+						template:'<div v-once>{{this.$root.msg}}</div>'/*v-once有效*/
+					}
+				}
+			});
+		</script>
+	</body>
+</html>

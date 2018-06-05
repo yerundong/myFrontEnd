@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script src="../common/vue.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+	<!--
+		【v-html】
+		插入文本和标签，并解析
+		是更新元素的 innerHTML，会将目标节点下的全部内容【先清空再插入】。
+		注意：内容按普通 HTML插入 ,而不是作为Vue模板进行编译
+		
+		如果添加在组件上，会覆盖组件的模板，包括内联模板
+	-->
+		<div id="app1">
+			<div v-html="dhtml"></div>
+			<compt v-html="dhtml" inline-template>
+				<div>
+					我是内联模板
+				</div>
+			</compt>
+		</div>
+	<body>
+		<script type="text/javascript">
+			var vm1 = new Vue({
+				el:'#app1',
+				data:{
+					dhtml:'<div>biubiubiu</div>'
+				},
+				components:{
+					compt:{
+						template:"<div>我是组件</div>"
+					}
+				}
+			})
+		</script>
+	</body>
+</html>

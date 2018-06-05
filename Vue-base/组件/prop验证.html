@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script src="../common/vue.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+		<div id="app1">
+			<compt-a 
+				:msg1 = "msg_1" 
+				:msg2 = "msg_2"
+				:msg3 = "msg_3"
+				:msg4 = "msg_4"
+				:msg7 = "msg_7"
+				data-demo = 'true'<!--非props属性：寻常的自定义属性，与props无关-->
+			>
+			</compt-a>
+		</div>
+	<body>
+		<script type="text/javascript">
+			var comptB = {
+				props:[],
+				data:function () {
+//					console.log(this)
+					return {
+						
+					}
+				},
+				template:'<div>bbbbbbbbbb</div>'
+			}
+			
+			var comptA = {
+				/*
+				 【props验证】
+				 	*props在组件实例创建之前对数据进行校验
+					*如果由自定义标签属性传入的数据不符合验证规格，Vue会发出警告，但依然会渲染
+					*如果自定义标签没有该属性（即没有传入），则使用默认值，不会报错 
+					type可以是下面原生构造器：
+						String
+						Number
+						Boolean
+						Function
+						Object
+						Array
+						Symbol
+				*/
+				props:{
+					'msg1': null,//任何类型都可以
+					'msg2': String,//只限字符串类型
+					'msg3': [String,Number],//只限字符串、数字类型
+					'msg4': {
+						type: String,
+      					required: true//必须传入
+					},
+					'msg5': {
+      					default: 666//字符串的默认值
+					},
+					'msg6': {
+      					type: Object,
+					    default: function () { //【数组/对象】的默认值应当由一个工厂函数返回
+					    	return { txt: '让我来看看你的脑浆' }
+					    }
+					},
+					'msg7': {
+      					type: Array,
+					    validator: function (value) {//自定义验证，返回true通过，false不通过
+//					    	console.log(value);//value是传入的msg7
+							if(value.length==1&&value[0]==666){
+								return true
+							}else{
+								return false
+							}
+					    	
+					    }
+					},
+				},
+				data:function () {
+					return {
+						a:1
+					}
+				},
+				template:'<div>{{msg1}}，{{msg2}}，{{msg3}}，{{msg4}}，{{msg5}}，{{msg6.txt}}，{{msg7[0]}}<compt-b></compt-b></div>',
+				components:{
+					'compt-b':comptB
+				}
+			}
+			
+			var vm1 = new Vue({
+				el:'#app1',
+				data:{
+					msg_1 :'今天是个好日子',
+					msg_2 :'心想的事儿都能成',
+					msg_3 :666,
+					msg_4 :'掀起了你的头盖骨',
+					msg_5 :666,
+					msg_7 :[666],
+				},
+				components:{
+					'compt-a':comptA
+				}
+			})
+		</script>
+	</body>
+</html>

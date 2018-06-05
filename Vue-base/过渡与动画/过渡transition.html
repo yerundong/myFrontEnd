@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script src="../common/vue.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+	<style type="text/css">
+		*{
+			font-size: 25px;
+			font-weight: 600;
+		}
+		/*enter*/
+		.fade-enter{/*显现动画的起始状态*/
+		  	color:red;
+		  	font-size: 100px;
+		  	opacity: 0;
+		}
+		.fade-enter-active{/*显现动画的过渡状态(transition/transform/animation)*/
+		  	transition: all 1s;
+		}
+		.fade-enter-to{/*显现动画的结束状态*/
+		  	color:blue;
+		}
+		/*leave*/
+		.fade-leave {/*隐藏动画的起始状态*/
+		  	font-size: 100px;
+		  	color: aqua;
+		}
+		.fade-leave-active {/*隐藏动画的过渡状态(transition/transform/animation)*/
+		  	transition: all 1s
+		}
+		.fade-leave-to {/*隐藏动画的结束状态*/
+			font-size: 12px;
+		  	color: green;
+		  	opacity: 0;
+		}
+	</style>
+	<body>
+		<div id="app1">
+			<button @click="show = !show">change</button>
+			<transition name="fade">
+		    	<p v-show="show">hello</p>
+		    	<!--v-if最终dom会消失掉，而v-show只是隐藏-->
+		    	<!--<p v-if="show">hello</p>-->
+		  	</transition>
+		</div>
+		<script type="text/javascript">
+			var vm1 = new Vue({
+				el:'#app1',
+				data:{
+					show:true
+				}, 
+				methods:{
+					
+				},
+				created(){
+//					this.sh()
+				}
+			});
+		</script>
+	</body>
+</html>

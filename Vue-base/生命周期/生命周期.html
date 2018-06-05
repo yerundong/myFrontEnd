@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script src="../common/vue.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+	<div id="app">
+		<p>{{message}}</p>
+		<button onclick="refresh()">更新</button>
+		<button onclick="desit()">销毁</button>
+		<button onclick="fnin()">外fn</button>
+		<button @click="fn">fn</button>
+	</div>
+
+	<body>
+		<script type="text/javascript">
+			/*
+				beforecreate : 举个栗子，可以在这加个loading事件 
+				created ：在这结束loading，还做一些初始化，实现函数自执行 
+				mounted ： 在这发起后端请求，拿回数据，配合路由钩子做一些事情
+				beforeDestory： 你确认删除XX吗？ destoryed ：当前组件已被删除，清空相关内容 
+			*/
+			var vm = new Vue({
+				el: '#app',
+				data: {
+					message: "啦啦啦啦啦... leap frog"
+				},
+				methods: {
+					fn: function() {
+						alert(123)			    		
+					}
+				},
+				beforeCreate: function() {
+					//被挂载的元素#app还是原始状态，内容未被解析
+					console.group('beforeCreate 创建前状态===============》');
+					console.log("%c%s", "color:red", "el     : " + this.$el); //undefined
+					console.log("%c%s", "color:red", "data   : " + this.$data);//undefined 
+					console.log("%c%s", "color:red", "message: " + this.message)//undefined 
+					console.log("%c%s", "color:red", "fn   : " + this.fn);//undefined 
+				},
+				created: function() {
+					//被挂载的元素#app还是原始状态，内容未被解析
+					console.group('created 创建完毕状态===============》');
+					console.log("%c%s", "color:red", "el     : " + this.$el); //undefined
+					console.log("%c%s", "color:red", "data   : " + this.$data); //已被初始化 
+					console.log("%c%s", "color:red", "message: " + this.message); //已被初始化
+					console.log("%c%s", "color:red", "fn   : " + this.fn);//已被初始化
+				},
+				beforeMount: function() {
+					//被挂载的元素#app还是原始状态，内容未被解析
+					//但#app已经被绑定到this.$el上了
+					console.group('beforeMount 挂载前状态===============》');
+					console.log("%c%s", "color:red", "el     : "); //已被初始化
+					console.log(this.$el);
+					console.log("%c%s", "color:red", "data   : " + this.$data); //已被初始化  
+					console.log("%c%s", "color:red", "message: " + this.message); //已被初始化  
+					console.log("%c%s", "color:red", "fn   : " + this.fn);//已被初始化
+				},
+				mounted: function() {
+					//被挂载的元素#app内容已被解析
+					console.group('mounted 挂载结束状态===============》');
+					console.log("%c%s", "color:red", "el     : "); //已被初始化
+					console.log(this.$el);
+					console.log("%c%s", "color:red", "data   : " + this.$data); //已被初始化
+					console.log("%c%s", "color:red", "message: " + this.message); //已被初始化 
+					console.log("%c%s", "color:red", "fn   : " + this.fn);//已被初始化
+				},
+				beforeUpdate: function() {
+					//当data更新，则此步触发
+					//被挂载的元素#app内容已被解析成改变后的状态
+					console.group('beforeUpdate 更新前状态===============》');
+					console.log("%c%s", "color:red", "el     : ");
+					console.log(this.$el);
+					console.log("%c%s", "color:red", "data   : ");
+					console.log(this.$data);
+					console.log("%c%s", "color:red", "message: " + this.message);
+				},
+				updated: function() {
+					//当data更新，则此步触发
+					//被挂载的元素#app内容已被解析成改变后的状态
+					console.group('updated 更新完成状态===============》');
+					console.log("%c%s", "color:red", "el     : ");
+					console.log(this.$el);
+					console.log("%c%s", "color:red", "data   : ");
+					console.log(this.$data);
+					console.log("%c%s", "color:red", "message: " + this.message);
+				},
+				beforeDestroy: function() {
+					console.group('beforeDestroy 销毁前状态===============》');
+					console.log("%c%s", "color:red", "el     : ");
+					console.log(this.$el);
+					console.log("%c%s", "color:red", "data   : ");
+					console.log(this.$data);
+					console.log("%c%s", "color:red", "message: " + this.message);
+				},
+				destroyed: function() {
+					//销毁实例之后，v与vm的连接中断，双向绑定与响应式机制消失 
+					//但之前methods中被绑定的事件依然有效存在
+					console.group('destroyed 销毁完成状态===============》');
+					console.log("%c%s", "color:red", "el     : ");
+					console.log(this.$el);
+					console.log("%c%s", "color:red", "data   : ");
+					console.log(this.$data);
+					console.log("%c%s", "color:red", "message: " + this.message);
+				}
+			})
+			//销毁
+			let desit = () => {
+				vm.$destroy();
+			}
+			//更新销毁
+			let refresh = () => {
+				vm.message = '自信成长好伙伴';
+			}
+			//更新销毁
+			let fnin = () => {
+//				vm.fn();
+				vm.message = 123123
+//				vm.$data.message = 123123
+				console.log(vm)
+			}
+		</script>
+	</body>
+
+</html>

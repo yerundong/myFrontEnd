@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script src="../../common/vue.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+	<body>
+		<div id="app1" v-show = 'flag'>
+			<!--
+				【条件渲染】
+				v-if：根据其值的真假是来决定其是否被渲染
+				v-else-if:必须紧跟在 v-if或者 v-else-if元素之后,可以链式地使用多次
+				v-else:无值，必须紧跟在 v-if或者 v-else-if元素之后,可以使用1次
+				
+				【就地复用】策略
+				Vue为了尽可能高效地渲染元素，默认会【复用已有的相同的元素】而不是从头开始渲染，
+				这个默认的模式是高效的，但是只适用于【不依赖子组件状态或临时 DOM状态】
+				（例如：表单输入值）的列表渲染输出。
+				如要重新渲染，你需要为每项提供一个唯一 key属性。
+				以下都是span元素，只会替换内容而不会重新渲染
+				若要【强制重新渲染】，则需要给每个span元素加上不同值的key
+				key值相同不会强制重新渲染的
+				
+				与v-show区别
+				v-if：是“真正的”条件渲染，针对条件进行渲染
+				v-show：将所有元素渲染，再根据条件进行显示和隐藏
+			-->
+			<span v-if='flag==1' key = 'f1'>11111111111</span>
+			<span v-else-if='flag==2' key = 'f2'>22222222222<span>sss</span></span>
+			<span v-else-if='flag==3' key = 'f3'>33333333333</span>
+			<span v-else key = 'ff'>请输入小于4的数字</span>
+		</div>
+		<input type="text" name="inp" id="inp" value="" />
+		<input type="button" name="btn" id="btn" value="确定" />
+		<script type="text/javascript">
+			var vm1 = new Vue({
+				el:'#app1',
+				data:{
+					flag:''
+				}
+			});
+			var oinp = document.getElementById("inp");
+			var obtn = document.getElementById("btn");
+			obtn.onclick=function(){
+				var v = oinp.value;
+				vm1.$data.flag = v;
+			}
+			
+		</script>
+	</body>
+</html>

@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script src="../common/vue.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+		<div id="app1">
+			<compt-1></compt-1>
+			<compt-2></compt-2>
+		</div>
+	<body>
+		<script type="text/javascript">
+			/*【组件】
+			 	*组件实例相当于Vue实例，它也有Vue实例的属性，如data,methods,computed...
+			 	*还有一些Vue实例没有的属性：props，template，其内部【this指向该组件实例】
+				*任何组件都需要在【根实例化之前】注册
+				*组件在注册之后，便可以在【父实例的模块】中使用自定义元素 
+				*对于自定义标签名，Vue不强制要求遵循 W3C规则 (小写，并且包含一个短杠)
+				*自定义元素的作用：作为一个挂载点
+				*组件根元素(自定义标签)在实例化之前存在，实例化之后就被解析了，浏览器上看不到
+				*Vue.extend()是【创建组件函数】，始终返回它的构造器，可以简写
+			 	*使用Vue.component(name,Vue.extend(options))【注册组件函数】，也始终返回它的构造器
+			 	*name是组件名(自定义标签)，options是选项对象，
+			 	*options.template是模板，options.components可以引用子组件
+			 	*options.data是供组件使用的数据，【必须是函数，返回的必须是对象】，否则报错
+			 	*options.el也必须是函数
+				*
+			*/
+			/*
+			【全局组件】
+				*全局组件可以放在任何一个【已挂载实例的元素】下
+			*/
+			var allCompt = Vue.extend({
+				template:'<div>我是全局组件</div>'
+			});
+			var myVompt = Vue.component('compt-1', allCompt);
+//			console.log(allCompt);//始终返回构造函数
+//			console.log(myVompt);//始终返回构造函数
+
+			/*【局部组件】
+				*局部组件仅在本实例/组件的作用域中可用，无法被作用域外引用
+			*/
+			var vm1 = new Vue({
+				el:'#app1',
+				data:{
+					
+				},
+				components:{
+					'compt-2':Vue.extend({
+						template:'<div>{{msg}}</div>',
+						data:function () {
+							return {
+								msg :'我是局部组件'
+							};
+						}
+					})
+				}
+			});
+			
+		</script>
+	</body>
+</html>

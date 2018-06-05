@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="css/swiper-3.3.1.min.css">
+    <script src="js/swiper-3.3.1.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="js/jquery-2.2.3.min.js"></script>
+    <style>
+        #Swiper{
+            width: 700px;height: 600px;border: 1px solid salmon;margin: 0 auto; overflow: hidden;position: relative;
+        }
+        .swiper-wrapper{/**/
+            font-size: 50px;text-align: center;line-height: 500px;
+        }
+        .swiper-slide{
+            /*height:200px;*/
+        }
+        .swiper-slide:nth-of-type(1){
+            background: rgba(255,0,0,.2);
+        }
+        .swiper-slide:nth-of-type(2){
+            background: rgba(255,255,0,.2);
+        }
+        .swiper-slide:nth-of-type(3){
+            background: rgba(255,0,255,.2);
+        }
+        .swiper-slide:nth-of-type(4){
+            background: rgba(0,255,0,.2);
+        }
+        .swiper-slide:nth-of-type(5){
+            background: rgba(255,0,0,.2);
+        }
+        .swiper-slide:nth-of-type(6){
+            background: rgba(255,255,0,.2);
+        }
+        .swiper-slide:nth-of-type(7){
+            background: rgba(255,0,255,.2);
+        }
+        .swiper-slide:nth-of-type(8){
+            background: rgba(0,255,0,.2);
+        }
+        .swiper-slide:nth-of-type(9){
+            background: rgba(0,255,255,.2);
+        }
+        #Swiper .swiper-scrollbar{
+            height: 25px;background: deeppink;
+        }
+        #Swiper .swiper-scrollbar-drag{
+            height: 25px;background: sandybrown;cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+<div id="Swiper">
+    <div class="swiper-wrapper">
+        <div class="swiper-slide">1</div>
+        <div class="swiper-slide">2</div>
+        <div class="swiper-slide">3</div>
+        <div class="swiper-slide">4</div>
+        <div class="swiper-slide">5</div>
+        <div class="swiper-slide">6</div>
+    </div>
+    <div class="swiper-pagination"></div>
+    <div class="swiper-scrollbar"></div>
+
+</div>
+<script>
+    var mySwiper = new Swiper('#Swiper', {
+        //slidesPerView : 4,
+        noSwiping : false,
+        /*freeMode : true,
+        freeModeMomentumRatio:3,*/
+//        direction:"vertical",
+        pagination : '.swiper-pagination',
+        paginationClickable:true,
+        scrollbar:'.swiper-scrollbar',
+        scrollbarHide:false,
+        keyboardControl: true,//【keyboardControl: true/false(默认)】true:能使用【键盘方向键】控制slide滑动。【键盘控制开关】
+        mousewheelControl:true,//【mousewheelControl: true/false(默认)】true:能使用【鼠标滚轮】控制slide滑动。【鼠标滚轮控制开关】
+        //mousewheelForceToAxis : true,//【mousewheelForceToAxis: true/false(默认)】true:让鼠标滚轮【固定于轴向】。
+        // 当【水平mode时】的鼠标滚轮只有【水平滚动】才会起效，当【垂直mode时】的鼠标滚轮只有【垂直滚动】才会起效。
+        // 普通家用鼠标只有配【垂直方向的滚动】。
+        mousewheelReleaseOnEdges : true,//【mousewheelReleaseOnEdges: true/false(默认)】true:当用鼠标滚动至边缘位置时
+        // （第一个或最后一个slide），Swiper【释放】鼠标滚轮事件，【转移到控制页面滚动】。
+        //mousewheelInvert : true,////【mousewheelInvert: true/false(默认)】true:鼠标滚轮控制【方向反转】。
+        mousewheelSensitivity :5,//【mousewheelInvert: num 1(默认)】鼠标滚轮的【灵敏度】，值越大鼠标滚轮滚动时swiper位移越大。
+
+
+    });
+
+</script>
+</body>
+</html>

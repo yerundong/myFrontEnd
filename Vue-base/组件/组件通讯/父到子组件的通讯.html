@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script src="../../common/vue.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+		<div id="app1">
+			<grandpa></grandpa>
+		</div>
+	<body>
+		<script type="text/javascript">
+			/*
+			 组件实例的【作用域是孤立】的，需要通过子组件的 props选项，引用父组件的数据。
+			
+			先在组件内创建props选项，【以数组的格式】，数组内的元素名作为属性名，
+			使用v-bind绑定属性名到子组件的根元素上(解析后属性消失，浏览器上看不到)，
+			其属性值便可传入子组件内，直接使用（同data），可在该组件实例的$props下获取到
+			
+			props是【单向绑定】的(父->子)，直接在子组件里改变props会报错
+			但如果 prop数据是一个【对象或数组(引用类型)】，允许修改数据对象内部的值，并且能影响父组件的状态，
+			但不允许重新赋值！
+			
+			属性名需要把【驼峰命名】换成【-"命名】
+			
+			【单向数据流】
+			父组件更新时，子组件的所有prop都会更新;而子组件更新，父组件不更新。
+			这意味着你不应该在子组件内部改变 prop。如果你这么做了，Vue会在控制台给出警告。
+			
+			*/
+			var vm1 = new Vue({
+				el:'#app1',
+				data:{
+					
+				},
+				components:{
+					'grandpa':{
+						data:function () {
+							return {
+								name1:'张三'
+							}
+						},
+						template:'<div>我是爷爷，我叫{{name1}}<father :baba = "name1"></father></div>',
+						components:{
+							'father':{
+								props:['baba'],
+								data:function(){
+									
+									return {
+										name2:'李四'
+									}
+								},
+								template:'<div>我是爸爸，我叫{{name2}}，我爸爸名叫{{baba}}<son :baba = "name2" :yeye = "baba"></son></div>',
+								methods:{
+									cons:function () {
+										alert(this)
+									}
+								},
+								components:{
+									'son':{
+										props:['baba','yeye'],
+										data:function(){
+											return {
+												name3:'王五'
+											}
+										},
+										template:'<div>我是儿子，我叫{{name3}}，我爸爸名叫{{baba}}，我爷爷名叫{{yeye}}</div>'
+									}
+								}
+							}
+						}
+					}
+				}
+			});
+		</script>
+	</body>
+</html>

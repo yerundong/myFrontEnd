@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script src="../common/vue.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+		<div id="app1">
+			<!--
+				【v-on/@】监听vue事件
+			-->
+			<!--
+				mson:自动传入event对象
+				mson():需要手动传入$event对象
+			-->
+			<div class="moubox" v-on:mouseenter="mson($event, 1, 2)" v-on:mouseout="msout">
+				{{n1}}
+			</div>
+			<!--
+				【事件修饰符】
+				.stop  阻止冒泡
+				.prevent  阻止默认事件
+				.capture  捕获
+				.self  只当事件在该【元素本身】（比如不是子元素）触发时执行回调函数
+				.once  只触发一次
+				.native 让组件根标签(自定义标签)也能绑定【vue事件】,如@click等,
+						但【自定义事件不需要】，如@definedClick
+				事件修饰符可以链接使用，顺序不同效果不同
+			-->
+			<!--
+				【键值修饰符】
+				用于修饰键盘事件
+				在监听【键盘事件】时，我们经常需要监测常见的键值，如下：
+				keyCode数字   1，55，66...
+				.enter
+				.tab
+				.delete (捕获 “删除” 和 “退格” 键)
+				.esc
+				.space
+				.up
+				.down
+				.left
+				.right
+				可以通过全局 config.keyCodes 对象自定义键值修饰符别名：
+				Vue.config.keyCodes.defineName = keycode;
+			-->
+			<input type="text" value="T键" class="keybox" @keyup.84="keyOp"/>
+			<input type="text" value="删除键" class="keybox" @keyup.delete="keyOp"/>
+			<input type="text" value="+键" class="keybox" @keyup.wahaha="keyOp"/>
+			<!--
+				【特殊键修饰符】
+				四个特殊键因为有两个，所以【两个都按下】才触发，除此之外，
+				在使用【组合键】(一个以上的修饰符)的情况下可以只按任意一个
+				组合修饰符顺序表示按键顺序
+				.ctrl
+				.alt
+				.shift
+				.meta
+			-->
+			<input type="text" value="alt+T键" class="keybox" @keyup.alt.84="keyOp"/>
+			<!--
+				【鼠标修饰符】
+				.left
+				.right
+				.middle
+			-->
+			<input type="text" value="点我" class="keybox" @contextmenu.prevent="keyOp"/>
+		</div>
+	<body>
+		<script type="text/javascript">
+			var vm1 = new Vue({
+				el:'#app1',
+				data:{
+					n1:'摸我',
+					n2:'mouseout',
+					n3:'mouseon',
+				},
+				methods:{
+					mson:function (event, v1, v2) {
+						this.n1 = 'mouseenter'
+						console.log(event, v1, v2);
+					},
+					msout:function (event) {
+						this.n1 = 'mouseout'
+					},
+					keyOp:function (event) {
+						console.log(event)
+					},
+					keyDef:function () {
+						Vue.config.keyCodes.wahaha = 107;
+					}
+				}
+			});
+			vm1.keyDef();
+		</script>
+		<style type="text/css">
+			.moubox{
+				width: 100px;height: 50px;background: aquamarine;text-align: center;line-height: 50px;
+			}
+			.keybox{
+				width: 100px;height: 50px;background: sandybrown;text-align: center;line-height: 50px;
+			}
+		</style>
+	</body>
+</html>

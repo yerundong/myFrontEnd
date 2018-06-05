@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script src="../../common/vue.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+	<!--
+		有时value需要用在其他地方，则可以利用model来定制自定义的属性，实现定制的v-model
+		model:{
+			prop:'arrName',// 属性名
+			event:'evName'// 自定义事件名，如果不设，默认为input
+		}
+	-->
+		<div id="app1">
+			<mycpnt v-model = "msg"></mycpnt>
+			{{msg}}
+		</div>
+	<body>
+		<script type="text/javascript">
+			var cpnt = {
+				template : '\
+					<div>\
+						<input type="text"\
+							:value="vmodel"\
+							@input = "chnage"\
+						/>\
+					</div>'
+				,
+				props:['vmodel'],// 把v-model传进来
+				model:{
+					prop:'vmodel',// 给v-model声明一个属性名
+					event:'evtName'// 自定义事件,如果不设，默认为input
+				},
+				methods:{
+					chnage(e) {
+						console.log(e.target.value);
+						this.$emit('evtName',e.target.value);// 触发自定义事件
+					}
+				}
+			}
+			
+			var vm1 = new Vue({
+				el:'#app1',
+				data:{
+					msg:1
+				},
+				components:{
+					mycpnt: cpnt
+				}
+			});
+		</script>
+	</body>
+</html>

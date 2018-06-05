@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script src="../common/vue.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+	<style type="text/css">
+		* {
+			padding: 0;
+			margin: 0;
+		}
+	</style>
+
+	<body>
+		<div id="app1">
+			<compt-a></compt-a>
+		</div>
+		<script type="text/javascript">
+			let comptA = {
+				template: '<div>我是组件</div>'
+			}
+			var vm = new Vue({
+				el: '#app1',
+				components: {
+					comptA
+				},
+				//这是Vue2.0新增的函数，可以直接给绑定节点渲染一个vue组件
+				//h是 Vue.js里面的 createElement函数，这个函数的作用就是生成一个 VNode节点，
+				//render 函数得到这个 VNode 节点之后，返回给 Vue.js 的 mount 函数，渲染成真实 DOM 节点，并挂载到根节点上。
+				render: h => {
+					//console.log(h)//h==>ƒunction(t,n,r,i){return _t(e,t,n,r,i,!0)}
+					//将组件comptA渲染
+					return h(comptA)
+				}
+			});
+		</script>
+	</body>
+
+</html>

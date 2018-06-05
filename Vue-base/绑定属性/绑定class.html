@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script src="../common/vue.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+	<body>
+		<!--
+			【直接绑定法】
+		-->
+		<div id="app0" :class="cla">
+			直接绑定法
+		</div>
+		
+		<!--
+			【表达式法】
+			根据data(M)的flag变化动态改变绑定的class
+			可以根据三目运算表达式
+		-->
+		<div id="app1" class="app" v-bind:class="flag ? cla1:cla2">
+			求其上而得其中，求其中而得其下，求其下而无所得
+		</div>
+		
+		<!--
+			【对象模板法(使用v-bind对象语法)】
+			bg1、bg2是class名
+			isbg1、isbg2是M里的
+			根据isbg1、isbg2真假进行判断
+		-->
+		<div id="app2" class="app" v-bind:class="{bg1 : isbg1,bg2 : isbg2}">
+			身不由己，实是身不由欲
+		</div>
+		
+		<!--
+			【对象法】
+			直接绑定一个class对象，里面的class由其真假决定
+			真的绑定，假的不绑定
+		-->
+		<div id="app3" class="app" v-bind:class="classObjs">
+			求其上而得其中，求其中而得其下，求其下而无所得
+		</div>
+		
+		<!--
+			【数组法】
+		-->
+		<div id="app4" class="app" v-bind:class="[cla1,cla2]">
+			求其上而得其中，求其中而得其下，求其下而无所得
+			<!--也可以直接绑定一个class数组-->
+			<div class="app" v-bind:class="arr">
+				求其上而得其中，求其中而得其下，求其下而无所得
+			</div>
+			<!--数组里也可以使用表达式-->
+			<div class="app" v-bind:class="[cla1,flag ? cla2 : cla1]">
+				德不广不能使人来,量不宏不能使人安。
+			</div>
+			<!--数组里也可以对象语法-->
+			<div class="app" v-bind:class="[{bg1 : flag},{bg3 : !flag}]">
+				玩人丧德，玩物丧志。
+			</div>
+		</div>
+		
+		
+		<!--
+			【组件法】
+			【组件根元素】的class会被添加到【模板的根元素】上
+		-->
+		<div id="app5">
+			<compt class="omg"></compt>
+		</div>
+		<script type="text/javascript">
+			var vm0 = new Vue({
+				el:'#app0',
+				data:{
+					cla:'bg2',
+				}
+			})
+			
+			var vm1 = new Vue({
+				el:'#app1',
+				data:{
+					flag:true,
+					cla1:'bg1',
+					cla2:'bg2',
+				}
+			})
+			var vm2 = new Vue({
+				el:'#app2',
+				data:{
+					isbg1:false,
+					isbg2:true,
+				}
+			})
+			var vm3 = new Vue({
+				el:'#app3',
+				data:{
+					classObjs:{
+						bg1 : true,
+						bg2 : false,
+					}
+				}
+			});
+//			console.log(vm3.$data.classObjs);
+			
+			var vm4 = new Vue({
+				el:'#app4',
+				data:{
+					flag:false,
+					cla1:'bg1',
+					cla2:'bg2',
+					arr:['bg1','bg3']
+				}
+			})
+			
+			var vm5 = new Vue({
+				el:'#app5',
+				data:{
+				},
+				components:{
+					compt:{
+						template:'<p class="bg1"><span class="bg2">你真的菜</span></p>'
+					}
+				}
+			})
+			
+		</script>
+		<style type="text/css">
+			.app{
+				line-height: 35px;
+			}
+			.bg1{
+				background: cyan;
+			}
+			.bg2{
+				background: red;
+			}
+			.bg3{
+				background: green;
+			}
+		</style>
+	</body>
+</html>

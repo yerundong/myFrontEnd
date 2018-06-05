@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="css/swiper-3.3.1.min.css">
+    <script src="js/swiper-3.3.1.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="js/jquery-2.2.3.min.js"></script>
+    <style>
+        #Swiper{
+            width: 700px;height: 600px;border: 1px solid salmon;margin: 0 auto; overflow: hidden;position: relative;
+        }
+        .swiper-wrapper{/**/
+            font-size: 50px;text-align: center;line-height: 500px;
+        }
+        .swiper-slide{
+            /*height:200px;*/
+        }
+        .swiper-slide:nth-of-type(1){
+            background: rgba(255,0,0,.2);
+        }
+        .swiper-slide:nth-of-type(2){
+            background: rgba(255,255,0,.2);
+        }
+        .swiper-slide:nth-of-type(3){
+            background: rgba(255,0,255,.2);
+        }
+        .swiper-slide:nth-of-type(4){
+            background: rgba(0,255,0,.2);
+        }
+        .swiper-slide:nth-of-type(5){
+            background: rgba(255,0,0,.2);
+        }
+        .swiper-slide:nth-of-type(6){
+            background: rgba(255,255,0,.2);
+        }
+        .swiper-slide:nth-of-type(7){
+            background: rgba(255,0,255,.2);
+        }
+        .swiper-slide:nth-of-type(8){
+            background: rgba(0,255,0,.2);
+        }
+        .swiper-slide:nth-of-type(9){
+            background: rgba(0,255,255,.2);
+        }
+        .img1{
+            width: 300px;height:200px;transition: transform 2s;
+        }
+        .img1:hover{
+            transform: scale(2);
+        }
+    </style>
+</head>
+<body>
+<div id="Swiper">
+    <div class="swiper-wrapper">
+        <div class="swiper-slide">1
+            <img src="img/1.jpg" alt="" class="img1">
+        </div>
+        <div class="swiper-slide">2</div>
+        <div class="swiper-slide">3</div>
+        <div class="swiper-slide">4</div>
+        <div class="swiper-slide">5</div>
+        <div class="swiper-slide">6</div>
+    </div>
+    <div class="swiper-pagination"></div>
+</div>
+<input type="submit" id="btn1">
+<script>
+    var mySwiper = new Swiper('#Swiper', {
+        //【onInit】初始化后执行。
+        onInit: function(swiper){
+            //alert(swiper.activeIndex);//提示Swiper的当前索引
+        },
+        //【onTouchStart】一触即发(瞬间)
+        onTouchStart: function(swiper,even){
+            //alert('事件触发了;');
+        },
+        //【onTouchMove】【手指】触碰Swiper并【滑动】时执行(持续触发)【手指是关键】
+        onTouchMove: function(swiper,even){
+            //alert('事件触发了;');
+        },
+        //【onSliderMove】手指触碰Swiper并【拖动slide】时执行(持续触发)【slide是关键】
+        onSliderMove: function(swiper, event){
+            //alert('事件触发了;');
+        },
+        //【onTouchEnd】一释即发(瞬间)
+        onTouchEnd: function(swiper,even){
+            //alert('事件触发了');
+        },
+        //【onSlideChangeStart】滑块【释放时】如果【触发slider切换】则执行
+        onSlideChangeStart: function(swiper){
+            //alert('事件触发了');
+        },
+        //【onSlideChangeEnd】滑块【释放时】且【slider切换结束】则执行
+        onSlideChangeEnd: function(swiper){
+            //alert('事件触发了;');
+        },
+        //【onImagesReady】所有内置图像加载完成后执行
+        onImagesReady: function(swiper){
+            //alert('事件触发了;');
+        },
+        //【onImagesReady】所有内置图像加载完成后执行
+        onImagesReady: function(swiper){
+            //alert('事件触发了;');
+        },
+        //【runCallbacksOnInit:false/true(默认)】
+        //初始化时触发 [Transition/SlideChange] [Start/End] 回调函数。
+        // 这些回调函数会在下次初始化时被清除如果initialSlide不为0。
+        //runCallbacksOnInit : false,//？？？？？？？？？？？？？？？？？？？？
+
+
+        //【onTransitionStart】【transition过渡开始】时触发
+        onTransitionStart: function(swiper){
+            //console.log('事件触发了');
+        },
+        //【onTransitionEnd】【transition过渡结束】时触发
+        onTransitionEnd: function(swiper){
+            //console.log('事件触发了');
+        },
+        //【onTouchMoveOpposite】当手指触碰Swiper并且没有按照【direction设定的方向或角度】移动时执行。
+        /*direction:'vertical',
+        touchAngle : 30,*/
+        onTouchMoveOpposite(swiper, event){
+            //console.log('超出角度了');
+        },
+        //【onClick】点击或轻触Swiper【300ms】后执行
+        onClick: function(swiper){
+            //alert('你点了Swiper');
+        },
+        //【onTap】点击或轻触Swiper立即后执行
+        onTap: function(swiper){
+            //alert('你点了Swiper');
+        },
+        //【onDoubleTap】点击或轻触Swiper立即后执行
+        onDoubleTap: function(swiper){
+            //alert('你双击了Swiper');
+        },
+        //【onProgress】当Swiper的progress被改变时执行。开启watchSlidesProgress
+        //watchSlidesProgress : true,
+        /*onProgress: function(swiper, progress){
+            for (var i = 0; i < swiper.slides.length; i++){
+                var slide = swiper.slides[i];
+                es = slide.style;
+                es.webkitTransform = es.MsTransform = es.msTransform = es.MozTransform = es.OTransform = es.transform = 'rotate('+360*slide.progress+'deg)';
+            }
+        },*/
+        //【onReachBeginning】【释放时】如果【触发slider切换到初始化位置】时执行。
+        onReachBeginning: function(swiper){
+            //alert('到了第一个slide');
+        },
+        //【onReachEnd】【释放时】如果【触发slider切换到最后一个Slide位置】时执行。
+        onReachEnd: function(swiper){
+            //alert('到了最后一个slide');
+        },
+        //【onDestroy】销毁Swiper时执行。
+        onDestroy: function(swiper){
+            alert('你销毁了Swiper;');
+        },
+        //【onAutoplay】在slide【自动切换开始时】,每次切换都执行(有点像onSlideChangeStart，但只在自动时)；
+        //autoplay:1000,
+        onAutoplay: function(swiper){
+            //alert('自动切换了;');
+        },
+        //【onAutoplayStart】自动切换开始时执行，【只在初始位置执行一次】(由不自动切换进入到自动切换)。
+        //initialSlide:1,
+        onAutoplayStart: function(swiper){
+            //alert('自动切换开始;');
+        },
+        //【onAutoplayStop】【自动切换结束时】执行（由自动切换进入到不自动切换）。
+        //autoplayDisableOnInteraction:false,//设置该属性不会触发，因为自动切换会重启
+        //autoplayStopOnLast:true,//最后一张执行
+        onAutoplayStop: function(swiper){
+            //alert('事件触发了');
+        },
+
+       /* onLazyImageLoad: function(swiper, slide, image){????????????????????????????
+            //alert('延迟加载图片');
+            console.log(swiper);//Swiper实例
+            console.log(slide);//哪个slide里面的图片在加载
+            console.log(image);//哪个图片在加载
+        },
+        onLazyImageReady: function(swiper){??????????????????????????????
+        alert('延迟加载图片完成');
+        console.log(swiper);//Swiper实例
+        console.log(slide);//哪个slide里面的图片在加载
+        console.log(image);//哪个图片在加载
+        }
+        */
+        //【onSetTransition】每次当Swiper开始过渡动画时【持续执行】。transtion获取到的是Swiper的speed值。
+        onSetTransition: function(swiper,transiton){
+            //console.log('事件触发了');
+        },
+        //【onSetTranslate】wrapper【改变其位置】时执行。返回当前transform 的偏移量的对象。
+        onSetTranslate: function(swiper){
+         //alert('事件触发了');
+        },
+        //【onSlideNextStart】滑块【释放时】如果【触发下一张slider切换】则执行
+        onSlideNextStart: function(swiper){
+            //alert('事件触发了;');
+        },
+        //【onSlideNextEnd】滑块【释放时】且【slider下一张切换结束】则执行
+        onSlideNextEnd: function(swiper){
+            //alert('事件触发了');
+        },
+        //【onSlidePrevStart】滑块【释放时】如果【触发上一张slider切换】则执行
+        onSlidePrevStart: function(swiper){
+            //alert('事件触发了;');
+        },
+        //【onSlideNextEnd】滑块【释放时】且【slider上一张切换结束】则执行
+        onSlidePrevEnd: function(swiper){
+            //alert('事件触发了;');
+        },
+        //【onPaginationRendered】【生成分页器】时执行。
+        pagination : '.swiper-pagination',
+        onPaginationRendered(swiper, paginationContainer){
+            //alert('事件触发了');
+        },
+    });
+
+    $('#btn1').click(function(){
+        mySwiper.destroy(false);//???????????????????????
+    })
+</script>
+</body>
+</html>
