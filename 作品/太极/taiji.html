@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+        *{margin: 0;padding: 0}
+        #yinYang{width: 300px;height: 300px;border: 1px solid;border-radius: 50%;margin: 250px auto 0;
+            transition: all 2s;overflow: hidden;cursor: pointer}
+        .yang{width: 150px;height: 300px;float: left;background: #fff;position:relative;}
+        .yang span{display:block;width: 150px;height: 150px;background: #000;border-radius: 50%;position: absolute;
+        left: 75px}
+        .yang span b{display:block;width: 35%;height: 35%;background: #FFF;border-radius: 50%;position: absolute;
+            left: 32%;top: 32%;z-index: 1}
+        .yin{width: 150px;height: 300px;float: left;background: #000;position:relative;}
+        .yin span{display:block;width: 150px;height: 150px;background: #FFF;border-radius: 50%;position: absolute;
+            right: 75px;bottom: 0}
+        .yin span b{display:block;width: 35%;height: 35%;background: #000;border-radius: 50%;position: absolute;
+            left: 32%;top: 32%;z-index: 1}
+    </style>
+    <script src="../../Lib/Jquery/jquery-2.2.3.min.js"></script>
+    <script>
+        $(function () {
+            var lock=true;
+            $('#yinYang').click(function () {
+                if(lock){
+                    lock=false;
+                    $(this).css({
+                        'transform':'scale(2) rotate(360deg)'
+                    });
+                }else{
+                    lock=true;
+                    $(this).css({
+                        'transform':'scale(0.5) rotate(-360deg)'
+                    });
+                }
+            });
+        });
+    </script>
+</head>
+<body>
+    <div id="yinYang">
+        <div class="yang">
+            <span>
+                <b></b>
+            </span>
+        </div>
+        <div class="yin">
+            <span>
+                <b></b>
+            </span>
+        </div>
+    </div>
+</body>
+</html>

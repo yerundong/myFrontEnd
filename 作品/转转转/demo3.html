@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			*{
+				margin:0;
+				padding:0;
+			}
+			html,body{
+				height:100%;
+				overflow:hidden;
+			}
+			.center{
+				position:absolute;
+				left:0;
+				top:0;
+				right:0;
+				bottom:0;
+				margin:auto;
+			}
+			#outer{
+				width:360px;
+				height:360px;
+			}
+			.bigBox{
+				width:360px;
+				height:360px;
+				background:rgba(30, 7, 66, 0.65);
+				font-size:100px;
+				line-height:360px;
+				text-align:center;
+				color:white;
+			}
+			.middleBox{
+				width:300px;
+				height:300px;
+			}
+			.smallBox{
+				width:90px;
+				height:90px;
+			}
+			.square{
+				border-radius:25%;
+			}
+			.circle{
+				border-radius:50%;
+			}
+			.one{
+				background:rgba(16, 63, 236, 0.75);
+			}
+			.two{
+				background:rgba(37, 172, 162, 0.75);
+			}
+			.three{
+				background:rgba(233, 124, 32, 0.75);
+			}
+			.four{
+				background:rgba(235, 67, 35, 0.75);
+			}
+			.five{
+				background:rgba(190, 28, 65, 0.75);
+			}
+			.six{
+				background:rgba(208, 57, 159, 0.75);
+			}
+			.seven{
+				background:rgba(150, 32, 198, 0.75);
+			}
+			.eight{
+				background:rgba(95, 33, 203, 0.75);
+			}
+			.middle .one{
+				-webkit-transform: rotate(0deg) translateY(150px);
+				-moz-transform: rotate(0deg) translateY(150px);
+				-ms-transform: rotate(0deg) translateY(150px);
+				-o-transform: rotate(0deg) translateY(150px);
+				transform: rotate(0deg) translateY(150px);
+			}
+			.middle .two{
+				-webkit-transform: rotate(45deg) translateY(150px);
+				-moz-transform: rotate(45deg) translateY(150px);
+				-ms-transform: rotate(45deg) translateY(150px);
+				-o-transform: rotate(45deg) translateY(150px);
+				transform: rotate(45deg) translateY(150px);
+			}
+			.middle .three{
+				-webkit-transform: rotate(90deg) translateY(150px);
+				-moz-transform: rotate(90deg) translateY(150px);
+				-ms-transform: rotate(90deg) translateY(150px);
+				-o-transform: rotate(90deg) translateY(150px);
+				transform: rotate(90deg) translateY(150px);
+			}
+			.middle .four{
+				-webkit-transform: rotate(135deg) translateY(150px);
+				-moz-transform: rotate(135deg) translateY(150px);
+				-ms-transform: rotate(135deg) translateY(150px);
+				-o-transform: rotate(135deg) translateY(150px);
+				transform: rotate(135deg) translateY(150px);
+			}
+			.middle .five{
+				-webkit-transform: rotate(180deg) translateY(150px);
+				-moz-transform: rotate(180deg) translateY(150px);
+				-ms-transform: rotate(180deg) translateY(150px);
+				-o-transform: rotate(180deg) translateY(150px);
+				transform: rotate(180deg) translateY(150px);
+			}
+			.middle .six{
+				-webkit-transform: rotate(225deg) translateY(150px);
+				-moz-transform: rotate(225deg) translateY(150px);
+				-ms-transform: rotate(225deg) translateY(150px);
+				-o-transform: rotate(225deg) translateY(150px);
+				transform: rotate(225deg) translateY(150px);
+			}
+			.middle .seven{
+				-webkit-transform: rotate(270deg) translateY(150px);
+				-moz-transform: rotate(270deg) translateY(150px);
+				-ms-transform: rotate(270deg) translateY(150px);
+				-o-transform: rotate(270deg) translateY(150px);
+				transform: rotate(270deg) translateY(150px);
+			}
+			.middle .eight{
+				-webkit-transform: rotate(315deg) translateY(150px);
+				-moz-transform: rotate(315deg) translateY(150px);
+				-ms-transform: rotate(315deg) translateY(150px);
+				-o-transform: rotate(315deg) translateY(150px);
+				transform: rotate(315deg) translateY(150px);
+			}
+			
+			.small .one{
+				-webkit-transform: rotate(0deg) translateY(300px);
+				-moz-transform: rotate(0deg) translateY(300px);
+				-ms-transform: rotate(0deg) translateY(300px);
+				-o-transform: rotate(0deg) translateY(300px);
+				transform: rotate(0deg) translateY(300px);
+			}
+			.small .two{
+				-webkit-transform: rotate(45deg) translateY(300px);
+				-moz-transform: rotate(45deg) translateY(300px);
+				-ms-transform: rotate(45deg) translateY(300px);
+				-o-transform: rotate(45deg) translateY(300px);
+				transform: rotate(45deg) translateY(300px);
+			}
+			.small .three{
+				-webkit-transform: rotate(90deg) translateY(300px);
+				-moz-transform: rotate(90deg) translateY(300px);
+				-ms-transform: rotate(90deg) translateY(300px);
+				-o-transform: rotate(90deg) translateY(300px);
+				transform: rotate(90deg) translateY(300px);
+			}
+			.small .four{
+				-webkit-transform: rotate(135deg) translateY(300px);
+				-moz-transform: rotate(135deg) translateY(300px);
+				-ms-transform: rotate(135deg) translateY(300px);
+				-o-transform: rotate(135deg) translateY(300px);
+				transform: rotate(135deg) translateY(300px);
+			}
+			.small .five{
+				-webkit-transform: rotate(180deg) translateY(300px);
+				-moz-transform: rotate(180deg) translateY(300px);
+				-ms-transform: rotate(180deg) translateY(300px);
+				-o-transform: rotate(180deg) translateY(300px);
+				transform: rotate(180deg) translateY(300px);
+			}
+			.small .six{
+				-webkit-transform: rotate(225deg) translateY(300px);
+				-moz-transform: rotate(225deg) translateY(300px);
+				-ms-transform: rotate(225deg) translateY(300px);
+				-o-transform: rotate(225deg) translateY(300px);
+				transform: rotate(225deg) translateY(300px);
+			}
+			.small .seven{
+				-webkit-transform: rotate(270deg) translateY(300px);
+				-moz-transform: rotate(270deg) translateY(300px);
+				-ms-transform: rotate(270deg) translateY(300px);
+				-o-transform: rotate(270deg) translateY(300px);
+				transform: rotate(270deg) translateY(300px);
+			}
+			.small .eight{
+				-webkit-transform: rotate(315deg) translateY(300px);
+				-moz-transform: rotate(315deg) translateY(300px);
+				-ms-transform: rotate(315deg) translateY(300px);
+				-o-transform: rotate(315deg) translateY(300px);
+				transform: rotate(315deg) translateY(300px);
+			}
+			
+			@-webkit-keyframes rot{
+				from{transform:rotate(0deg);}
+				to{transform:rotate(360deg);}
+			}
+			
+			.rot{
+				-webkit-animation:rot 35s linear infinite;
+			}
+			.middle{
+				-webkit-animation:rot 30s linear infinite;
+			}
+			.small{
+				-webkit-animation:rot 25s linear infinite;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="outer">
+			<div class="small center">
+				<div class="smallBox square one center"></div>
+				<div class="smallBox circle two center"></div>
+				<div class="smallBox square three center"></div>
+				<div class="smallBox circle four center"></div>
+				<div class="smallBox square five center"></div>
+				<div class="smallBox circle six center"></div>
+				<div class="smallBox square seven center"></div>
+				<div class="smallBox circle eight center"></div>
+			</div>
+			<div class="middle center">
+				<div class="middleBox circle one center"></div>
+				<div class="middleBox circle two center"></div>
+				<div class="middleBox circle three center"></div>
+				<div class="middleBox circle four center"></div>
+				<div class="middleBox circle five center"></div>
+				<div class="middleBox circle six center"></div>
+				<div class="middleBox circle seven center"></div>
+				<div class="middleBox circle eight center"></div>
+			</div>
+			<div class="big center">
+				<div class="bigBox square rot center"></div>
+				<div class="bigBox square center">H5</div>
+			</div>
+		</div>
+	</body>
+</html>

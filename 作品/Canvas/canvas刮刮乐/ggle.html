@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    <canvas></canvas>
+<script>
+    var arr=[
+        {name:"iphone7 土豪金",color:"rgba(255,255,0,1)"},
+        {name:"iphone7 磨砂黑",color:"rgba(0,0,0,.9)"},
+        {name:"iphone7 玫瑰金",color:"rgba(240,208,98,1)"},
+        {name:"iphone7 深空灰",color:"rgba(130,140,150,1)"}
+    ];
+    var r=Math.random();
+    var rIndex= Math.floor(r*arr.length);
+    var rPrice=arr[rIndex];
+    var cv = document.getElementsByTagName('canvas')[0];
+    var isDown=false;
+    cv.height=400;
+    cv.width=600;
+    var ctx=cv.getContext("2d");
+    function toAngle(radian){
+        return radian/Math.PI*180;
+    }
+    function toRadian(angle){
+        return angle/180*Math.PI;
+    }
+    ctx.textAlign="center";
+    ctx.textBaseline="middle";
+    ctx.font="30px consolas";
+    ctx.fillStyle=rPrice.color;
+    ctx.fillText(rPrice.name,cv.width/2,cv.height/2);
+
+    var dataURL=cv.toDataURL("image/jpg",1);
+    cv.style.background="url("+dataURL+")";
+
+    //覆盖层
+    ctx.beginPath();
+    ctx.fillStyle="#eee";
+    ctx.fillRect(0,0,cv.width,cv.height);
+
+    cv.addEventListener("mousedown",function(){
+        isDown=true;
+    });
+    cv.addEventListener("mouseup",function(){
+        isDown=false;
+        ctx.globalCompositeOperation="source-out"
+    });
+    cv.addEventListener("mousemove",function(e){
+        if (isDown){
+            ctx.globalCompositeOperation="destination-out";
+            ctx.beginPath();
+            var posObj=cv.getBoundingClientRect();
+
+            var left=posObj.left;
+            var top=posObj.top;
+
+            var x= e.clientX-left;
+            var y= e.clientY-top;
+
+            ctx.arc(x,y,50,0,Math.PI*2);
+            ctx.fill();
+        }
+    })
+</script>
+
+</body>
+</html>

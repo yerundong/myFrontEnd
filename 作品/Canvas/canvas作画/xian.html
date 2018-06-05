@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        canvas{
+            position: absolute;
+            left: 0;
+            top: 0;
+            right:0;
+            bottom: 0;
+            margin: auto;
+            border:1px solid black;
+        }
+    </style>
+</head>
+<body>
+    <canvas width="700" height="500"></canvas>
+    <script>
+        var oCanvas = document.getElementsByTagName('canvas')[0];
+        var ctx = oCanvas.getContext("2d");
+        var i;
+       /* var offset=0;
+        function draw() {
+            offset++;
+            if (offset > 16) {
+                offset = 0;
+            }
+            ctx.clearRect(0,0, oCanvas.width, oCanvas.height);
+            ctx.setLineDash([6, 2]);
+            ctx.lineDashOffset = -offset;
+            ctx.strokeRect(0,0, 700, 500);
+        }
+
+        setInterval(draw, 20);*/
+
+        ctx.beginPath();
+        ctx.moveTo(30,30);
+        ctx.lineTo(30,470);
+        ctx.lineTo(670,470);
+        ctx.lineWidth=2;
+        ctx.strokeStyle="#666";
+        ctx.stroke();
+
+        ctx.beginPath();
+        ctx.moveTo(30,30);
+        ctx.lineTo(26,30);
+        ctx.lineTo(30,20);
+        ctx.lineTo(34,30);
+        ctx.closePath();
+        ctx.fillStyle="#666";
+        ctx.fill();
+
+        ctx.beginPath();
+        ctx.moveTo(670,470);
+        ctx.lineTo(670,466);
+        ctx.lineTo(680,470);
+        ctx.lineTo(670,474);
+        ctx.closePath();
+        ctx.fillStyle="#666";
+        ctx.fill();
+
+        //垂直刻度
+        for(i=1;i<7;i++){
+            ctx.beginPath();
+            ctx.save();
+            ctx.moveTo(20,470-70*i);
+            ctx.lineTo(30,470-70*i);
+            ctx.stroke();
+            ctx.restore();
+
+            ctx.save();
+            ctx.moveTo(30,470-70*i);
+            ctx.lineTo(670,470-70*i);
+            ctx.setLineDash([4, 2]);
+            //虚线
+            ctx.lineDashOffset = -6;
+            ctx.lineWidth=1;
+            ctx.fillStyle="#ccc";
+            ctx.stroke();
+            ctx.restore();
+            ctx.font="12px 宋体";
+            ctx.fillStyle="black";
+            ctx.fillText(i*100,1,474-70*i);
+        };
+        //水平刻度
+        for(i=1;i<6;i++){
+            ctx.beginPath();
+            ctx.moveTo(30+120*i,470);
+            ctx.lineTo(30+120*i,480);
+            ctx.stroke();
+            ctx.font="12px 宋体";
+            ctx.fillStyle="black";
+            ctx.fillText(1970+i*5,120*i-38,490);
+        }
+        //画正方形
+        function drawSq(x,y,color){
+            ctx.fillStyle=color;
+            ctx.fillRect(x-5,y-5,10,10);
+        }
+       //画三角形
+        function drawTri(x,y,color){
+            ctx.beginPath();
+            ctx.fillStyle=color;
+            ctx.moveTo(x,y+1);
+            ctx.lineTo(x-5,y+1);
+            ctx.lineTo(x,y-8);
+            ctx.lineTo(x+5,y+1);
+            ctx.closePath();
+            ctx.fill();
+        }
+        //划线
+        function drawLine(data,color,docType){
+            ctx.beginPath();
+            ctx.strokeStyle=color;
+            ctx.lineWidth=1;
+            ctx.moveTo(120-38,470-data[0]*7/10);
+            for(i=2;i<6;i++){
+                ctx.lineTo(120*i-38,470-data[i-1]*7/10);
+            }
+            ctx.stroke();
+            for(i=1;i<6;i++) {
+                docType(120 * i - 38, 470-data[i-1]*7/10, color);
+            }
+        }
+        //调用函数 填入数据
+        drawLine([170,300,600,400,500],"red",drawTri);
+        drawLine([300,550,150,300,180],"blue",drawSq);
+        drawLine([210,220,450,100,280],"green",drawTri);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    </script>
+</body>
+</html>

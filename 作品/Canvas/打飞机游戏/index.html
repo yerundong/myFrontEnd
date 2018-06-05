@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<title>Title</title>
+	<style>
+		* {
+			margin: 0;
+			padding: 0;
+		}
+
+		html,
+		body {
+			width: 100%;
+			height: 100%;
+		}
+
+		#cvas {
+			position: absolute;
+			background: url(img/bg.png) no-repeat center center;
+			background-size: cover;
+			margin: auto;
+			left: 0;
+			right: 0;
+			top: 0;
+			bottom: 0;
+		}
+
+		/*.hp{
+			width: 200px;
+			height: 10px;
+			border-radius: 20px;
+			position: absolute;
+			left: 5px;
+			top: 5px;
+			border: 1px solid red;
+			background: green;
+		}
+		.score{
+			position: absolute;
+			right: 5px;
+			top: 5px;
+			font-size: 25px;
+			color: darkorange;
+		}*/
+	</style>
+
+</head>
+
+<body>
+	<canvas id="cvas" width="650" height="700"></canvas>
+	<script>
+		const oCvas = document.querySelector("#cvas");
+		var scrW = oCvas.offsetWidth;
+		var scrH = oCvas.offsetHeight;
+		var ctx = oCvas.getContext("2d");
+		var speedDickX = 0;
+		var speedDickY = 0;
+		var myPlane;
+		var bullets = [];
+		var enemys = [];
+		var enemyBooms = [];
+		var count = 0;
+		// 图像
+		var myPlaneImg = new Image();
+		myPlaneImg.src = "img/myplane.gif";
+		var myPlaneBoomImg = new Image();
+		myPlaneBoomImg.src = "img/myplaneBoom.png";
+		myPlaneImg.onload = function () {
+			//			我的飞机实例化
+			myPlane = new MyPlane(ctx, scrW / 2 - 33, scrH - 80, 5, myPlaneImg, myPlaneBoomImg, scrW, scrH);
+			myPlane.create();
+		};
+		var bulletImg = new Image();
+		bulletImg.src = "img/bullet.png";
+		var enemySmImg = new Image();
+		enemySmImg.src = "img/smPlane.png";
+		var enemyMidImg = new Image();
+		enemyMidImg.src = "img/midPlane.png";
+		var enemyBigImg = new Image();
+		enemyBigImg.src = "img/bigPlane.png";
+		var enemySmBoomImg = new Image();
+		enemySmBoomImg.src = "img/smPlaneBoom.png";
+		var enemyMidBoomImg = new Image();
+		enemyMidBoomImg.src = "img/midPlaneBoom.png";
+		var enemyBigBoomImg = new Image();
+		enemyBigBoomImg.src = "img/bigPlaneBoom.png";
+		// 控制我的飞机
+		onkeydown = function (e) {
+			var e = e || window.event;
+			if (e.keyCode == 37) {
+				speedDickX = -2;
+			}
+			if (e.keyCode == 39) {
+				speedDickX = 2;
+			}
+			if (e.keyCode == 38) {
+				speedDickY = -2;
+			}
+			if (e.keyCode == 40) {
+				speedDickY = 2;
+			}
+		};
+		document.onkeyup = function (e) {
+			var e = e || window.event;
+			if (e.keyCode == 37) {
+				speedDickX = 0;
+			}
+			if (e.keyCode == 39) {
+				speedDickX = 0;
+			}
+			if (e.keyCode == 38) {
+				speedDickY = 0;
+			}
+			if (e.keyCode == 40) {
+				speedDickY = 0;
+			}
+		};
+		/******************唯一的定时器***********************/
+		var timer = setInterval(function () {
+			ctx.clearRect(0, 0, scrW, scrH);
+			count++;
+			if (count == 100) {
+				count = 0;
+			}
+			//			我方飞机移动
+			myPlane.move();
+			if (count % 10 == 0) {
+				//			子弹实例化
+				var bullet = new Bullet(ctx, myPlane.x + 31, myPlane.y - 10, 13, bulletImg, "", scrW, scrH);
+				bullet.create();
+				bullets.push(bullet);
+			}
+			for (var i = 0; i < bullets.length; i++) {
+				bullets[i].move();
+			};
+			//			敌军实例化
+			if (count % 50 == 0) {
+				var enemyTypeNum = Math.random() * 30;
+				if (enemyTypeNum > 17) {
+					var speed = 7;
+					var enemyImg = enemySmImg;
+					var boomImg = enemySmBoomImg;
+					var hp = 1;
+					w = 34;
+					h = 24;
+				} else if (enemyTypeNum > 8) {
+					var speed = 5;
+					var enemyImg = enemyMidImg;
+					var boomImg = enemyMidBoomImg;
+					var hp = 3;
+					w = 46;
+					h = 60;
+				} else {
+					var speed = 2;
+					var enemyImg = enemyBigImg;
+					var boomImg = enemyBigBoomImg;
+					var hp = 5;
+					w = 110;
+					h = 164;
+				}
+				var x = Math.random() * (scrW - w);
+				var enemy = new Enemy(ctx, x, 10, w, h, speed, enemyImg, boomImg, hp, scrW, scrH);
+				enemy.create();
+				enemys.push(enemy);
+			};
+			//			敌军、子弹碰撞
+			enemys.flag = false;
+			for (var i = 0; i < enemys.length; i++) {
+				enemys[i].move();
+				for (var j = 0; j < bullets.length; j++) {
+					if (bullets[j].x + 6 >= enemys[i].x && bullets[j].x <= enemys[i].x + enemys[i].w &&
+						bullets[j].y <= enemys[i].y + enemys[i].h && bullets[j].y + 14 >= enemys[i].y) {
+						bullets.splice(j, 1);
+						j--;
+						enemys.flag = true;
+					}
+				}
+				if (enemys.flag) {
+					enemys.flag = false;
+					enemys[i].hp--;
+					if (enemys[i].hp <= 0) {
+						enemyBooms.push(enemys[i]);
+						enemys.splice(i, 1);
+						i--;
+					}
+				}
+			};
+			for (var i = 0; i < enemyBooms.length; i++) {
+				enemyBooms[i].boom();
+				if (count % 70 == 0) {
+					enemyBooms.splice(i, 1);
+					i--;
+				}
+			};
+			//			敌军、我军碰撞
+			for (var i = 0; i < enemys.length; i++) {
+				if (myPlane.x > enemys[i].x - 40 && myPlane.x < enemys[i].x + enemys[i].w - 25 &&
+					myPlane.y < enemys[i].y + enemys[i].h - 18 && myPlane.y > enemys[i].y - 30) {
+					myPlane.boom();
+					clearInterval(timer);
+					// alert("瞬间爆炸！！！");
+				}
+			}
+		}, 1000 / 60);
+
+		/***************************************	构造器  *********************************************/
+		//		我的飞机
+		function MyPlane(ctx, x, y, speed, img, boomImg, scrW, scrH) {
+			this.ctx = ctx;
+			this.x = x;
+			this.y = y;
+			this.speed = speed;
+			this.img = img;
+			this.boomImg = boomImg;
+			this.scrW = scrW;
+			this.scrH = scrH;
+		}
+		MyPlane.prototype.create = function () {
+			//this.ctx.beginPath();
+			this.ctx.save();
+			this.ctx.drawImage(this.img, 0, 0, 66, 80, this.x, this.y, 66, 80);
+			this.ctx.restore();
+			//this.ctx.closePath();
+
+		};
+		MyPlane.prototype.move = function () {
+			this.x += this.speed * speedDickX;
+			this.y += this.speed * speedDickY;
+			if (this.x <= 0) {
+				this.x = 0;
+			} else if (this.x >= (this.scrW - 66)) {
+				this.x = this.scrW - 66;
+			}
+			if (this.y <= 0) {
+				this.y = 0;
+			} else if (this.y >= this.scrH - 80) {
+				this.y = this.scrH - 80;
+			}
+			this.create();
+		};
+		MyPlane.prototype.boom = function () {
+			this.ctx.save();
+			this.ctx.drawImage(this.boomImg, 0, 0, 66, 80, this.x, this.y, 66, 80);
+			this.ctx.restore();
+		};
+		//		子弹
+		function Bullet(ctx, x, y, speed, img, boomSrc, scrW, scrH) {
+			this.ctx = ctx;
+			this.x = x;
+			this.y = y;
+			this.speed = speed;
+			this.img = img;
+			this.boomSrc = boomSrc;
+			this.scrW = scrW;
+			this.scrH = scrH;
+		};
+		Bullet.prototype.create = function () {
+			this.ctx.save();
+			//this.ctx.beginPath();
+			this.ctx.drawImage(this.img, 0, 0, 6, 14, this.x, this.y, 6, 14);
+			//this.ctx.closePath();
+			this.ctx.restore();
+		};
+		Bullet.prototype.move = function () {
+			this.y -= this.speed;
+			this.create();
+		};
+		//		敌军
+		function Enemy(ctx, x, y, w, h, speed, img, boomImg, hp, scrW, scrH) {
+			this.ctx = ctx;
+			this.x = x;
+			this.y = y;
+			this.w = w;
+			this.h = h;
+			this.speed = speed;
+			this.img = img;
+			this.boomImg = boomImg;
+			this.hp = hp;
+			this.scrW = scrW;
+			this.scrH = scrH;
+		};
+		Enemy.prototype.create = function () {
+			this.ctx.save();
+			this.ctx.drawImage(this.img, 0, 0, this.w, this.h, this.x, this.y, this.w, this.h);
+			this.ctx.restore();
+		};
+		Enemy.prototype.move = function () {
+			this.y += this.speed;
+			this.create();
+		};
+		Enemy.prototype.boom = function () {
+			this.ctx.save();
+			this.ctx.drawImage(this.boomImg, 0, 0, this.w, this.h, this.x, this.y, this.w, this.h);
+			this.ctx.restore();
+		}
+	</script>
+</body>
+
+</html>

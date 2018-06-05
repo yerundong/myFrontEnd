@@ -1,0 +1,58 @@
+{
+	"index.html": {
+		"resources": [
+			"css/common.css",
+			"js/update.js",
+			"js/shortcut.js",
+			"js/immersed.js"
+		],
+		"refer": [
+			"plus/accelerometer.html",
+			"plus/gallery.html",
+			"plus/storage.html",
+			"plus/push.html",
+			"plus/payment.html",
+			"plus/share.html",
+			"plus/orientation.html"
+		]
+	},
+	"plus/accelerometer.html": {
+		"resources": [
+			"js/common.js"
+		]
+	},
+	"plus/storage.html": {
+		"resources": [
+			"js/common.js"
+		]
+	},
+	"plus/share.html": {
+		"resources": [
+			"img/add.png",
+			"logo.png"
+		]
+	},
+	"plus/orientation.html": {
+		"refer": [
+			"plus/orientation_level.html",
+			"plus/orientation_compass.html"
+		]
+	},
+	"plus/orientation_level.html": {
+		"resources": [
+			"img/orientationl.png",
+			"img/orientationbg.png",
+			"img/orientationb.png"
+		]
+	},
+	"plus/orientation_compass.html": {
+		"resources": [
+			"img/orientationbg.png",
+			"js/common.js",
+			"img/orientationa.png",
+			"css/common.css",
+			"img/orientationc.png",
+			"js/immersed.js"
+		]
+	}
+}

@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        img {
+            display: block
+        }
+
+        .enlargement {
+            margin: 50px
+        }
+
+        .smallPic {
+            border: solid 1px black;
+            width: 350px;
+            float: left;
+            position: relative;
+        }
+
+        .small {
+            width: 350px
+        }
+
+        .mark {
+            width: 130px;
+            height: 80px;
+            background: palevioletred;
+            opacity: 0.4;
+            position: absolute;
+            display: none;
+            cursor: move;
+            border: 1px solid lightgrey
+        }
+
+        .bigPic {
+            width: 500px;
+            height: 400px;
+            border: solid 1px black;
+            float: left;
+            display: none;
+            overflow: hidden;
+            margin-left: 25px;
+            position: relative;
+        }
+
+        .big {
+            position: absolute;
+        }
+    </style>
+    <script>
+        window.onload = function () {
+            var smallPic = document.getElementsByTagName('div')[1];
+            var aImg = document.getElementsByTagName('img');
+            var oMark = document.getElementsByTagName('div')[2];
+            var oBigPic = document.getElementsByTagName('div')[3];
+            smallPic.onmouseover = function () {
+                oMark.style.display = 'block';
+                oBigPic.style.display = 'block';
+                smallPic.onmousemove = function (evt) {
+                    var ev = evt || event;
+                    var x = ev.clientX - aImg[0].offsetLeft;
+                    var y = ev.clientY - aImg[0].offsetTop;
+                    oMark.style.left = x - 115 + 'px';
+                    oMark.style.top = y - 90 + 'px';
+                    aImg[1].style.left = -x + 'px';
+                    aImg[1].style.top = -y + 40 + 'px';
+                    var l = x - 110;
+                    var t = y - 90;
+                    if (l <= 0) { oMark.style.left = 0 }
+                    if (l >= aImg[0].clientWidth - oMark.offsetWidth) {
+                        oMark.style.left = aImg[0].clientWidth - oMark.offsetWidth + 'px';
+                    }
+                    if (t <= 0) { oMark.style.top = 0 }
+                    if (t >= aImg[0].clientHeight - oMark.offsetHeight) {
+                        oMark.style.top = aImg[0].clientHeight - oMark.offsetHeight + 'px';
+                    }
+                };
+                smallPic.onmouseout = function () {
+                    oMark.style.display = 'none';
+                    oBigPic.style.display = 'none';
+                }
+            }
+        };
+    </script>
+</head>
+
+<body>
+    <div class="enlargement">
+        <div class="smallPic">
+            <img src="imgs/women.jpg" class="small">
+            <div class="mark"></div>
+        </div>
+        <div class="bigPic">
+            <img src="imgs/women.jpg" class="big">
+        </div>
+    </div>
+</body>
+
+</html>

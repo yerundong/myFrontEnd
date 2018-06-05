@@ -1,0 +1,130 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+        *{margin: 0;padding: 0}
+        li{list-style: none}
+        .lunbo{width: 640px;height: 400px;margin: 100px auto 0;-webkit-transform-style: preserve-3d;-webkit-perspective: 1000px;}
+        .lunbo li{transition:all 1s;width: 64px;height: 400px;float: left;position: relative;-webkit-transform-style: preserve-3d;transform: rotateX(0deg) rotateY(0deg)}
+        .lunbo li div{width: 64px;height: 400px;position: absolute;}
+        ol{overflow: hidden;position: absolute;left: 43%; top: 600px;}
+        ol li{float: left;width: 50px;height: 15px;background: black;margin-right: 5px;opacity: 0.5;cursor: pointer;color: #fff;text-align:center;line-height: 15px}
+    </style>
+    <script src="../../Lib/Jquery/jquery-2.2.3.min.js"></script>
+    <script>
+        $(function () {
+            var i,j;
+            //添加背景图
+            for(j=0;j<4;j++){
+                for(i=0;i<10;i++){
+                    $('.lunbo li').eq(i).find('div').eq(j).css("background","url(img/"+(j+1)+".jpg) no-repeat "+(-i*64)+"px 0px");
+                };
+            };
+            //旋转
+            for(j=0;j<10;j++){
+                for(i=0;i<4;i++){
+                    $('.lunbo li').eq(j).find('div').eq(i).css({
+                        transform:"rotateX("+i*90+"deg) translateZ(200px)"
+                    });
+                };
+            };
+            //加延时
+            for(i=0;i<10;i++){
+                $('.lunbo li').eq(i).css("transition","all 0.5s linear "+100*i+"ms");
+            }
+            //点击
+            $('ol li').click(function () {
+                $index = $(this).index();
+                $('ol li').eq($index).css("background","pink").siblings().css("background","black");
+                $('.lunbo li').css({
+                    "transform":"rotateX("+90*$index+"deg)"
+                });
+            });
+            //也可以用定时器写：
+             /*$('ol li').click(function () {
+                $index = $(this).index();
+                $('ol li').eq($index).css("background","pink").siblings().css("background","black");
+                for(i=0;i<10;i++){
+                    (function (i) {//
+                        setTimeout(function () {
+                            $('.lunbo li').eq(i).css({"transform":"rotateX("+90*$index+"deg)"});
+                        },100*i)
+                    })(i)
+                };
+            });*/
+        });
+    </script>
+</head>
+<body>
+        <ul class="lunbo">
+            <li class="li1">
+                <div class="d1"></div>
+                <div class="d2"></div>
+                <div class="d3"></div>
+                <div class="d4"></div>
+            </li>
+            <li class="li2">
+                <div class="d1"></div>
+                <div class="d2"></div>
+                <div class="d3"></div>
+                <div class="d4"></div>
+            </li>
+            <li class="li3">
+                <div class="d1"></div>
+                <div class="d2"></div>
+                <div class="d3"></div>
+                <div class="d4"></div>
+            </li>
+            <li class="li4">
+                <div class="d1"></div>
+                <div class="d2"></div>
+                <div class="d3"></div>
+                <div class="d4"></div>
+            </li>
+            <li class="li5">
+                <div class="d1"></div>
+                <div class="d2"></div>
+                <div class="d3"></div>
+                <div class="d4"></div>
+            </li>
+            <li class="li6">
+                <div class="d1"></div>
+                <div class="d2"></div>
+                <div class="d3"></div>
+                <div class="d4"></div>
+            </li>
+            <li class="li7">
+                <div class="d1"></div>
+                <div class="d2"></div>
+                <div class="d3"></div>
+                <div class="d4"></div>
+            </li>
+            <li class="li8">
+                <div class="d1"></div>
+                <div class="d2"></div>
+                <div class="d3"></div>
+                <div class="d4"></div>
+            </li>
+            <li class="li9">
+                <div class="d1"></div>
+                <div class="d2"></div>
+                <div class="d3"></div>
+                <div class="d4"></div>
+            </li>
+            <li class="li10">
+                <div class="d1"></div>
+                <div class="d2"></div>
+                <div class="d3"></div>
+                <div class="d4"></div>
+            </li>
+        </ul>
+        <ol>
+            <li style="background: pink">1</li>
+            <li>2</li>
+            <li>3</li>
+            <li>4</li>
+        </ol>
+</body>
+</html>

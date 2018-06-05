@@ -1,0 +1,114 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+        @font-face {font-family: 'iconfont';
+            src: url('iconfont/iconfont.eot'); /* IE9*/
+            src: url('iconfont/iconfont.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+            url('iconfont/iconfont.woff') format('woff'), /* chrome、firefox */
+            url('iconfont/iconfont.ttf') format('truetype'), /* chrome、firefox、opera、Safari, Android, iOS 4.2+*/
+            url('iconfont/iconfont.svg#iconfont') format('svg'); /* iOS 4.1- */
+        }
+        .per{
+            font-family:"iconfont" !important;
+            font-size:155px;font-style:normal;
+            -webkit-font-smoothing: antialiased;
+            -webkit-text-stroke-width: 0.2px;
+            -moz-osx-font-smoothing: grayscale;
+            color: mediumvioletred;
+            transform-origin: center bottom;
+            -webkit-animation: strake 12s infinite alternate;
+            display: block;
+
+        }
+        .fuck{
+            font-family:"iconfont" !important;
+            font-size:55px;font-style:normal;
+            -webkit-font-smoothing: antialiased;
+            -webkit-text-stroke-width: 0.2px;
+            -moz-osx-font-smoothing: grayscale;
+            color: mediumvioletred;
+            position:absolute;
+            left: 20px;
+            -webkit-animation: gof 0.4s infinite alternate;
+        }
+        .go{
+            margin: 0 auto;
+            position: absolute;
+            left: 500px;
+            top:100px;
+            -webkit-animation: big 7s 6s infinite;
+        }
+        @-webkit-keyframes gof {
+            from{
+               transform: scale(1) translateY(0px);
+            }
+            to{
+                transform: scale(1.5) translateY(-20px);
+            }
+        }
+        @-webkit-keyframes strake {
+            0%{
+                transform: rotate(0deg) ;
+            }
+            25%{
+                transform: rotate(45deg) ;
+            }
+            50%{
+                transform: rotate(-45deg) ;
+            }
+            75%{
+                transform: rotate(0deg) ;
+            }
+            100%{
+                transform: rotate(45deg) ;
+            }
+        }
+        @-webkit-keyframes big{
+            0%{
+                transform: scale(1);
+            }
+            10%{
+                transform: scale(7);
+            }
+            20%{
+                transform: translateY(220px) translateX(-20px);
+            }
+            30%{
+                transform: translateY(-20px) translateX(-60px);
+            }
+            40%{
+                transform: translateY(180px) translateX(-1260px);
+            }
+            50%{
+                transform: translateY(780px) translateX(860px);
+            }
+            60%{
+                transform: translateY(-180px) translateX(-560px);
+            }
+            70%{
+                transform: translateY(1080px) translateX(60px);
+            }
+            80%{
+                transform: translateY(0px) translateX(0px);
+            }
+            90%{
+                transform: scale(20) translateY(-70px) translateX(40px);
+            }
+            100%{
+                transform: scale(1) translateY(0px) translateX(0px);
+            }
+        }
+
+
+    </style>
+</head>
+<body>
+    <div class="go">
+        <i class="iconfont per">&#xf0025;</i>
+        <i class="iconfont fuck">&#xe617;</i>
+    </div>
+</body>
+</html>

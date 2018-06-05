@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        html,body{
+            height: 100%;
+        }
+        canvas{
+            position: absolute;
+            left: 0;
+            top: 0;
+        }
+    </style>
+</head>
+<body>
+<canvas></canvas>
+<script>
+    var oCanvas = document.getElementsByTagName('canvas')[0];
+    var scrWid = document.documentElement.offsetWidth||document.body.offsetWidth;
+    var scrHei = document.documentElement.offsetHeight||document.body.offsetHeight;
+    oCanvas.width = scrWid;
+    oCanvas.height = scrHei;
+    var ctx = oCanvas.getContext("2d");
+    var i;
+    var arrQ=[];
+    var speedC=1;
+
+        //for(i=0;i<20;i++){
+    function Qiuqiu(){
+        this.x=parseInt(Math.random()*1180+20);
+        this.y=parseInt(Math.random()*840+20);
+        this.r=parseInt((Math.random()*15+15));
+        this.signx=Math.random()>=0.5?"+":"-";
+        this.signy=Math.random()>=0.5?"+":"-";
+        this.speedx = parseInt(this.signx+(Math.random()*10+5));
+        this.speedy = parseInt(this.signy+(Math.random()*10+5));
+        this.color = parseInt(Math.random()*899999+100000);
+    };
+    Qiuqiu.prototype={
+        createCircle: function(x,y,r,color){
+            var gradien = ctx.createRadialGradient(x+5,y-5,0,x,y,r);
+            gradien.addColorStop(0,"#fee");
+            gradien.addColorStop(1,"#"+color);
+            ctx.beginPath();
+            ctx.arc(x,y,r,0,Math.PI*2);
+            ctx.fillStyle=gradien;
+            ctx.fill();
+        },
+        fly: function () {
+            this.x+=this.speedx;
+            this.y+=this.speedy;
+            this.color+=speedC;
+            if(this.color>=999990||this.color<=100010){
+                speedC=-speedC;
+            }
+            if(this.x>=scrWid||this.x<=0){
+                this.speedx=-this.speedx;
+            }if(this.y>=scrHei||this.y<=0){
+                this.speedy=-this.speedy;
+            }
+        }
+    };
+
+    for(i=0;i<20;i++){
+        var Qiu = new Qiuqiu();//利用循环，new出多组【实例对象】以及他的【属性和函数】
+        arrQ.push(Qiu);//将所有的实例对象放入一个数组中
+        //console.log(arrQ[i]);
+    }
+    setInterval(function () {
+        ctx.clearRect(0,0, oCanvas.width, oCanvas.height);//清除-在开始之前
+        pickLine();//连线在画球之前
+        for(i=0;i<arrQ.length;i++){
+            //alert(arrQ[i].color);
+            arrQ[i].createCircle(arrQ[i].x,arrQ[i].y,arrQ[i].r,arrQ[i].color);//利用每组属性创造球
+            arrQ[i].fly();//this指向arrQ[i]
+            //console.log(arrQ[i]);
+            //console.log(arrQ[i].color);
+        }
+    },100);
+
+    function pickLine(){//连线
+        for(i=0;i<arrQ.length;i++){
+            for(j=0;j<arrQ.length;j++){
+                if(Math.sqrt(Math.pow(arrQ[i].x-arrQ[j].x,2)+Math.pow(arrQ[i].y-arrQ[j].y,2))<=300){
+                    ctx.beginPath();
+                    ctx.moveTo(arrQ[i].x,arrQ[i].y);
+                    ctx.lineTo(arrQ[j].x,arrQ[j].y);
+                    ctx.strokeStyle="#000";
+                    ctx.stroke();
+                    ctx.closePath();
+                }
+            }
+        }
+    }
+
+</script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

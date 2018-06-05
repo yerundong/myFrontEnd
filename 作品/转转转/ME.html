@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        *{
+            margin: 0;padding: 0;
+        }
+        .rotate{
+            width: 800px;
+            height: 800px;
+            -webkit-animation: rightT 25s linear infinite;
+        }
+        #turnRound{
+            width: 800px;
+            height:800px;
+            margin:50px auto 0;
+            border: 1px solid black;
+            position: relative;
+        }
+        .bigCir{
+            width: 300px;
+            height: 300px;
+            border-radius: 50%;
+            position: absolute;
+            left: 250px;
+            top: 250px;
+        }
+        .bigCir1{
+            background: rgba(255,0,0,0.75);
+            transform: rotate(0deg) translateY(150px);
+        }
+        .bigCir2{
+            background: rgba(0,0,255,0.75);
+            transform: rotate(45deg) translateY(150px);
+        }
+        .bigCir3{
+            background: rgba(0,255,0,0.75);
+            transform: rotate(90deg) translateY(150px);
+        }
+        .bigCir4{
+            background: rgba(255,225,0,0.75);
+            transform: rotate(135deg) translateY(150px);
+        }
+        .bigCir5{
+            background: rgba(0,225,255,0.75);
+            transform: rotate(180deg) translateY(150px);
+        }
+        .bigCir6{
+            background: rgba(225,0,115,0.75);
+            transform: rotate(225deg) translateY(150px);
+        }
+        .bigCir7{
+            background: rgba(175,175,0,0.75);
+            transform: rotate(270deg) translateY(150px);
+        }
+        .bigCir8{
+            background: rgba(0,125,110,0.75);
+            transform: rotate(315deg) translateY(150px);
+        }
+        .min{
+            width: 90px;
+            height: 90px;
+            position: absolute;
+            bottom: -45px;
+            left: 105px;
+        }
+        .min1{
+            background: rgba(45,35,146,0.75);
+            border-radius: 25%;
+        }
+        .min2{
+            background: rgba(45,235,46,0.75);
+            border-radius: 50%;
+        }
+        .min3{
+            background: rgba(145,75,46,0.75);
+            border-radius: 25%;
+        }
+        .min4{
+            background: rgba(245,135,46,0.75);
+            border-radius: 50%;
+        }
+        .min5{
+                       background: rgba(145,35,146,0.75);
+                       border-radius: 25%;
+                   }
+        .min6{
+            background: rgba(0,95,136,0.75);
+            border-radius: 50%;
+        }
+        .min7{
+            background: rgba(250,225,95,0.75);
+            border-radius: 25%;
+        }
+        .min8{
+            background: rgba(145,0,0,0.75);
+            border-radius: 50%;
+        }
+        .rotateSqu{
+            width: 360px;
+            height: 360px;
+            border-radius: 25%;
+            background: rgba(30, 7, 66, 0.65);
+            position: absolute;
+            left: 220px;
+            top: 220px;
+            -webkit-animation: rightL 35s linear infinite;
+        }
+        .noRotate{
+            width: 360px;
+            height: 360px;
+            border-radius: 25%;
+            background: rgba(30, 7, 66, 0.65);
+            position: absolute;
+            left: 220px;
+            top: 220px;
+            color: white;
+            font-size: 120px;
+            text-align: center;
+            line-height: 360px;
+        }
+        @-webkit-keyframes rightT {
+             0%{
+                 transform: rotate(0deg);
+             }
+             100%{
+                 transform: rotate(360deg);
+             }
+         }
+        @-webkit-keyframes rightL {
+            0%{
+                transform: rotate(0deg);
+            }
+            100%{
+                transform: rotate(-360deg);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div id="turnRound">
+        <div class="rotate">
+            <div class="bigCir bigCir1">
+                <span class="min min1"></span>
+            </div>
+            <div class="bigCir bigCir2">
+                <span class="min min2"></span>
+            </div>
+            <div class="bigCir bigCir3">
+                <span class="min min3"></span>
+            </div>
+            <div class="bigCir bigCir4">
+                <span class="min min4"></span>
+            </div>
+            <div class="bigCir bigCir5">
+                <span class="min min5"></span>
+            </div>
+            <div class="bigCir bigCir6">
+                <span class="min min6"></span>
+            </div>
+            <div class="bigCir bigCir7">
+                <span class="min min7"></span>
+            </div>
+            <div class="bigCir bigCir8">
+                <span class="min min8"></span>
+            </div>
+        </div>
+        <div class="rotateSqu"></div>
+        <div class="noRotate">
+            H5
+        </div>
+    </div>
+</body>
+</html>

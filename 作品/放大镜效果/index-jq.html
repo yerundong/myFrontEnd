@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        img {
+            display: block
+        }
+
+        .enlargement {
+            margin: 50px
+        }
+
+        .smallPic {
+            border: solid 1px black;
+            width: 350px;
+            float: left;
+            position: relative;
+        }
+
+        .small {
+            width: 350px
+        }
+
+        .mark {
+            width: 128px;
+            height: 80px;
+            background: palevioletred;
+            opacity: 0.4;
+            position: absolute;
+            display: none;
+            cursor: move;
+            border: 1px solid lightgrey
+        }
+
+        .bigPic {
+            width: 366px;
+            height: 229px;
+            border: solid 1px black;
+            float: left;
+            display: none;
+            overflow: hidden;
+            margin-left: 25px;
+            position: relative;
+        }
+
+        .big {
+            position: absolute;
+        }
+    </style>
+    <script src="../../Lib/Jquery/jquery-2.2.3.min.js"></script>
+    <script>
+        //公式1：  小放大镜宽度/大放大镜宽度 = 小图宽度/大图宽度
+        //公式2：  小left/（小图宽-小镜宽）= -大left /（大图宽-大镜宽）
+        $(function () {
+            $('.smallPic').hover(function () {
+                $('.mark').show();
+                $('.bigPic').show();
+                $('.smallPic').mousemove(function (ev) {
+                    var l = ev.pageX - 115;
+                    var t = ev.pageY - 90;
+                    if (l < 0) {
+                        l = 0;
+                    } else if (l > $('.smallPic').width() - $('.mark').width()) {
+                        l = $('.smallPic').width() - $('.mark').width()
+                    }
+                    if (t < 0) {
+                        t = 0;
+                    } else if (t > $('.smallPic').height() - $('.mark').height()) {
+                        t = $('.smallPic').height() - $('.mark').height()
+                    }
+                    $('.mark').css('left', l);
+                    $('.mark').css('top', t);
+                    var sx = (l * ($('.big').width() - $('.bigPic').width())) / ($('.smallPic').width() - $('.mark').width());
+                    var sy = (t * ($('.big').height() - $('.bigPic').height())) / ($('.smallPic').height() - $('.mark').height());
+                    $('.big').css('left', -sx);
+                    $('.big').css('top', -sy);
+                })
+            }, function () {
+                $('.mark').hide();
+                $('.bigPic').hide();
+            })
+        });
+       /* window.onload = function(){
+            var smallPic = document.getElementsByTagName('div')[1];
+            var aImg = document.getElementsByTagName('img');
+            var oMark = document.getElementsByTagName('div')[2];
+            var oBigPic = document.getElementsByTagName('div')[3];
+            smallPic.onmouseover = function(){
+                oMark.style.display = 'block';
+                oBigPic.style.display = 'block';
+                smallPic.onmousemove = function(evt){
+                    var ev = evt || event;
+                    var x = ev.clientX - aImg[0].offsetLeft;
+                    var y = ev.clientY - aImg[0].offsetTop;
+                    oMark.style.left = x - 115 + 'px';
+                    oMark.style.top = y - 90 + 'px';
+                    aImg[1].style.left = -x + 'px';
+                    aImg[1].style.top = -y + 40 + 'px';
+                    var l = x - 110;
+                    var t = y - 90;
+                    if(l<=0){oMark.style.left = 0}
+                    if(l>=aImg[0].clientWidth - oMark.offsetWidth){
+                        oMark.style.left = aImg[0].clientWidth - oMark.offsetWidth + 'px';
+                    }
+                    if(t<=0){oMark.style.top = 0}
+                    if(t>=aImg[0].clientHeight - oMark.offsetHeight){
+                        oMark.style.top = aImg[0].clientHeight - oMark.offsetHeight + 'px';
+                    }
+                };
+                smallPic.onmouseout = function(){
+                    oMark.style.display = 'none';
+                    oBigPic.style.display = 'none';
+                }
+            }
+        };*/
+    </script>
+</head>
+
+<body>
+    <div class="enlargement">
+        <div class="smallPic">
+            <img src="imgs/women.jpg" class="small">
+            <div class="mark"></div>
+        </div>
+        <div class="bigPic">
+            <img src="imgs/women.jpg" class="big">
+        </div>
+    </div>
+</body>
+
+</html>

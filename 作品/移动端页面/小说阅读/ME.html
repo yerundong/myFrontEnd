@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no" />
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			*{
+				margin:0;
+				padding:0;
+			}
+			html{
+				font-size:100px;
+				min-height:100%;
+			}
+			body{
+				min-height:100%;
+			}
+			header{
+				display:none;
+				position:fixed;
+				left:0;
+				top:0;
+				width:100%;
+				height:0.85rem;
+				background:rgba(0,0,0,0.5);
+			}
+			header .refresh{
+				float:left;
+				width:0.95rem;
+				height:100%;
+				background:url(img/refresh.png) no-repeat center center;
+				background-size:60% auto;
+			}
+			header .search{
+				float:right;
+				height:100%;
+				width:0.95rem;
+				background:url(img/search.png) no-repeat center center;
+				background-size:60% auto;
+			}
+			header .mark{
+				float:right;
+				height:100%;
+				width:0.95rem;
+				background:url(img/mark.png) no-repeat center center;
+				background-size:42% auto;
+			}
+			footer{
+				display:none;
+				position:fixed;
+				left:0;
+				bottom:0;
+				width:100%;
+				height:0.96rem;	
+			}
+			footer #footerBox{
+				width:100%;
+				height:100%;
+				background:rgba(0,0,0,0.5);
+				display:-webkit-box;
+			}
+			footer #footerBox>div{
+				-webkit-box-flex:1;
+				width:0;
+				position:relative;
+			}
+			footer p{
+				color:white;
+				text-align:center;
+				margin-top:0.7rem;
+				font-size:0.22rem;
+			}
+			footer .land{
+				background:url(img/land.png) no-repeat center 25%;
+				background-size:auto 50%;
+			}
+			footer .progress{
+				background:url(img/progress.png) no-repeat center 28%;
+				background-size:auto 45%;
+			}
+			footer .font{
+				background:url(img/font.png) no-repeat center 30%;
+				background-size:auto 43%;
+			}
+			footer .bg{
+				background:url(img/bg.png) no-repeat center 25%;
+				background-size:auto 50%;
+			}
+			footer .bord{
+				display:block;
+				position:absolute;
+				left:0;
+				top:0.2rem;
+				width:100%;
+				height:0.6rem;
+				-webkit-box-sizing: border-box;
+				border-right:1px solid black;
+			}
+			footer .progress .bord{
+				border-left:1px solid white;
+			}
+			footer .font .bord{
+				border-left:1px solid white;
+			}
+			footer .bg .bord{
+				border-left:1px solid white;
+				border-right:none;
+			}
+			article{
+				padding:0 15px;
+				background:rgb(246,220,159);
+			}
+			article h1{
+				font-size:20px;
+			}
+			article p{
+				font-size:16px;
+			}
+			footer .fontSet{
+				width: 100%;
+				height: .8rem;
+				position: absolute;
+				left: 0;
+				top: -1.5rem;
+				background: rgba(0,0,0,0.5);
+				padding: 0.7rem 0 0 .5rem;
+				display: none;
+			}
+			footer .fontSet .ran{
+				float: left;
+			}
+			footer .fontSet span{
+				float: left;
+				font-size:16px;
+				color: #fff;
+				margin: 0 .2rem;
+			}
+			footer .fontSet .confirm{
+				float: left;
+				margin: 0 .2rem;
+			}
+			footer .fontSet .cancel{
+				float: left;
+			}
+
+			footer .bgSet{
+				position: absolute;
+				width: 100%;
+				height: 1.5rem;
+				background: rgba(0,0,0,.5);
+				left: 0;
+				top: -1.5rem;
+				display: -webkit-box;
+				-webkit-box-align: center;
+				-webkit-box-pack: center;
+				margin: -999px;
+			}
+			footer .bgSet span{
+				display: block;
+				width: .7rem;
+				height: .7rem;
+				border-radius: 50%;
+				margin: 0 15px;
+				border: 4px solid rgba(0,0,0,.5);
+			}
+			footer .bgSet .yellow{
+				background: sandybrown;
+				border-color: red;
+			}
+			footer .bgSet .green{
+				background: greenyellow;
+			}
+			footer .bgSet .pink{
+				background: lightpink;
+			}
+			footer .bgSet .grey{
+				background: lightgrey;
+			}
+		</style>
+	</head>
+	<body>
+		<header>
+			<div class="refresh"></div>
+			<div class="search"></div>
+			<div class="mark"></div>
+		</header>
+		<section>
+			<article>
+				<h1>俄媒：俄老人到中国养老1千元人民币应付一切</h1>
+				<p class="textM">
+					参考消息网10月7日报道外媒称，在文明世界中，人们都是提前为自己预备退休生活——在气候温暖的国度买一处小屋或攒下一笔可观的旅游经费。一般来说，靠着1.2万卢布（1卢布约合0.1元人民币）的平均退休工资，俄罗斯退休人员可以到乡间别墅度假。
+
+　　俄罗斯《新消息报》网站9月29日报道称，但并非只有这一种选择！西伯利亚和远东已有4万名老人搬到中国长住，超过10万人在那里办理了临时居住签证。这些是中国资料中登记的数据，因此是可信的。根据中国的移民政策，倘若一个城市的俄罗斯人数量超过一万人，政府就应采取专门措施：简化不动产办理手续、播放俄语电视新闻、商店和公共交通务必同时使用中俄双语。
+
+　　10个中国城市已经实施了上述措施。而哈尔滨、珲春和黑河是率先这么做的城市。由于靠近俄罗斯，它们最受俄退休人员青睐。
+
+　　报道称，俄罗斯退休者是本世纪头十年中期最早来到中国的移民。当时，布拉戈维申斯克和其他边境城市的老年居民开始出租或出售自己的俄罗斯房产，用这笔钱在中国租房或买房。原因很简单：俄罗斯退休金在国内只够勉强度日，在中国却变成了不菲的财富，足以舒适地生活。
+
+　　瓦莲京娜·费奥多罗夫娜和彼得·科兹洛夫今年75岁了，5年前离开布拉戈维申斯克的两人向《新消息报》讲述了他们是如何通过迁居中国摆脱贫困的。
+
+　　瓦莲京娜悲伤地回忆道：“当时，我们的亲朋好友都在俄罗斯，我们也担心自己能否适应异国他乡、能否学习他们的语言。那时生活十分窘迫。我的退休金是6500卢布，老伴的是8000。交公共事业费需要4000卢布，还要购买日用品、药品，吃饭的钱所剩无几，衣服根本买不起，将就穿旧的。而从中国回来的朋友衣食无忧、心满意足，他们的退休金数量与我们相同，却能应付一切，还有富余。于是，我们决定搬到中国。”
+
+　　科兹洛夫夫妇留下了布市的房子，用变卖车库和旧“日古力”汽车以及亲戚资助和银行贷款筹得的40万卢布在黑河也买了一套两居室，但面积比原来多出50%——65平方米，带两个卫生间和两个阳台。最主要是，房子挨着过去在布市的邻居。
+
+　　瓦莲京娜说：“20个朋友的家就住在附近。整个城市也有许多俄罗斯人，无论走到哪里，到处都是自己人。这很好，可以互相帮助，也能了解许多信息。我们预订大巴结伴出游，但还没到过北京。我们不害怕与中国人接触，还跟他们交上了朋友。”
+
+　　瓦莲京娜每周六都到市合唱团唱歌。她不知道歌词，只是哼唱曲调，但中国人认为她唱得很棒。得益于在合唱团的练习，瓦莲京娜学会了300个汉字，而坐在家中的老伴只会150个。日常交往需要认识至少1500个汉字。生活在黑河的许多俄罗斯人掌握了更多汉字，到中国的机构办事时几乎不用求助翻译。但总的来说，他们没什么机会去政府机构：税警不会找麻烦，也从来无需报警——黑河的犯罪率几乎为零，街上平静安宁，可以做到夜不闭户，尽管黑河不是一个小城市，有30万人口。
+
+　　公共事业缴费单每月或每年寄到邮箱一次。令科兹洛夫夫妇惊讶的是，与俄罗斯不同，公共事业费几乎是不变的：取暖费过去为每平方米70卢布，现在依旧如此。电话费和垃圾处理费是每年320卢布，上网费每年2000卢布，电费为每度1.5卢布。瓦莲京娜表示：“在布市，照明费为每度电4卢布，暖气费是每月1240卢布，冷水费为每人600卢布。而在中国，每吨水只要9卢布。”
+
+　　他们在中国的家庭预算中，公共事业开销仅占微不足道的2%。瓦莲京娜的退休金现在涨到9000卢布，用她一个人的钱就够了，彼得的退休金全部存到银行。
+
+
+　　瓦莲京娜说：“我们现在想买什么买什么。老伴有两套日常和外出的服装。我每月都给自己添置新衣，为合唱团的活动买了一件带亮片的演出服。给孙子穿上了跑鞋、牛仔裤。这些在黑河都很便宜。当然，回到布市时，我会穿得低调。人前不宜太招摇，会被说闲话的。许多人都很生气，嫉妒我们晚年活得却像年轻人：旅游、下馆子。可为什么不呢？两人吃一顿晚饭只要100卢布，20卢布就能在街头小店饱餐一顿。在俄罗斯，这都是不可能的。”
+
+　　不过，瓦莲京娜还是以在家做饭居多：首先，这比出去就餐便宜；其次，家里的饭菜更接近俄罗斯人习惯的口味。并非每个俄罗斯人的胃都能消化中餐的气味和调料。这大概是“新中国人”唯一感到不如意的地方。
+
+　　报道称，许多俄罗斯人把毗邻中国看做是棘手的麻烦，但对远东人来说，这似乎成了相当不错的优势。过去因地处偏远和生活贫困而产生的沮丧现在变成了庆幸：幸好旁边有中国。
+
+　　如今在不少退休者心中，中国变得比故乡更亲。科兹洛夫夫妇的孙子参加统一国家考试后被远东联邦大学录取，同时他也接到了哈尔滨工程大学的入学邀请。奶奶的建议是，选择后者。（编译/胡丽雯）
+
+　　来源：参考消息
+
+责任编辑：瞿崑 SN117
+				</p>
+			</article>
+		</section>
+		<footer>
+			<div class="fontSet">
+				<input type="range" class="ran" min="12" max="40" value="16">
+				<span class="fontVal">16</span>
+				<input type="button" value="确认" class="confirm">
+				<input type="button" value="取消" class="cancel">
+			</div>
+			<div class="bgSet">
+				<span class="yellow"></span>
+				<span class="green"></span>
+				<span class="pink"></span>
+				<span class="grey"></span>
+			</div>
+			<div id="footerBox">
+				<div class="land">
+					<p class="title">横屏</p>
+					<span class="bord"></span>
+				</div>
+				<div class="progress">
+					<p class="title">进度</p>
+					<span class="bord"></span>
+				</div>
+				<div class="font">
+					<p class="title">字体</p>
+					<span class="bord"></span>
+				</div>
+				<div class="bg">
+					<p class="title">阅读背景</p>
+					<span class="bord"></span>
+				</div>
+			</div>
+		</footer>
+		<script type="text/javascript">
+			var scWid = document.documentElement.offsetWidth||document.body.offsetWidth;
+			var initWid = 640;
+			var oHtml = document.getElementsByTagName("html")[0];
+			oHtml.style.fontSize = (100*scWid/initWid)+"px";
+
+			var oFooter = document.getElementsByTagName('footer')[0];
+			var oHeader = document.getElementsByTagName('header')[0];
+			var oFont = document.getElementsByClassName('font')[0];
+			var oFontSet = document.getElementsByClassName('fontSet')[0];
+			var ofontVal = document.getElementsByClassName('fontVal')[0];
+			var otextM = document.getElementsByTagName('article')[0];
+			var oTextP = otextM.getElementsByTagName('p')[0];
+			var oRange = document.getElementsByTagName('input')[0];
+			var oConfirm = document.getElementsByTagName('input')[1];
+			var oCancel = document.getElementsByTagName('input')[2];
+			var oBg = document.getElementsByClassName('bg')[0];
+			var obgSet = document.getElementsByClassName('bgSet')[0];
+			var obgColor =obgSet.getElementsByTagName('span');
+
+			if(window.localStorage.fontsize){//第一次没有储存，用默认值
+				FontSet();
+				console.log(localStorage.fontsize);
+			}
+			if(window.localStorage.bgColor){//第一次没有储存，用默认值
+				otextM.style.background = localStorage.getItem("bgColor");
+				if(otextM.style.background){
+				}
+			}
+
+			document.onclick= function () {
+				if(oFooter.style.display){
+					oFooter.style.display="";
+					oHeader.style.display="";
+					oFontSet.style.display="";
+					obgSet.style.margin = "-999px";
+					FontSet();
+				}else{
+					oFooter.style.display="block";
+					oHeader.style.display="block";
+				}
+			};
+			//阻止冒泡
+			oFooter.onclick = oHeader.onclick= function (e) {
+				var e = e||window.event;
+				if(e.stopPropagation){
+					e.stopPropagation();
+				}else{
+					e.cancelBubble=true;
+				}
+			};
+			oFont.onclick = function () {
+				if(oFontSet.style.display){
+					oFontSet.style.display="";
+					FontSet();
+				}else{
+					oFontSet.style.display="block";
+					obgSet.style.margin = "-999px";
+				}
+			};
+			oRange.onchange= function () {
+				ofontVal.innerHTML = oRange.value;
+				oTextP.style.fontSize = oRange.value + "px";
+
+			};
+			oConfirm.onclick = function () {
+				localStorage.setItem("fontsize",oRange.value);
+				oFontSet.style.display="";
+				FontSet();
+			};
+			oCancel.onclick = function () {
+				oFontSet.style.display="";
+				FontSet();
+			};
+			oBg.onclick = function () {
+				if(parseInt(obgSet.style.margin) == 0){
+					obgSet.style.margin = "-999px";
+				}else{
+					obgSet.style.margin = 0;
+					oFontSet.style.display="";
+				}
+			};
+			for(var i=0;i<obgColor.length;i++){
+				obgColor[i].index = i;//自定义索引
+				obgColor[i].onclick= function () {
+					for(var i=0;i<obgColor.length;i++){
+						obgColor[i].style.borderColor="rgba(0,0,0,.5)";
+					}
+					this.style.borderColor="red";
+					if(this.index==0){
+						otextM.style.background = "rgb(246,220,159)"
+					}else if(this.index==1){
+						otextM.style.background = "rgb(200, 250, 154)"
+					}
+					else if(this.index==2){
+						otextM.style.background = "rgb(243,144,159)"
+					}
+					else if(this.index==3){
+						otextM.style.background = "rgb(207,208,227)"
+					}
+					localStorage.setItem("bgColor",otextM.style.backgroundColor);
+				}
+			}
+
+			//字体设置函数
+			function FontSet(){
+				oTextP.style.fontSize = localStorage.getItem("fontsize") + "px";
+				oRange.value = localStorage.getItem("fontsize");
+				ofontVal.innerHTML = localStorage.getItem("fontsize");
+			}
+		</script>
+	</body>
+</html>

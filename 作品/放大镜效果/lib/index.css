@@ -1,0 +1,47 @@
+body,div,img{
+	padding:0;
+	margin: 0;
+}
+#container{
+	
+}
+.smallpic{
+	float: left;
+	border: 1px solid black;
+	width: 400px;
+	height: 250px;
+	position: relative;
+	margin: 50px 2px 0 50px;
+
+}
+.smallpic img{
+	display: block;
+	width: 400px;
+	height: 250px;
+}
+.mark{
+	width: 150px;
+	height:100px;
+	background: orange;
+	position: absolute; 
+	opacity: 0.5;
+	display: none;
+	cursor: move;
+	border: 1px solid yellow
+}
+.bigpic{
+	float: left;
+	border: 1px solid black;
+	width: 550px;
+	height: 400px;
+	overflow: hidden;
+	position: relative;
+	display: none;
+	top:50px;
+}
+.bigpic img{
+	display: block;
+	position: absolute;
+	left: 0;
+	top: 0px;
+}

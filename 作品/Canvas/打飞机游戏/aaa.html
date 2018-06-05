@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+    }
+
+    html,
+    body {
+        height: 100%;
+        width: 100%;
+    }
+
+    .cavs {
+        background: url('img/bg.png') repeat;
+        margin: 0 auto;
+        display: block;
+    }
+</style>
+
+<body>
+    <canvas id="cavs" class="cavs" width="1000"></canvas>
+    <script>
+        // ***************************数据****************************************
+        const oCavs = document.querySelector("#cavs");
+        const ctx = oCavs.getContext("2d");
+        let scrh; // body高
+        const oCavs_w = 1000; // canvas宽
+        let oCavs_h; // canvas高
+        let speedX = 0; // 
+        let speedY = 0; // 
+
+        let myPlane;
+        const myPlaneImg = new Image(); // 我机图像(66×80)
+        myPlaneImg.src = "img/myplane.gif";
+        const myPlaneBoomImg = new Image(); // 我机爆炸图像(66×80)
+        myPlaneBoomImg.src = "img/myplaneBoom.gif";
+
+
+        // ***************************类****************************************
+        // 我机实例
+        class Myplane {
+            constructor(x, y, speed, img, boomImg, startAniSpeed) {
+                this.x = x;
+                this.y = y;
+                this.speed = speed;
+                this.img = img;
+                this.boomImg = boomImg;
+                this.startAniSpeed = startAniSpeed;
+            }
+            create() {
+                ctx.save();
+                ctx.beginPath();
+                ctx.drawImage(this.img, this.x, this.y);
+                ctx.restore();
+            }
+            operate(swt) {
+                let timer;
+                if (swt) {
+                    timer = setInterval(() => {
+                        if (!((this.x < 0 && speedX < 0) || (this.x > oCavs_w - 66 && speedX > 0))) {
+                            this.x += this.speed * speedX;
+                        }
+                        if (!((this.y < 0 && speedY < 0) || (this.y > oCavs_h - 80 && speedY > 0))) {
+                            this.y += this.speed * speedY;
+                        }
+                        ctx.save();
+                        ctx.beginPath();
+                        ctx.clearRect(0, 0, oCavs_w, oCavs_h);
+                        ctx.drawImage(this.img, this.x, this.y);
+                        ctx.restore();
+                    }, 5);
+                } else {
+                    clearInterval(timer);
+                }
+            }
+            startAnimation() {
+                let timer = setInterval(() => {
+                    this.y -= this.startAniSpeed;
+                    if (oCavs_h - this.y < 180) {
+                        ctx.save();
+                        ctx.beginPath();
+                        ctx.clearRect(0, 0, oCavs_w, oCavs_h);
+                        ctx.drawImage(this.img, this.x, this.y);
+                        ctx.restore();
+                    } else {
+                        clearInterval(timer);
+                        this.operate(true);
+                    }
+                }, 5);
+            }
+        }
+        // 子弹实例
+        class Bullet {
+            constructor(x, y, speed, img, boomImg) {
+                this.x = x;
+                this.y = y;
+                this.speed = speed;
+                this.img = img;
+                this.boomImg = boomImg;
+            }
+            create(){
+                ctx.save();
+                ctx.beginPath();
+                ctx.drawImage(this.img, this.x, this.y);
+                ctx.restore();
+            }
+            move(){
+
+            }   
+        }
+        // ***************************方法****************************************
+        // canvas高自适应屏幕
+        function adaptScreen() {
+            scrh = document.body.offsetHeight;
+            oCavs.height = scrh;
+            oCavs_h = oCavs.height;
+        }
+
+        // ***************************侦听****************************************
+        window.onresize = function () {
+            // adaptScreen();
+        }
+
+        myPlaneImg.onload = function () {
+            myPlane = new Myplane(oCavs_w / 2 - 33, oCavs_h, 2, myPlaneImg, myPlaneBoomImg, 1);
+            myPlane.create();
+            myPlane.startAnimation();
+        }
+
+        window.onkeydown = function (e) {
+            if (e.keyCode === 39) { // 👉
+                speedX = 1;
+            } else if (e.keyCode === 37) { // 👈
+                speedX = -1;
+            } else if (e.keyCode === 38) { // 👆
+                speedY = -1;
+            } else if (e.keyCode === 40) { // 👇
+                speedY = 1;
+            }
+        }
+
+        window.onkeyup = function (e) {
+            if (e.keyCode === 39) { // 👉
+                speedX = 0;
+            } else if (e.keyCode === 37) { // 👈
+                speedX = 0;
+            } else if (e.keyCode === 38) { // 👆
+                speedY = 0;
+            } else if (e.keyCode === 40) { // 👇
+                speedY = 0;
+            }
+        }
+
+        // function timerMain(swt) {
+        //     let timer;
+        //     if (swt) {
+        //         timer = setInterval(() => {
+        //             // myPlane.move();
+        //         }, 5);
+        //     } else {
+        //         timer = null
+        //     }
+        // }
+
+
+        // ***************************执行顺序****************************************
+        adaptScreen();
+        // timerMain(true);
+    </script>
+</body>
+
+</html>

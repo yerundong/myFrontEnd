@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        canvas{
+            border:1px solid black;
+            position: absolute;
+            left: 0;
+            top: 0;
+            right:0;
+            bottom: 0;
+            margin: auto;
+        }
+    </style>
+</head>
+<body>
+    <canvas width="700" height="500"></canvas>
+    <script>
+        (function () {
+            var oCanvas = document.getElementsByTagName('canvas')[0];
+            var ctx = oCanvas.getContext("2d");
+            var i;
+            ctx.beginPath();
+            ctx.moveTo(30,30);
+            ctx.lineTo(30,470);
+            ctx.lineTo(670,470);
+            ctx.lineWidth=2;
+            ctx.strokeStyle="#666";
+            ctx.stroke();
+
+            ctx.beginPath();
+            ctx.moveTo(30,30);
+            ctx.lineTo(26,30);
+            ctx.lineTo(30,20);
+            ctx.lineTo(34,30);
+            ctx.closePath();
+            ctx.fillStyle="#666";
+            ctx.fill();
+
+            ctx.beginPath();
+            ctx.moveTo(670,470);
+            ctx.lineTo(670,466);
+            ctx.lineTo(680,470);
+            ctx.lineTo(670,474);
+            ctx.closePath();
+            ctx.fillStyle="#666";
+            ctx.fill();
+
+            //刻度
+            for(i=1;i<5;i++){
+                ctx.beginPath();
+                ctx.moveTo(30,470-100*i);
+                ctx.lineTo(40,470-100*i);
+                ctx.stroke();
+                ctx.font="12px 宋体";
+                ctx.fillStyle="black";
+                ctx.fillText(i*100,42,474-100*i);
+            };
+
+            //画柱子函数
+            function drawSquare(x,h){
+                ctx.fillStyle="red";
+                ctx.fillRect(x,469-h,50,h);
+            }
+
+
+            function play(H1,H2,H3,H4,H5){
+                var hei1=0;var hei2=0;var hei3=0;var hei4=0;var hei5=0;
+                var per1 = H1/100;var per2 = H2/100;var per3 = H3/100;var per4 = H4/100;var per5 = H5/100;
+                var timer = setInterval(function () {
+                    hei1+=per1;hei2+=per2;hei3+=per3;hei4+=per4;hei5+=per5;
+                    if(hei1<=H1){
+                        drawSquare(100,hei1);
+                    }
+                    if(hei2<=H2){
+                        drawSquare(200,hei2);
+                    }
+                    if(hei3<=H3){
+                        drawSquare(300,hei3);
+                    }
+                    if(hei4<=H4){
+                        drawSquare(400,hei4);
+                    }if(hei5<=H5){
+                        drawSquare(500,hei5);
+                    }else{
+                        clearInterval(timer);
+                    }
+                },10);
+            }
+            play(300,400,275,175,365);
+
+
+
+
+
+
+
+        })();
+    </script>
+</body>
+</html>

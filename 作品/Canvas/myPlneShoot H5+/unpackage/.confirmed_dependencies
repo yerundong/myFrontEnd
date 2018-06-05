@@ -1,0 +1,14 @@
+{
+	"index.html": {
+		"href": "index.html",
+		"priority": 0,
+		"resources": [
+			"img/background_1.png",
+			"img/myplane.gif",
+			"img/bullet1.png",
+			"img/enemy3_fly_1.png",
+			"img/enemy1_fly_1.png",
+			"img/enemy2_fly_1.png"
+		]
+	}
+}

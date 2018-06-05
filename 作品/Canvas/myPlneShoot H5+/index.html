@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <title></title>
+    <style type="text/css">
+    		*{
+    			margin: 0;padding: 0;
+    		}
+    		html,body{
+    			height: 100%;
+    		}
+    	#main{
+    		width: 100%;height: 100%;
+    		overflow: hidden;position: relative;
+    		background: url(img/background_1.png);
+    		background-size: cover;
+    	}
+    </style>
+    <script type="text/javascript">
+    window.onload = function(){
+//		console.log("所有plus api都应该在此事件发生后调用，否则会出现plus is undefined。"    	
+   		document.addEventListener('plusready', function(){ 
+// 			全屏显示
+   			plus.navigator.setFullscreen(true);
+// 			获取加速度感应值
+			var xAxis,yAxis;
+	   		plus.accelerometer.watchAcceleration( function ( a ) {
+					xAxis = a.xAxis;
+					yAxis = a.yAxis;
+				}, function ( e ) {
+					console.log( "监听失败:" + e.message );
+				},{
+					frequency:50,
+				});
+			var oMain = document.getElementById("main");
+	    	var scrW = oMain.offsetWidth;
+	    	var scrH = oMain.offsetHeight;
+	    	var bullets = [];
+	    	var count=0;
+	    	var enemys=[];
+	    	var boomEnemys = [];
+	    	var aImg = document.getElementsByTagName('img');
+//			我方飞机实例化
+			var myPlane = new MyPlane(oMain,scrW/2-33,scrH-80,66,80,2,
+			"img/myplane.gif","img/myPlaneBoom.gif",scrW,scrH);
+//			创建我方飞机节点
+			myPlane.create();
+//			唯一的一个定时器
+			setInterval(function(){
+//				我方飞机移动
+				myPlane.move(xAxis,yAxis);
+				count++;
+				if(count==100){
+					count=0;
+				};	
+				if(count%4==0){
+//					子弹实例化		
+					var bullet = new Bullet(oMain,myPlane.x+32,myPlane.y-10,20,"img/bullet1.png","img/boom.png",scrW,scrH);
+//					子弹创建
+					bullet.create();
+//					存下子弹
+					bullets.push(bullet);						
+				}
+//				子弹移动			
+				for(var i=0;i<bullets.length;i++){
+					bullets[i].move();
+					if(bullets[i].y<-14){
+						bullets.splice(i,1);
+					}
+				}
+//					敌军实例化
+				if(count%50==0){
+					for(var i=0;i<4;i++){
+						var typeNum=Math.random()*20;
+						if(typeNum<14){
+							var enemyType="smEnemy";
+							var w=34;
+							var h=24;
+							var imgSrc="img/enemy1_fly_1.png";
+							var boomSrc="img/smPlaneBoom.gif";
+							var hp=1;
+							var speed=parseInt(Math.random()+3);					
+						}else if(typeNum<24){
+							var enemyType="midEnemy";
+							var w=46;
+							var h=60;
+							var imgSrc="img/enemy2_fly_1.png";
+							var boomSrc="img/midPlaneBoom.gif";
+							var hp=3;
+							var speed=parseInt(Math.random()+2);					
+						}else{
+							var enemyType="bigEnemy";
+							var w=110;
+							var h=164;
+							var imgSrc="img/enemy3_fly_1.png";
+							var boomSrc="img/bigPlaneBoom.gif";
+							var hp=5;
+							var speed=parseInt(Math.random()+1);					
+						}
+						var enemyX = parseInt(Math.random()*(scrW-w));				
+						var enemy = new Enemy(oMain,enemyType,enemyX,60,w,h,imgSrc,boomSrc,hp,speed,scrW,scrH);
+//						开辟一个内存空间,就创造一个飞机
+						enemy.create();
+						enemys.push(enemy);
+					}
+				}
+//				飞机移动
+				for(var i=0;i<enemys.length;i++){
+					enemys[i].move();
+					if(enemys[i].y>=scrH){
+//						先删除dom,再删除实例
+						oMain.removeChild(enemys[i].ele);//删除dom节点
+						enemys.splice(i,1);//删除实例(包括内存空间以及相关属性、方法)					
+					}				
+				}
+//				水平：	子弹left>飞机left-子弹w&&子弹left<飞机left+飞机w
+//				竖直:		子弹top<飞机top+飞机h&&子弹top>飞机top-子弹h
+				//console.log(enemys.length);
+				bullets.flag=false;
+				/*for(var i=0;i<bullets.length;i++){
+					for(var j=0;j<enemys.length;j++){
+						if(
+							bullets[i].x+6>=enemys[j].x&&bullets[i].x<=enemys[j].x+enemys[j].w&&bullets[i].y<=enemys[j].y+enemys[j].h&&bullets[i].y+14>=enemys[j].y
+						){	
+							oMain.removeChild(enemys[i].ele);//删除dom节点
+							bullets.splice(i,1);
+							bullets.flag=true;
+							
+							enemys[j].hp--;
+							console.log(enemys[j].hp);
+							if(enemys[j].hp<=0){
+								enemys.splice(j,1);								
+								boomEnemys.push(enemys[j]);
+								j--;
+								//enemys.flag=true;
+							}
+						}
+					}
+					if(bullets.flag){
+						i--;
+						bullets.flag=false;
+					}					
+				}
+				for(var i=0;i<boomEnemys.length;i++){
+					boomEnemys[i].boom();
+				}*/
+			},1000/60)				
+   		}); 
+   		
+/*--------------------------------构造器----------------------------------------*/   		
+// 		我方飞机构造器
+		function MyPlane(par,x,y,w,h,speed,imgSrc,boomSrc,scrW,scrH){
+			this.par=par;
+			this.x=x;
+			this.y=y;
+			this.w=w;
+			this.h=h;
+			this.speed=speed;
+			this.imgSrc=imgSrc;
+			this.boomSrc=boomSrc;
+			this.scrW=scrW;
+			this.scrH=scrH;
+		};
+//		创建飞机节点方法
+		MyPlane.prototype.create=function(){
+			this.ele = document.createElement('img');
+			this.ele.src=this.imgSrc;
+			this.ele.style.cssText="z-index:2;position:absolute;left:"+this.x+"px;top:"+this.y+"px;width:"+this.w+"px;height:"+this.h+"px;";
+			this.par.appendChild(this.ele);
+		}
+// 		我方飞机移动方法
+		MyPlane.prototype.move = function(xAxis,yAxis){
+			if(xAxis>1){
+//				飞机左飞
+				this.x-=xAxis*this.speed;
+			}else if(xAxis<-1){
+//				飞机右飞
+				this.x-=xAxis*this.speed;
+			}
+			if(yAxis<5){
+//				飞机上飞
+				this.y+=(yAxis-6)*this.speed;
+			}else if(yAxis>7){
+//				飞机下飞
+				this.y+=(yAxis-6)*this.speed;
+			}		
+//			飞机不飞出屏幕外
+			if(this.x<0){
+				this.x=0;
+			}else if(this.x>this.scrW-70){
+				this.x=this.scrW-70;
+			}
+			if(this.y<0){
+				this.y=0;
+			}else if(this.y>this.scrH-40){
+				this.y=this.scrH-40;
+			}
+			planeX = this.x+"px";
+			planeY = this.y+"px";
+			this.ele.style.left=this.x+"px";
+			this.ele.style.top=this.y+"px";
+		}
+   		
+// 		子弹的构造器
+		function Bullet(par,x,y,speed,imgSrc,boomSrc,scrW,scrH){
+			this.par=par;
+			this.x=x;
+			this.y=y;
+			this.imgSrc=imgSrc;
+			this.boomSrc=boomSrc;
+			this.scrW=scrW;
+			this.scrH=scrH;
+			this.speed=speed;
+		}
+//		创建子弹方法
+		Bullet.prototype.create=function(){
+			this.ele = document.createElement('img');
+			this.ele.src = this.imgSrc;
+			this.ele.style.cssText = "z-index:1;position:absolute;width:6px;height:14px;left:"+this.x+"px;top:"+this.y+"px;"
+			this.par.appendChild(this.ele);
+		}
+//		子弹移动
+		Bullet.prototype.move = function(){
+			this.y-=this.speed;
+			this.ele.style.top = this.y+"px";
+			if(this.y<-14){
+				this.par.removeChild(this.ele) 
+			}
+		}
+//		敌军的构造器
+		function Enemy(par,enemyType,x,y,w,h,imgSrc,boomSrc,hp,speed,scrW,scrH){
+			this.par=par;
+			this.enemyType=enemyType;
+			this.x=x;
+			this.y=y;
+			this.w=w;
+			this.h=h;
+			this.imgSrc=imgSrc;
+			this.boomSrc=boomSrc;
+			this.speed=speed;
+			this.scrW=scrW;
+			this.scrH=scrH;
+		}
+//		创建敌军
+		Enemy.prototype.create=function(){
+			this.ele=document.createElement('img');
+			this.ele.src=this.imgSrc;
+			this.ele.style.cssText="position:absolute;left:"+this.x+"px;top:"+this.y+"px;width:"+this.w+"px;height:"+this.h+"px;"
+			this.par.appendChild(this.ele);
+		}
+//		敌军移动
+		Enemy.prototype.move=function(){
+			this.y+=this.speed;
+			this.ele.style.top = this.y+"px";
+			/*if(this.y>this.scrH-150){			
+				this.par.removeChild(this.ele);	
+			}*/
+			//console.log()
+		}
+//		敌军爆炸
+		Enemy.prototype.boom=function(){
+			this.ele=document.createElement('img');
+			this.ele.src=this.boomSrc;
+			this.ele.style.cssText="position:absolute;left:"+this.x+"px;top:"+this.y+"px;width:"+this.w+"px;height:"+this.h+"px;"
+			this.par.appendChild(this.ele);
+		}
+		
+		
+   		
+    }	
+    </script>
+</head>
+<body>
+	<div id="main"></div>
+</body>
+</html>

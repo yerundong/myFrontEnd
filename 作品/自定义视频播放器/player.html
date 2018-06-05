@@ -1,0 +1,250 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        video{
+            display: block;
+        }
+        body{
+            height: 100%;
+        }
+        #player{
+            border: 1px solid black;margin: 0 auto;position: relative;position: absolute;
+            left: 150px;top: 150px;margin: auto;
+        }
+        #player .playPause{
+            width: 48px;height: 48px; position: absolute;left: 20px;bottom: 20px;cursor: pointer;
+            -webkit-user-select: none;
+        }
+        @font-face {
+            font-family: 'iconfont';
+            src: url('iconfont/iconfont.eot'); /* IE9*/
+            src: url('iconfont/iconfont.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+            url('iconfont/iconfont.woff') format('woff'), /* chrome、firefox */
+            url('iconfont/iconfont.ttf') format('truetype'), /* chrome、firefox、opera、Safari, Android, iOS 4.2+*/
+            url('iconfont/iconfont.svg#iconfont') format('svg'); /* iOS 4.1- */
+        }
+        .iconfont{
+            font-family:"iconfont" !important;
+            font-size:46px;font-style:normal;
+            -webkit-font-smoothing: antialiased;
+            -webkit-text-stroke-width: 0.2px;
+            -moz-osx-font-smoothing: grayscale;
+            color: rgba(255,255,255,0.5);
+            position: absolute;
+        }
+
+        .pauseicon{
+            display: none;
+            font-weight: 600;
+        }
+        .progress{
+            -webkit-appearance: none;width:780px;height: 5px;background: rgba(255,255,255,0.5);
+            position: absolute;left: 5px;bottom: 5px;
+            border-radius: 20px;outline: none;cursor: pointer;
+        }
+        .progress::-webkit-slider-thumb{
+            -webkit-appearance: none;
+            height: 12px;width: 12px;background: #fff;border-radius: 50%;
+        }
+        .progress::-moz-range-thumb{
+            -moz-appearance: none;
+            height: 12px;width: 12px;background: #fff;border-radius: 50%;
+        }
+        .volume{
+            -webkit-appearance: none;width: 85px;height: 5px;background: rgba(255,255,255,0.5);
+            position: absolute;right: 10px;bottom: 65px;
+            border-radius: 20px;outline: none;cursor: pointer;
+            transform: rotate(-90deg);
+            display: none;
+        }
+        .volume::-webkit-slider-thumb{
+            -webkit-appearance: none;
+            height: 12px;width: 12px;background: #fff;border-radius: 50%;
+        }
+        .volume::-moz-range-thumb{
+            -moz-appearance: none;
+            height: 12px;width: 12px;background: #fff;border-radius: 50%;
+        }
+        .volumeBtn{
+            display: block;position: absolute;width: 22px;height: 24px;right: 40px;
+            bottom: 0px;cursor: pointer;  -webkit-user-select: none;overflow: hidden;
+        }
+        .volumeicon{
+            font-size: 22px;color: #fff;
+        }
+        .fullScreen{
+            display: block;position: absolute;width: 25px;height: 26px;bottom: 5px;right: 8px;cursor: pointer;
+            -webkit-user-select: none;
+        }
+        .fullScreenicon{
+            font-size: 24px;color: #fff;
+        }
+        .videoTime{
+            position: absolute;right:66px;bottom: 3px;color: rgba(255,255,255,0.7);font-size: 8px;-webkit-user-select: none;
+        }
+        .volumeT{
+            position: absolute;right: 43px;bottom: 115px;color: rgba(255,255,255,0.7);font-size: 8px;
+            display: block;width: 20px;height: 15px;text-align: center; display: none;
+        }
+    </style>
+</head>
+<body>
+    <div id="player">
+        <video src="../../../HTML+CSS/asset/kangfuPanda.mp4" width="900"></video>
+        <div class="playPause">
+            <i class="iconfont pauseicon">&#xe63a;</i><i class="iconfont playicon">&#xe60a;</i>
+        </div>
+        <input type="range" class="progress" value="0" min="0" max="">
+        <input type="range" class="volume" value="30" min="0" max="100">
+        <span class="volumeBtn"><i class="iconfont volumeicon">&#xe9a9;</i></span>
+        <span class="fullScreen"><i class="iconfont fullScreenicon">&#xe643;</i></span>
+        <span class="videoTime">111/135</span>
+        <span class="volumeT">30</span>
+    </div>
+
+    <script>
+        var oPlayer = document.getElementById('player');
+        var oPlaypau = document.getElementsByClassName('playPause')[0];
+        var oPause = document.getElementsByClassName('pauseicon')[0];
+        var oPlay = document.getElementsByClassName('playicon')[0];
+        var oVed = document.getElementsByTagName('video')[0];
+        var oPogress = document.getElementsByClassName('progress')[0];
+        var oVideoTime = document.getElementsByClassName('videoTime')[0];
+        var oVolume = document.getElementsByClassName('volume')[0];
+        var oVolumeT = document.getElementsByClassName('volumeT')[0];
+        var oVolumeBtn = document.getElementsByClassName('volumeBtn')[0];
+        var oFullScreen = document.getElementsByClassName('fullScreen')[0];
+        var scrWid = window.screen.width;
+        oVed.oncanplay = function () {
+            var alltime=parseInt(oVed.duration);
+            oPogress.max = alltime;
+            oVideoTime.innerHTML = 0+":"+0+"/"+ parseInt(oPogress.max/60);
+            oVed.ontimeupdate= function () {//视频播放时(一直)触发
+                oPogress.value =parseInt(oVed. currentTime);//进度
+                oVideoTime.innerHTML = parseInt(oPogress.value/60)+":"+parseInt(oPogress.value%60)+"/"+ parseInt(oPogress.max/60);
+            };
+
+            oPogress.onmousedown= function () {
+                oVed.ontimeupdate=null;//???????????
+                oPogress.onmouseup= function () {
+                    oVed.currentTime=this.value;
+                };
+            };
+            //音量
+            oVolume.onmousedown = function (e) {
+                var e = e||window.event;
+                e.stopPropagation();
+                oVolumeT.style.display = "block";
+                oVolume.onmousemove = function () {
+                    oVolumeT.innerHTML = oVolume.value;
+                    oVed.volume = oVolume.value/100;
+                };
+            };
+            oVolume.onmouseup = function (e) {
+                var e = e||window.event;
+                e.stopPropagation();
+                oVolumeT.style.display = "none";
+            };
+            oVolumeBtn.flag = false;
+            oVolumeBtn.onmousedown= function (e) {
+                var e = e||window.event;
+                e.stopPropagation();
+                if(oVolumeBtn.flag){
+                    oVolumeBtn.flag = false;
+                    oVolume.style.display = "none";
+                }else{
+                    oVolumeBtn.flag = true;
+                    oVolume.style.display = "block";
+                }
+            };
+            document.onmousedown = function () {
+                oVolumeBtn.flag = false;
+                oVolume.style.display = "none";
+                oVolumeT.style.display = "none";
+            };
+            //播放/暂停
+            oPlaypau.flag=false;
+            oPlaypau.onclick= function () {
+                if(oPlaypau.flag==false){
+                    oPlaypau.flag=true;
+                    oVed.play();
+                    oPlay.style.display = "none";
+                    oPause.style.display = "block";
+                }else{
+                    oPlaypau.flag=false;
+                    oVed.pause();
+                    oPlay.style.display = "block";
+                    oPause.style.display = "none";
+                }
+            };
+
+            //全屏
+            oFullScreen.flag = false;
+            oFullScreen.onclick= function (e) {
+                var e = e||window.event;
+                e.stopPropagation();
+                if(oFullScreen.flag){
+                    oFullScreen.flag = false;
+                    document.webkitCancelFullScreen();
+                    oVed.width = 900;
+                    oPogress.style.width = 780+"px";
+                    oPlayer.style.left="150px";
+                }else{
+                    oFullScreen.flag = true;
+                    oPlayer.webkitRequestFullScreen();
+                    oVed.width = scrWid;
+                    oPogress.style.width = 0.9*oVed.width+"px";
+                    oPlayer.style.left=0;
+                }
+            };
+
+            //视频播放结束时
+            /*oVed.onended= function () {
+                oPlaypau.flag=false;
+                oPlay.style.display = "block";
+                oPause.style.display = "none";
+            }*/
+
+        };
+
+
+
+
+
+
+
+
+
+
+
+    </script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

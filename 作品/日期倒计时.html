@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <script>
+    </script>
+    <script>
+        //t单位为秒，换算
+        /*天：Math.floor(t/86400)
+         时：Math.floor(t%86400/3600)
+         分：Math.floor(t%86400%3600/60)
+         秒：t%60  */
+        window.onload = function() {
+            var aInput = document.getElementsByTagName('input');
+            var newDate, date, t, timer;
+            aInput[1].onclick = function() {
+                newDate = new Date(aInput[0].value);
+                timer = setInterval(function() {
+                    date = new Date();
+                    // alert(newDate);
+                    t = Math.floor((newDate - date) / 1000);  //日期相减单位为秒，把毫秒换做秒
+                    if (t > 0) {
+                        aInput[2].value = "距离该日期还有："+Math.floor(t / 86400) + '天' + Math.floor(t % 86400 / 3600) + '时' + Math.floor(t % 86400 % 3600 / 60) + '分' + t % 60 + '秒';
+                    } else {
+                        clearInterval(timer);
+                        aInput[2].value = '这个时间已经过去了！';
+                    }
+                }, 1000)
+            };
+        }
+    </script>
+</head>
+
+<body>
+<label for="">请输入您要倒计时的日期：</label><br><br>
+<input type="text" name="" id="" value="2016 11 11 00:00:00" style="width:300px;">
+<input type="button" value="GO"><br><br>
+<input type="text" style="width:300px;">
+</body>
+
+</html>

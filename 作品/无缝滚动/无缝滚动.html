@@ -1,0 +1,133 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        ul,
+        ol {
+            list-style: none
+        }
+
+        img {
+            display: block
+        }
+
+        #contain {
+            width: 528px;
+            height: 88px;
+            border: 1px solid deepskyblue;
+            margin: 50px auto;
+            position: relative;
+            overflow: hidden
+        }
+
+        #contain .pic {
+            width: 1056px;
+            position: absolute;
+            z-index: -1
+        }
+
+        #contain .pic li {
+            float: left
+        }
+
+        span {
+            display: block;
+            width: 10px;
+            height: 30px;
+            background: greenyellow;
+            position: absolute
+        }
+
+        .left {
+            left: 0;
+            top: 25px
+        }
+
+        .right {
+            right: 0;
+            top: 25px
+        }
+    </style>
+    <script>
+        window.onload = function () {
+            var oUl = document.getElementsByTagName('ul')[0];//8张图片
+            var aLi = oUl.getElementsByTagName('li');//图片：0-7
+            //oUl.style.left = -88 + 'px';//起始位置：-88px
+            var speed = -1;
+            var timer = setInterval(function () {
+                oUl.style.left = oUl.offsetLeft + speed + 'px';
+                if (oUl.offsetLeft < -528) {  //往左
+                    oUl.style.left = 0;
+                }
+                if (oUl.offsetLeft > 0) {   //往右
+                    oUl.style.left = -528 + 'px';
+                }
+            }, 10);
+
+            document.onmousedown = function (ev) {  //鼠标点击判断滚动方向
+                var ev = ev || window.event;
+                var docW = document.documentElement.clientWidth;//可视区的宽
+                if (ev.offsetX > docW / 2) {
+                    speed = 1;
+                } else {
+                    speed = -1;
+                }
+            }
+        }
+    </script>
+</head>
+
+<body>
+    <div id="contain">
+        <ul class="pic">
+            <li>
+                <img src="images/1.jpg">
+            </li>
+            <li>
+                <img src="images/2.jpg">
+            </li>
+            <li>
+                <img src="images/3.jpg">
+            </li>
+            <li>
+                <img src="images/4.jpg">
+            </li>
+            <li>
+                <img src="images/5.jpg">
+            </li>
+            <li>
+                <img src="images/6.jpg">
+            </li>
+            <li>
+                <img src="images/1.jpg">
+            </li>
+            <li>
+                <img src="images/2.jpg">
+            </li>
+            <li>
+                <img src="images/3.jpg">
+            </li>
+            <li>
+                <img src="images/4.jpg">
+            </li>
+            <li>
+                <img src="images/5.jpg">
+            </li>
+            <li>
+                <img src="images/6.jpg">
+            </li>
+        </ul>
+        <!-- <span class="left"></span>
+        <span class="right"></span>-->
+    </div>
+</body>
+
+</html>

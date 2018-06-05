@@ -1,0 +1,70 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0035)http://fgm.cc/learn/lesson7/03.html -->
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>移动效果（按轨迹移动）</title>
+    <style type="text/css">
+    body,
+    div {
+        margin: 0;
+        padding: 0;
+    }
+    
+    div {
+        position: absolute;
+        width: 66px;
+        height: 45px;
+        background: url(img/1.gif) no-repeat;
+    }
+    
+    p,
+    input {
+        margin: 10px;
+    }
+    </style>
+    <script type="text/javascript">
+    window.onload = function() {
+        var oDiv = document.getElementsByTagName("div")[0];
+        document.onclick = function(event) {
+            var event = event || window.event;
+            oDiv.style.background = "url(img/2.gif) no-repeat";
+            startMove(oDiv, {
+                x: event.clientX,
+                y: event.clientY
+            }, function() {
+                oDiv.style.background = "url(img/1.gif) no-repeat";
+            });
+            return false;
+        }
+    }
+
+    function startMove(obj, oTarget, fnEnd) {
+        clearInterval(obj.timer);
+        obj.timer = setInterval(function() {
+            doMove(obj, oTarget, fnEnd)
+        }, 30)
+    }
+
+    function doMove(obj, oTarget, fnEnd) {
+        var iX = (oTarget.x - obj.offsetLeft) / 5;
+        var iY = (oTarget.y - obj.offsetTop) / 5;
+        iX = iX > 0 ? Math.ceil(iX) : Math.floor(iX);
+        iY = iY > 0 ? Math.ceil(iY) : Math.floor(iY);
+        if (oTarget.x == obj.offsetLeft && oTarget.y == obj.offsetTop) {
+            clearInterval(obj.timer);
+            fnEnd && fnEnd();
+        } else {
+            obj.style.left = obj.offsetLeft + iX + "px";
+            obj.style.top = obj.offsetTop + iY + "px";
+        }
+    }
+    </script>
+</head>
+
+<body>
+    <div></div>
+</body>
+
+</html>
