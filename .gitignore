@@ -1,4 +1,4 @@
-*.DS_Store
-*.project
-*.vscode
+.DS_Store
+.project
+.vscode
 node_modules/
