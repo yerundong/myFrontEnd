@@ -2,4 +2,4 @@
 .project
 .vscode
 node_modules/
-.ool
+*.ool
