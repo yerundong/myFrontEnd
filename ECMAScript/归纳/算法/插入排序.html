@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>插入排序</title>
+</head>
+
+<body>
+    <script>
+        // 产生一个随机大数组
+        const makeRoundNumber = function () {
+            let arr = [];
+            for (let i = 0; i < 50000; i++) {
+                arr.push(Math.ceil(Math.random() * 10000));
+            }
+            return arr;
+        }
+        const randomList = makeRoundNumber();
+
+        // 插入排序
+        // 1、从第一个元素开始，该元素可以认为已经被排序；
+        // 2、取出下一个元素，在已经排序的元素序列中从后向前扫描；
+        // 3、如果该元素（已排序）大于新元素，将该元素移到下一位置；
+        // 4、重复步骤3，直到找到已排序的元素小于或者等于新元素的位置；
+        // 5、将新元素插入到该位置后；
+        // 6、重复步骤2~5。
+        // time：7000ms
+        function insertionSort(list) {　
+            const len = list.length;
+            for (let i = 1; i < len; i++) {　　　　
+                let key = list[i];　　　　
+                let j = i - 1;　　　　
+                while (list[j] > key) {　　　　　　
+                    list[j + 1] = list[j];　　　　　
+                    j--;　　　　
+                }　　　　
+                list[j + 1] = key;　　
+            }　　
+            return list;
+        }
+
+        console.time('insertionSort');
+        const insertSort = insertionSort(randomList);
+        console.timeEnd('insertionSort');
+        console.log(insertSort);
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>冒泡排序</title>
+</head>
+
+<body>
+    <script>
+        // 产生一个随机大数组
+        const makeRoundNumber = function () {
+            let arr = [];
+            for (let i = 0; i < 50000; i++) {
+                arr.push(Math.ceil(Math.random() * 10000));
+            }
+            return arr;
+        }
+        const randomList = makeRoundNumber();
+
+        // 冒泡排序（Bubble Sort）（处理时间为：4400ms）
+        // 比较相邻的元素。如果第一个比第二个大，就交换他们两个。
+        // 对每一对相邻元素作同样的工作，从开始第一对到结尾的最后一对。在这一点，最后的元素应该会是最大的数。
+        // 针对所有的元素重复以上的步骤，除了最后一个。
+        // 持续每次对越来越少的元素重复上面的步骤，直到没有任何一对数字需要比较
+
+        // 第一种：把大的数往上冒（从前往后）
+        // time:4650ms
+        const bubbleSort1 = function (list) {
+            let len = list.length,
+                temp;
+            for (let i = 0; i < len - 1; i++) {
+                for (let k = 0; k < len - 1 - i; k++) {
+                    if (list[k] > list[k + 1]) {
+                        temp = list[k];
+                        list[k] = list[k + 1];
+                        list[k + 1] = temp;
+                    }
+                }
+            }
+            return list;
+        }
+
+        // 第二种：把小的数往下沉（性能略胜一筹）（从后往前）
+        // time:4300ms
+        function bubbleSort2(list) {
+            let len = list.length,
+                temp;
+            for (let i = 0; i < len - 1; i++) {
+                for (let j = len - 1; j > i; j--) {
+                    if (list[j] < list[j - 1]) {
+                        temp = list[j];
+                        list[j] = list[j - 1];
+                        list[j - 1] = temp;
+                    }
+                }
+            }
+            return list;
+        }
+
+        // 第三种：进化版（性能更胜）
+        // time：3650ms
+        function bubbleSort3(list) {　　
+            let low = 0;　　
+            let high = list.length - 1; //设置变量的初始值
+            let tmp, j;　　
+            while (low < high) {　　　　
+                for (j = low; j < high; ++j) { //正向冒泡,找到最大者
+                    if (list[j] > list[j + 1]) {　　　　　　　　
+                        tmp = list[j];
+                        list[j] = list[j + 1];
+                        list[j + 1] = tmp;　　　　　　
+                    }　　　　
+                }　　　　
+                --high; //修改high值, 前移一位
+                　　　　
+                for (j = high; j > low; --j) { //反向冒泡,找到最小者
+                    if (list[j] < list[j - 1]) {　　　　　　　　
+                        tmp = list[j];
+                        list[j] = list[j - 1];
+                        list[j - 1] = tmp;　　　　　　
+                    }　　　　
+                }　　　　　
+                ++low; //修改low值,后移一位
+            }　　
+            return list;
+        }
+        
+        // 第四种：究极进化版（性能最佳）
+        // time：3000ms
+        function bubbleSort4(list) {　　
+            let low = 0;　　
+            let high = list.length - 1; //设置变量的初始值
+            let tmp, j;　　
+            while (low < high) {　　　　
+                let pos1 = 0,
+                    pos2 = 0;　　　　
+                for (let i = low; i < high; ++i) { //正向冒泡,找到最大者
+                    　　　　　　
+                    if (list[i] > list[i + 1]) {　　　　　　　　
+                        tmp = list[i];
+                        list[i] = list[i + 1];
+                        list[i + 1] = tmp;　　　　　　　　
+                        pos1 = i;　　　　　　
+                    }　　　　
+                }
+                high = pos1; // 记录上次位置
+                for (let j = high; j > low; --j) { //反向冒泡,找到最小者
+                    if (list[j] < list[j - 1]) {　　　　　　　　
+                        tmp = list[j];
+                        list[j] = list[j - 1];
+                        list[j - 1] = tmp;　　　　　　　　　　
+                        pos2 = j;　　　　　　
+                    }　　　　
+                }　　　　　　　　　　　
+                low = pos2; //修改low值
+            }　　
+            return list;
+        }
+
+        console.time('bubbleSort');
+        const list_sort = bubbleSort4(randomList);
+        console.timeEnd('bubbleSort');
+        // console.log(list_sort);
+    </script>
+</body>
+
+</html>
