@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>归并排序</title>
+</head>
+
+<body>
+    <script>
+        // 产生一个随机大数组
+        const makeRoundNumber = function () {
+            let list = [];
+            for (let i = 0; i < 50000; i++) {
+                list.push(Math.ceil(Math.random() * 10000));
+            }
+            return list;
+        }
+        const randomList = makeRoundNumber();
+
+        // 归并排序
+        // 归并排序是建立在归并操作上的一种有效的排序算法。该算法是采用分治法的一个非常典型的应用。
+        // 归并排序是一种稳定的排序方法。将已有序的子序列合并，得到完全有序的序列；即先使每个子序列有序，再使子序列间有序。
+        // 若将两个有序表合并成一个有序表，称为2-路归并。
+        // 1、把长度为n的输入序列分成两个长度为n/2的子序列；
+        // 2、对这两个子序列分别采用归并排序；
+        // 3、将两个排序好的子序列合并成一个最终的排序序列。
+        // time:90ms
+        function merge(left, right) {
+            let result = [];
+            while (left.length > 0 && right.length > 0) {
+                if (left[0] < right[0]) {
+                    /*shift()方法用于把数组的第一个元素从其中删除，并返回第一个元素的值。*/
+                    result.push(left.shift());
+                } else {
+                    result.push(right.shift());
+                }
+            }
+            return result.concat(left).concat(right);
+        }
+
+        function mergeSort(array) {
+            if (array.length == 1) {
+                return array;
+            }
+            let middle = Math.floor(array.length / 2),
+                left = array.slice(0, middle),
+                right = array.slice(middle);
+            return merge(mergeSort(left), mergeSort(right));
+        }
+
+
+        console.time('randomList');
+        const list_sort = mergeSort(randomList);
+        console.timeEnd('randomList');
+        console.log(list_sort);
+    </script>
+</body>
+
+</html>
