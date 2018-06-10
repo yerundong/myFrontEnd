@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="../../Lib/Jquery/jquery-3.3.1.min.js"></script>
+</head>
+<body>
+    <script>
+        // 还没完成！！！！！！！！！！！！！！！！！！
+        const api = {
+            get(option, callback){
+                let promise = new Promise((resolve, reject)=>{
+                    let xhr = new XMLHttpRequest();
+                    xhr.open(
+                        "GET",
+                        option.url,
+                        option.async || true
+                    );
+                    xhr.send();
+                    xhr.onreadystatechange = function () {
+                        if (xhr.readyState === 4) { // 响应内容已解析完成
+                            // 判断响应结果:
+                            if (xhr.status === 200) {
+                                // 成功，通过responseText拿到响应的文本:
+                                resolve(xhr.responseText)
+                            } else {
+                                // 失败，根据响应码判断失败原因:
+                                reject(xhr.responseText)
+                                debugger
+                            }
+                        } else {
+                            // HTTP请求还在继续...
+                        }
+                    }
+                });
+                return promise;
+            }
+        }
+        api.get({
+            url: 'http://www.runoob.com/try/ajax/demo_test.php',
+        }).then((res) => {
+            alert(res)
+        })
+        // $.ajax({
+        //     data:{
+        //         a:1
+        //     },
+        //     url: 'http://www.runoob.com/try/ajax/demo_test.php',
+        // })
+    </script>
+</body>
+</html>
