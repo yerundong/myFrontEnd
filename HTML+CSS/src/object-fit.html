@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<style>
+    *{
+        margin: 0;
+        padding: 0;
+    }
+    .title{
+        font-size: 20px;
+        font-weight: bold;
+        padding: 15px 0;
+    }
+    .wrapper{
+        width: 400px;
+        height: 400px;
+        border: 1px solid #ccc;
+        background: aqua;
+        resize: both;
+        overflow: hidden;
+    }
+    .wrapper>img{
+        /* 必须给img的壳的宽高设置100% */
+        width: 100%;
+        height: 100%;
+        background: red;
+    }
+    .fill{
+        object-fit: fill;
+    }
+    .contain{
+        object-fit: contain;
+    }
+    .cover{
+        object-fit: cover;
+    }
+    .none{
+        object-fit: none;
+    }
+    .scale-down{
+        object-fit: scale-down;
+    }
+    .position{
+        object-position: right top;
+    }
+</style>
+<body>
+    <div class="title">
+        object-fit用于控制“替换元素”（img,vedio,iframe...具有src属性的元素）的内容样式的，替换元素分为壳（容器）与替换内容，object-fit控制的永远是替换内容的尺寸表现
+    </div>
+    <p>object-fit: fill（默认）</p>
+    <div class="wrapper">
+        <img class="fill" src="../asset/objectfit1.png" alt="">
+    </div>
+    <p>object-fit: contain（不变形、不裁剪、去适应最大的边）</p>
+    <div class="wrapper">
+        <img class="contain" src="../asset/objectfit1.png" alt="">
+    </div>
+    <p>object-fit: contain（不变形、不裁剪、去适应最大的边）</p>
+    <div class="wrapper">
+        <img class="contain" src="../asset/objectfit2.png" alt="">
+    </div>
+    <p>object-fit: cover（裁剪、居中、去适应最小的边）</p>
+    <div class="wrapper">
+        <img class="cover" src="../asset/objectfit1.png" alt="">
+    </div>
+    <p>object-fit: cover（裁剪、居中、去适应最小的边）</p>
+    <div class="wrapper">
+        <img class="cover" src="../asset/objectfit2.png" alt="">
+    </div>
+    <p>object-fit: none（保持原始大小、居中）</p>
+    <div class="wrapper">
+        <img class="none" src="../asset/objectfit1.png" alt="">
+    </div>
+    <p>object-fit: none（保持原始大小、居中）</p>
+    <div class="wrapper">
+        <img class="none" src="../asset/objectfit2.png" alt="">
+    </div>
+    <p>object-fit: scale-down（具有动态特性）</p>
+    <div class="wrapper">
+        <img class="scale-down" src="../asset/objectfit1.png" alt="">
+    </div>
+    <p>object-fit: scale-down（具有动态特性，兼有contain、none的特性）</p>
+    <div class="wrapper">
+        <img class="scale-down" src="../asset/objectfit2.png" alt="">
+    </div>
+    <div class="title">
+        object-position是控制替换内容位置的。默认值是50% 50%，也就是居中效果。
+        支持left right top bottom作为参数
+    </div>
+    <div class="wrapper">
+        <img class="cover position" src="../asset/objectfit1.png" alt="">
+    </div>
+</body>
+</html>
