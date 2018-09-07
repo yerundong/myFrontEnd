@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<style>
+    #targetBox {
+        position: fixed;
+        top: 50px;
+        left: 0;
+        right: 0;
+        margin: auto;
+        width: 400px;
+        height: 400px;
+        border: 2px dashed #ccc;
+    }
+
+    #box {
+        width: 100px;
+        height: 100px;
+        background: red;
+        line-height: 100px;
+        text-align: center;
+    }
+</style>
+
+<body>
+    <!-- 
+        draggable="true|false|auto"
+        true 	规定元素是可拖动的。
+        false 	规定元素是不可拖动的。
+        auto 	使用浏览器的默认特性。
+        draggable 属性规定元素是否可拖动。
+     -->
+    <div></div>
+    <div id="box" draggable="true">drag
+        me</div>
+    <div id="targetBox"></div>
+    <!-- 
+        提示：链接和图像默认是可拖动的。可以禁用
+    -->
+    <!-- <img src="../../../HTML+CSS/asset/bear.png">
+    <a href="##">我是一条链接</a> -->
+    <script>
+        var oBox = document.querySelector("#box");
+        var oTargetBox = document.querySelector("#targetBox");
+        var oBody = document.querySelector("body");
+        // [dragstart/ondragstart]
+        // 拖拽开始时触发，只触发一次
+        oBox.addEventListener('dragstart', function (e) {
+            debugger
+            // console.log('dragstart');
+            // console.log(e);
+            e.dataTransfer.setData("_id", e.target.id); // 储存拖拽信息
+        }, false);
+
+        // [dragenter/ondragenter]
+        // 处于拖动状态，光标进入目标元素内拖动就触发一次，出了目标元素就不触发了
+        oBox.addEventListener('dragenter', function (e) {
+            // console.log('dragenter');
+            // console.log(e);
+        }, false);
+
+        // [drag/ondrag]
+        // 拖拽全过程中[不断触发]
+        oBox.addEventListener('drag', function (e) {
+            // console.log('drag');
+            // console.log(e);
+        }, false);
+
+        // [dragover/ondragover]
+        // 处于拖动状态，光标在目标元素内拖动[不断触发]，出了目标元素就不触发了
+        oBox.addEventListener('dragover', function (e) {
+            // console.log('dragover');
+            // console.log(e);
+            e.preventDefault();
+        }, false);
+
+        // [dragleave/ondragleave]
+        // 处于拖动状态，光标离开目标元素内就触发一次
+        oBox.addEventListener('dragleave', function (e) {
+            // console.log('dragleave');
+            // console.log(e);
+        }, false);
+
+        // [dragend/ondragend]
+        // 拖拽结束触发
+        oBox.addEventListener('dragend', function (e) {
+            // console.log('dragend');
+            // console.log(e);
+        }, false);
+
+        // 目标区域的dragover需要阻止dragover的浏览器默认事件，否则不触发drop事件
+        oTargetBox.addEventListener('dragover', function (e) {
+            e.preventDefault();
+        }, false);
+        // [drop/ondrop]
+        // 光标在目标元素内发生拖拽结束事件（ondragend）就会触发drop事件
+        oTargetBox.addEventListener("drop", function (e) {
+            console.log('drop');
+            console.log(e);
+            var _id = e.dataTransfer.getData("_id");
+            var dragBox = document.querySelector("#" + _id);
+            console.dir(dragBox);
+            this.appendChild(dragBox);
+        }, false);
+    </script>
+</body>
+
+</html>
