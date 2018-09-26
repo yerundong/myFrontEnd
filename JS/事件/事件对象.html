@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script>
+        //事件处理有三部分组成：对象.事件=函数
+        function fn1(){
+            alert(this);
+        }
+        document.onclick = function () {
+            //alert(this);//[object HTMLdocument]  this指向的是【事件所属的对象】
+        };
+        //document.onclick = fn1;//事件onclick绑定了fn1，所以this指向的是【事件所属的对象】--document
+        //fn1();//函数没有被绑定，this指向的是window对象;
+
+        //【事件对象】概念：
+        /*当触发某个事件时，会【自动产生】一个事件对象，这个对象包含着所有与这个事件相关的信息；
+        包括导致事件的元素，事件的类型，以及其他与事件相关的信息。事件对象，我们一般称为：event对象，
+        这个对象是浏览器【通过函数把这个对象作为参数】传递过来的。
+        */
+        //获取事件对象
+        document.onclick = function (ev) {//ev：用来【接收浏览器传过来的事件对象参数】，这样就不用argument，便于获取
+            //alert(arguments.length);//1  arguments代表传递过来的事件参数
+            //alert(arguments[0])//object MouseEvent-鼠标事件对象；还有KeyboardEvent-键盘事件对象；Event-HTML事件对象
+            //alert(ev);//通过参数的方式接收对象【IE8及以下是不存在ev的，即ev是undefined】
+            //【兼容写法】：ev||window.event
+            var ev = ev||window.event;
+            //alert(ev);
+        }
+    </script>
+</head>
+<body>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
