@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <div>
+        file1：<input type="file" id="file1" onchange="fileChange1(this)">
+        <img src="../../../asset/3.jpg" id="img">
+    </div>
+    <script>
+        // FileReader 对象允许Web应用程序异步读取存储在用户计算机上的文件（或原始数据缓冲区）的内容，
+        // 使用 File 或 Blob 对象指定要读取的文件或数据。
+        function fileChange1(obj) {
+            // 获取file对象（blob）
+            let file = obj.files[0];
+            // 创建一个FileReader对象
+            let frder = new FileReader();
+            // console.log(frder);
+            // 方法: abort(),readAsArrayBuffer(),readAsBinaryString(),readAsDataURL(),readAsText()
+            // 1.readAsText(blob[, encoding]);
+            // 将 Blob 或者 File 对象转根据特殊的编码格式转化为内容(字符串形式)，这个方法是异步的，也就是说，只有当执行完成后才能够查看到结果
+            // frder.readAsText(file);
+            // 2.readAsDataURL(blob);
+            // 将 Blob 或者 File 对象转根据特殊的编码格式转化为内容(base64形式)，这个方法是异步的，也就是说，只有当执行完成后才能够查看到结果
+            frder.readAsDataURL(file);
+            // 3.readAsArrayBuffer(blob);
+            // 将 Blob 或者 File 对象转根据特殊的编码格式转化为内容(ArrayBuffer形式)，这个方法是异步的，也就是说，只有当执行完成后才能够查看到结果
+            // frder.readAsArrayBuffer(file);
+            // 4.abort();
+            // 该方法可以取消 FileReader 的读取操作，触发之后 readyState 为已完成（DONE）。
+            
+            frder.addEventListener('load', e => {
+                let res = e.target.result;
+                console.log(res);
+            }, false)
+        }
+
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <!--  标签每出现一次，一个 FileUpload 对象就会被创建。 -->
+    <div>
+        file1：<input type="file" id="file1" onchange="fileChange1(this)">
+    </div>
+    <div>
+        file2：<input type="file" id="file2">
+    </div>
+    <div>
+        <!-- accept属性，不设默认接受全部文件 -->
+        <!-- 如果不限制图像的格式，可以写为：accept="image/*" -->
+        file3：<input type="file" id="file3" accept="text/*">
+    </div>
+    <div>
+        file4：<input type="file" id="file4" multiple>
+    </div>
+
+    <script>
+        // 文件(File) 接口提供有关文件的信息， 并允许网页中的 JavaScript 访问其内容。
+        // 通常情况下， File 对象是来自用户在一个 < input > 元素上选择文件后返回的 FileList 对象, 也可以是来自由拖放操作生成的 DataTransfer 对象， 
+        // 或者来自 HTMLCanvasElement 上的 mozGetAsFile() API。
+        // File 对象是[特殊类型的 Blob]， 且可以用在任意的 Blob 类型的 context 中，File 接口没有定义任何方法，但是[继承了Blob接口的方法]。 
+        // 比如说， FileReader, URL.createObjectURL(), createImageBitmap(), 及 XMLHttpRequest.send() 都能处理 Blob 和 File。
+
+        // file标签触发事件的流程是下面这样的：
+        // （ 1） mousedown
+        // （ 2） focus
+        // （ 3） mouseup
+        // （ 4） click
+        // （ 5） blur
+        // （ 6） focus
+        // （ 7） change
+        function fileChange1(obj) {
+            // 获取File对象(包含name，type等相关属性)
+            let f = obj.files[0];
+            console.log(f);
+            console.log(typeof f);
+        }
+
+        const oFile2 = document.querySelector("#file2");
+        oFile2.addEventListener('change', e => {
+            // 获取File对象(包含name，type等相关属性)
+            let f = oFile2.files[0];
+            // console.log(f); // object
+        }, false);
+
+        const oFile4 = document.querySelector("#file4");
+        oFile4.addEventListener('change', e => {
+            // 获取FileList对象
+            let FileList = oFile4.files;
+            console.dir(FileList);
+        }, false);
+
+        //也可以直接用File() 构造器创建新的 File 对象实例。
+        // var myFile = new File(bits, name[, options]);
+        // bits：ArrayBuffer，ArrayBufferView，Blob，或者 DOMString 对象的 Array — 或者任何这些对象的组合。这是 UTF-8 编码的文件内容。
+        // name：USVString，表示文件名称，或者文件路径。
+        // options：可选 选项对象，包含文件的可选属性。可用的选项如下：
+        //     type: DOMString，表示将要放到文件中的内容的 MIME 类型。默认值为 "" 。
+        //     lastModified: 数值，表示文件最后修改时间的 Unix 时间戳（毫秒）。默认值为 Date.now()。
+
+        let file = new File(["foof"], "foo.txt", {
+            type: "text/plain",
+        });
+        console.log(file);
+    </script>
+</body>
+
+</html>

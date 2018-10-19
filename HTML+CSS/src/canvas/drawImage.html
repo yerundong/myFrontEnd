@@ -36,10 +36,7 @@
         ctx.fillRect(0,0,1400,800);
         // 图片
         const img = new Image();
-        img.src = "https://bpic.588ku.com/element_pic/00/16/08/1157ac888389bc5.jpg!/fw/254/quality/90/unsharp/true/compress/true";
-        // 受限于 CORS 策略，会存在跨域问题，虽然可以使用图像（比如append到页面上）但是绘制到画布上会污染画布，一旦一个画布被污染,就无法提取画布的数据，
-        // 比如无法使用使用画布toBlob(),toDataURL(),或getImageData()方法;当使用这些方法的时候 会抛出一个安全错误
-        img.setAttribute("crossOrigin",'Anonymous');
+        img.src = "../../asset/2.jpg";
 
         // [drawImage(image, sx, sy, sw, sh, dx, dy, dw, dh)]
         // img 	规定要使用的图像、画布或视频。(必填)
@@ -62,9 +59,8 @@
         
         img.onload = function () { // 待img加载完成之后才能绘制
             ctx.drawImage(img, 0, 0);
-            // ctx.drawImage(img, 100, 0, 100, 200);
-            // ctx.drawImage(img, 0, 0, 30, 30, 300, 0, 100, 200);
-            console.log(oCavs.toDataURL("image/png", 1.0));
+            ctx.drawImage(img, 100, 0, 100, 200);
+            ctx.drawImage(img, 0, 0, 30, 30, 300, 0, 100, 200);
         }
 
         // 视频
