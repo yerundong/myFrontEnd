@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // [介绍]
+        // Blob 对象表示一个不可变、原始数据的类文件对象。Blob 表示的不一定是JavaScript原生格式的数据。
+        // Blob对象可以看做是存放二进制数据的容器，此外还可以通过Blob设置二进制数据的MIME类型。
+        // File 接口基于Blob，继承了 blob 的功能并将其扩展使其支持用户系统上的文件。
+
+        // [构造函数]
+        // new Blob( array, options );
+        // array 是一个由ArrayBuffer, ArrayBufferView, Blob, DOMString 等对象构成的 Array， 或者其他类似对象的混合体， 它将会被放进 Blob。 DOMStrings会被编码为UTF-8。
+        // options 是一个可选的BlobPropertyBag字典， 它可能会指定如下两个属性：
+        //     type， 默认值为 ""，它代表了将会被放入到blob中的数组内容的MIME类型。
+        //     endings， 默认值为 "transparent"，用于指定包含行结束符\ n的字符串如何被写入。 它是以下两个值中的一个： "native"，代表行结束符会被更改为适
+        //     合宿主操作系统文件系统的换行符， 或者 "transparent"，代表会保持blob中保存的结束符不变
+
+        // 1.装填DOMString对象的Blob对象
+        const domstr = '<div>hello</div>';
+        const blob1 = new Blob([domstr], {type : 'text/html'});
+        // console.log(blob1);
+
+        // 2.装填ArrayBuffer对象的Blob对象
+        const arrbff = new ArrayBuffer(8);
+        const blob2 = new Blob([arrbff], {type : 'text/plain'});
+        // console.log(blob2);
+
+        // 3.装填ArrayBufferView对象的Blob对象
+        const arrbffv = new Int16Array(arrbff);
+        const blob3 = new Blob(arrbffv, {type : 'text/plain'});
+        // console.log(blob3);
+
+        // [属性]
+        // size:返回一个File对象所指代的文件的大小，单位为字节。
+        // console.log(blob2.size);// 8
+        // type:返回 Blob 对象的 MIME 类型。如果类型无法确定，则返回空字符串。
+        // console.log(blob2.type);// text/plain
+
+        
+    </script>
+</body>
+
+</html>
