@@ -44,6 +44,14 @@
         // type:返回 Blob 对象的 MIME 类型。如果类型无法确定，则返回空字符串。
         // console.log(blob2.type);// text/plain
 
+        // 读取blob
+        let frder = new FileReader();
+        frder.readAsDataURL(blob1);
+        frder.addEventListener('load', e => {
+            let res = e.target.result;
+            // console.log(res);
+        }, false);
+
         
     </script>
 </body>

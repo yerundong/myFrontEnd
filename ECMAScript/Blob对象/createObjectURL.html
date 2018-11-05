@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <input type="file" id="file">
+    <button>download</button>
+    <script>
+        let ofile = document.querySelector("#file");
+        let btn = document.querySelector("button");
+        ofile.addEventListener('change', (e) => {
+            let file = ofile.files[0];
+            let url = window.URL.createObjectURL(file);
+            console.log(url);
+            window.open(url);
+            // let frder = new FileReader();
+            // frder.readAsDataURL(file);
+            // frder.addEventListener('load', e => {
+            //     let res = e.target.result;
+            //     console.log(res);
+            //     // console.log(res);
+            //     // btn.addEventListener('click', () => {
+            //         // location.href = res
+            //         // window.open(res);
+            //     // }, false)
+            // }, false);
+            }, false)
+        
+    </script>
+</body>
+
+</html>
