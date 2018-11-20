@@ -10,15 +10,21 @@
 
 <body>
     <input type="file" id="file">
+    <a>下载</a>
     <button>download</button>
     <script>
         let ofile = document.querySelector("#file");
         let btn = document.querySelector("button");
+        let oa = document.querySelector("a");
         ofile.addEventListener('change', (e) => {
             let file = ofile.files[0];
+            let name = ofile.files[0].name;
+            // blob协议的URL
             let url = window.URL.createObjectURL(file);
+            oa.href = url;
+            oa.download = name;
             console.log(url);
-            window.open(url);
+            // window.open(url);
             // let frder = new FileReader();
             // frder.readAsDataURL(file);
             // frder.addEventListener('load', e => {
