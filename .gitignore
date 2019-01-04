@@ -3,3 +3,5 @@
 .vscode
 *.ini
 node_modules/
+.history/
+~$*
