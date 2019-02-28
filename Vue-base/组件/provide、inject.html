@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script src="../common/vue.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+	<style type="text/css">
+		*{
+			padding: 0;
+			margin: 0;
+		}
+	</style>
+	<body>
+		<div id="app1">
+            {{aa}}
+		</div>
+		<script type="text/javascript">
+			var vm = new Vue({
+				el:'#app1',
+				data:{
+					aa: 112
+				}
+			});
+		</script>
+	</body>
+</html>

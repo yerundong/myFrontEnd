@@ -1,22 +1,23 @@
 var comp = {
     data() {
-        return{
+        return {
             msg: '我是comp'
-        }    
+        }
     },
-    props:{
-        
+    props: {
+
     },
     created() {
-        
+
     },
     methods: {
-        alert(){
+        alert() {
             alert(this.msg)
         }
     },
     template: `
         <div class="comp-wrap">
+            <link rel="stylesheet" href="./components/comp.css">
             <p @click="alert">{{msg}}</p>	
         </div> 
     `,

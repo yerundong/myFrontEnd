@@ -1,0 +1,8 @@
+@import "../../style/guide.wxss";
+
+.box {
+}
+
+.box>view {
+  color: red;
+}
