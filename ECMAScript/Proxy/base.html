@@ -12,6 +12,7 @@
     <script>
         // Proxy 对象用于定义基本操作的自定义行为，用于修改某些操作的【默认行为】，等同于在语言层面做出修改，所以属于一种“元编程”（meta programming），
         // 即对编程语言进行编程（如属性查找，赋值，枚举，函数调用等）。
+        // Proxy 这个词的原意是代理，用在这里表示由它来“代理”某些操作，可以译为“代理器”。
         // 实例化：
         // let p = new Proxy(target, handler);
         // target
@@ -24,7 +25,7 @@
         proxy1.b = 2;
         // console.log(proxy1);
 
-        // Proxy 实际上重载（overload）了点运算符，即用自己的定义覆盖了语言的原始定义。
+        // 以下例子Proxy 重载（overload）了点运算符，即用自己的定义覆盖了语言的原始定义。
         let proxy2 = new Proxy({a: 1}, {
             get: function (target, key, receiver) {
                 // console.log(`getting ${target}!`);
@@ -53,9 +54,6 @@
         // console.log(proxy3.a);// 666
         // console.log(proxy3.b);// 2
         // console.log(proxy3.c);// 666
-
-
-
     </script>
 </body>
 
