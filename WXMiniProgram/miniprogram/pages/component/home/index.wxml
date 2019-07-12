@@ -1,0 +1,8 @@
+<view class="container main-wrapper common_css">
+  <div>
+    <comp1 prop1='{{msg2}}'></comp1>
+    <comp2></comp2>
+    <global-comp1></global-comp1>
+    <span class="glbfts">home home home</span>
+  </div>
+</view>

@@ -7,11 +7,15 @@
 		"postcss": true,
 		"minified": true,
 		"newFeature": true,
-		"autoAudits": false
+		"autoAudits": false,
+		"nodeModules": true
 	},
 	"appid": "wx63930b9d12a42a99",
 	"projectname": "WXMiniProgram",
-	"libVersion": "2.4.0",
+	"libVersion": "2.7.4",
+	"simulatorType": "wechat",
+	"simulatorPluginLibVersion": {},
+	"compileType": "miniprogram",
 	"condition": {
 		"search": {
 			"current": -1,

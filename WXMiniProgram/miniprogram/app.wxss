@@ -5,3 +5,6 @@
   align-items: center;
   box-sizing: border-box;
 } 
+.glbfts{
+  font-size: 20rpx;
+}

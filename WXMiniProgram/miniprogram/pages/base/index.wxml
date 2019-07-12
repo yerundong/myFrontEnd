@@ -1,0 +1,6 @@
+<view class="main-wrapper">
+  <div>
+    msg1：{{msg1}}
+  </div>
+</view>
+

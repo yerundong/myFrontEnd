@@ -1,0 +1,12 @@
+/* 
+组件对应 wxss 文件的样式，只对组件wxml内的节点生效。编写组件样式时，需要注意以下几点：
+组件和引用组件的页面不能使用id选择器（#a）、属性选择器（[a]）和标签名选择器，请改用class选择器
+
+父组件的样式一定会作用到子组件，而子组件样式不一定会作用到父组件，可通过styleIsolation设置
+*/
+.comp1_wrapper{
+    background: red;
+}
+.common_css{
+    color: blue;
+}

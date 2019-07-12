@@ -1,0 +1,8 @@
+{
+  "ex": "对本页面的窗口表现单独进行配置。会覆盖 app.json 的 window 中相同的配置项。",
+  "navigationBarTitleText": "base",
+  "usingComponents": {
+    "comp1": "../comp1",
+    "comp2": "../comp2"
+  }
+}

@@ -1,19 +1,29 @@
 {
+  "ex": "全局配置",
   "pages": [
-    "pages/demo/demo1",
     "pages/index/index",
-    "pages/userConsole/userConsole",
-    "pages/storageConsole/storageConsole",
-    "pages/databaseGuide/databaseGuide",
-    "pages/addFunction/addFunction",
-    "pages/deployFunctions/deployFunctions",
-    "pages/chooseLib/chooseLib"
+    "pages/base/index",
+    "pages/component/home/index"
   ],
+  "usingComponents": {
+    "global-comp1": "components/globalComp1/index"
+  },
   "window": {
-    "backgroundColor": "#F6F6F6",
-    "backgroundTextStyle": "light",
-    "navigationBarBackgroundColor": "#F6F6F6",
-    "navigationBarTitleText": "云开发 QuickStart",
-    "navigationBarTextStyle": "black"
-  }
+    "navigationBarBackgroundColor": "#000",
+    "navigationBarTitleText": "base"
+  },
+  "networkTimeout": {
+    "request": 10000,
+    "downloadFile": 10000
+  },
+  "debug": true,
+  "navigateToMiniProgramAppIdList": [
+    "wx63930b9d12a42a99"
+  ],
+  "permission": {
+    "scope.userLocation": {
+      "desc": "你的位置信息将用于小程序位置接口的效果展示"
+    }
+  },
+  "sitemapLocation": "sitemap.json"
 }
