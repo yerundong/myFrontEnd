@@ -1,0 +1,52 @@
+<view class="main-wrapper">
+    <view class="section__title">movable-view区域小于movable-area</view>
+    <!-- movable-area 必须设置width和height属性，不设置默认为10px -->
+    <movable-area style="height: 200px; width: 200px; background: red;">
+        <movable-view style="height: 50px; width: 50px; background: blue;" x="{{x}}" y="{{y}}" direction="all"></movable-view>
+    </movable-area>
+    <view class="btn-area">
+        <button size="mini" bindtap="tap">click me to move to (30px, 30px)</button>
+    </view>
+    <view class="section__title" style="margin-top: 30px">movable-view区域大于movable-area</view>
+    <movable-area style="height: 100px; width: 100px; background: red;">
+        <movable-view style="height: 200px; width: 200px; border: 1px solid #808080;text-align: center;line-height: 200px" direction="all">
+            text
+        </movable-view>
+    </movable-area>
+    <view class="section__title" style="margin-top: 130px">movable-view可放缩</view>
+    <movable-area style="height: 200px; width: 200px; background: red;" scale-area>
+        <movable-view scale scale-min="0.5" scale-max="2" scale-value="{{scale}}" direction="all" bind:change="onChange" bind:scale="onScale" style="height: 50px; width: 50px; background: blue;">
+            可放缩
+        </movable-view>
+    </movable-area>
+    <view>
+        <button size="mini" bind:tap="cscale" data-scale="2">click me to scale to 2</button>
+    </view>
+    <view>
+        <button size="mini" bind:tap="cscale" data-scale="1">click me to scale to 1</button>
+    </view>
+    <view class="page-section">
+        <view class="page-section-title">只可以横向移动</view>
+        <movable-area>
+            <movable-view direction="horizontal">text</movable-view>
+        </movable-area>
+    </view>
+    <view class="page-section">
+        <view class="page-section-title">只可以纵向移动</view>
+        <movable-area>
+            <movable-view direction="vertical">text</movable-view>
+        </movable-area>
+    </view>
+    <view class="page-section">
+        <view class="page-section-title">可超出边界</view>
+        <movable-area>
+            <movable-view direction="all" out-of-bounds>text</movable-view>
+        </movable-area>
+    </view>
+    <view class="page-section">
+    <view class="page-section-title">带有惯性</view>
+    <movable-area>
+      <movable-view direction="all" friction="1" inertia>text</movable-view>
+    </movable-area>
+  </view>
+</view>

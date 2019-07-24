@@ -97,6 +97,11 @@ Page({
   },
   setFn(){
     // setData 函数用于将数据从逻辑层发送到视图层（异步），同时改变对应的 this.data 的值（同步）。
+    // 注意：
+    // 直接修改 this.data 而不调用 this.setData 是无法改变页面的状态的，还会造成数据不一致。
+    // 仅支持设置可 JSON 化的数据。
+    // 单次设置的数据不能超过1024kB，请尽量避免一次设置过多的数据。
+    // 请不要把 data 中任何一项的 value 设为 undefined ，否则这一项将不被设置并可能遗留一些潜在问题。
     this.data.obj.a = 2;
     this.setData({
       msg1: 'kamehameha',

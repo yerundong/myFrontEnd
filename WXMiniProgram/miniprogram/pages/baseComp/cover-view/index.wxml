@@ -1,0 +1,8 @@
+<view class="main-wrapper">
+    <!-- 
+        为了解决原生组件层级最高的限制。小程序专门提供了 cover-view 和 cover-image 组件，
+        可以覆盖在部分原生组件上面。这两个组件也是原生组件，但是使用限制与其他原生组件有所不同。 
+    -->
+    <image src="../../../images/yintao.png" mode="aspectFit|aspectFill|widthFix" lazy-load="false" binderror="" bindload="" />
+    <cover-image src="../../../images/yintao.png" bindload></cover-image>
+</view>

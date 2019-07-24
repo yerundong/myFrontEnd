@@ -1,0 +1,18 @@
+.vertical_wrap{
+    height: 200px;
+    background: yellowgreen;
+}
+.vertical_item {
+    height: 100px;
+}
+
+.horizontal_wrap{
+    height: 100px;
+    white-space: nowrap;
+}
+
+.horizontal_item {
+    display: inline-block;
+    width: 300px;
+    height: 100px;
+}
