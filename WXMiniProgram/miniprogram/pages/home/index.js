@@ -1,12 +1,10 @@
-const app = getApp()
-
 Page({
   data: {
 
   },
 
   onLoad() {
-    wx.navigateTo({ url: '/pages/component/home/index'})
+    // wx.navigateTo({ url: '/pages/behaviors/index'})
   },
   jump(e){
     console.log(e.target.dataset.url)

@@ -5,14 +5,17 @@ const app = getApp();
 // Page() 注册一个页面。
 Page({
   data: {
-    msg1: '123'
+    msg1: '123',
+    obj: {
+      a: 1
+    }
   },
   // 以下是页面的生命周期
   /**
    * @method 监听页面加载
    */
   onLoad() {
-    // console.log('-------onLoad--------');
+    console.log('-------onLoad--------');
     // console.log(this);
     // getCurrentPages() 获取当前页面栈。数组中第一个元素为首页，最后一个元素为当前页面。
     // 不要在 App.onLaunch 的时候调用 getCurrentPages()，此时 page 还没有生成
@@ -91,5 +94,19 @@ Page({
   onTabItemTap(options) {
     // console.log('-------onTabItemTap--------');
     // console.log(options);
+  },
+  setFn(){
+    // setData 函数用于将数据从逻辑层发送到视图层（异步），同时改变对应的 this.data 的值（同步）。
+    this.data.obj.a = 2;
+    this.setData({
+      msg1: 'kamehameha',
+      obj: {
+        a: 123
+      },
+    }, function () {
+      console.log('BOOOOOOOM!!!');
+    })
+    console.log(this.data.msg1);
+    console.log(this.data.obj);
   },
 })

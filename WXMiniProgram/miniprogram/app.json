@@ -1,9 +1,12 @@
 {
   "ex": "全局配置",
   "pages": [
-    "pages/index/index",
+    "pages/home/index",
     "pages/base/index",
-    "pages/component/home/index"
+    "pages/customComp/father/index",
+    "pages/baseComp/index",
+    "pages/event/index",
+    "pages/behaviors/index"
   ],
   "usingComponents": {
     "global-comp1": "components/globalComp1/index"

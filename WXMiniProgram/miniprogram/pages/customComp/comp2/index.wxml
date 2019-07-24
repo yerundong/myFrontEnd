@@ -1,0 +1,3 @@
+<view class="comp2_wrapper common_css" bind:tap="comp2Tap">
+    我是comp2
+</view>

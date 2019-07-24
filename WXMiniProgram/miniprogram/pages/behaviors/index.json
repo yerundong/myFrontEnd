@@ -1,0 +1,7 @@
+
+{
+  "navigationBarTitleText": "behaviors",
+  "usingComponents": {
+    "comp": "./components/index"
+  }
+}

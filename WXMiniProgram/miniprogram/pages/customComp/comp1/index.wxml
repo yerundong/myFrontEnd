@@ -1,0 +1,6 @@
+<view class="comp1_wrapper common_css">
+    <view>父组件数据：{{prop1}}</view>
+    <view>子组件数据：{{someData.msg}}</view>
+    <view class="glbfts">copm1 copm1 copm1</view>
+    我是slot: <slot/>
+</view>

@@ -1,6 +1,5 @@
 <view class="main-wrapper">
-  <div>
     msg1：{{msg1}}
-  </div>
+    <button bind:tap="setFn">setData</button>
 </view>
 

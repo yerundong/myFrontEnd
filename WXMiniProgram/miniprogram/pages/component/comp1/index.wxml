@@ -1,5 +1,0 @@
-<view class="comp1_wrapper common_css">
-    父组件数据：{{prop1}}
-    子组件数据：{{someData.msg}}
-    <span class="glbfts">copm1 copm1 copm1</span>
-</view>

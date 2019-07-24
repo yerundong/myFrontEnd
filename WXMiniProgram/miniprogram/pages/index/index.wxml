@@ -1,5 +1,0 @@
-<!--index.wxml-->
-<view class="container">
-  <view bindtap="jump" data-url="/pages/base/index">base</view>
-  <view bindtap="jump" data-url="/pages/component/home/index">组件</view>
-</view>

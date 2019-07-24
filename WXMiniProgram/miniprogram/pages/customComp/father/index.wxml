@@ -1,0 +1,10 @@
+<view class="container main-wrapper common_css">
+  <div>
+    <comp1 prop1='{{msg2}}' bind:tap="comp1Tap" id="comp1">
+      <comp2 bind:cusEvent="cusFn"></comp2>
+    </comp1>
+    <comp2 bind:cusEvent="cusFn"></comp2>
+    <global-comp1></global-comp1>
+    <div class="glbfts">home home home</div>
+  </div>
+</view>

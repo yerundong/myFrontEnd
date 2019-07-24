@@ -19,6 +19,13 @@ Component({
   },
   methods: {
     // 这里是一个自定义方法
-    customMethod: function () {}
+    customMethod() {},
+    comp2Tap(){
+      // 去触发自定义事件
+      this.triggerEvent('cusEvent', {
+        aaa: 123,
+        bbb: 321
+      }, { bubbles: false, composed: false });
+    }
   }
 })

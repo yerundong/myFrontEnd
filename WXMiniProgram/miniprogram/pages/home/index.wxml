@@ -1,0 +1,7 @@
+<!--index.wxml-->
+<view class="menu_wrapper">
+  <view class="menuIterm" bindtap="jump" data-url="/pages/base/index">base</view>
+  <view class="menuIterm" bindtap="jump" data-url="/pages/customComp/father/index">自定义组件</view>
+  <view class="menuIterm" bindtap="jump" data-url="/pages/event/index">事件</view>
+  <view class="menuIterm" bindtap="jump" data-url="/pages/behaviors/index">behaviors</view>
+</view>
