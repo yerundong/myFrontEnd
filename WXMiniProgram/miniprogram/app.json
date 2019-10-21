@@ -1,12 +1,13 @@
 {
   "ex": "全局配置",
   "pages": [
+    "pages/home/index",
+    "pages/baseComp/swiper/index",
     "pages/baseComp/scroll-view/index",
     "pages/render/wxfor/index",
     "pages/render/wxif/index",
     "pages/baseComp/cover-view/index",
     "pages/baseComp/movable/index",
-    "pages/home/index",
     "pages/base/index",
     "pages/customComp/father/index",
     "pages/baseComp/base/index",

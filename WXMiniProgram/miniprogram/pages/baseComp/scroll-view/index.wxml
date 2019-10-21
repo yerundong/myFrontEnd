@@ -11,4 +11,16 @@
   <scroll-view class="horizontal_wrap" scroll-x>
     <view class="horizontal_item" id="{{item.color}}" wx:for="{{scrollList}}" wx:key="index" style="background: {{item.color}}"></view>
   </scroll-view>
+  <view>普通 scroll</view>
+  <view class="commonScroll">
+    <view>1111111</view>
+    <view>1111111</view>
+    <view>1111111</view>
+    <view>1111111</view>
+    <view>1111111</view>
+    <view>1111111</view>
+    <view>1111111</view>
+    <view>1111111</view>
+    <view>1111111</view>
+  </view>
 </view>
