@@ -17,7 +17,7 @@
             fn.fn_ = function () {
                 console.log(4);
             }
-            // return fn;
+            return fn;
         }
         Fn.fn = function () {
             console.log(2);
@@ -28,14 +28,14 @@
         Fn.prototype.fn = function () {
             console.log(5);
         }
-        // Fn.__proto__.fn = function () {
-        //     console.log(6);
-        // }
-        // Fn()();// 1
-        // Fn.fn();// 2 自身属性的优先级大于__proto__
-        // fn();// 3
-        // Fn().fn_();// 4
-        // Fn.prototype.fn();// 5
+        Fn.__proto__.fn = function () {
+            console.log(6);
+        }
+        Fn()();// 1
+        Fn.fn();// 2 自身属性的优先级大于__proto__
+        fn();// 3
+        Fn().fn_();// 4
+        Fn.prototype.fn();// 5
     </script>
 </body>
 

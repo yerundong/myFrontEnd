@@ -9,7 +9,7 @@
 <body>
 	<script type="text/javascript">
 		// [单个参数写法]
-		// v => v+1:v是参数，返回v+1
+		// v => v+1; v是参数，返回v+1
 		let fn = v => v + 1;
 		// 相当于于：
 		// let fn = function (v) {
@@ -55,8 +55,8 @@
 		// console.log(getSum([1,23,65,54,65,6,45,65,1]));
 
 		// [this指向]
-		// 在箭头函数中，this指向是固定的,永远[指向定义时所在的对象]
-		// 而function定义的函数this是可变的，[指向运行时所在的对象]
+		// 在箭头函数中，this指向是固定的,永远[指向函数定义时所在的对象]
+		// 而function定义的函数this是可变的，[指向函数运行时所在的对象]
 		// 箭头函数里面根本没有自己的this，而是引用外层的this
 		// 由于箭头函数没有自己的this，所以也就不能用call()、apply()、bind()方法去改变this的指向。
 		let zaza = () => { console.log(this) }
