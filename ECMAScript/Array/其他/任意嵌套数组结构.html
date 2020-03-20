@@ -1,35 +1,45 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
 </head>
+
 <body>
     <script>
-        let arr = [1,2,3,[1,2,[1,2,3,[1,2,3],[8,8,9]]],[4,5,6]];
-        function handle(...list) {
+        let arr = [1, 2, 3, [4, 5, [6, 7, 8, [9, 10, 11], [12, 13, 14]]], [15, 16, [17, [18, [19, 20]]]]];
+        // 法1：
+        function handle1(list) {
             let arr = [];
-            let ar = list[0];
             let flag = false;
-            for (let i = 0, val; val = ar[i++];) {
-                if(Array.isArray(val)){
+            for (let i = 0, val; val = list[i++];) {
+                if (Array.isArray(val)) {
                     arr.push(...val);
                     flag = true;
-                }else{
+                } else {
                     arr.push(val)
                 }
             }
-            if(flag){
-                return handle(arr)
-            }else{
+            if (flag) {
+                return handle1(arr)
+            } else {
                 return arr
             }
         }
+        // let list1 = handle1(arr);
+        // console.log(list1);
 
-        let list = handle(arr);
-        console.log(list);
+        // 法2：
+        function handle2(list) {
+            const flattened = [].concat(...list);
+            return flattened.some(item => Array.isArray(item)) ? handle2(flattened) : flattened;
+        }
+        // let list2 = handle2(arr);
+        // console.log(list2);
     </script>
 </body>
+
 </html>

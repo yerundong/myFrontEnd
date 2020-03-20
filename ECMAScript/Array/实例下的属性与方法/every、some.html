@@ -15,12 +15,12 @@
 					return true;
 				}
 			});
-//			console.log(_arrbool);
+//			console.log(_arrbool);// true
 			
 			//some():对数组检测，返回布尔值
 			//若对数组的有一项返回true,则返回true，【若都为false或都未返回】，则返回false
 			let arr2 = [1,2,3];
-			let _arr2bool = arr2.some(function (value, index, array) {
+			let _arr2bool = arr2.some((value, index, array) => {
 				//判断该书组是否存在一项为number类型，并且大于2的元素
 				if(!isNaN(value) && value>2){
 					return true;

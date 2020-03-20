@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+</head>
+
+<body>
+	<script type="text/javascript">
+		const obj1 = {
+			a: 1,
+			fn(val) {
+				alert(val)
+			}
+		}
+		// 对象的每个属性都有一个描述对象（Descriptor），用来控制该属性的行为
+		// [getOwnPropertyDescriptor]:返回对象下某个属性的描述对象
+		const descriptor_a = Object.getOwnPropertyDescriptor(obj1, 'a');
+		const descriptor_fn = Object.getOwnPropertyDescriptor(obj1, 'fn');
+		// [getOwnPropertyDescriptor]:返回对象下所有属性的描述对象的
+		const descriptors = Object.getOwnPropertyDescriptors(obj1);
+		//	console.log(descriptor_a)
+		//	console.log(descriptor_fn)
+		console.log(descriptors)
+
+			// descriptor有四个属性：
+			//	value: 属性的值
+			//	writable: 是否可写,若false,为只读	　　
+			//	enumerable: 是否能枚举， 也就是否能在for...in循环中遍历出来或在Object.keys中列举出来。
+			//	configurable: 总开关，若为false， 就不能再设置value， writable， configurable，而且只能设置一次	
+
+			//该方法的引入目的，主要是为了配合Object.defineProperties方法,解决Object.assign()无法正确拷贝get属性和set属性的问题。????
+
+	</script>
+</body>
+
+</html>

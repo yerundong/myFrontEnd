@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // [Object.getPrototypeOf(object)]
+        // object 必填 目标对象
+        // 返回对象的原型，即__proto__对象
+
+        // 创建一个无原型的空对象
+        const obj1 = Object.create(null);
+        const obj1_PROTOTYPE = Object.getPrototypeOf(obj1);
+        // console.log(obj1_PROTOTYPE);// null
+
+        // 创建一个有原型的空对象
+        const obj2 = Object.create({
+            a: 1
+        });
+        const obj2_PROTOTYPE = Object.getPrototypeOf(obj2);
+        // console.log(obj2_PROTOTYPE);// {a: 1}
+
+        // [获取父类]
+        // 以子类为参数，返回父类，可以用来从子类上获取父类
+        class Sup1 {
+            constructor(a, b) {
+                this.a = a;
+                this.b = b;
+            }
+            fn1() {
+                console.log('fn1')
+            }
+        }
+        class Sub1 extends Sup1 {}
+        // console.log(Object.getPrototypeOf(Sup1));// native code
+        // console.log(Object.getPrototypeOf(Sub1));// Sup1
+    </script>
+</body>
+
+</html>

@@ -1,31 +1,26 @@
 <!DOCTYPE html>
 <html>
-	<head>
-		<meta charset="UTF-8">
-		<title></title>
-	</head>
-	<body>
-		<script type="text/javascript">
-			// reduce:数组累加器
-			// array.reduce(function(total,currentValue,currentIndex?,arr?), initialValue?)
-			// total:累加总计,initialValue：初始值
-			// 累加必须每一步都有返回，否则会累加中断
-			// return total的向说明不被累加
-			let arr = [1,'123',2,3,'a','b','c'];
-			let totals = arr.reduce(function (total, value, index, array) {
-				if(typeof value === 'number'){
-					return total+value;
-				}else{
-					return total
-				}
-			},0);
-			// console.log(totals);
-			
-			// reduceRight()方法的功能和 reduce()功能是一样的,但是从右往左开始累加
-			let totals2 = arr.reduceRight(function (total, value, index, array) {
-				console.log(value);
-			},0);
-			// console.log(totals2);
-		</script>
-	</body>
+
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+</head>
+
+<body>
+	<script type="text/javascript">
+		// reduce:数组累加器
+		// array.reduce(function(total,currentValue,currentIndex?,arr?), initialValue?)
+		// total:累加总计,initialValue：初始值
+		// 累加必须每一步都有返回，否则会累加中断
+		// return total的向说明不被累加
+		let arr = [1, '123', 2, 3, 'a', 'b', 'c'];
+		let totals = arr.reduce((total, value, index, array) => typeof value === 'number' ? total + value : total, 10);
+		// console.log(totals);// 16
+
+		// reduceRight()方法的功能和 reduce()功能是一样的,但是从右往左开始累加
+		let totals2 = arr.reduceRight((total, value, index, array) => typeof value === 'number' ? total + value : total, 0);
+		// console.log(totals2); // 6
+	</script>
+</body>
+
 </html>
