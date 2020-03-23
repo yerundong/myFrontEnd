@@ -1,61 +1,50 @@
 <!DOCTYPE html>
 <html>
 
-	<head>
-		<meta charset="UTF-8">
-		<title></title>
-	</head>
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+</head>
 
-	<body>
-		<button onclick="change()">change</button>
-		<button onclick="cons()">cons</button>
-		<button onclick="ale()">alert</button>
-		<script type="text/javascript">
-			// 浅拷贝：浅复制只会将对象的各个属性进行依次复制，并不会进行【递归复制】，而JavaScript存储对象都是存地址的，
-			// 所以浅复制会导致 obj.c和obj_c.c指向同一块内存地址。
-			// 浅复制是对对象地址的复制，并没有开辟新的栈，也就是复制的结果是两个对象指向同一个地址，
-			// 修改其中一个对象的属性，则另一个对象的属性也会改变
+<body>
+	<script type="text/javascript">
+		// 浅拷贝：浅复制只会将对象的各个属性进行依次复制，并不会进行【递归复制】，而JavaScript存储对象都是存地址的，
+		// 所以浅复制会导致 obj.c和obj_c.c指向同一块内存地址。
+		// 浅复制是对对象地址的复制，并没有开辟新的栈，也就是复制的结果是两个对象指向同一个地址，
+		// 修改其中一个对象的属性，则另一个对象的属性也会改变
 
-			let obj = {
-					a: 1,
-					b: 2,
-					c:{
-						cc:123
-					},
-					fn(){
-						alert(123)
-					},
-					arr:[1,2,3]
-				},
-				obj_c = shallowCopy(obj);
+		let obj0 = {
+			a: 1,
+			b: 2,
+			c: {
+				cc: 123
+			},
+			fn() {
+				alert(123)
+			},
+			arr: [1, 2, 3]
+		};
+		let obj1 = Object.create({ a: 123 }, Object.getOwnPropertyDescriptors(obj0));
 
-			function shallowCopy(obj) {
-				var dst = {};
-				for(var prop in obj) {
-					if(obj.hasOwnProperty(prop)) {
-						dst[prop] = obj[prop];
-					}
+		// 法一：
+		function shallowCopy(obj) {
+			let dst = {};
+			for (let prop in obj) {
+				if (obj.hasOwnProperty(prop)) {
+					dst[prop] = obj[prop];
 				}
-				return dst;
 			}
-			
-			
-			let change = () => {
-				obj.a = 666; //不影响obj_c
-				obj.fn = () => { //不影响obj_c
-					alert(345)
-				}
-				obj.c.cc = 345;//影响obj_c
-				obj.arr[0] = 'ttt';//影响obj_c
-				obj.arr = [7];//不影响obj_c
-			}
-			let cons = () => {
-				console.dir(obj_c);
-			}
-			let ale = () => {
-				obj_c.fn()
-			}
-		</script>
-	</body>
+			return dst;
+		}
+
+		let obj1_c = shallowCopy(obj1);
+		// console.log(obj1);
+		// console.log(obj1_c);
+
+		// 法二：
+		let obj2_c = Object.assign({}, obj1);
+		// console.log(obj1_c);
+	</script>
+</body>
 
 </html>
