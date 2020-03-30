@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Proxy</title>
+</head>
+
+<body>
+    <script>
+        // Proxy 对象用于定义基本操作的自定义行为，用于修改某些操作的【默认行为】，等同于在语言层面做出修改，所以属于一种“元编程”（meta programming），
+        // 即对编程语言进行编程（如属性查找，赋值，枚举，函数调用等）。
+        // Proxy 这个词的原意是代理，用在这里表示由它来“代理”某些操作，可以译为“代理器”。
+        // 实例化：
+        // let p = new Proxy(target, handler);
+        // target
+        //     用Proxy包装的目标对象（可以是任何类型的对象，包括原生数组，函数，甚至另一个代理）。
+        // handler
+        //     一个对象，其属性是当执行一个操作时定义代理的行为的函数，用来定制拦截行为。 
+
+        // 如果handler没有设置任何拦截，那就等同于直接通向原对象。
+        let proxy1 = new Proxy({a: 1}, {});
+        proxy1.b = 2;
+        // console.log(proxy1);
+
+        // 以下例子Proxy 重载（overload）了点运算符，即用自己的定义覆盖了语言的原始定义。
+        let proxy2 = new Proxy({a: 1}, {
+            get: function (target, key, receiver) {
+                // console.log(`getting ${target}!`);
+                return 666;
+            },
+            set: function (target, key, value, receiver) {
+                // console.log(`setting ${target}!`);
+                return 777;
+            }
+        });
+        proxy2.b = 2;
+        // console.log(proxy2);
+        // console.log(proxy2.a);
+        // console.log(proxy2.b);
+        // console.log(proxy2.c);
+
+        // Proxy 实例也可以作为其他对象的原型对象。
+        // proxy3对象本身并没有a,c属性，所以根据原型链，会在proxy对象上读取该属性，导致被拦截。
+        let proxy3 = Object.create(new Proxy({a: 1}, {
+            get: function (target, key, receiver) {
+                return 666;
+            }
+        }));
+        proxy3.b = 2;
+        // console.log(proxy3);
+        // console.log(proxy3.a);// 666
+        // console.log(proxy3.b);// 2
+        // console.log(proxy3.c);// 666
+    </script>
+</body>
+
+</html>

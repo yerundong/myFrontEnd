@@ -1,4 +1,8 @@
 .DS_Store
 .project
 .vscode
+*.ini
 node_modules/
+.history/
+~$*
+.~*

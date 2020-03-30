@@ -18,8 +18,8 @@
             yield b;
         }
         const gen1_iter = gen1(...map1);
-        // console.log(gen1_iter.next());// {value: ['a', 1], done: false}
-        // console.log(gen1_iter.next());// {value: ['b', 2], done: false}
+        console.log(gen1_iter.next());// {value: ['a', 1], done: false}
+        console.log(gen1_iter.next());// {value: ['b', 2], done: false}
 
         // 转换成数组
         // 实质是内部使用for...of循环，任何具有iterator的数据均可以做到

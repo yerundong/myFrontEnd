@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+</head>
+
+<body>
+	<script>
+		// [getOwnPropertyNames(obj)]
+		// 与Object.keys(obj)基本相同，唯一区别是返回[可枚举、不可枚举]的属性,不受枚举性影响
+		// 返回可枚举、不可枚举属性
+		// 无法取到原型上的属性
+		// 无法取到Symbol属性
+
+		const obj = {
+			a: 1,
+			b: 2,
+			fn() {
+
+			},
+			[Symbol()]: 3
+		};
+		Object.defineProperty(obj, 'c', {
+			value: 4,
+			writable: true,
+			enumerable: false,
+			configurable: true
+		})
+
+		console.log(obj);
+
+		const keysList = Object.getOwnPropertyNames(obj);
+		console.log(keysList);//["a", "b", "fn", "c"]
+
+	</script>
+</body>
+
+</html>

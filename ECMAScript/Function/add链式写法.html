@@ -25,7 +25,7 @@
             }
         }
         const sum1 = add(1)(2)(3);
-        console.log(sum1); // 6
+        // console.log(sum1); // 6
 
         // 二
         // 可以无限的链式
@@ -41,7 +41,7 @@
             return f
         }
         const sum2 = add2(1)(2)(3);
-        console.log(sum2.getSum()); // 6
+        // console.log(sum2.getSum()); // 6
 
         // 三
         // 可以无限的链式
@@ -54,7 +54,7 @@
         add3.getSum = add3.toString = function () {
             return add3.num
         };
-        const sum3 = add3(1)(2)(3);
+        const sum3 = add3(1)(2)(3)(4);
         console.log(sum3.getSum()); // 6
     </script>
 </body>

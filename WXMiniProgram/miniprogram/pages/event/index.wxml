@@ -1,0 +1,10 @@
+<view class="main-wrapper">
+  <!-- bind事件绑定会冒泡，catch事件绑定可以阻止冒泡。 -->
+  <div bind:tap="wrap_tap_fn">
+    <button id="bindtap666" bind:tap="tap_fn" bind:longpress="longpress_fn" data-msg="{{msg1}}" data-msg2="{msg: '456'}">click</button>
+  </div>
+  <div bind:tap="wrap_tap_fn">
+    <button id="bindtap666" catch:tap="tap_fn" catch:longpress="longpress_fn" data-msg="{{msg1}}" data-msg2="{msg: '456'}">click</button>
+  </div>
+</view>
+

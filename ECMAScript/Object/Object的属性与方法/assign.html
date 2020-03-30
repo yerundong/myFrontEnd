@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+</head>
+
+<body>
+	<script type="text/javascript">
+		// [Object.assign]
+		// 用于对象的合并
+		// Object.assign(target, source1, source2);target-[目标对象]，source-[合并项对象]（可枚举）
+		// 将合并项对象source合并到目标对象target，目标对象被修改，合并项对象不变，该方法返回合并后目标对象
+		// 合并项对象 里的 非枚举性属性 无法被复制到 目标对象
+		let obj = {
+				a: 1
+			},
+			obj1 = {
+				a: 2,
+				b: 3
+			},
+			obj2 = {
+				c: 4,
+				d: 5
+			};
+
+		// assign先把目标对象转换成object格式，再进行合并，如果只有一个参数且是object，Object.assign会直接返回该参数
+		Object.assign(obj);
+		// Object.assign(obj) === obj // true
+
+		// 由于undefined和null无法转成对象，所以如果它们作为目标对象，就会报错
+		// Object.assign(undefined) // 报错
+		// Object.assign(null) // 报错
+		// console.log( Object.assign( '1' ) );
+		// console.log( new Object('1') );
+
+		// assign也会把合并项对象转换成object格式，再进行合并，如果无法转换，不会报错，会忽略跳过
+		// Object.assign( obj, '1' );// new Object('1') => {0:'1'}
+		// Object.assign( obj, '1', '2' );// new Object('1') => {0:'1'},new Object('2') => {0:'2'}覆盖前面的
+		// Object.assign(obj, null, undefined, '1');// 忽略null、undefined
+
+		// 数组相当于特殊的对象
+		// Object.assign( obj, ['1', '2'] );
+
+		// 若目标对象与合并项对象有[同名属性]，或多个合并项对象有同名属性，则后面的属性会[覆盖]前面的属性
+		// 注意：若是一个重名对象，则也是直接覆盖，可能会导致二级以上的属性丢失
+		// Object.assign( obj, obj1 );
+		// Object.assign( obj, obj1, obj2 );
+
+		// get函数的处理
+		// 只能进行值的复制，如果要复制的值是一个取值函数，那么将[求值后再复制]
+		// Object.assign( obj,{
+		// 	get b(){
+		// 		return 5
+		// 	}
+		// } );// {a: 1, b: 5}
+
+		// 浅拷贝（只拷贝自身属性）
+		// const obj_ = Object.assign(obj);
+		// obj.a = 888
+		// console.log(obj_);
+
+		// 如果想完整克隆一个对象，还拷贝对象原型的属性，可以采用下面的2种写法：
+		// 写法一
+		// const obj_ = Object.assign(
+		// 	Object.create(Object.getPrototypeOf(obj)),
+		// 	obj
+		// );
+
+		// 写法二
+		// const obj_ = Object.create(
+		// 	Object.getPrototypeOf(obj),
+		// 	Object.getOwnPropertyDescriptors(obj)
+		// )
+
+		// 一层深拷贝
+		// let obj4 = {
+		// 	a:1,
+		// 	obj:{
+		// 		a:1
+		// 	}
+		// }
+		// const obj_ = Object.assign({},obj4);
+		// obj4.a = 888;
+		// obj4.obj.a = 888;
+		// console.log(obj_);
+
+		// 为对象属性指定默认值
+		// const defaults = {
+		// 	name:'未知',
+		// 	age: '未知'
+		// }
+		// const obj_ = Object.assign({},defaults,{
+		// 	name:1
+		// });
+		// console.log(obj_);
+
+		console.log(obj);
+	</script>
+</body>
+
+</html>

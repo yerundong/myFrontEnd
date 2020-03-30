@@ -1,0 +1,11 @@
+@import "../../style/common.wxss";
+
+.main-wrapper {
+  background: red;
+}
+
+view {
+  color: #000;
+  font-weight:600;
+  font-size: 40rpx;
+}

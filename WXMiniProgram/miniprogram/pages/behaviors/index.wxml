@@ -1,0 +1,5 @@
+<view class="main-wrapper">
+<input></input>
+  <comp id="comp"></comp>
+</view>
+

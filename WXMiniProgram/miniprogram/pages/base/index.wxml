@@ -1,0 +1,5 @@
+<view class="main-wrapper">
+    msg1：{{msg1}}
+    <button bind:tap="setFn">setData</button>
+</view>
+

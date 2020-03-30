@@ -1,0 +1,7 @@
+/* .common_css{
+    color: yellow;
+} */
+/* 父组件的样式一定会作用到子组件 */
+.main-wrapper {
+    font-weight: bold;
+}

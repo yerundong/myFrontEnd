@@ -3,7 +3,7 @@
 <head>
 	<meta charset="UTF-8" />
 	<title>Document</title>
-	<script src="../jquery-1.11.2.min.js" type="text/javascript" charset="utf-8"></script>
+	<script src="../../Lib/Jquery/jquery-3.3.1.min.js" type="text/javascript" charset="utf-8"></script>
 </head>
 <body>
 	<!--
@@ -43,26 +43,23 @@
 		
 		//【例子2】
 		
-		var i = 0;
-		
-		function couns () {
-			console.log(i);
-			i++;
+		function couns (a, b) {
+			console.log(a, b);
 		};
 		
 		//节流器2
-		function throttle2(fn,delay){//函数节流器throttle2(执行函数，延迟时间)
+		function throttle2(fn, args, delay){//函数节流器throttle2(执行函数，延迟时间)
             var timer=null;
             return function(){
-                var context=this, args=arguments;
+                var context=this;
                 clearTimeout(timer);
                 timer=setTimeout(function(){
-                    fn.apply(context,args);
+                    fn.apply(context, args);
                 },delay);
             }
         }
 		
-		$(document).mousemove(throttle2(couns,500));//因为返回的是函数句柄，不必再封装函数了
+		$(document).mousemove(throttle2(couns, [777, 888], 500));//因为返回的是函数句柄，不必再封装函数了
 		
 		//节流器2 加强版：超过设置时间duration则立即执行一次
 		/*

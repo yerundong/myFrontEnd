@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        function xhrToBase64(imgUrl) {
+            var xhr = new XMLHttpRequest();
+            xhr.open("get", imgUrl, true);
+            xhr.responseType = "blob"; // 获得blob格式
+            xhr.onload = function () {
+                if (this.status == 200) {
+                    //得到一个blob对象
+                    var blob = this.response;
+                    console.log(blob)
+                    // 至关重要
+                    let oFileReader = new FileReader();
+                    oFileReader.onloadend = function (e) {
+                        let base64 = e.target.result;
+                        console.log(base64)
+                    };
+                    oFileReader.readAsDataURL(blob);
+                }
+            }
+            xhr.send();
+        }
+
+        function canvasToBase64(imgUrl) {
+            var canvas = document.createElement("canvas");
+            canvas.width = width ? width : img.width;
+            canvas.height = height ? height : img.height;
+            var ctx = canvas.getContext("2d");
+            ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
+            var dataURL = canvas.toDataURL();
+            return dataURL;
+        }
+
+        
+    </script>
+</body>
+
+</html>

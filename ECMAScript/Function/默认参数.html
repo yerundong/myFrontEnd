@@ -31,7 +31,7 @@
 		}
 		// fn3();// 报错 必须传入一个数组，否则无法生成ab参数
 		// fn3([]);// undefined 2
-		// fn3({ a: 3});// 3 2
+		// fn3({ a: 3});// 报错
 
 		// 将[整个对象]内设为默认参数
 		function fn4({ m = 1, n = 2 } = { m: 3, n: 4 }) {
@@ -70,7 +70,7 @@
 		let x = 1;
 		function fn8(x, y = x) {
 			// let x = 2;// 报错 同一个作用域变量无法定义两次
-			// x = 5;
+			x = 5;
 			console.log(y);
 		}
 		// fn8(2);// 2
@@ -80,7 +80,7 @@
 			// let x = 99999999999;// 不报错
 			console.log(y)
 		}
-		// fn9();// 5
+		fn9();// 1
 
 		function fn10(x, y = (() => { x = 1; return 2 })()) {
 			console.log(x, y);
@@ -89,10 +89,10 @@
 		// fn10(0, 0) // 0 0
 
 		// 利用参数默认值，可以指定某一个参数不得省略，如果省略就抛出一个错误。
-		function throwError() {
-			throw new Error('@> Missing parameter')
+		function throwError(p) {
+			throw new Error('@Missing parameter "'+ p+'"')
 		}
-		function fn11(a = throwError()) {
+		function fn11(a = throwError('a')) {
 			console.log(a);
 		}
 		// fn11();

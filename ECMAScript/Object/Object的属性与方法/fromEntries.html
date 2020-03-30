@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // Object.fromEntries(iterable) 
+        // iterable 可迭代对象，类似 Array 、 Map 、set或者其它实现了可迭代协议的对象。 
+        // Object.fromEntries() 是 Object.entries 的反转。
+        const iterable1 = [['a', 1], ['b', 2], ['c', 3]];
+
+        // 键值对数组
+        const obj1 = Object.fromEntries(iterable1);
+        // console.log(obj1);// { a: 1, b: 2, c: 3 }
+
+        // map
+        const obj2 = Object.fromEntries(new Map(iterable1));
+        // console.log(obj2);// { a: 1, b: 2, c: 3 }
+
+        // set
+        const obj3 = Object.fromEntries(new Set(iterable1));
+        // console.log(new Set(iterable1));
+    	// console.log(obj3);// { a: 1, b: 2, c: 3 }
+
+    </script>
+</body>
+
+</html>

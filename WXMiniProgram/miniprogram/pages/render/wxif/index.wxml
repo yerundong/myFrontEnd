@@ -1,0 +1,16 @@
+<view class="main-wrapper">
+  <view wx:if="{{flag==1}}">
+      {{flag}}
+  </view>
+  <view wx:elif="{{flag==2}}">
+      {{flag}}
+  </view>
+  <view wx:elif="{{flag==3}}">
+      {{flag}}
+  </view>
+  <view wx:else>
+      else: {{flag}}
+  </view>
+  <button bind:tap="add">add</button>
+</view>
+

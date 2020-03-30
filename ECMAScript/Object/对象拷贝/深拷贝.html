@@ -1,61 +1,80 @@
 <!DOCTYPE html>
 <html>
 
-	<head>
-		<meta charset="UTF-8">
-		<title></title>
-	</head>
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+</head>
 
-	<body>
-		<button onclick="change()">change</button>
-		<button onclick="cons()">cons</button>
-		<button onclick="ale()">alert</button>
-		<script type="text/javascript">
-			//深拷贝：不仅将原对象的各个属性逐个复制出去，而且将原对象【各个属性所包含的对象】也依次采用深拷贝的方法递归拷贝到新对象上。
-			//这就不会存在上面 obj.c和 obj_c.c指向同一块内存地址。
-			let pobj = {a:1}
-			let obj = {
-					a: 1,
-					b: 2,
-					object:pobj,
-					fn(){
-						alert(this.b)
-					},
-					arr:[1,2,3],
-				};
-				obj.fn.prototype = {q:888};
-//				pobj.b = obj;//循环引用
-				
-			let	obj_c = darkCopy(obj);
-			
-			//通过JSON解析解决(黑科技)
-			//会丢失函数
-			//原型链没了，对象就是object，所属的类没了。
-			//存在对象循环引用时，报错
-			function darkCopy(obj) {
-				let dst = JSON.parse(JSON.stringify(obj));
-				return dst;
-			}
-			
-			
-			let change = () => {
-				obj.a = 666; //不影响obj_c
-				obj.fn = () => { //不影响obj_c
-					alert(345)
+<body>
+	<script type="text/javascript">
+		//深拷贝：不仅将原对象的各个属性逐个复制出去，而且将原对象【各个属性所包含的对象】也依次采用深拷贝的方法递归拷贝到新对象上。
+		//这就不会存在上面 obj.c和 obj_c.c指向同一块内存地址。
+
+		let obj0 = {
+			a: 1,
+			b: 2,
+			c: {
+				cc: 123
+			},
+			fn() {
+				alert(123)
+			},
+			arr: [1, 2, 3]
+		};
+		let obj1 = Object.create({ a: 123 }, Object.getOwnPropertyDescriptors(obj0));
+
+		// 法一：
+		//通过JSON解析解决(黑科技)
+		//*丢失undefined，function，RegExp等等类型的
+		//*原型链没了，对象就是object，所属的类没了。
+		//*存在对象循环引用时，报错
+
+		function darkCopy(obj) {
+			let dst = JSON.parse(JSON.stringify(obj));
+			return dst;
+		}
+		let obj1_c = darkCopy(obj1);
+		// console.log(obj1);
+		// console.log(obj1_c);
+
+		// 法二：
+		// 递归拷贝
+		// 
+		function deepClone(target) {
+			let result;
+			// 如果当前需要深拷贝的是一个对象的话
+			if (typeof target === 'object') {
+				// 如果是一个数组的话
+				if (Array.isArray(target)) {
+					result = []; // 将result赋值为一个数组，并且执行遍历
+					for (let i in target) {
+						// 递归克隆数组中的每一项
+						result.push(deepClone(target[i]))
+					}
+					// 判断如果当前的值是null的话；直接赋值为null
+				} else if (target === null) {
+					result = null;
+					// 判断如果当前的值是一个RegExp对象的话，直接赋值    
+				} else if (target.constructor === RegExp) {
+					result = target;
+				} else {
+					// 否则是普通对象，直接for in循环，递归赋值对象的所有值
+					result = {};
+					for (let i in target) {
+						result[i] = deepClone(target[i]);
+					}
 				}
-				obj.object.c = 345;//不影响obj_c
-				obj.arr[0] = 'ttt';//不影响obj_c
-				obj.arr = [7];//不影响obj_c
+				// 如果不是对象的话，就是基本数据类型，那么直接赋值
+			} else {
+				result = target;
 			}
-			let cons = () => {
-				console.log(obj);
-				console.log(obj_c);
-				console.log(pobj);
-			}
-			let ale = () => {
-				obj.fn()
-			}
-		</script>
-	</body>
+			// 返回最终结果
+			return result;
+		}
+		let obj2_c = deepClone(obj1);
+		console.log(obj2_c);
+	</script>
+</body>
 
 </html>

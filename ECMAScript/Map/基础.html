@@ -17,18 +17,19 @@
         // 0和-0就是一个键，true和'true'则是两个不同的键
         const obj1 = {}
         const map1 = new Map([
-            [],// =>[undefined, undefined]
+            [],// =>[undefined, undefined] 被覆盖
             [1],// =>[1, undefined]
-            [,1],// =>[undefined, 1]
-            [0,1],
-            [-0,2],
+            [,1],// =>[undefined, 1] 被覆盖
+            [0,1],// 被覆盖
+            [-0,2],// =>[0, 2]
             [null, undefined], 
             [undefined, null], 
+            [{ b: 2 }, '张三'],
             [{ b: 2 }, '李四'],
             [()=>{}, Symbol()],
             [new Set(), new Map()],
         ]);
-        console.log(map1);
+        // console.log(map1);
 
         const set2 = new Set([
             [{ a: 1 }, '张三'], 
@@ -36,6 +37,7 @@
         ]);
         const map2 = new Map(set2);
         // console.log(map2);
+
     </script>
 </body>
 

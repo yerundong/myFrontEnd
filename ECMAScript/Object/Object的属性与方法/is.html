@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<script type="text/javascript">
+			//Object.is()是加强版的“===”，严格全等于
+			//其行为与===基本一致，不过有两处不同：
+			//1、+0不等于-0。
+			//2、NaN等于自身。
+			
+			let a = 1, b = 1, c = 0, d = +0, e = -0, f = NaN, g = NaN;
+//			console.log(Object.is(a, b));//true
+//			console.log(a === b));//true
+			
+//			console.log(Object.is(NaN, NaN));//true
+//			console.log(NaN === NaN);//false
+
+//			console.log(Object.is(+0, -0));//false
+//			console.log(+0 === -0);//true
+
+//			console.log(Object.is(0, +0));//true
+//			console.log(Object.is(0, -0));//false
+//			console.log(0 === +0);//true
+//			console.log(0 === -0);//true
+		</script>
+	</body>
+</html>

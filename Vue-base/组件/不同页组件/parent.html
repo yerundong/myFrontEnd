@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="../../common/vue.js" type="text/javascript" charset="utf-8"></script>
+    <script src="./components/comp.js"></script>
+    <title>parent</title>
+</head>
+
+<body>
+    <div id="parent">
+        <p>{{msg}}</p>
+        <comp data="add"></comp>
+    </div>
+    </script>
+    <script>
+        console.log(comp);
+        var vm = new Vue({
+            el: '#parent',
+            data: {
+                msg: '我是父组件'
+            },
+            components:{
+                comp
+            }
+        });
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,2 @@
+# 杀进程：tasklist|findstr PID
+# 杀进程：taskkill /f /t /im 进程名称

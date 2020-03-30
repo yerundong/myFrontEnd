@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="../../Lib/Jquery/jquery-3.3.1.min.js"></script>
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        //json转url参数
+        function jsonToUrl(json) {
+            function fn(param, key) {
+                let paramStr = "";
+                if (Array.isArray(param)) {
+                    for (let i = 0, iterm; iterm = param[i]; i++) {
+                        let k = `${key}[${i}]`;
+                        paramStr += fn(iterm, k);
+                    }
+                } else if (param instanceof Object) {
+                    for (let akey in param) {
+                        let aIterm = param[akey];
+                        let k = `${key ? key + '.'+akey : akey}`;
+                        paramStr += fn(aIterm, k);
+                    }
+                } else {
+                    paramStr += "&" + key + "=" + encodeURIComponent(param);
+                }
+                return paramStr;
+            }
+            return fn(json).substr(1);
+        }
+        var obj = {
+            'a': 1,
+            b: [
+                2, {
+                    c: 1
+                }
+            ],
+            d: {
+                e: {
+                    f: 1
+                }
+            }
+        };
+        console.log(jsonToUrl(obj)); //name=tom&class.className=class1&classMates[0].name=lily
+    </script>
+</body>
+
+</html>

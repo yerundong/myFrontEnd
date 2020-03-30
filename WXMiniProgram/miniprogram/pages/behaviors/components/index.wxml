@@ -1,0 +1,6 @@
+<view>
+    <input type="text" />
+    <button bind:tap="behMethod">{{behMsg1}}</button>
+    <button bind:tap="behMethod2">{{behMsg2}}</button>
+    <view>info：{{info}}</view>
+</view>

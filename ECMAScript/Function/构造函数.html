@@ -26,10 +26,9 @@
         // let obj={}; 初始化一个对象a
         // obj.__proto__ = Fn.prototype; 实例对象继承构造函数的原型对象(传址)
         // Fn.call(obj); 改变Fn中this，指向obj
-        // 最后返回这个obj
+        // 最后执行Fn,返回这个obj
         
         const fnObj = new Fn(18);
-        // console.log(fnObj);
         // console.log(fnObj);
 
         // console.log(Fn.prototype.isPrototypeOf(fnObj));// 判断一个实例对象是否继承某个构造函数的原型对象(boolean);

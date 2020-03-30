@@ -1,0 +1,38 @@
+{
+  "ex": "全局配置",
+  "pages": [
+    "pages/home/index",
+    "pages/baseComp/swiper/index",
+    "pages/baseComp/scroll-view/index",
+    "pages/render/wxfor/index",
+    "pages/render/wxif/index",
+    "pages/baseComp/cover-view/index",
+    "pages/baseComp/movable/index",
+    "pages/base/index",
+    "pages/customComp/father/index",
+    "pages/baseComp/base/index",
+    "pages/event/index",
+    "pages/behaviors/index"
+  ],
+  "usingComponents": {
+    "global-comp1": "components/globalComp1/index"
+  },
+  "window": {
+    "navigationBarBackgroundColor": "#000",
+    "navigationBarTitleText": "base"
+  },
+  "networkTimeout": {
+    "request": 10000,
+    "downloadFile": 10000
+  },
+  "debug": true,
+  "navigateToMiniProgramAppIdList": [
+    "wx63930b9d12a42a99"
+  ],
+  "permission": {
+    "scope.userLocation": {
+      "desc": "你的位置信息将用于小程序位置接口的效果展示"
+    }
+  },
+  "sitemapLocation": "sitemap.json"
+}

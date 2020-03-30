@@ -1,0 +1,5 @@
+.menu_wrapper>.menuIterm{
+  line-height: 40px;
+  text-align: center;
+  border-bottom: 1px solid #808080;
+}

@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <script src="../common/vue.js" type="text/javascript" charset="utf-8"></script>
+</head>
+<style type="text/css">
+    * {
+        padding: 0;
+        margin: 0;
+    }
+</style>
+
+<body>
+    你可以把依赖注入看作一部分“大范围有效的 prop”，除了：
+        祖先组件不需要知道哪些后代组件使用它提供的属性
+        后代组件不需要知道被注入的属性来自哪里
+
+    provide 和 inject 主要为高阶插件/组件库提供用例。并不推荐直接用于应用程序代码中。
+    这对选项需要一起使用，以允许一个祖先组件向其所有子孙后代注入一个依赖，不论组件层次有多深，并在起上下游关系成立的时间里始终生效。
+    如果你熟悉 React，这与 React 的上下文特性很相似。
+    provide 选项应该是一个对象或返回一个对象的函数。该对象包含可注入其子孙的属性。在该对象中你可以使用 ES2015 Symbols 作为 key，
+    但是只在原生支持 Symbol 和 Reflect.ownKeys 的环境下可工作。
+    提示：provide 和 inject 绑定并[不是可响应]的。这是刻意为之的。然而，如果你传入了一个[可监听的对象]，那么其对象的属性还是[可响应的]，并双向绑定。
+
+    如果provide key重复，则遵守就近原则，子组件取最近的一个注入的值
+    <br>
+    <br>
+    <div id="app1">
+        <p>msg:{{msg}}</p>
+        <p>pinfo1_:{{pinfo1_}}</p>
+        <p>pinfo2_.a:{{pinfo2_.a}}</p>
+        <br>
+        <com1></com1>
+
+        <button @click="change">改变</button>
+    </div>
+    <script type="text/javascript">
+        const com2 = {
+            template: `
+                <div>
+                    msg:{{msg}}
+                    <p>pinfo1: {{pinfo1}}</p>
+                    <p>pinfo2.a: {{pinfo2.a}}</p>
+                    <br>
+                    <com2></com2>
+                </div>
+            `,
+            inject: ['pinfo1', 'pinfo2'],
+            data() {
+                return {
+                    msg: '我是孙组件com2'
+                };
+            }
+        }
+        const com1 = {
+            template: `
+                <div>
+                    msg:{{msg}}
+                    <p>pinfo1: {{pinfo1}}</p>
+                    <p>pinfo2.a: {{pinfo2.a}}</p>
+                    <p>chilrfoo: {{chilrfoo}}</p>
+                    <p>pinfo3: {{pinfo3}}</p>
+                    <br>
+                    <com2></com2>
+                    <button @click="change">改变1</button>
+                </div>
+            `,
+            components: {
+                com2
+            },
+            inject: {
+                pinfo1:{},
+                pinfo2:{},
+                pinfo3:{
+                  default: 'foo'
+                }
+            },
+            provide() {
+                return {
+                    pinfo1: '999'
+                }
+            },
+            computed:{
+                chilrfoo(){
+                    return this.pinfo2.a
+                }
+            },
+            data() {
+                return {
+                    msg: '我是子组件com1'
+                };
+            },
+            methods: {
+                change() {
+                    this.pinfo2.a++;
+                }
+            }
+        }
+        var vm = new Vue({
+            el: '#app1',
+            components: {
+                com1
+            },
+            provide() {
+                return {
+                    pinfo1: this.pinfo1_,
+                    pinfo2: this.pinfo2_,
+                }
+            },
+            data: {
+                msg: '我是父组件',
+                pinfo1_: 666,
+                pinfo2_: {
+                    a: 111
+                },
+            },
+            methods: {
+                change() {
+                    this.pinfo1_++;
+                    this.pinfo2_.a++;
+                }
+            }
+        });
+    </script>
+</body>
+
+</html>

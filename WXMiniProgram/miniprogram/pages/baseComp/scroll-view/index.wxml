@@ -1,0 +1,26 @@
+<view class="section">
+  <view>vertical scroll</view>
+  <scroll-view class="vertical_wrap" scroll-with-animation scroll-into-view="{{toView}}" scroll-top="{{scrollTop}}" scroll-y bindscrolltoupper="upper" bindscrolltolower="lower" bindscroll="scroll">
+    <view class="vertical_item" id="{{item.color}}" wx:for="{{scrollList}}" wx:key="index" style="background: {{item.color}}"></view>
+  </scroll-view>
+  <view class="btn-area">
+    <button size="mini" bindtap="tapTOred">click me to scroll into red</button>
+    <button size="mini" bindtap="tapMove">click me to scroll</button>
+  </view>
+  <view>horizontal scroll</view>
+  <scroll-view class="horizontal_wrap" scroll-x>
+    <view class="horizontal_item" id="{{item.color}}" wx:for="{{scrollList}}" wx:key="index" style="background: {{item.color}}"></view>
+  </scroll-view>
+  <view>普通 scroll</view>
+  <view class="commonScroll">
+    <view>1111111</view>
+    <view>1111111</view>
+    <view>1111111</view>
+    <view>1111111</view>
+    <view>1111111</view>
+    <view>1111111</view>
+    <view>1111111</view>
+    <view>1111111</view>
+    <view>1111111</view>
+  </view>
+</view>
