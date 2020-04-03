@@ -16,7 +16,7 @@ module.exports = {
         filename: "[name].js" // 打包后输出文件的文件名
     },
     /*开发工具*/
-    devtool: 'eval-source-map', // source-map打包方式
+    // devtool: 'eval-source-map', // source-map打包方式
     /*本地服务器*/
     devServer: {
         contentBase: "./pack", // 本地服务器所加载的页面所在的目录
