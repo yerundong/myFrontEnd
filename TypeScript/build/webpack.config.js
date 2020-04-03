@@ -15,19 +15,23 @@ const {
 // 用于生成文件映射清单（manifest.json）
 const ManifestPlugin = require('webpack-manifest-plugin');
 
+// const autoprefixer = require('autoprefixer');
+
 module.exports = {
   mode: 'development', // development（开发）、production（生产）
   // 入口文件
   entry: {
-    app1: path.resolve(__dirname + "/src/app1.js"),
-    app2: path.resolve(__dirname + "/src/app2.js"),
+    app1: path.join(__dirname, '..', "/src/app1.js"),
+    app2: path.join(__dirname, '..', "/src/app2.js"),
     // 按顺序载入模块，合并成一个merge包
-    merge: [path.resolve(__dirname + "/src/app1.js"), path.resolve(__dirname + "/src/app2.js")]
+    merge: [path.join(__dirname, '..', "/src/app1.js"), path.join(__dirname, '..', "/src/app2.js")]
   },
   // 输出配置
   output: {
     filename: '[name].bundle.js',
-    path: path.resolve(__dirname + "/dist")
+    path: path.join(__dirname, '..', "/dist"),
+    // publicPath 也会在服务器脚本用到(server.js)
+    publicPath: '/'
   },
   // 选择一种 source map 格式来增强调试过程。不同的值会明显影响到构建(build)和重新构建(rebuild)的速度。
   // 你可以直接使用 SourceMapDevToolPlugin/EvalSourceMapDevToolPlugin 来替代使用 devtool 选项，因为它有更多的选项。
@@ -40,27 +44,44 @@ module.exports = {
   devtool: 'cheap-module-eval-source-map',
   /*开发服务器*/
   devServer: {
-    contentBase: path.resolve(__dirname + "/dist"), // 本地服务器所加载的页面所在的目录
+    contentBase: path.join(__dirname, '..', "/dist"), // 本地服务器所加载的页面所在的目录
     historyApiFallback: true, // 不跳转
     inline: true, // 实时刷新
     port: '8089', // 端口 默认8080
-    after(app){
+    hot: true,
+    after(app) {
       console.log('*****************项目已启动*******************');
     }
   },
   module: {
     rules: [
-
-      // css-loader、style-loader
+      // css-loader、style-loader、postcss-loader、sass-loader
       // 二者组合在一起使你能够把样式表嵌入webpack打包后的JS文件中
       // 可用extract-text-webpack-plugin插件将其分离出来
+      // postcss-loader需要借助autoprefixer插件来根据浏览器的兼容性为CSS3的属性添加前缀
       {
         test: /\.css$/,
         use: [{
-          loader: "style-loader" // 将所有的计算后的样式加入页面中；
-        }, {
-          loader: "css-loader" // 使你能够使用类似@import和url(…)的方法实现require()的功能
-        }]
+            loader: 'style-loader' // 将所有的计算后的样式加入页面中；
+          },
+          {
+            loader: 'css-loader' // 使你能够使用类似@import和url(…)的方法实现require()的功能
+          }
+        ]
+      },
+      // sass-loader依赖于node-sass
+      {
+        test: /\.scss$/,
+        use: [{
+            loader: 'style-loader'
+          },
+          {
+            loader: 'css-loader'
+          },
+          {
+            loader: 'sass-loader' // 允许使用sass语法
+          }
+        ]
       },
       // webpack加载css背景图片、img元素指向的网络图片、使用es6的import引入的图片时，需要使用url-loader或者file-loader。
       // url-loader可以将图片转为base64字符串，能更快的加载图片，一旦图片过大，会默认使用file-loader
@@ -101,39 +122,32 @@ module.exports = {
           'xml-loader'
         ]
       },
-      // node-sass
-      {
-        test: /\.scss/,
-        use: [{
-          loader: 'style-loader'
-        }, {
-          loader: 'css-loader'
-        }, {
-          loader: 'sass-loader'
-        }]
-      }
     ]
   },
   /*插件*/
   plugins: [
     new CleanWebpackPlugin(),
     new ManifestPlugin(),
+    // 启动HMR(实时热更新)
+    // HMR 不适用于生产环境，这意味着它应当只在开发环境使用。
+    // new webpack.HotModuleReplacementPlugin(),
+
     new HtmlWebpackPlugin({
       // 输出文件名
       filename: "app1.bundle.html",
       // 模板文件
-      template: path.resolve(__dirname + "/src/app1.html"),
+      template: path.join(__dirname, '..', "/src/app1.html"),
       // 引入模块(未写全部引入)
       chunks: ["app1"],
     }),
     new HtmlWebpackPlugin({
       filename: "app2.bundle.html",
-      template: path.resolve(__dirname + "/src/app2.html"),
+      template: path.join(__dirname, '..', "/src/app2.html"),
       chunks: ["app2"],
     }),
     new HtmlWebpackPlugin({
       filename: "merge.bundle.html",
-      template: path.resolve(__dirname + "/src/merge.html"),
+      template: path.join(__dirname, '..', "/src/merge.html"),
       chunks: ["merge"],
     }),
   ]
