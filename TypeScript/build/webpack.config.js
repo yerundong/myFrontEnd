@@ -47,7 +47,7 @@ module.exports = {
     contentBase: path.join(__dirname, '..', "/dist"), // 本地服务器所加载的页面所在的目录
     historyApiFallback: true, // 不跳转
     inline: true, // 实时刷新
-    port: '8089', // 端口 默认8080
+    port: '8088', // 端口 默认8080
     hot: true,
     after(app) {
       console.log('*****************项目已启动*******************');
@@ -55,6 +55,12 @@ module.exports = {
   },
   module: {
     rules: [
+      // typescript
+      {
+        test: /\.tsx?$/,
+        use: 'ts-loader',
+        exclude: /node_modules/
+      },
       // css-loader、style-loader、postcss-loader、sass-loader
       // 二者组合在一起使你能够把样式表嵌入webpack打包后的JS文件中
       // 可用extract-text-webpack-plugin插件将其分离出来
@@ -103,34 +109,12 @@ module.exports = {
           limit: 10000
         }
       },
-      // {
-      //   test: /\.(png|svg|jpg|gif)$/,
-      //   use: [
-      //     'file-loader'
-      //   ]
-      // },
-      // 导入 CSV、TSV 和 XML数据需要（json数据默认可以）
-      {
-        test: /\.(csv|tsv)$/,
-        use: [
-          'csv-loader'
-        ]
-      },
-      {
-        test: /\.xml$/,
-        use: [
-          'xml-loader'
-        ]
-      },
     ]
   },
   /*插件*/
   plugins: [
     new CleanWebpackPlugin(),
     new ManifestPlugin(),
-    // 启动HMR(实时热更新)
-    // HMR 不适用于生产环境，这意味着它应当只在开发环境使用。
-    // new webpack.HotModuleReplacementPlugin(),
 
     new HtmlWebpackPlugin({
       // 输出文件名
