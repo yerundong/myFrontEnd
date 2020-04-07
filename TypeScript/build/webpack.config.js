@@ -24,8 +24,10 @@ module.exports = {
     app: [
       path.join(__dirname, '..', "/src/基本类型.ts"), 
       path.join(__dirname, '..', "/src/函数.ts"), 
-      path.join(__dirname, '..', "/src/interface.ts"),
+      path.join(__dirname, '..', "/src/接口.ts"),
       path.join(__dirname, '..', "/src/类.ts"),
+      path.join(__dirname, '..', "/src/泛型.ts"),
+      path.join(__dirname, '..', "/src/枚举.ts"),
     ],
     // app:  path.join(__dirname, '..', "/src/函数.ts"),
   },

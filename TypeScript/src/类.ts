@@ -1,4 +1,5 @@
 {
+    // 类有静态部分和实例部分
     // 基础写法
     class Cla1 {
         constructor(x:number, y:number){
