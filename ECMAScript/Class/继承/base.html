@@ -15,6 +15,7 @@
         // 继承操作做了两件事：
         // Sub1.prototype.__proto__ = Sup1.prototype，子类继承父类的原型对象prototype
         // constructor.call(sub1_INSTANCE) 子类实例化的时其实是执行的是父类的constructor，实例化时把this改指向子类的实例（super）
+        
         class Sup1 {
             constructor(a, b) {
                 this.a = a;

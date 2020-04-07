@@ -21,10 +21,13 @@ module.exports = {
   mode: 'development', // development（开发）、production（生产）
   // 入口文件
   entry: {
-    app1: path.join(__dirname, '..', "/src/app1.js"),
-    app2: path.join(__dirname, '..', "/src/app2.js"),
-    // 按顺序载入模块，合并成一个merge包
-    merge: [path.join(__dirname, '..', "/src/app1.js"), path.join(__dirname, '..', "/src/app2.js")]
+    app: [
+      path.join(__dirname, '..', "/src/基本类型.ts"), 
+      path.join(__dirname, '..', "/src/函数.ts"), 
+      path.join(__dirname, '..', "/src/interface.ts"),
+      path.join(__dirname, '..', "/src/类.ts"),
+    ],
+    // app:  path.join(__dirname, '..', "/src/函数.ts"),
   },
   // 输出配置
   output: {
@@ -32,6 +35,11 @@ module.exports = {
     path: path.join(__dirname, '..', "/dist"),
     // publicPath 也会在服务器脚本用到(server.js)
     publicPath: '/'
+  },
+  // resolve用于这些选项能设置模块如何被解析。
+  resolve: {
+    // 指定需要被处理的文件的扩展名
+    extensions: [".ts", ".tsx", ".js", ".json"]
   },
   // 选择一种 source map 格式来增强调试过程。不同的值会明显影响到构建(build)和重新构建(rebuild)的速度。
   // 你可以直接使用 SourceMapDevToolPlugin/EvalSourceMapDevToolPlugin 来替代使用 devtool 选项，因为它有更多的选项。
@@ -55,10 +63,12 @@ module.exports = {
   },
   module: {
     rules: [
-      // typescript
+      // 安装awesome-typescript-loader库来代替ts-loader库，它俩的功能是一样的，但据说awesome-typescript-loader比ts-loader编译.ts文件速度更快。
+      // 也有人说使用@babel/preset-typescript取代awesome-typescript-loader和ts-loader更好
+      // 详见https://www.cnblogs.com/vvjiang/archive/2019/12/18/12057811.html（待研究）
       {
         test: /\.tsx?$/,
-        use: 'ts-loader',
+        use: 'awesome-typescript-loader',
         exclude: /node_modules/
       },
       // css-loader、style-loader、postcss-loader、sass-loader
@@ -118,21 +128,11 @@ module.exports = {
 
     new HtmlWebpackPlugin({
       // 输出文件名
-      filename: "app1.bundle.html",
+      filename: "index.html",
       // 模板文件
-      template: path.join(__dirname, '..', "/src/app1.html"),
+      template: path.join(__dirname, '..', "/src/index.html"),
       // 引入模块(未写全部引入)
-      chunks: ["app1"],
-    }),
-    new HtmlWebpackPlugin({
-      filename: "app2.bundle.html",
-      template: path.join(__dirname, '..', "/src/app2.html"),
-      chunks: ["app2"],
-    }),
-    new HtmlWebpackPlugin({
-      filename: "merge.bundle.html",
-      template: path.join(__dirname, '..', "/src/merge.html"),
-      chunks: ["merge"],
+      chunks: ["app"],
     }),
   ]
 };
