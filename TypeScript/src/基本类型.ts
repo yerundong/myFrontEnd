@@ -18,6 +18,17 @@
     // *字符串
     let str: string = 'ssss';
 
+    // symbol
+    let sym1: symbol = Symbol();
+
+    // Set
+    let set1: Set<number> = new Set([1,2,3])
+
+    // Map
+    let map1: Map<string, any> = new Map([
+        ['a', 2]
+    ])
+
     // *数组
     // 有两种方式可以定义数组
     // 第一种，可以在元素类型后面接上 []，表示由此类型元素组成的一个数组：
