@@ -1,12 +1,19 @@
 {
-    "compilerOptions": {
-      "outDir": "./dist/",
-      "sourceMap": false,
-      "noImplicitAny": false,
-      "module": "es6",
-      "target": "es5",
-      "allowJs": true,
-      "moduleResolution": "node",
-      "inlineSourceMap": true,
-    }
+  "exclude": [
+    "./dist"
+  ],
+  "include": ["src"],
+  "compilerOptions": {
+    "lib": [
+      "es2015"
+    ],
+    "outDir": "./dist/",
+    "sourceMap": false,
+    "noImplicitAny": false,
+    "module": "es6",
+    "target": "es5",
+    "allowJs": true,
+    "moduleResolution": "node",
+    "inlineSourceMap": true,
   }
+}

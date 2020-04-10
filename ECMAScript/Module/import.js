@@ -1,4 +1,11 @@
 /*
+// ES6 在语言标准的层面上，实现了模块功能，而且实现得相当简单，旨在成为【浏览器和服务器】通用的模块解决方案。
+// 其模块功能主要由两个命令构成：export和import。
+// 而在js运行时会进行三件事：1语法分析  2.预编译  3.解释执行
+// ES6 module的语法是静态的，静态的语法意味着可以在【编译时】确定导入和导出，更加快速的查找依赖，但只能写在【模块顶层】
+// 使用 import 被导入的变量是只读的，可以理解默认为 const 装饰
+// 使用 import 被导入的变量是与原变量绑定/引用的，可以理解为 import 导入的变量无论是否为基本类型都是【引用传递】
+
 【import】导入
  	import可以导出任何一种数据类型
  	路径后缀可以省略
@@ -31,6 +38,9 @@ import * as exportObj from './export';
 //导入复合导出的变量
 //import * as ka from './export_complex';
 //console.log(ka);
+
+/*方式五：只执行export.js*/
+import './export';
 
 //require按需加载
 if(true){

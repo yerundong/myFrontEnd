@@ -12,6 +12,8 @@ console.log('app1.js');
 obody.appendChild(oimg1)
 obody.appendChild(oimg2)
 
+let fn1 = () => {}
+
 // console.log(json);
 // console.log(xml);
 

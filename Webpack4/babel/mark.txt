@@ -1,0 +1,42 @@
+官网：https://www.babeljs.cn
+Babel 是一个工具链，主要用于将 ECMAScript 2015+ 版本的代码转换为向后兼容的 JavaScript 语法，以便能够运行在当前和旧版本的浏览器或其他环境中。
+Babel 可以删除类型注释，Babel 不做类型检查
+Babel 是一个编译器（输入源码 => 输出编译后的代码）。就像其他编译器一样，编译过程分为三个阶段：解析、转换和打印输出。
+
+@babel/core 它是Babel最核心的包，在使用其它包之前，必须要先安装@babel/core，它的主要作用就是编译。
+
+预设：不想自己动手组合插件？没问题！preset 可以作为 Babel 插件的组合，甚至可以作为可以共享的 options 配置。
+官方 Preset，我们已经针对常用环境编写了一些 preset：
+    @babel/preset-env
+    @babel/preset-flow
+    @babel/preset-react
+    @babel/preset-typescript
+
+安装：cnpm install -D babel-loader @babel/core @babel/preset-env
+
+但仅仅以上，只能从语法层面成功的从 ES6 -> ES5，而es6的新api无法转换，比如Iterator、Generator、Set、Maps、Proxy、Reflect、Symbol、Promise等全局对象，
+以及一些定义在全局对象上的方法（比如Object.assign）都不会转码。
+有两种解决方法：
+一、使用babel-polyfill；
+这个库将会模拟一个完全的 ES2015+ 的环境。
+babel-polyfill 内部实现了所有的新API的垫片功能，在打包的时候,会将整个 babel-polyfill 都打包进去.
+所以最终打包出来的文件,就会变的很大
+
+弊端：打包文件很大
+
+安装：npm install babel-polyfill --save
+
+引用方式有2种：
+1.require("babel-polyfill");/import "babel-polyfill";----入口文件前引入
+2.module.exports = { entry: ["babel-polyfill", "./app/js"] };----webpack入口配置
+
+二、使用 babel-plugin-transform-runtime
+提供的类似 babel-polyfill 功能的一个插件. 它可以根据实际源代码使用到的 ES6新增API【按需】打入垫片，打包文件根据你使用新api的量而定
+
+安装：
+    cnpm install --save-dev @babel/plugin-transform-runtime ----开发依赖项
+    cnpm install --save @babel/runtime  ----生产依赖项
+
+.babelrc配置：{ "plugins": ["@babel/plugin-transform-runtime"] }
+
+

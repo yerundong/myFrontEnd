@@ -4,8 +4,6 @@ let path = require('path');
 // 可以让插件为你生成一个HTML文件，使用lodash模板提供你自己的模板，或使用你自己的loader。
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
-// const ExtractTextPlugin = require('extract-text-webpack-plugin');
-
 // 在每次构建前清理 /dist 文件夹
 const {
   CleanWebpackPlugin
@@ -21,34 +19,12 @@ module.exports = {
   mode: 'development', // development（开发）、production（生产）
   // 入口文件
   entry: {
-    app: [
-      path.join(__dirname, '..', "/src/基本类型.ts"), 
-      path.join(__dirname, '..', "/src/函数.ts"), 
-      path.join(__dirname, '..', "/src/接口.ts"),
-      path.join(__dirname, '..', "/src/类.ts"),
-      path.join(__dirname, '..', "/src/泛型.ts"),
-      path.join(__dirname, '..', "/src/枚举.ts"),
-      path.join(__dirname, '..', "/src/类型推论.ts"),
-      path.join(__dirname, '..', "/src/命名空间.ts"),
-      path.join(__dirname, '..', "/src/模块/ES6模块/模块1.ts"),
-      path.join(__dirname, '..', "/src/模块/ES6模块/模块2.ts"),
-      path.join(__dirname, '..', "/src/模块/CommonJs/模块1.ts"),
-      path.join(__dirname, '..', "/src/模块/CommonJs/模块2.ts"),
-      
-    ],
-    // app:  path.join(__dirname, '..', "/src/函数.ts"),
+    app1: path.join(__dirname, '..', "/src/app1.js"),
   },
   // 输出配置
   output: {
     filename: '[name].bundle.js',
     path: path.join(__dirname, '..', "/dist"),
-    // publicPath 也会在服务器脚本用到(server.js)
-    publicPath: '/'
-  },
-  // resolve用于这些选项能设置模块如何被解析。
-  resolve: {
-    // 指定需要被处理的文件的扩展名
-    extensions: [".ts", ".tsx", ".js", ".json"]
   },
   // 选择一种 source map 格式来增强调试过程。不同的值会明显影响到构建(build)和重新构建(rebuild)的速度。
   // 你可以直接使用 SourceMapDevToolPlugin/EvalSourceMapDevToolPlugin 来替代使用 devtool 选项，因为它有更多的选项。
@@ -64,22 +40,14 @@ module.exports = {
     contentBase: path.join(__dirname, '..', "/dist"), // 本地服务器所加载的页面所在的目录
     historyApiFallback: true, // 不跳转
     inline: true, // 实时刷新
-    port: '8088', // 端口 默认8080
+    port: '8080', // 端口 默认8080
     hot: true,
     after(app) {
-      console.log('*****************项目已启动*******************');
+      console.log('*****************项目已启动8080*******************');
     }
   },
   module: {
     rules: [
-      // 安装awesome-typescript-loader库来代替ts-loader库，它俩的功能是一样的，但据说awesome-typescript-loader比ts-loader编译.ts文件速度更快。
-      // 也有人说使用@babel/preset-typescript取代awesome-typescript-loader和ts-loader更好
-      // 详见https://www.cnblogs.com/vvjiang/archive/2019/12/18/12057811.html（待研究）
-      {
-        test: /\.tsx?$/,
-        use: 'awesome-typescript-loader',
-        exclude: /node_modules/
-      },
       // css-loader、style-loader、postcss-loader、sass-loader
       // 二者组合在一起使你能够把样式表嵌入webpack打包后的JS文件中
       // 可用extract-text-webpack-plugin插件将其分离出来
@@ -128,20 +96,46 @@ module.exports = {
           limit: 10000
         }
       },
+      // {
+      //   test: /\.(png|svg|jpg|gif)$/,
+      //   use: [
+      //     'file-loader'
+      //   ]
+      // },
+      // 导入 CSV、TSV 和 XML数据需要（json数据默认可以）
+      {
+        test: /\.(csv|tsv)$/,
+        use: [
+          'csv-loader'
+        ]
+      },
+      {
+        test: /\.xml$/,
+        use: [
+          'xml-loader'
+        ]
+      },
+      // babel-loader
+      // cnpm install -D babel-loader @babel/core @babel/preset-env webpack
+      {
+        test: /\.js$/,
+        use: 'babel-loader',
+        exclude:'/node_modules/'
+      }
     ]
   },
   /*插件*/
   plugins: [
     new CleanWebpackPlugin(),
     new ManifestPlugin(),
+    // 启动HMR(实时热更新)
+    // HMR 不适用于生产环境，这意味着它应当只在开发环境使用。
+    // new webpack.HotModuleReplacementPlugin(),
 
     new HtmlWebpackPlugin({
-      // 输出文件名
       filename: "index.html",
-      // 模板文件
       template: path.join(__dirname, '..', "/src/index.html"),
-      // 引入模块(未写全部引入)
-      chunks: ["app"],
+      chunks: ["app1"],
     }),
   ]
 };

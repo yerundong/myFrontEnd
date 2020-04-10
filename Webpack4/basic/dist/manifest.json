@@ -1,0 +1,10 @@
+{
+  "app1.js": "/app1.bundle.js",
+  "app2.js": "/app2.bundle.js",
+  "merge.js": "/merge.bundle.js",
+  "app1.bundle.html": "/app1.bundle.html",
+  "app2.bundle.html": "/app2.bundle.html",
+  "img2.png": "/e15ecf2376b3f0b80b342fa44339c285.png",
+  "img1.png": "/e28e66112e41d9ea99a86e90ab4d5a9a.png",
+  "merge.bundle.html": "/merge.bundle.html"
+}
