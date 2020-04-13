@@ -24,7 +24,7 @@ babel-polyfill 内部实现了所有的新API的垫片功能，在打包的时�
 
 弊端：打包文件很大
 
-安装：npm install babel-polyfill --save
+安装：cnpm install babel-polyfill --save
 
 引用方式有2种：
 1.require("babel-polyfill");/import "babel-polyfill";----入口文件前引入
@@ -34,9 +34,20 @@ babel-polyfill 内部实现了所有的新API的垫片功能，在打包的时�
 提供的类似 babel-polyfill 功能的一个插件. 它可以根据实际源代码使用到的 ES6新增API【按需】打入垫片，打包文件根据你使用新api的量而定
 
 安装：
-    cnpm install --save-dev @babel/plugin-transform-runtime ----开发依赖项
-    cnpm install --save @babel/runtime  ----生产依赖项
+    cnpm install --save-dev @babel/plugin-transform-runtime
+    cnpm install --save @babel/runtime
+    cnpm i -S @babel/runtime-corejs3
 
-.babelrc配置：{ "plugins": ["@babel/plugin-transform-runtime"] }
+.babelrc配置：{ "plugins": [
+    [
+      "@babel/plugin-transform-runtime",
+      {
+        "corejs": 3,
+        "helpers": true,
+        "regenerator": true,
+        "useESModules": false
+      }
+    ]
+] }
 
 

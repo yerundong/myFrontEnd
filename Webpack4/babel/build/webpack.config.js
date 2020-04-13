@@ -116,7 +116,6 @@ module.exports = {
         ]
       },
       // babel-loader
-      // cnpm install -D babel-loader @babel/core @babel/preset-env webpack
       {
         test: /\.js$/,
         use: 'babel-loader',

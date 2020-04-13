@@ -1,12 +1,26 @@
 {
   "presets": [
-    ["@babel/preset-env",
+    [
+      "@babel/preset-env",
       {
         "targets": {
-          "browsers": ["> 1%", "last 2 versions"]
+          "browsers": [
+            "> 1%",
+            "last 2 versions"
+          ]
         }
       }
     ]
   ],
-  "plugins": ["@babel/plugin-transform-runtime"]
+  "plugins": [
+    [
+      "@babel/plugin-transform-runtime",
+      {
+        "corejs": 3,
+        "helpers": true,
+        "regenerator": true,
+        "useESModules": false
+      }
+    ]
+  ]
 }

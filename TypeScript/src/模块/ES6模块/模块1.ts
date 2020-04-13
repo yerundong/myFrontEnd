@@ -6,24 +6,21 @@
 // 使用 import 被导入的变量是与原变量绑定/引用的，可以理解为 import 导入的变量无论是否为基本类型都是【引用传递】
 
 // export命令可以出现在模块的任何位置，只要处于【模块顶层】就可以。如果处于块级作用域（包括命名空间）内，就会报错
-namespace myModule {
-    class Clas1 {
-        name: string;
-        age: number;
-    }
-    export class Clas2 {
-        name: string;
-        age: number;
-    }
-    interface interf1 {
-        [pro: string]: any
-    }
-    export let obj1:interf1 = {
-        name: 1,
-    }
-    obj1.name = 'a';
-    // export {Clas1};// error 命名空间中不允许有导出声明。
+class Clas1 {
+    name: string;
+    age: number;
 }
-import obj1_export = myModule.obj1;
-export {myModule, obj1_export}
+class Clas2 {
+    name: string;
+    age: number;
+}
+interface interf1 {
+    [pro: string]: any
+}
+let obj1: interf1 = {
+    name: 1,
+}
+obj1.name = 'a';
+
+export { Clas1, obj1 }
 

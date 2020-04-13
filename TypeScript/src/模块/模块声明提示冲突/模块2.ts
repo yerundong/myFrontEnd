@@ -4,5 +4,7 @@
 // 因此当再次声明某个模块时，TypeScript 会认为重复声明了两次相同的变量进而抛错。
 // 对于这个问题，最简单的解决方法是在报错的文件底部添加一行代码：export {}。这行代码会「欺骗」tslint 使其认为当前文件是一个 ESModule 模块
 // 终极解决方法：使用插件@babel/plugin-transform-modules-commonjs ，可以将 ESModule 模块转换为符合 Commonjs 规范的代码
-// let test_declaration_conflict = false;
+let test_declaration_conflict = false;
+let sym1 = Symbol('111');
+// console.log(sym1);
 // console.log(test_declaration_conflict);

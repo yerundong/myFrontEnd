@@ -4,6 +4,9 @@ let path = require('path');
 // 可以让插件为你生成一个HTML文件，使用lodash模板提供你自己的模板，或使用你自己的loader。
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
+// copy-webpack-plugin 的作用是拷贝文件或文件夹
+const CopyWebpackPlugin = require('copy-webpack-plugin')
+
 // const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 // 在每次构建前清理 /dist 文件夹
@@ -131,6 +134,14 @@ module.exports = {
     // 启动HMR(实时热更新)
     // HMR 不适用于生产环境，这意味着它应当只在开发环境使用。
     // new webpack.HotModuleReplacementPlugin(),
+
+    new CopyWebpackPlugin([
+      {
+        from: path.resolve(__dirname, '../static'),
+        to: path.resolve(__dirname, '../dist/static'),
+        ignore: ['.*']
+      }
+    ]),
 
     new HtmlWebpackPlugin({
       // 输出文件名

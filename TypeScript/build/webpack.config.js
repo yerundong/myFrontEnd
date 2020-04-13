@@ -34,7 +34,8 @@ module.exports = {
       path.join(__dirname, '..', "/src/模块/ES6模块/模块2.ts"),
       path.join(__dirname, '..', "/src/模块/CommonJs/模块1.ts"),
       path.join(__dirname, '..', "/src/模块/CommonJs/模块2.ts"),
-      
+      path.join(__dirname, '..', "/src/模块/模块声明提示冲突/模块1.ts"),
+      path.join(__dirname, '..', "/src/模块/模块声明提示冲突/模块2.ts"),
     ],
     // app:  path.join(__dirname, '..', "/src/函数.ts"),
   },
@@ -75,11 +76,11 @@ module.exports = {
       // 安装awesome-typescript-loader库来代替ts-loader库，它俩的功能是一样的，但据说awesome-typescript-loader比ts-loader编译.ts文件速度更快。
       // 也有人说使用@babel/preset-typescript取代awesome-typescript-loader和ts-loader更好
       // 详见https://www.cnblogs.com/vvjiang/archive/2019/12/18/12057811.html（待研究）
-      {
-        test: /\.tsx?$/,
-        use: 'awesome-typescript-loader',
-        exclude: /node_modules/
-      },
+      // {
+      //   test: /\.tsx?$/,
+      //   use: 'awesome-typescript-loader',
+      //   exclude: /node_modules/
+      // },
       // css-loader、style-loader、postcss-loader、sass-loader
       // 二者组合在一起使你能够把样式表嵌入webpack打包后的JS文件中
       // 可用extract-text-webpack-plugin插件将其分离出来
@@ -128,6 +129,12 @@ module.exports = {
           limit: 10000
         }
       },
+      // babel-loader
+      {
+        test: /\.ts$/,
+        use: 'babel-loader',
+        exclude:'/node_modules/'
+      }
     ]
   },
   /*插件*/

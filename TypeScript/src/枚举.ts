@@ -73,11 +73,12 @@
     // 常量枚举只能使用常量枚举表达式，并且不同于常规的枚举，它们在编译阶段会被删除。
     // 避免在额外生成的代码上的开销和额外的非直接的对枚举成员的访问
     // 量枚举不允许包含计算成员
-    const enum enum7 {
-        A,
-        B,
-        C,
-    }
+    // 用了babel就不能用const enum
+    // const enum enum7 {
+    //     A,
+    //     B,
+    //     C,
+    // }
     // console.log(enum7);// error
     // console.log(enum7.A);
 

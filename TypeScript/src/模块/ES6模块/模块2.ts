@@ -1,4 +1,4 @@
-import { myModule } from './模块1';
+import  * as myModule  from './模块1';
 // console.log(myModule);
 
 // esModule导入CommonJs模块

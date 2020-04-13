@@ -1,3 +1,14 @@
-安装 npm install --save-dev typescript awesome-typescript-loader source-map-loader
+安装：npm install --save-dev typescript awesome-typescript-loader source-map-loader
 查看版本 npx tsc -v
 在命令行上，运行TypeScript编译器：npx tsc src/app1.ts
+
+ts+babel：
+参考：https://zhuanlan.zhihu.com/p/102250469
+有 5 个包需要下载安装，它们分别是：
+    @babel/core
+    @babel/preset-env
+    @babel/preset-typescript
+    @babel/plugin-proposal-class-properties
+    @babel/plugin-proposal-object-rest-spread
+    
+安装：cnpm install --save-dev babel-loader @babel/core @babel/preset-env @babel/preset-typescript @babel/plugin-proposal-class-properties @babel/plugin-proposal-object-rest-spread
