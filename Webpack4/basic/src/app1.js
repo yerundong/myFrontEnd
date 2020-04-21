@@ -1,4 +1,4 @@
-import './style.scss'
+import './style1.scss'
 import img1 from '../assets/img1.png';
 import img2 from '../assets/img2.png';
 import json from '../assets/json.json';

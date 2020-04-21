@@ -49,7 +49,7 @@
         function justDoIt(x) {
             return new Promise(function (resolve, reject) {
                 // console.log('我是实例化时执行的');
-                // resolve(x);
+                resolve(x);
             });
         }
         justDoIt('a').then((res) => {

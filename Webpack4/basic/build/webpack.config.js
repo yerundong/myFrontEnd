@@ -5,9 +5,20 @@ let path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 // copy-webpack-plugin 的作用是拷贝文件或文件夹
+// reference：https://github.com/webpack-contrib/copy-webpack-plugin
 const CopyWebpackPlugin = require('copy-webpack-plugin')
 
+// 压缩优化js文件
+const UglifyJsPlugin = require('uglifyjs-webpack-plugin')
+
+// extract-text-webpack-plugin 是 mini-css-extract-plugin的前身，不过在 webpack4 算是废了。
 // const ExtractTextPlugin = require('extract-text-webpack-plugin');
+
+// 把js中import导入的样式文件，单独打包成一个css文件，结合html-webpack-plugin，以link的形式插入到html文件中。
+// 此插件不支持HMR，若修改了样式文件，是不能即时在浏览器中显示出来的，需要手动刷新页面。
+// 不能与style-loader同用
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+
 
 // 在每次构建前清理 /dist 文件夹
 const {
@@ -60,26 +71,18 @@ module.exports = {
     rules: [
       // css-loader、style-loader、postcss-loader、sass-loader
       // 二者组合在一起使你能够把样式表嵌入webpack打包后的JS文件中
-      // 可用extract-text-webpack-plugin插件将其分离出来
       // postcss-loader需要借助autoprefixer插件来根据浏览器的兼容性为CSS3的属性添加前缀
-      {
-        test: /\.css$/,
-        use: [{
-            loader: 'style-loader' // 将所有的计算后的样式加入页面中；
-          },
-          {
-            loader: 'css-loader' // 使你能够使用类似@import和url(…)的方法实现require()的功能
-          }
-        ]
-      },
       // sass-loader依赖于node-sass
       {
-        test: /\.scss$/,
+        test: /\.(sa|sc|c)ss$/,
         use: [{
-            loader: 'style-loader'
+            loader: MiniCssExtractPlugin.loader
           },
+          // {
+          //   loader: 'style-loader' // 把js中import导入的样式文件打包到js文件中，运行js文件时，将样式自动插入到<style>标签中。
+          // },
           {
-            loader: 'css-loader'
+            loader: 'css-loader' // 使你能够使用类似@import和url(…)的方法实现require()的功能
           },
           {
             loader: 'sass-loader' // 允许使用sass语法
@@ -135,13 +138,26 @@ module.exports = {
     // HMR 不适用于生产环境，这意味着它应当只在开发环境使用。
     // new webpack.HotModuleReplacementPlugin(),
 
-    new CopyWebpackPlugin([
-      {
-        from: path.resolve(__dirname, '../static'),
-        to: path.resolve(__dirname, '../dist/static'),
-        ignore: ['.*']
-      }
-    ]),
+    new CopyWebpackPlugin([{
+      from: path.resolve(__dirname, '../static'),
+      to: path.resolve(__dirname, '../dist/static'),
+      ignore: ['.*']
+    }]),
+
+    new MiniCssExtractPlugin({
+      filename: "css/[name].css",
+      reloadAll: true,
+    }),
+
+    new UglifyJsPlugin({
+      uglifyOptions: {
+        // compress: {
+        //   warnings: false
+        // }
+      },
+      sourceMap: true,
+      parallel: true
+    }),
 
     new HtmlWebpackPlugin({
       // 输出文件名
@@ -160,6 +176,12 @@ module.exports = {
       filename: "merge.bundle.html",
       template: path.join(__dirname, '..', "/src/merge.html"),
       chunks: ["merge"],
+      minify: {
+        removeComments: true, //去除HTML注释
+        collapseWhitespace: true, //去掉空格
+        minifyJS: true, // 压缩html里的js（使用uglify-js进行的压缩）
+        minifyCSS: true, // 压缩html里的css（使用clean-css进行的压缩）
+      }
     }),
   ]
 };

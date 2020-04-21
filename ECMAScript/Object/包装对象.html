@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 四种原始类型的值——Boolean, Number, String, Symbol，只要引用了它们的属性，就会自动转为对象，即“包装对象”
+        // 一旦属性引用结束，这个新创建的对象就会销毁（其实在实现上并不一定创建或销毁这个临时对象，然而整个过程看起来是这样）。
+        // null和undefined没有包装对象，访问它们的属性会造成一个类型错误
+
+        let num1 = new Number(123);
+        let num2 = Number(123);
+        let num3 = 123;
+
+        let str1 = new String('abc');
+        let str2 = String('abc');
+        let str3 = 'abc';
+
+        let bool1 = new Boolean(true);
+        let bool2 = Boolean(true);
+        let bool3 = true;
+
+        let sym1 = Symbol('sym');
+
+        // console.log(typeof num1);// object
+        // console.log(typeof num2);// number
+        // console.log(typeof num3);// number
+        // console.log(num2 === num3);// true
+
+        // console.log(typeof str1);// object
+        // console.log(typeof str2);// string
+        // console.log(typeof str3);// string
+        // console.log(str2 === str3);// true
+
+        // console.log(typeof bool1);// object
+        // console.log(typeof bool2);// boolean
+        // console.log(typeof bool3);// boolean
+        // console.log(bool2 === bool3);// true
+
+        // console.log(typeof sym1);// symbol
+        
+        // 获取原始值：valueOf();
+        // console.log(num1.valueOf(), num2.valueOf(), num3.valueOf());// 123
+        // console.log(str1.valueOf(), str2.valueOf(), str3.valueOf());// abc 
+        // console.log(bool1.valueOf(), bool2.valueOf(), bool3.valueOf());// true
+        // console.log(sym1.valueOf());// Symbol(sym)
+    </script>
+</body>
+
+</html>

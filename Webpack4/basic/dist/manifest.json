@@ -1,6 +1,9 @@
 {
+  "app1.css": "/css/app1.css",
   "app1.js": "/app1.bundle.js",
+  "app2.css": "/css/app2.css",
   "app2.js": "/app2.bundle.js",
+  "merge.css": "/css/merge.css",
   "merge.js": "/merge.bundle.js",
   "app1.bundle.html": "/app1.bundle.html",
   "app2.bundle.html": "/app2.bundle.html",

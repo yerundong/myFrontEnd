@@ -8,32 +8,57 @@
 </head>
 <body>
 	<script type="text/javascript">
-		// ES65语法中，生成实例对象的传统方法是通过构造函数（constructor）。
 		// ES6提供了更接近传统语言的写法，引入了 Class（类）这个概念，作为对象的模板
-		// 新的class写法本质还是函数，只不过经过[语法糖包装]，让对象原型的写法[更加清晰、更像面向对象编程]，完全可以看作构造函数的另一种写法
-		// [构造器]里的this指向的是[实例对象],如：Cla1里的所有this都指向cla1_INSTANCE
+		// 新的class写法本质还是函数，只不过经过[语法糖包装]，让对象原型的写法[更加清晰、更像面向对象编程]
+		// 类中定义的[constructor]是实例的构造函数，他执行时的this指向的是[实例对象]
+
+		// 原型的定义：所谓原型就是指类或构造函数的prototype属性所引用的对象，这个对象就是【原型对象】。
+		// 原型的作用：实现继承和共享属性的有限的对象链
+		// 获取原型的方法：
+		// 1.类/构造函数.prototype；
+		// 2.对象._ proto 
+		// 3.实例对象.constructor.prototype
+		// 4.Object.getPrototypeOf(实例对象)
+
+		// js的方法可以分为三类：
+		// a 类方法（静态方法）---只能类调用（例如：Promise.all和Promise.race）
+		// b 对象方法---只能实例对象调用
+		// c 原型方法---实例和类都可以调用，共享的方法（例如：Promise.prototype.then）
+
+		// 建议：构造函数中加【属性】，原型中加【方法】；构造函数中加【变化的属性】，原型中【不变的属性和方法】。
+		// 理由：对象方法，实例化的过程中，总是重复创建功能不变的方法，造成资源浪费，而prototype上的方法只会初始化一次
+
 		
 		// [定义类]
 		// 类名规定首字母大写
 		class Cla1{
 			constructor(x, y) {
+				// console.log(constructor);
 			    this.x = x;
 			    this.y = y;
+				// 对象方法
 			    this.fn0 = ()=>{
 			    	console.log('fn0', this.x, this.y);
 			    }
 			}
+			// 原型方法
 			fn1(){
 				console.log('fn1', this.x, this.y);
 				return this.x + this.y
 			}
+			// 类方法
+			static fnu(){
+                
+            }
 		}
-		// console.log(Cla1);
-		// console.log(typeof Cla1);// function
-		// console.log(Cla1.prototype);
+		// 类方法
+		Cla1.fnk = ()=>{};
 
 		// 类的所有方法都定义在类的prototype属性上面
 		// console.log(Cla1.prototype);// {constructor,fn1...}
+
+		// 类自身的方法
+		// console.log(Cla1.fnu, Cla1.fnk);
 
 		// 类的prototype对象不能被[整体覆盖]，以下操作无效
 		Cla1.prototype = {
@@ -42,13 +67,16 @@
 
 		// 如果需要添加类prototype成员，可以使用合并对象或新增对象成员的方法
 		Object.assign(Cla1.prototype, {
+			// 原型方法
 			fn2(){
 				console.log('fn2', this.x, this.y);
 				return this.x + this.y
 			}
 		});
 		Cla1.prototype.lol = 1;
-		// console.log(Cla1.prototype);
+
+		// 原型对象的构造器：Cla1
+		// console.log(Cla1.prototype.constructor === Cla1);// true
 
 		// 类的构造器是native code
 		// console.log(Cla1.constructor);// native code
@@ -58,18 +86,22 @@
 		
 		// [类实例化]
 		const cla1_INSTANCE = new Cla1('a', 'b');
+		// 获取原型
+		// console.log(Object.getPrototypeOf(cla1_INSTANCE) === Cla1.prototype);// true
+
 		// console.log(cla1_INSTANCE);
 		// cla1_INSTANCE.fn0();// fn0 a b
 		// cla1_INSTANCE.fn1();// fn1 a b
 		// cla1_INSTANCE.fn2();// fn2 a b
 		
-		// new操作做了两件事：
+		// new操作做了三件事：
+		// let cla1_INSTANCE = {}
 		// cla1_INSTANCE.__proto__ = Cla1.prototype，完成属性与方法的继承
-		// constructor.call(cla1_INSTANCE) 执行并改变了构造函数constructor内部this指向，指向了实例对象，使得可在构造函数constructor里定义实例的属性
+		// constructor.call(cla1_INSTANCE) 执行并改变了构造函数constructor内部this指向，指向了实例对象
 
 		// Cla1.prototype是[直接赋值]给cla1_INSTANCE.__proto__，所以相当于是同一个对象
-		// 由于所有实例的__proto__与Cla1.prototype都是同一个对象，则其中一个改动，则所有的都会变动
-		// 所以Cla1.prototype不宜放置那些需要变动值的属性和方法，因为它是所有实例共用的
+		// 所有实例的__proto__与Cla1.prototype 引用同一个地址，
+		// 所以Cla1.prototype一般放置不变动的公共属性/方法
 		// console.log(cla1_INSTANCE.__proto__ === Cla1.prototype);// true 
 		
 		// cla1_INSTANCE、cla1_INSTANCE.__proto__、Cla1.prototype的构造器都是类Cla1
@@ -85,6 +117,23 @@
 		// new Cla2(); // 报错
 		// class Cla2 {}
 
+		// 原型链
+		// 每个实例对象都有一个私有属性__proto__指向它的构造函数的原型对象（prototype），
+		// 而该原型对象也有一个属性__proto__指向自身的构造函数的原型对象（prototype），层层向上直到一个对象（Object.prototype）的原型对象为 null。
+		 
+		// 几乎所有 JavaScript 中的对象都是位于原型链顶端的 Object 的实例。
+		const protp1 = Object.getPrototypeOf(cla1_INSTANCE);
+		// console.log(protp1);// Cla1.prototype
+
+		const protp2 = Object.getPrototypeOf(protp1);
+		// console.log(protp2);// Cla1.prototype的原型, 也就是Object.prototype，
+		// console.log(protp2 === Object.prototype);// true
+
+		const protp3 = Object.getPrototypeOf(protp2);
+		// console.log(protp3);// null 原型链的最后一个环节一定是null，也就是没有原型
+
+		// 因为Object.prototype没有原型
+		// console.log(Object.getPrototypeOf(Object.prototype));// null
 	</script>
 </body>
 </html>

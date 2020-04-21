@@ -14,7 +14,8 @@
         // Promise对象有三种状态：pending（进行中）、resolved（已定型），resolved（已定型）又分为fulfilled（已成功）和rejected（已失败）
         // Promise对象的状态改变，只有两种可能：从pending变为fulfilled和从pending变为rejected
         // 只要这两种情况发生，状态就[凝固]了，不会再变了，会一直保持这个结果，这时就称为resolved（已定型）
-        // 有了Promise对象，就可以将异步操作以[同步操作的流程]表达出来，避免了[层层嵌套]的回调函数
+        // 有了Promise对象，可以链式写异步，避免了[层层嵌套]的回调函数
+        // 但还有更简洁的写法，就是async+promise
 
         // Promise对象是一个构造函数，用来生成Promise实例
         // Promise构造函数必须接受一个[函数]作为参数，否则报错，该函数的两个参数分别是resolve和reject函数
@@ -50,11 +51,11 @@
         // 而setTimeout是在[下一轮事件循环开始]时执行，所以晚于resolve、reject
         // setTimeout(() => { console.log('setTimeout2') });
         const promise2 = new Promise(function (resolve, reject) {
-            // resolve('resolve');
-            // console.log(1);
-            // reject('reject');// 不执行
-            // console.log(2);
-            // setTimeout(() => { console.log('setTimeout1') });
+            resolve('resolve');
+            console.log(1);
+            reject('reject');// 不执行
+            console.log(2);
+            setTimeout(() => { console.log('setTimeout1') });
         });
         promise2.then(value => {
             console.log(value);// resolve

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>defineProperty-存取属性</title>
+</head>
+
+<body>
+    <p id="text"></p>
+    <script>
+        // [defineProperty(object, propertyname, descriptor)]
+        // 可定义了两种的属性：[数据属性](详见另一个文件笔记)和[存取属性]
+		// 在一个对象上定义一个新属性，或者修改一个对象的现有属性的描述，并返回这个对象
+		// @param object: 目标对象
+		// @param propertyname: 属性名称
+		// @param descriptor: 属性描述
+		// 3个参数都为必须
+        
+        // [存取属性]
+        // 存取属性一般进行get/set操作，非直接存储数据数值
+        // 在descriptor中不能同时设置存取属性(get和set)和wriable或value，否则会错，就是说想用(get和set)，就不能用（wriable 或 value中的任何一个）
+        // 对象属性值的存/取分别对应set/get方法
+        // vue中的计算属性就是利用setter来实现的
+
+        let obj = {}, bri;
+        Object.defineProperty(obj, 'a', {
+            configurable: true,
+            set(newVal) {
+                bri = newVal;
+                document.querySelector("#text").innerHTML = newVal;
+            },
+            get() {
+                if (bri) {
+                    return bri
+                } else {
+                    return 1;//默认值
+                }
+            }
+        });
+        console.log(Object.getOwnPropertyDescriptor(obj, 'a'));
+        // console.log(obj.a);
+        obj.a = 2;
+        console.log(obj);
+
+    </script>
+</body>
+
+</html>

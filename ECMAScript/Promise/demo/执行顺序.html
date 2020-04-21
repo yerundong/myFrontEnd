@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        console.log('global') // ——1️⃣
+
+        setTimeout(function () {
+            console.log('timeout1')// ——1️⃣1️⃣
+            new Promise(function (resolve) {
+                console.log('timeout1_promise')// ——1️⃣2️⃣
+                resolve()
+            }).then(function () {
+                console.log('timeout1_then')// ——1️⃣3️⃣
+            })
+        }, 2000)
+
+        for (var i = 1; i <= 3; i++) {
+            setTimeout(function () {
+                console.log(i)// ——第一个4是7️⃣，后两个是1️⃣4️⃣
+            }, i * 1000)
+            console.log(i)// ——2️⃣
+        }
+
+        new Promise(function (resolve) {
+            console.log('promise1')// ——3️⃣
+            resolve()
+        }).then(function () {
+            console.log('then1')// ——5️⃣
+        })
+
+        setTimeout(function () {
+            console.log('timeout2')// ——8️⃣
+            new Promise(function (resolve) {
+                console.log('timeout2_promise')// ——9️⃣
+                resolve()
+            }).then(function () {
+                console.log('timeout2_then')// ——1️⃣0️⃣
+            })
+        }, 1000)
+
+        new Promise(function (resolve) {
+            console.log('promise2')// ——4️⃣
+            resolve()
+        }).then(function () {
+            console.log('then2')// ——6️⃣
+        })
+
+        // global
+        // 1 2 3
+        // promise1
+        // promise2
+        // then1
+        // then2
+        // 4
+        // timeout2
+        // timeout2_promise
+        // timeout2_then
+        // timeout1
+        // timeout1_promise
+        // timeout1_then
+        // 4*2
+
+    </script>
+</body>
+
+</html>

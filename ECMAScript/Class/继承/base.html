@@ -14,7 +14,7 @@
         // 通过extends关键字，继承父类的所有属性和方法
         // 继承操作做了两件事：
         // Sub1.prototype.__proto__ = Sup1.prototype，子类继承父类的原型对象prototype
-        // constructor.call(sub1_INSTANCE) 子类实例化的时其实是执行的是父类的constructor，实例化时把this改指向子类的实例（super）
+        // constructor.call(sub1_INSTANCE) 子类实例化的时必须先执行的是父类的constructor，但是把this改指向子类的实例（super）
         
         class Sup1 {
             constructor(a, b) {
@@ -42,7 +42,7 @@
         const sup1_INSTANCE = new Sup1(1, 2);
         const sub1_INSTANCE = new Sub1(3, 4);
 
-        // console.log(sup1_INSTANCE);
+        console.log(sup1_INSTANCE);
         console.log(sub1_INSTANCE);
         // sup1_INSTANCE.fn1();// fn1
         // sub1_INSTANCE.fn1();// fn1
