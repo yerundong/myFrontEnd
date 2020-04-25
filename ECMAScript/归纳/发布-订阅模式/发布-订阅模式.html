@@ -10,7 +10,7 @@
 
 <body>
     <script>
-        // 发布—订阅模式定义对象间的一种一对多的依赖关系，当一个对象的状态发生变化时，所依赖于他的对象都将得到通知。
+        // 发布—订阅模式（Publish–subscribe pattern）定义对象间的一种一对多的依赖关系，当一个对象A的状态发生变化时，所依赖于他的对象B都将得到通知。
         // 发布-订阅模式的优点:
         // 1、可以广泛应用于异步编程，它可以代替我们传统的回调函数 
         // 2、我们不需要关注对象在异步执行阶段的内部状态，我们只关心事件完成的时间点
@@ -60,14 +60,24 @@
         }
 
         // 添加侦听函数(订阅)（一个发布者可以对应多个订阅者）
-        obj.listener('sub', function (a, b, c) {
-            console.log(a, b, c);
-        });
-
-        let fn_sum = function (a, b, c) {
-            console.log(a + b + c);
+        let sum = function (a, b, c) {
+            console.log('sum', a + b + c);
         };
-        obj.listener('sub', fn_sum);
+        let foo = function (a, b, c) {
+            console.log('foo', a * b + c);
+        };
+        let sub = function (a, b, c) {
+            console.log('sub2', a + b + c);
+        };
+
+        obj.listener('sub', function (a, b, c) {
+            console.log('sub1', a, b, c);
+        });
+        obj.listener('sub', sub);
+        obj.listener('sum', sum);
+        obj.listener('foo', foo);
+
+        console.log(obj);
         
         // 触发侦听函数（发布）
         obj.trigger('sub', 1, 2, 3);

@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>防抖函数</title>
+</head>
+
+<body>
+    <script>
+        // 防抖函数：限制一个函数在被高频触发执行时，限制只执行最后一次或最开始一次。
+        // 作用：提高性能，节省开销，防止重复操作
+        // 场景：高频事件（mousemove、resize、scroll、input、表单click等），大量的 DOM 操作
+        const somefn = function (arg) {
+            console.log(this);
+            // console.log(arg);
+        }
+
+        // 最后执行版：
+        let debounce1 = function (handle, delay) {
+            let timer = null;
+            return function () {
+                if(timer){clearTimeout(timer);}
+                timer = setTimeout(() => {
+                    handle.apply(this, arguments)
+                }, delay);
+            }
+        }
+        let somefn_1 = debounce1(somefn, 500);
+
+        // 最开始执行版：
+        let debounce2 = function (handle, delay) {
+            let timer = null;
+            return function () {
+                if(timer){clearTimeout(timer);}
+                if (!timer) {
+                    handle.apply(this, arguments)
+                }
+                timer = setTimeout(() => {
+                    timer = null;
+                }, delay);
+            }
+        }
+        let somefn_2 = debounce2(somefn, 500);
+
+        // 合成版：
+        // @param immediate 是否立即执行
+        let debounce3 = function (handle, delay, immediate) {
+            let timer = null;
+            return function () {
+                if(timer){clearTimeout(timer);}
+                if (immediate) {
+                    if (!timer) {
+                        handle.apply(this, arguments)
+                    }
+                    timer = setTimeout(() => {
+                        timer = null;
+                    }, delay);
+                } else {
+                    timer = setTimeout(() => {
+                        handle.apply(this, arguments)
+                    }, delay);
+                }
+            }
+        }
+        let somefn_3 = debounce3(somefn, 500, true);
+
+        window.onresize = function () {
+            somefn_3('debounce3')
+        };
+    </script>
+</body>
+
+</html>

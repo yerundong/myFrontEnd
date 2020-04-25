@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<a href="哈希路由.html">去哈希路由</a>
+		<button id="b">back</button>
+		<button id="f">forward</button>
+		<button id="g">go</button>
+        <button id="ps">pushState</button>
+        <button id="rs">replaceState</button>
+        
+        <script type="text/javascript">
+            let o=document.getElementById("o");
+			let b=document.getElementById("b");
+			let f=document.getElementById("f");
+			let g=document.getElementById("g");
+			let ps=document.getElementById("ps");
+			let rs=document.getElementById("rs");
+
+			console.log(window.history)
+
+			//history.length浏览器历史列表中的 URL数量
+			// console.log(window.history.length)
+
+			//back()加载 history列表中的前一个 URL。
+			b.onclick=function () {
+				window.history.back()
+			}
+			//history.forward()加载 history列表中的下一个 URL。
+			f.onclick=function () {
+				window.history.forward()
+			}
+			//go(number|URL) 方法可加载历史列表中的某个具体的页面。
+			//number 参数使用的是要访问的 URL 在 History 的 URL 列表中的【相对位置】。
+			g.onclick=function () {
+				//window.history.go(-1)//上一个页面
+				// window.history.go(1)//上一个页面
+				window.history.go(0)//本页面刷新
+			}
+
+            // history模式实现不刷新修改url
+            //history.pushState(state，title [，url ]);  
+			//history.replaceState(state，title [，url ]); 
+            // state-历史记录状态数据，
+            // title-目前大多数浏览器都忽略此参数，尽管将来可能会使用它
+            // URL-string类型，浏览器不会检查url是否存在，只改变url，url必须同域，不能跨域
+            ps.onclick = function () {
+                window.history.pushState({pushState: 123}, null, "?page=1"); 
+            }
+            rs.onclick = function () {
+                // 需要服务
+                window.history.replaceState( null, null, '/something'); 
+            }
+            // go、back、forward是切换历史状态，触发onpopstate；
+            // pushState、replaceState是修改历史状态，不触发onpopstate。
+            // 但是onpopstate执行必须pushState、replaceState先执行
+			window.onpopstate = function () {
+                console.log('onpopstate', window.history);
+            }
+            // *注意*
+            // history模式下，前端的url必须和实际向后端发起请求的url 一致，
+            // 如http://www.abc.com/book/id 。如果后端缺少对/book/id 的路由处理，将返回404错误。
+		</script>
+	</body>
+</html>

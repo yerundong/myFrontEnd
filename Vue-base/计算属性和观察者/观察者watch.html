@@ -15,7 +15,13 @@
 			//【观察者】watch
 			//虽然计算属性里的getter函数也能监听M层,但只能写一个get方法，只能进行简单操作
 			//通过 watch选项提供一个更通用的方法，来响应数据(M)的变化
-			//适用于执行异步操作或开销较大的操作
+			//当需要在数据变化时执行异步或开销较大的操作时，这个方式是最有用的。这是和computed最大的区别，请勿滥用。
+
+			// 特点：
+			// 1. 不支持缓存，数据变，直接会触发相应的操作；
+			// 2. watch支持异步；
+			// 3.一对多 或者 一对一；
+			// 4.监听数据必须是【data中声明过】或者【父组件传递过来的props中的数据】
 			var vm = new Vue({
 				el:'#app',
 				data:{
@@ -28,12 +34,11 @@
 					//不监听V和VM层属性
 					bird:function (newValue) {
 						this.readBird(newValue)
-					}
+					},
 				},
 				methods:{
 					readBird:function (value) {
-//						alert(value);
-						this.$data.bird2 = value;
+						this.bird2 = value;
 					}
 				}
 			})

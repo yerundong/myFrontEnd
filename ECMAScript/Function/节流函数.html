@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>函数节流</title>
+</head>
+
+<body>
+    <script>
+        // 节流函数：限制一个函数在被高频触发执行时，限制它在一定时间内只能执行一次。节流会稀释函数的执行频率。
+        // 作用：提高性能，节省开销，防止重复操作
+        // 场景：高频事件（mousemove、resize、scroll、input、表单click等），大量的 DOM 操作
+
+        const somefn = function (arg) {
+            // console.log(this);
+            console.log(arg);
+        }
+
+        // 方法一：时间戳+闭包方案
+        // 特点：函数立即执行，在delay时间段的最开始执行
+        let throttle1 = function (handle, delay = 500) {
+            let pretime = Date.now();
+            return function () {
+                let nowtime = Date.now();
+                if (nowtime - pretime >= delay) {
+                    handle.apply(this, arguments)
+                    pretime = Date.now();
+                }
+            }
+        }
+
+        let somefn_1 = throttle1(somefn, 1000);
+
+        // 方法二：延时+闭包方案
+        // 特点：函数不会立即执行，在delay时间段的最后执行
+        let throttle2 = function (handle, delay) {
+            let timer = null;
+            return function () {
+                if (!timer) {
+                    timer = setTimeout(() => {
+                        handle.apply(this, arguments);
+                        timer = null;
+                    }, delay);
+                }
+            }
+        }
+        let somefn_2 = throttle2(somefn, 1000);
+
+        // 合成版：
+        // @param immediate 是否立即执行
+        let throttle3 = function (handle, delay, immediate = true) {
+            let timer = null, pretime;
+            if(immediate){
+                pretime = Date.now()
+            }
+            return function () {
+                if(immediate){
+                    let nowtime = Date.now();
+                    if (nowtime - pretime >= delay) {
+                        handle.apply(this, arguments)
+                        pretime = Date.now();
+                    }
+                }else{
+                    if (!timer) {
+                        timer = setTimeout(() => {
+                            handle.apply(this, arguments);
+                            timer = null;
+                        }, delay);
+                    }
+                }
+                
+            }
+        }
+        let somefn_3 = throttle3(somefn, 1000, true);
+
+        window.onresize = function () {
+            somefn_3('throttle')
+        };
+    </script>
+</body>
+
+</html>
