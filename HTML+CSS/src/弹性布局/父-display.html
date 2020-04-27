@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>display</title>
+</head>
+<style>
+    /* 
+    flex： 将容器作为弹性伸缩盒显示，未设置宽时，默认为100%
+    inline-flex：将容器作为内联块级弹性伸缩盒显示，但允许设置宽，未设置宽时，根据子元素的宽去自适应
+    */
+    html, body{
+        padding: 0;
+        margin: 0;
+    }
+    .box{
+        resize: both;
+        height: 500px;
+        background: pink;
+        overflow: hidden;
+        display: flex;
+        /* display: inline-flex; */
+    }
+    .item{
+        width: 500px;
+        height: 200px;
+    }
+    .item1{
+        width: 700px;
+        background: red;
+    }
+    .item2{
+        background: blue;
+    }
+    .item3{
+        background: yellow;
+    }
+</style>
+<body>
+    <div class="box">
+        <div class="item item1">item1</div>
+        <div class="item item2">item2</div>
+        <div class="item item3">item3</div>
+    </div>
+</body>
+</html>

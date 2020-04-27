@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>justify-content</title>
+</head>
+<style>
+    /* 
+    justify-content：:设置弹性子元素在【主轴的对齐方式】（需要有剩余空间才能体现）
+        flex-start 默认值 左对齐
+        flex-end：右对齐
+        center： 靠拢居中
+        space-between：紧贴两端对齐，剩余空间均匀分配成间隔。
+        space-around：两端有间隔，项目之间的间隔比项目与边框的间隔2倍。
+    */
+    html,
+    body {
+        padding: 0;
+        margin: 0;
+    }
+
+    .box {
+        resize: both;
+        width: 1400px;
+        height: 500px;
+        background: pink;
+        overflow: hidden;
+        display: flex;
+        justify-content: space-around;
+    }
+
+    .item {
+        height: 200px;
+        text-align: center;
+        box-sizing: border-box;
+        border-bottom: 1px solid #000;
+    }
+    .item:nth-of-type(odd){
+        background: red;
+    }
+    .item:nth-of-type(even){
+        background: green;
+    }
+    .item1 {
+        width: 500px;
+    }
+
+    .item2 {
+        width: 400px;
+        height: 300px;
+    }
+
+    .item3 {
+        width: 250px;
+    }
+</style>
+
+<body>
+    <div class="box">
+        <div class="item item1">111</div>
+        <div class="item item2">222</div>
+        <div class="item item3">333</div>
+    </div>
+</body>
+
+</html>

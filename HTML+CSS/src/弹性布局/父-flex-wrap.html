@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>flex-wrap</title>
+</head>
+<style>
+    /* 
+    flex-wrap：设置弹性元素换行规则，换行之后会自动增加一条主轴
+        nowrap 默认 始终不换行，当一行无法放置，固定高宽按比例被改变
+        wrap 固定高宽不会被改变，当一行无法放置，往下换行
+        wrap-reverse 固定高宽不会被改变，当一行无法放置，往上换行
+    */
+    html,
+    body {
+        padding: 0;
+        margin: 0;
+    }
+
+    .box {
+        resize: both;
+        width: 1400px;
+        height: 500px;
+        background: pink;
+        overflow: hidden;
+        display: flex;
+        flex-wrap: wrap;
+        align-items: flex-start;
+    }
+
+    .item {
+        height: 200px;
+        text-align: center;
+        box-sizing: border-box;
+        border-bottom: 1px solid #000;
+    }
+    .item:nth-of-type(odd){
+        background: red;
+    }
+    .item:nth-of-type(even){
+        background: green;
+    }
+    .item1 {
+        width: 500px;
+    }
+
+    .item2 {
+        width: 400px;
+        height: 300px;
+    }
+
+    .item3 {
+        width: 250px;
+    }
+</style>
+
+<body>
+    <div class="box">
+        <div class="item item1">111</div>
+        <div class="item item2">222</div>
+        <div class="item item3">333</div>
+        <div class="item item3">444</div>
+        <div class="item item3">555</div>
+        <div class="item item3">666</div>
+    </div>
+</body>
+
+</html>

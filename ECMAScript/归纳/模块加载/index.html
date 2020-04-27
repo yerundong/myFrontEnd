@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="css/css1.css">
+    <link rel="stylesheet" href="css/css2.css">
+    <link rel="stylesheet" href="css/css3.css">
+</head>
+<body>
+    <div class="container">
+        <button class="set1">set1</button>
+        <button class="set2">set2</button>
+        <button class="set3">set3</button>
+        <!-- <div class="box1"></div>
+        <div class="box2"></div>
+        <div class="box3"></div> -->
+    </div>
+    <script>
+        let _container = document.querySelector(".container");
+        let _set1 = document.querySelector(".set1");
+        let _set2 = document.querySelector(".set2");
+        let _set3 = document.querySelector(".set3");
+        let _box1 = document.querySelector(".box1");
+        let _box2 = document.querySelector(".box2");
+        let _box3 = document.querySelector(".box3");
+        _set1.addEventListener('click', ()=>{
+            if(_box1){
+                _container.removeChild(_box1);
+                _box1 = null
+            }else{
+                _box1 = document.createElement('div');
+                _box1.classList.add('box1');
+                _container.appendChild(_box1);
+
+                let script = document.createElement('script');
+                script.src = './js/app1.js';
+                document.body.appendChild(script)
+            }
+        })
+        _set2.addEventListener('click', ()=>{
+            if(_box2){
+                _container.removeChild(_box2);
+                _box2 = null
+            }else{
+                _box2 = document.createElement('div');
+                _box2.classList.add('box2');
+                _container.appendChild(_box2)
+
+                let script = document.createElement('script');
+                script.src = './js/app2.js';
+                document.body.appendChild(script)
+            }
+        })
+        _set3.addEventListener('click', ()=>{
+            if(_box3){
+                _container.removeChild(_box3);
+                _box3 = null
+            }else{
+                _box3 = document.createElement('div');
+                _box3.classList.add('box3');
+                _container.appendChild(_box3)
+
+                let script = document.createElement('script');
+                script.src = './js/app3.js';
+                document.body.appendChild(script)
+            }
+        })
+    </script>
+    <!-- <script src="./js/app1.js"></script>
+    <script src="./js/app2.js"></script>
+    <script src="./js/app3.js"></script> -->
+</body>
+</html>

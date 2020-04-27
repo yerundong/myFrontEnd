@@ -13,7 +13,7 @@
 		// 类中定义的[constructor]是实例的构造函数，他执行时的this指向的是[实例对象]
 
 		// 原型的定义：所谓原型就是指类或构造函数的prototype属性所引用的对象，这个对象就是【原型对象】。
-		// 原型的作用：实现继承和共享属性的有限的对象链
+		// 原型的作用：实现继承和共享属性的有限的对象链，避免重复定义属性，而节省开销
 		// 获取原型的方法：
 		// 1.类/构造函数.prototype；
 		// 2.对象._ proto 
@@ -120,6 +120,7 @@
 		// 原型链
 		// 每个实例对象都有一个私有属性__proto__指向它的构造函数的原型对象（prototype），
 		// 而该原型对象也有一个属性__proto__指向自身的构造函数的原型对象（prototype），层层向上直到一个对象（Object.prototype）的原型对象为 null。
+		// 这样一层一层向上查找就会形成一个链式结构，这就是原型链
 		 
 		// 几乎所有 JavaScript 中的对象都是位于原型链顶端的 Object 的实例。
 		const protp1 = Object.getPrototypeOf(cla1_INSTANCE);
@@ -129,7 +130,7 @@
 		// console.log(protp2);// Cla1.prototype的原型, 也就是Object.prototype，
 		// console.log(protp2 === Object.prototype);// true
 
-		const protp3 = Object.getPrototypeOf(protp2);
+		const protp3 = Object.getPrototypeOf(protp2); 
 		// console.log(protp3);// null 原型链的最后一个环节一定是null，也就是没有原型
 
 		// 因为Object.prototype没有原型

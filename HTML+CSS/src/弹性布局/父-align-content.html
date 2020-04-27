@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>align-content</title>
+</head>
+<style>
+    /* 
+    align-content：定义了【多根轴线的对齐方式】。如果项目只有一根主轴和一根交叉轴，该属性不起作用。
+        flex-start：与交叉轴的起点对齐。
+        flex-end：与交叉轴的终点对齐。
+        center：与交叉轴的中点对齐。
+        space-between：与交叉轴两端对齐，轴线之间的间隔平均分布。
+        space-around：每根轴线两侧的间隔都相等。所以，轴线之间的间隔比轴线与边框的间隔大一倍。
+        stretch（默认值）：轴线占满整个交叉轴。
+    */
+    html,
+    body {
+        padding: 0;
+        margin: 0;
+    }
+
+    .box {
+        resize: both;
+        width: 1400px;
+        height: 500px;
+        background: pink;
+        overflow: hidden;
+        display: flex;
+        flex-wrap: wrap;
+        align-content: space-between;
+    }
+
+    .item {
+        height: 200px;
+        text-align: center;
+        box-sizing: border-box;
+        border-bottom: 1px solid #000;
+    }
+    .item:nth-of-type(odd){
+        background: red;
+    }
+    .item:nth-of-type(even){
+        background: green;
+    }
+    .item1 {
+        width: 500px;
+        height: auto;
+    }
+
+    .item2 {
+        width: 400px;
+        height: 300px;
+    }
+
+    .item3 {
+        width: 250px;
+    }
+</style>
+
+<body>
+    <div class="box">
+        <div class="item item1">111</div>
+        <div class="item item2">222</div>
+        <div class="item item3">333</div>
+        <div class="item item3">444</div>
+        <div class="item item3">555</div>
+        <div class="item item3">666</div>
+    </div>
+</body>
+
+</html>
