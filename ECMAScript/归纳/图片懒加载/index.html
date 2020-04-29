@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>图片懒加载</title>
+</head>
+<style>
+    * {
+        padding: 0;
+        margin: 0;
+    }
+
+    html,
+    body,
+    .container {
+        width: 100%;
+        height: 100%;
+        overflow-y: auto;
+    }
+
+    .scrollBox {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-around;
+    }
+
+    .item_wrap {
+        width: 210px;
+        height: 250px;
+        background: grey;
+        margin: 30px;
+    }
+
+    .item_wrap img {
+        width: 100%;
+        height: 210px;
+    }
+</style>
+
+<body>
+    <div class="container">
+        <div class="scrollBox"></div>
+    </div>
+    <script>
+        let _container = document.querySelector(".container");
+        let _scrollBox = document.querySelector(".scrollBox");
+
+        let imgList = ['https://img.alicdn.com/bao/uploaded/i3/2885146563/TB1fg1dmCfD8KJjSszhXXbIJFXa_!!0-item_pic.jpg',
+            'https://img.alicdn.com/bao/uploaded/i1/1130055117/O1CN01NK4Rxu1nfdEGeCvJO_!!0-item_pic.jpg',
+            'https://img.alicdn.com/bao/uploaded/i1/2144302678/TB1KW76cSRRMKJjy0FlXXXFepXa_!!0-item_pic.jpg',
+            'https://img.alicdn.com/bao/uploaded/i3/3431542229/O1CN01mTRWWU1SKvOxB33I4_!!0-item_pic.jpg',
+            'https://img.alicdn.com/bao/uploaded/i4/3082440049/O1CN01lfqbJu1CETzWzvL6C_!!0-item_pic.jpg',
+            'https://img.alicdn.com/bao/uploaded/i2/3431542229/O1CN01cE1yAd1SKvOuwqrDM_!!0-item_pic.jpg',
+            'https://img.alicdn.com/bao/uploaded/i1/2153355693/TB2134TfsuYBuNkSmRyXXcA3pXa_!!2153355693.jpg',
+            'https://img.alicdn.com/bao/uploaded/i1/3342528376/TB152e9ceuSBuNjSsziXXbq8pXa_!!0-item_pic.jpg',
+            'https://img.alicdn.com/bao/uploaded/i1/1677648153/O1CN01Jvb9PF2A67hHYVzyA_!!0-item_pic.jpg',
+            'https://img.alicdn.com/bao/uploaded/i3/3624957475/TB2kG1isr1YBuNjSszhXXcUsFXa_!!3624957475-0-item_pic.jpg',
+            'https://img.alicdn.com/bao/uploaded/i3/3102495313/O1CN01bJVd771p7OsKzRgkt_!!0-item_pic.jpg',
+            'https://img.alicdn.com/bao/uploaded/i2/TB1P.7uQVXXXXamXpXXXXXXXXXX_!!0-item_pic.jpg',
+            'https://img.alicdn.com/bao/uploaded/i2/3165014792/O1CN014O5ytq1lGmX4tDPsu_!!0-item_pic.jpg',
+            'https://img.alicdn.com/bao/uploaded/i1/3354677343/TB2KxVYuASWBuNjSszdXXbeSpXa_!!3354677343-0-item_pic.jpg',
+            'https://img.alicdn.com/bao/uploaded/i1/2986378842/O1CN012bOYv92FBgWa4W8WE_!!0-item_pic.jpg',
+            'https://img.alicdn.com/bao/uploaded/i1/811756025/O1CN01izuwtY1uNUtH8hK3k_!!811756025-0-pixelsss.jpg',
+            'https://img.alicdn.com/bao/uploaded/i2/740173885/O1CN01y2H77t1eZNIYa5LZf_!!0-item_pic.jpg',
+        ]
+
+        // 初始化所有图片dom：获取所有图片，将其插入scrollBox
+        let init_allImgDom = function () {
+            let htmlStr = ''
+            for (let i = 0; i < 1000; i++) {
+                let ridx = Math.floor(Math.random() * imgList.length);
+                let ritem = imgList[ridx] + '?t=' + i; // 取任意一图片
+                let itemHtmlStr = `<div class="item_wrap">
+                    <img class = 'goods_img' lazy-load-src = "${ritem}"
+                        alt="">
+                    <p>商品商品商品商品商品</p>
+                </div>`
+                htmlStr += itemHtmlStr;
+            }
+            _scrollBox.innerHTML = htmlStr;
+            console.log('parseHTML done');
+        }
+
+        // 节流函数，避免高频触发懒加载方法
+        let throttle = function (handle, delay = 500) {
+            let pretime = Date.now();
+            return function () {
+                let nowtime = Date.now();
+                if (nowtime - pretime >= delay) {
+                    handle.apply(this, arguments)
+                    pretime = Date.now();
+                }
+            }
+        }
+
+        // 初始化懒加载功能方法
+        let init_lazyLoad = function () {
+            let _item_wraps = document.querySelectorAll(".item_wrap .goods_img");
+
+            // 判断图片节点是否在可视区内（以上边框进行判断）
+            let judgeIsInside = function (node) {
+                let _scrollTop = _container.scrollTop;
+                let _offsetTop = node.offsetTop;
+                let _clientHeight = document.documentElement.clientHeight;
+                let y = _clientHeight - _offsetTop + _scrollTop;
+                if (0 <= y && y <= _clientHeight) {
+                    return true
+                } else {
+                    return false
+                }
+            }
+
+            // 去遍历、判断，然后载入合法的图片
+            let loadImgs = function () {
+                console.log(1);
+                for (let i = 0, item; item = _item_wraps[i]; i++) {
+                    let lazySrc = item.getAttribute('lazy-load-src');
+                    if (lazySrc) {
+                        if (judgeIsInside(item)) {
+                            item.setAttribute('src', lazySrc);
+                            item.removeAttribute('lazy-load-src');
+                        }
+                    }
+                }
+            }
+
+            // 首屏加载
+            loadImgs();
+
+            // 节流限制
+            let _loadImgs = throttle(loadImgs, 10);
+
+            // 滚动触发
+            _container.onscroll = function () {
+                _loadImgs();
+            }
+
+            // 触发
+            window.onresize = function () {
+                _loadImgs();
+            }
+        }
+
+        init_allImgDom();
+        init_lazyLoad();
+    </script>
+</body>
+
+</html>
