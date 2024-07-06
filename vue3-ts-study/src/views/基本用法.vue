@@ -1,10 +1,6 @@
 <template>
   <RouterTitle />
-  <div>
-    参考：<a href="https://wangdoc.com/typescript/basic" target="_blank"
-      >阮一峰《TypeScript教程·基本用法》</a
-    >
-  </div>
+  <DocReferTo />
 </template>
 <script setup lang="ts">
 /*
@@ -27,12 +23,9 @@ let snyo: object = {}
 /*
 二、类型推断
 类型声明并不是必需的，如果没有，TypeScript 会自己推断类型。
-
-let foo2 = 123;
-
-上面示例中，变量foo并没有类型声明，TypeScript 就会推断它的类型。由于它被赋值为一个数值，因此 TypeScript 推断它的类型为number。
-后面，如果变量foo更改为其他类型的值，跟推断的类型不一致，TypeScript 就会报错。
-
-foo = 'hello'; // 报错
 */
+let foo2 = 123
+// 上面示例中，变量foo并没有类型声明，TypeScript 就会推断它的类型。由于它被赋值为一个数值，因此 TypeScript 推断它的类型为number。
+// 后面，如果变量foo更改为其他类型的值，跟推断的类型不一致，TypeScript 就会报错。
+// foo2 = 'hello'; // 报错
 </script>

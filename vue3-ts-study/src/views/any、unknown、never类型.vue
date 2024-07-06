@@ -1,10 +1,6 @@
 <template>
   <RouterTitle />
-  <div>
-    参考：<a href="https://wangdoc.com/typescript/any" target="_blank"
-      >阮一峰《TypeScript教程·any 类型，unknown 类型，never 类型》</a
-    >
-  </div>
+  <DocReferTo />
 </template>
 <script setup lang="ts">
 /*

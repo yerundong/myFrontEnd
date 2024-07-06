@@ -1,12 +1,6 @@
 <template>
   <RouterTitle />
-  <div>
-    参考：<a
-      href="https://wangdoc.com/typescript/types#%E5%9F%BA%E6%9C%AC%E7%B1%BB%E5%9E%8B"
-      target="_blank"
-      >阮一峰《TypeScript教程·TypeScript的类型系统》</a
-    >
-  </div>
+  <DocReferTo />
 </template>
 <script setup lang="ts">
 // -------- Boolean 类型 ----------
