@@ -129,7 +129,7 @@ let color: RedColor = 'red'
 type Greeting = `hello ${RedColor}`
 let gty: Greeting = 'hello red'
 
-// ????
+// 对象类型
 type Deftype1 = { foo: number; bar: string }
 let defval1: Deftype1 = { foo: 123, bar: '123' }
 
