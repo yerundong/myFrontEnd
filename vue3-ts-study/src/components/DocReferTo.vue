@@ -11,19 +11,17 @@ import { useRoute } from 'vue-router'
 defineProps({
   node: {
     type: String,
-    default: () => {
+    default: (): string => {
       const route = useRoute()
       return route.path
     }
   },
   name: {
     type: String,
-    default: () => {
+    default: (): string => {
       const route = useRoute()
-      return route.meta.menuName
+      return route.meta.menuName as string
     }
   }
 })
 </script>
-
-
