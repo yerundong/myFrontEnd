@@ -1,6 +1,7 @@
 <template>
   <RouterTitle />
   <DocReferTo />
+  <a href="https://www.jb51.net/javascript/291389euf.htm" target="__blank">type和interface的区别</a>
 </template>
 <script setup lang="ts">
 // interface 是对象的模板，可以看作是一种类型约定，中文译为“接口”。使用了某个模板的对象，就拥有了指定的类型结构。

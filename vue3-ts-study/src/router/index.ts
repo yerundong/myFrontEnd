@@ -58,8 +58,22 @@ const router = createRouter({
       meta: { menuName: '类' },
       component: () => import('@/views/类.vue')
     },
+    {
+      path: '/enum',
+      meta: { menuName: '枚举' },
+      component: () => import('@/views/枚举.vue')
+    },
+    {
+      path: '/assert',
+      meta: { menuName: '类型断言' },
+      component: () => import('@/views/类型断言.vue')
+    },
+    {
+      path: '/module',
+      meta: { menuName: '模块' },
+      component: () => import('@/views/模块.vue')
+    }
   ]
 })
 
 export default router
-
