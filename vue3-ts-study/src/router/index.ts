@@ -72,6 +72,21 @@ const router = createRouter({
       path: '/module',
       meta: { menuName: '模块' },
       component: () => import('@/views/模块.vue')
+    },
+    {
+      path: '/namespace',
+      meta: { menuName: '命名空间' },
+      component: () => import('@/views/命名空间.vue')
+    },
+    {
+      path: '/declare',
+      meta: { menuName: 'declare' },
+      component: () => import('@/views/declare.vue')
+    },
+    {
+      path: '/d.ts',
+      meta: { menuName: 'd.ts 类型声明文件' },
+      component: () => import('@/views/d.ts 类型声明文件.vue')
     }
   ]
 })

@@ -3,8 +3,6 @@
 // 方法二
 // export type {A, B};
 
-import type { Interface } from 'readline'
-
 export type T1 = string
 export type T2 = number
 
@@ -18,7 +16,7 @@ type T5 = {
 type T6 = { fn: T4 } & T5
 
 interface T7 {
-  (x: number, y: number): number
+  f(x: number, y: number): number
 }
 
 // export type T3 // error
@@ -26,4 +24,9 @@ interface T7 {
 export { type T3, type T4 } // ok
 export type { T5, T6, T7 } // ok
 
-// export default type T4 = boolean
+export type OBJ = {
+  x: number
+}
+export type COLOR = string
+export const color = 'red'
+export const fnc = (x) => x
