@@ -23,6 +23,6 @@ declare interface BEET3 {
 declare module '@/types/shy' {
   type BEET4 = 'i am BEET4'
 
-  //   function moment(): any
-  //   export = moment
+  function moment(): any
+  export { BEET4, moment }
 }

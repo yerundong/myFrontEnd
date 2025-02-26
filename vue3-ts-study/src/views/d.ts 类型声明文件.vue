@@ -15,7 +15,7 @@
 // .d.ts 文件中的顶级声明必须以 "declare" 或 "export" 修饰符开头。否则会抛出错误
 // .d.ts 文件中有两种用法：declare 和 export，一个.d.ts 文件中只能使用一种用法
 
-// 一、declare用法【参考 @/types/bee.d.ts 文件】
+// ------------------ 一、declare用法【参考 @/types/bee.d.ts 文件】 ----------------------
 // .d.ts 文件中定义的类型和接口，可以在全局访问
 
 const num1: BEET0 = 123
@@ -32,10 +32,10 @@ const obj2: BEET3 = {
 
 // 与 .ts 的 declare module 不同的是，.d.ts的 declare module 会把模块原输出的类型清除，只保留 .d.ts 里输出的
 // import { T1, T2 } from '@/types/shy' // 取不到 T1, T2
-import { BEET4 } from '@/types/shy'
+import { BEET4, moment } from '@/types/shy'
 const str2: BEET4 = 'i am BEET4'
 
-// 二、export用法【参考 @/types/tea.d.ts 文件】
+// ------------------ 二、export用法【参考 @/types/tea.d.ts 文件】 ----------------------
 // const epvar0: TEAT1 = 123 // error，export用法并非全局，必须手动引入
 import { type TEAT1, type TEAT2, type TEAT3, TEAV1, TEAT4, TEAT5 } from '@/types/tea.d'
 const epvar1: TEAT1 = 123
@@ -50,4 +50,9 @@ const epvar3: TEAT3 = {
 
 const epvar4: TEAT4 = 'ump'
 const epvar5: TEAT5 = false
+
+// ------------------ 三斜杠命令
+import type { BB1, BB2, BS1 } from '@/types/bearBig.d'
+const bbvar1: BB1 = 'one'
+const bbvar2: BB2 = 'three'
 </script>
