@@ -13,7 +13,7 @@ export default {
 
   // 声明emits
   // emits: ['change', 'cheat'],
-  // 声明emits+事件校验（鸡肋）
+  // 声明emits+事件校验
   emits: {
     change(v) {
       if (v > 10) {

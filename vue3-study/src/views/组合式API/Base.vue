@@ -4,6 +4,7 @@
     <button @click="setObj1">obj1.a is: {{ obj1.a }}</button>
     <button @click="setObj2">obj2.a is: {{ obj2.a }}</button>
     <button @click="setObj3">obj3.a is: {{ obj3.a }}</button>
+    <button @click="setObj4">obj4.a is: {{ obj4.a }}</button>
   </div>
 </template>
 
@@ -26,6 +27,8 @@ const obj2 = reactive({
 
 const obj3 = { a: ref(1) }
 
+const obj4 = { a: count }
+
 // 用来修改状态、触发更新的函数
 const increment = () => {
   count.value++
@@ -40,6 +43,10 @@ const setObj2 = () => {
 
 const setObj3 = () => {
   obj3.a.value++
+}
+
+const setObj4 = () => {
+  obj4.a.value++
 }
 
 // 生命周期钩子

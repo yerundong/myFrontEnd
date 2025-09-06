@@ -14,7 +14,7 @@
     <br />
 
     <h2>多个 v-model 绑定</h2>
-    <Com2 v-model="cvm" v-model:modelValue2="cvm2" />
+    <Com2 v-model:aaa="cvm" />{{ cvm }}
     <br />
 
     <h2>自定义 v-model 修饰</h2>

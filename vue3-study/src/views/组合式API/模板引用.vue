@@ -16,12 +16,13 @@ const myinput = ref()
 
 // 注意，你只可以在组件挂载后才能访问模板引用。
 onMounted(() => {
+  console.log('myinput: ', myinput)
   myinput.value.focus()
 })
 
 // 2.函数模板引用
 // 除了使用字符串值作名字，ref attribute 还可以绑定为一个函数，会在每次组件更新时都被调用。该函数会收到元素引用作为其第一个参数：
 const func = (a) => {
-  console.dir(a)
+  console.dir('func: ', a)
 }
 </script>

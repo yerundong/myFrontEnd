@@ -1,38 +1,41 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <title>Document</title>
-</head>
-<body>
+  </head>
+  <body>
     <script>
-        // 所谓零宽断言，就是指明某个字符串前边或者后边，将会出现满足某种规律的字符串。
-        // 这里的 零宽度 是指，它本身不占用匹配。
-        // JS不支持负向的 (?<=exp) 和 (?<!exp)，只支持正向的(?=exp) 和 (?!exp)。 谷歌支持
-        // 断言符必须用圆括号包起来
-        var str1 = 'abcabcd555k6k';
-        // x(?=y) 
-        // 正向肯定查找：匹配x字符，并且x后面必须紧跟着y
-        // console.log(str1.replace(/c(?=d)/g, '='));
+      // 所谓零宽断言，就是指明某个字符串前边或者后边，将会出现满足某种规律的字符串。
+      // 这里的 零宽度 是指，它本身不占用匹配。
+      // JS不支持负向的 (?<=exp) 和 (?<!exp)，只支持正向的(?=exp) 和 (?!exp)。 谷歌支持
+      // 断言符必须用圆括号包起来
+      // (?=pattern) 零宽正向先行断言(zero-width positive lookahead assertion)
+      // (?!pattern) 零宽负向先行断言(zero-width negative lookahead assertion)
+      // (?<=pattern) 零宽正向后行断言(zero-width positive lookbehind assertion)
+      // (?<!pattern) 零宽负向后行断言(zero-width negative lookbehind assertion)
+      var str1 = "abcabcd555k6k";
+      // x(?=y)
+      // 正向先行断言：匹配x字符，并且x后面必须紧跟着y
+      // console.log(str1.replace(/c(?=d)/g, '='));
 
-        // x(?!y)
-        // 正向否定查找：匹配x字符，并且x后面必须不是紧跟着y
-        // console.log(str1.replace(/c(?!d)/g, '='));
+      // x(?!y)
+      // 负向先行断言：匹配x字符，并且x后面必须不是紧跟着y
+      // console.log(str1.replace(/c(?!d)/g, '='));
 
-        // (?<=y)x
-        // 负向肯定查找：匹配x字符，并且x前面必须紧跟着y
-        // console.log(str1.replace(/(?<=6)k/g, '='));
+      // (?<=y)x
+      // 正向后行断言：匹配x字符，并且x前面必须紧跟着y
+      // console.log(str1.replace(/(?<=6)k/g, '='));
 
-        // (?<!y)x
-        // 负向否定查找：匹配x字符，并且x前面必须不是紧跟着y
-        // console.log(str1.replace(/(?<!6)k/g, '='));
+      // (?<!y)x
+      // 负向后行断言：匹配x字符，并且x前面必须不是紧跟着y
+      // console.log(str1.replace(/(?<!6)k/g, '='));
 
-        // (?<=y1)x(?=y2)
-        // 正向、负向查找：匹配x字符，并且x前面必须紧跟着y1,后面必须紧跟着y2
-        // console.log(str1.replace(/(?<=5)k(?=6)/g, '='));
-
+      // (?<=y1)x(?=y2)
+      // 正向、负向查找：匹配x字符，并且x前面必须紧跟着y1,后面必须紧跟着y2
+      // console.log(str1.replace(/(?<=5)k(?=6)/g, '='));
     </script>
-</body>
+  </body>
 </html>

@@ -18,6 +18,7 @@ export default {
     // 生命周期钩子
     onMounted(() => {
       console.log(`onMounted`)
+      console.log(count)
     })
 
     // 必须return才可以
