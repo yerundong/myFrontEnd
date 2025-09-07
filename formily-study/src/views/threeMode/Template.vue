@@ -1,10 +1,11 @@
 <template>
   <FormProvider :form="form">
+    <!-- :decorator此时不需要 x- 前缀，直接传递组件和属性 -->
     <Field
       name="memo"
       title="说明"
       initialValue="xxx"
-      :decorator="[FormItem]"
+      :decorator="[FormItem, { labelCol: 3 }]"
       :component="[
         Input,
         {
@@ -42,7 +43,7 @@
     </FormConsumer>
 
     <FormButtonGroup align-form-item>
-      <Submit :onSubmit="log">提交</Submit>
+      <Submit @submit="log">提交</Submit>
     </FormButtonGroup>
   </FormProvider>
 </template>

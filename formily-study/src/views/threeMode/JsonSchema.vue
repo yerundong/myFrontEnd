@@ -32,8 +32,13 @@ const schema = {
       default: 'default',
       maxLength: 10,
       'x-decorator': 'FormItem',
+      'x-decorator-props': {
+        // 给装饰器组件传递属性
+        labelCol: 2, // 标签占8列（栅格布局）
+        required: true // 显示必填星号
+      },
       'x-component': 'Input',
-      'x-disabled': true,
+      'x-disabled': false,
       'x-component-props': {
         placeholder: '请输入',
         maxlength: 10

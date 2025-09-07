@@ -18,7 +18,9 @@
         </div>
         <template v-if="item.children && item.children.length > 0">
           <div class="sec-route-item" v-for="(item2, index2) of item.children" :key="index2">
-            <RouterLink :to="`${item.path}/${item2.path}`"> > {{ item2.menuName }}</RouterLink>
+            <RouterLink :to="`${item.path}/${item2.path}`" style="padding-left: 20px">
+              {{ item2.menuName }}</RouterLink
+            >
           </div>
         </template>
       </div>
@@ -37,11 +39,13 @@ const routerList = ref(router.options.routes)
 // console.log('routerList: ', router.options.routes)
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
 .left-part {
-  width: 20%;
+  width: 400px;
   height: 100vh;
   text-align: center;
+  flex-grow: 0;
+  flex-shrink: 0;
   .logo {
     width: 214px;
     height: auto;
@@ -66,7 +70,6 @@ const routerList = ref(router.options.routes)
 }
 .route-head {
   margin-top: 5px;
-  font-size: 24px;
   font-weight: bold;
 }
 .sec-route-item {
