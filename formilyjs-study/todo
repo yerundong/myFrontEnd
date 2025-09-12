@@ -1,0 +1,13 @@
+是否包含Element-plus所有组件？有多出的组件：FormLayout、submit、reset，。。插槽都转成属性？
+插槽用法？template可以，其他两种不行
+校验另起一套，不用Element的？
+实际使用中，三种模式用哪种，怎么选
+<SchemaField.String无效
+
+
+createSchemaField({
+    components: {
+      FormLayout,
+    },
+  });
+  components有什么用？

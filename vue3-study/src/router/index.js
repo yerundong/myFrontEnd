@@ -21,6 +21,11 @@ const router = createRouter({
           path: 'component',
           menuName: '组件',
           component: () => import('@/views/选项式API/组件.vue')
+        },
+        {
+          path: 'createVNode',
+          menuName: 'createVNode',
+          component: () => import('@/views/选项式API/createVNode.vue')
         }
       ]
     },
@@ -57,6 +62,11 @@ const router = createRouter({
           path: 'composables',
           menuName: '组合式函数',
           component: () => import('@/views/组合式API/组合式函数.vue')
+        },
+        {
+          path: 'createVNode',
+          menuName: 'createVNode',
+          component: () => import('@/views/组合式API/createVNode.vue')
         }
       ]
     }
