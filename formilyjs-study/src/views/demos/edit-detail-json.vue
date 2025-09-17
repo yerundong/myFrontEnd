@@ -12,9 +12,9 @@
 </template>
 
 <script lang="ts" setup>
-import { createForm, registerValidateRules } from '@formily/core';
+import { createForm, registerValidateRules, type Field, onFieldValueChange } from '@formily/core';
 import { FormProvider, createSchemaField } from '@formily/vue';
-import { ElCard, ElRow, ElCol, ElNotification } from 'element-plus';
+import { ElCard, ElRow, ElCol, ElNotification, ElButton } from 'element-plus';
 import {
   FormLayout,
   FormItem,
@@ -27,18 +27,56 @@ import {
   InputNumber,
 } from '@formily/element-plus';
 
-const form = createForm({
-  initialValues: {
-    userName: 'xxx',
-    userCode: 'xxx',
-    sex: 1,
-    email: '123@qq.com',
+const { SchemaField } = createSchemaField({
+  components: {
+    FormLayout,
+    FormItem,
+    Input,
+    Select,
+    Submit,
+    Reset,
+    FormButtonGroup,
+    DatePicker,
+    ElRow,
+    ElCol,
+    InputNumber,
+    ElButton,
   },
 });
 
-const log = (e) => {
+const form = createForm({
+  initialValues: {
+    userName: 'xxx',
+    userCode: 'ggg',
+    sex: 1,
+    tel: '13245645612',
+    email: '123@qq.com',
+    idCard: '352226199501141519',
+    score: '60',
+    aa: 22,
+    bb: 11,
+  },
+  // 副作用逻辑，用于实现各种联动逻辑
+  effects() {
+    // 用于监听某个字段值变化的副作用钩子
+    onFieldValueChange('sex', (field1) => {
+      console.log('field1: ', field1);
+      console.log('field1.value: ', field1.value);
+      form.setFieldState('descSex', (field2) => {
+        console.log('field2: ', field1);
+        console.log('field2.value: ', field2.value);
+        if (field1.value === 2) {
+          field2.display = 'visible';
+        } else {
+          field2.display = 'none';
+        }
+      });
+    });
+  },
+});
+
+const log = (e: object): void => {
   console.log('e', e);
-  console.log('form', form);
 };
 
 // 自定义校验规则
@@ -72,10 +110,11 @@ registerValidateRules({
   },
 });
 
-const submitHandle = () => {
+const submitHandle = (e: object) => {
   return new Promise<void>((resolve) => {
-    log;
+    log(e);
     setTimeout(() => {
+      console.log('form: ', form);
       ElNotification({
         title: 'Success',
         message: 'This is a success message',
@@ -85,22 +124,6 @@ const submitHandle = () => {
     }, 1000);
   });
 };
-
-const { SchemaField } = createSchemaField({
-  components: {
-    FormLayout,
-    FormItem,
-    Input,
-    Select,
-    Submit,
-    Reset,
-    FormButtonGroup,
-    DatePicker,
-    ElRow,
-    ElCol,
-    InputNumber,
-  },
-});
 
 const schema = {
   type: 'object',
@@ -205,6 +228,7 @@ const schema = {
             placeholder: '请描述你的性别',
             clearable: true,
           },
+          'x-display': 'hidden',
           'x-validator': [
             {
               required: true,
@@ -278,6 +302,7 @@ const schema = {
 
         aa: {
           title: 'AA',
+          type: 'string',
           required: true,
           // 方式 1：这是Formily 的 “字符串模板函数”写法
           'x-reactions': `{{(field) => {
@@ -290,6 +315,7 @@ const schema = {
         },
         bb: {
           title: 'BB',
+          type: 'string',
           required: true,
           // 方式 2：对象写法（推荐）
           'x-reactions': {
@@ -302,6 +328,60 @@ const schema = {
           },
           'x-component': 'InputNumber',
           'x-decorator': 'FormItem',
+        },
+
+        fuzhi: {
+          title: '赋值',
+          type: 'void',
+          'x-component': 'ElButton',
+          'x-decorator': 'FormItem',
+          'x-content': '触发',
+          'x-component-props': {
+            type: 'primary',
+            onClick: () => {
+              // 整个表单赋值
+              // console.log(form.setValues({ userName: 'ssss' }));
+              // 单个字段赋值
+              console.log(form.setValuesIn('aa', 222));
+              console.log(form.setValuesIn('bb', 333));
+            },
+          },
+        },
+
+        hideshow: {
+          title: '隐藏显示',
+          type: 'void',
+          'x-component': 'ElButton',
+          'x-decorator': 'FormItem',
+          'x-content': '触发',
+          'x-component-props': {
+            type: 'primary',
+            onClick: () => {
+              // form.query('xxx') 返回的是一个 Query 实例，而不是 Field 对象，需要在 query 后面加 .take() 或 .value() 之类的方法，拿到真正的 Field 对象
+              const sex = form.query('sex').take() as Field;
+              console.log('sex: ', sex);
+              sex.display === 'hidden' ? sex.setDisplay('visible') : sex.setDisplay('hidden');
+            },
+          },
+        },
+
+        // 解构字段
+        '[startDate,endDate]': {
+          title: '日期范围',
+          type: 'string',
+          'x-decorator': 'FormItem',
+          'x-component': 'DatePicker',
+          'x-component-props': {
+            placeholder: '请选择日期范围',
+            clearable: true,
+            type: 'daterange',
+          },
+          'x-validator': [
+            {
+              required: true,
+              message: '请选择日期范围',
+            },
+          ],
         },
 
         formButtonGroup: {
