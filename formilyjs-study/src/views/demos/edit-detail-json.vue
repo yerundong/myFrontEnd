@@ -319,8 +319,11 @@ const schema = {
           required: true,
           // 方式 2：对象写法（推荐）
           'x-reactions': {
+            //依赖的字段路径列表，只能以点路径描述依赖，支持相对路径，如果是数组格式，那么读的时候也是数组格式，如果是对象格式，读的时候也是对象格式，只是对象格式相当于是一个alias
             dependencies: ['aa'],
+            // 当依赖条件满足时要执行的动作
             fulfill: {
+              // 修改字段的运行时状态，比如 value、visible、required、editable、disabled
               state: {
                 selfErrors: "{{$deps[0] <= $self.value ? 'BB必须小于等于AA' : ''}}",
               },

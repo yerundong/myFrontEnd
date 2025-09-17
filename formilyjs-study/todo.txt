@@ -1,5 +1,3 @@
-<SchemaField.String无效
-
 x-data
 
 "{label:contactPerson,value:contactId}"

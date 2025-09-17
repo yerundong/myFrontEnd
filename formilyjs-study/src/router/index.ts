@@ -54,6 +54,11 @@ const router = createRouter({
         path: 'edit-detail-json',
         menuName: '编辑详情-json',
         component: () => import('@/views/demos/edit-detail-json.vue')
+      },
+      {
+        path: 'reactions',
+        menuName: 'reactions',
+        component: () => import('@/views/demos/reactions.vue')
       }]
     },
   ]
