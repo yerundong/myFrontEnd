@@ -1,20 +1,7 @@
 x-data
 
-"{label:contactPerson,value:contactId}"
-
-"x-reactions": {
-                            "dependencies": ["startDate", "endDate"],
-                            "when": "{{$deps[0]&&$deps[1]}}",
-                            "fulfill": {
-                              "state": {
-                                "value": "{{ DATEDIFF($deps[0], $deps[1]) + 1 }}"
-                              }
-                            }
-                          }
-
 dict数据接口
 
-items
 
 
 

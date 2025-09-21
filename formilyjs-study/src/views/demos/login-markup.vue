@@ -1,7 +1,5 @@
 <template>
-  <div
-    style="width: 300px; border: 1px solid black; padding: 40px; margin: 0 auto"
-  >
+  <div style="width: 300px; border: 1px solid black; padding: 40px; margin: 0 auto">
     <el-tabs v-model="activeName">
       <el-tab-pane label="账号密码登录" name="first">
         <FormProvider :form="form1">

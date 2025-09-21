@@ -17,26 +17,26 @@
 </template>
 
 <script lang="ts" setup>
-import { createForm } from '@formily/core'
-import { Input, InputNumber, FormItem, Space } from '@formily/element-plus'
-import { FormProvider, createSchemaField } from '@formily/vue'
+  import { createForm } from '@formily/core';
+  import { Input, InputNumber, FormItem, Space } from '@formily/element-plus';
+  import { FormProvider, createSchemaField } from '@formily/vue';
 
-const form = createForm()
+  const form = createForm();
 
-const SchemaComponents = createSchemaField({
-  components: {
-    Input,
-    InputNumber,
-    FormItem
-  }
-})
+  const SchemaComponents = createSchemaField({
+    components: {
+      Input,
+      InputNumber,
+      FormItem,
+    },
+  });
 
-console.log('SchemaComponents: ', SchemaComponents)
-const { SchemaField, SchemaStringField, SchemaVoidField } = SchemaComponents
+  console.log('SchemaComponents: ', SchemaComponents);
+  const { SchemaField, SchemaStringField, SchemaVoidField } = SchemaComponents;
 
-// const Comp = {
-//   render(h) {
-//     return h('div', ['我也会被渲染'])
-//   }
-// }
+  // const Comp = {
+  //   render(h) {
+  //     return h('div', ['我也会被渲染'])
+  //   }
+  // }
 </script>

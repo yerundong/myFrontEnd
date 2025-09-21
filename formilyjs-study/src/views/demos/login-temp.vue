@@ -1,10 +1,8 @@
 <template>
-  <div
-    style="width: 300px; border: 1px solid black; padding: 40px; margin: 0 auto"
-  >
+  <div style="width: 300px; border: 1px solid black; padding: 40px; margin: 0 auto">
     <el-tabs v-model="activeName">
-      <el-tab-pane label="账号密码登录" name="first"
-        ><FormProvider :form="form1">
+      <el-tab-pane label="账号密码登录" name="first">
+        <FormProvider :form="form1">
           <FormLayout labelWidth="70px">
             <Field
               name="userName"
@@ -32,10 +30,7 @@
               type="string"
               :maxLength="20"
               :decorator="[FormItem]"
-              :component="[
-                Input,
-                { placeholder: '请填写密码', maxlength: 20, type: 'password' },
-              ]"
+              :component="[Input, { placeholder: '请填写密码', maxlength: 20, type: 'password' }]"
               :validator="[
                 {
                   required: true,
@@ -50,8 +45,8 @@
           </FormButtonGroup>
         </FormProvider>
       </el-tab-pane>
-      <el-tab-pane label="手机号登录" name="second"
-        ><FormProvider :form="form2">
+      <el-tab-pane label="手机号登录" name="second">
+        <FormProvider :form="form2">
           <FormLayout labelWidth="70px">
             <Field
               name="tel"
@@ -83,10 +78,7 @@
               type="string"
               :maxLength="4"
               :decorator="[FormItem]"
-              :component="[
-                Input,
-                { placeholder: '请填写验证码', maxlength: 4 },
-              ]"
+              :component="[Input, { placeholder: '请填写验证码', maxlength: 4 }]"
               :validator="[
                 {
                   required: true,
@@ -103,8 +95,8 @@
             <Submit @submit="log">提交</Submit>
             <Reset>重置</Reset>
           </FormButtonGroup>
-        </FormProvider></el-tab-pane
-      >
+        </FormProvider>
+      </el-tab-pane>
     </el-tabs>
   </div>
 </template>

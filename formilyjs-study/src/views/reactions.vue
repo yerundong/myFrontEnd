@@ -12,6 +12,7 @@
 </template>
 
 <script lang="ts" setup>
+import { deepToRaw } from '@/utils';
 import { createForm, registerValidateRules, type Field, onFieldValueChange } from '@formily/core';
 import { FormProvider, createSchemaField } from '@formily/vue';
 import { ElCard, ElRow, ElCol, ElNotification, ElButton } from 'element-plus';
@@ -25,6 +26,7 @@ import {
   FormButtonGroup,
   DatePicker,
   InputNumber,
+  Checkbox,
 } from '@formily/element-plus';
 
 const { SchemaField } = createSchemaField({
@@ -41,20 +43,21 @@ const { SchemaField } = createSchemaField({
     ElCol,
     InputNumber,
     ElButton,
+    Checkbox,
   },
 });
 
 const form = createForm();
 
-const log = (e: object): void => {
-  console.log('e', e);
+const logForm = (): void => {
+  console.log('form: ', form);
+  console.log('form.values: ', deepToRaw(form.values));
 };
 
 const submitHandle = (e: object) => {
   return new Promise<void>((resolve) => {
-    log(e);
     setTimeout(() => {
-      console.log('form: ', form);
+      console.log('submitHandle: ', e);
       ElNotification({
         title: 'Success',
         message: 'This is a success message',
@@ -68,8 +71,8 @@ const submitHandle = (e: object) => {
 /*
 x-reactions: 字段联动协议
 
-target: 声明式写法，监听一个字段
-dependencies: 声明式写法，监听多个字段。
+target: 主动联动, 声明式写法，只支持监听一个字段，但可以写多项
+dependencies: 被动联动，声明式写法，支持监听多个字段。
 依赖的字段路径列表，只能以点路径描述依赖，支持相对路径，如果是数组格式，那么读的时候也是数组格式，如果是对象格式，读的时候也是对象格式，只是对象格式相当于是一个alias
 
 fulfill: 当依赖条件满足时要执行的动作
@@ -241,7 +244,7 @@ const schema = {
               message: '请选择性别',
             },
           ],
-          // 主动联动：本字段变化，改变其他自动
+          // 主动联动，函数式写法
           // 写法一：函数
           // 'x-reactions'(field: Field) {
           //   const descSex2 = field.query('descSex2').take() as Field;
@@ -276,6 +279,45 @@ const schema = {
           ],
         },
 
+        sport: {
+          title: '运动',
+          type: 'string',
+          'x-decorator': 'FormItem',
+          'x-component': 'Input',
+          // 主动联动，配置式写法
+          'x-reactions': [
+            {
+              target: ['sportCount'],
+              fulfill: {
+                state: {
+                  value: `{{'运动次数: ' + ($self.value || '')}}`,
+                },
+                run: `console.log('$self', $self)`,
+              },
+            },
+            {
+              target: ['sportDesc'],
+              fulfill: {
+                state: {
+                  value: `{{'运动描述: ' + ($self.value||'')}}`,
+                },
+              },
+            },
+          ],
+        },
+        sportCount: {
+          title: '运动次数',
+          type: 'string',
+          'x-decorator': 'FormItem',
+          'x-component': 'Input',
+        },
+        sportDesc: {
+          title: '运动描述',
+          type: 'string',
+          'x-decorator': 'FormItem',
+          'x-component': 'Input',
+        },
+
         formButtonGroup: {
           type: 'void',
           'x-component': 'FormButtonGroup',
@@ -287,6 +329,7 @@ const schema = {
               type: 'void',
               'x-component': 'Submit',
               'x-component-props': {
+                onClick: logForm,
                 onSubmit: submitHandle,
               },
               'x-content': '保存',

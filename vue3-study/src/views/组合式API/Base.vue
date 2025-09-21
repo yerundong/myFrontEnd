@@ -20,10 +20,13 @@ const count = ref(0)
 const obj1 = ref({
   a: 0
 })
+console.log('obj1: ', obj1)
+
 // 对象类型数据2
 const obj2 = reactive({
   a: 0
 })
+console.log('obj2: ', obj2)
 
 const obj3 = { a: ref(1) }
 
