@@ -28,7 +28,7 @@ TS/TSX 项目 → 推荐用 defineComponent，不然失去类型推导。
     <innerComp name="loop" />
     <Comp70 name="foo" />
     <Comp71 name="bar" />
-    <Comp72 name="tite" />
+    <Comp72 name="tite" :user="user" />
   </div>
 </template>
 
@@ -42,7 +42,7 @@ TS/TSX 项目 → 推荐用 defineComponent，不然失去类型推导。
   const InnerComp = defineComponent({
     props: {
       name: {
-        type: String as PropType<string>,
+        type: String,
         default: '',
       },
     },
@@ -78,4 +78,6 @@ TS/TSX 项目 → 推荐用 defineComponent，不然失去类型推导。
         ]);
     },
   });
+
+  const user = ref({ id: 2342342, name: 'xxx', role: 'admin' as const });
 </script>

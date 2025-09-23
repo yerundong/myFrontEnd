@@ -2,13 +2,55 @@ x-data
 
 dict数据接口
 
+"dependencies": [".studyEndDate"], #
+
+// export type RsFileUploadGroupProps = Omit<
+//   UploaderProps,
+//   "modelValue" | "maximum" | "sourceType"
+// > & {
+//   modelValue?: any[];
+//   options?: CertificateConfigItem[];
+// };
 
 
+"fieldMapping": [
+              {
+                "sourceField": "label",
+                "targetField": "jobTitle",
+                "type": "label",
+                "submit": true
+              },
+              {
+                "sourceField": "value",
+                "targetField": "jobTitleCode",
+                "type": "value",
+                "submit": true
+              }
+            ]
+
+ HTMLInputElement | null
+
+ HTMLInputElement & null
+
+defineComponent
+
+defineExpose
 
 
+ props: {
+      name: {
+        type: String as PropType<string>,
+        default: '',
+      },
+    },
+✅ 所以结论：
+
+对 基础类型（String/Number/Boolean）：两种写法几乎没区别。
+
+对 对象/数组/联合类型：就必须写 as PropType<T> 才能得到准确的类型推断。
 
 
-
+http://172.18.166.25:30071/h5/index.html?accessToken=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJsb2dpblRpbWUiOjE3NTg2MDg5Nzg4MjQsImFjY1N5c3RlbUlkIjoiNDE0MDgxNzQ0OTQxMzA1MDM2OSIsImlkZW50aXR5VHlwZSI6IjEiLCJ1c2VyTmFtZSI6Inh5MDAxIiwiZXhwIjoxNzU4NjU5NDAwLCJ1c2VySWQiOjQxNDA2MDUwNzE4NzAyMDU5NTQsIkRldmljZUVudW1zIjoicGMifQ.Yfm1u4VLBOfY5HrJ_4V-6NKqzvfBHqhOjm_F4jMLmkc#/pages/1.7.7/wallet/relate-bill-record/index?userId=5865324128231926319&voucherFolderId=6011409400626613327&itemGroupId=6012702735538455270&businessType=LABOR_FEE_PROJECT_PERFORMANCE
 
 
 
