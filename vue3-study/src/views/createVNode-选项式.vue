@@ -5,8 +5,8 @@
   </div>
 </template>
 
-<script>
-  import Comp60 from '@/components/选项式/Comp60';
+<script lang="ts">
+  import Comp60 from '@/components/选项式/Comp60.vue';
 
   export default {
     components: {

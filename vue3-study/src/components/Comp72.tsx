@@ -1,3 +1,4 @@
+// 配合tsx使用
 import { ref, defineComponent, type VNode, type PropType } from 'vue';
 
 interface User {

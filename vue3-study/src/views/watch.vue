@@ -32,13 +32,13 @@
     count3.value[v]++;
   };
 
-  // watch
+  /************* watch ******************/
   // 1.浅层侦听器
   watch(count1, (val) => {
     msg1.value = `i am ${val} years old, ${count1.value} indeed.`;
   });
 
-  // 2.深层侦听器+即时回调的侦听器
+  // 2.整体深层侦听器+即时回调的侦听器
   watch(
     count2,
     (val) => {
@@ -47,7 +47,15 @@
     { deep: true, immediate: true }
   );
 
-  // watchEffect
+  // 3.单个深层属性监听，需要getter函数写法，不需要deep
+  watch(
+    () => count2.value.a[0].b,
+    (val) => {
+      console.log('getter val: ', val);
+    }
+  );
+
+  /************* watchEffect ******************/
   // 1.监听多个数据变化
   watchEffect(() => {
     msg3.value = `we are ${count1.value + count2.value.a[0].b} years old total.`;

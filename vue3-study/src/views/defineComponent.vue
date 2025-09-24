@@ -1,25 +1,15 @@
 <!--  
 defineComponent 是什么？
-
 它是 Vue3 提供的一个 辅助函数。
-
 作用：给 TypeScript 提供更好的类型推导，让 props / emits / slots 在 IDE 中有智能提示。
-
 运行时，它其实什么也没做，就是原样返回你的对象。
-
 一定要用吗？
-
 不一定要用。
-
 如果你写的是 TS/TSX：
 强烈建议用 defineComponent，否则 TypeScript 无法正确识别 props 和 emits 类型
-
 4. 总结
-
 纯 JS 项目 → 可以不用 defineComponent。
-
 TS/TSX 项目 → 推荐用 defineComponent，不然失去类型推导。
-
 它不会改变运行时逻辑，只是辅助类型和 IDE 提示。
 -->
 
@@ -33,9 +23,9 @@ TS/TSX 项目 → 推荐用 defineComponent，不然失去类型推导。
 </template>
 
 <script setup lang="ts">
-  import { ref, defineComponent, h, type PropType } from 'vue';
-  import Comp70 from '@/components/Comp70';
-  import Comp71 from '@/components/Comp71';
+  import { ref, defineComponent, h } from 'vue';
+  import Comp70 from '@/components/Comp70.vue';
+  import Comp71 from '@/components/Comp71.vue';
   import Comp72 from '@/components/Comp72';
 
   // 定义内部组件用法

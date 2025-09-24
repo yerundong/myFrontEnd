@@ -5,23 +5,23 @@
     <div
       :style="{
         background: '#eee',
-        padding: '10px 20px'
+        padding: '10px 20px',
       }"
     >
-      <i>my child: </i>
+      <i>my child:</i>
       <!-- 还可以通过$attrs来手动继承 -->
       <Comp1 v-bind="$attrs" />
     </div>
   </div>
 </template>
 <script setup>
-import Comp1 from './选项式/Comp1'
-import { useAttrs } from 'vue'
+  import Comp1 from './选项式/Comp1';
+  import { useAttrs } from 'vue';
 
-// 禁用 Attributes 继承
-// defineOptions({
-//   inheritAttrs: false
-// })
-const $attrs = useAttrs()
-console.log('$attrs', $attrs)
+  // 禁用 Attributes 继承
+  // defineOptions({
+  //   inheritAttrs: false
+  // })
+  const $attrs = useAttrs();
+  console.log('$attrs', $attrs);
 </script>
